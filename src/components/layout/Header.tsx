@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { AppointmentSheet } from "@/components/conversion/AppointmentSheet";
 import { CLINIC, track } from "@/lib/clinic";
 import { FERTILITY_MENU, GYNECOLOGY_MENU, ROUTES, type NavGroup } from "@/data/navigation";
+import mark from "@/assets/neo-mark.png";
 import { cn } from "@/lib/utils";
 
 type MenuKey = "fertility" | "gynecology" | null;
@@ -101,12 +102,15 @@ export function Header() {
   return (
     <header className="sticky top-0 z-40 border-b border-line bg-sand/95 backdrop-blur">
       <div className="container-page flex h-[4.5rem] items-center justify-between gap-6">
-        <Link to={ROUTES.home} className="flex flex-col leading-none">
+        <Link to={ROUTES.home} className="flex items-center gap-2.5">
+          <img src={mark} alt="" width={36} height={36} className="size-9" />
+          <span className="flex flex-col leading-none">
           <span className="font-display text-[1.375rem] font-semibold text-teal-900">
             Neo Fertility
           </span>
           <span className="text-[0.6875rem] tracking-[0.18em] text-teal-600 uppercase">
             Clinic · Marathahalli
+          </span>
           </span>
         </Link>
 
