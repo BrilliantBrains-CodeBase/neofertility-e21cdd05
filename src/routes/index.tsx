@@ -248,24 +248,80 @@ function Home() {
       {/* Who we help */}
       <section className="section-y">
         <div className="container-page">
-          <SectionHeading
-            eyebrow="Who we help"
-            title="Four ways people arrive here, four different starting points"
-            copy="Neo Fertility Clinic treats four groups of patients, and the pathway is different for each."
-          />
-          <div className="mt-10 grid gap-5 md:grid-cols-2">
-            {SEGMENTS.map((segment) => (
-              <InfoCard key={segment.title} {...segment} />
-            ))}
+          {/* Split heading, reference style */}
+          <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr] lg:items-end lg:gap-12">
+            <div>
+              <p className="text-[0.75rem] font-medium uppercase tracking-[0.18em] text-teal-600">
+                Who we help
+              </p>
+              <h2 className="mt-3 font-display text-[1.75rem] leading-[1.1] text-teal-900 sm:text-[2.25rem] lg:text-[2.75rem]">
+                <span className="block font-semibold">Four ways people arrive here,</span>
+                <span className="block italic font-normal text-teal-700">
+                  four different starting points
+                </span>
+              </h2>
+            </div>
+            <p className="text-[1.0625rem] leading-relaxed text-ink-muted lg:pb-2">
+              Neo Fertility Clinic treats four groups of patients, and the pathway is different for
+              each.
+            </p>
           </div>
+
+          <div className="mt-10 grid gap-8 lg:mt-14 lg:grid-cols-[0.95fr_1.05fr] lg:items-center lg:gap-14">
+            {/* Image with offset blush panel */}
+            <div className="relative">
+              <div
+                aria-hidden
+                className="absolute -left-3 -top-3 bottom-6 right-6 rounded-[1.75rem] bg-clay-50 sm:-left-5 sm:-top-5"
+              />
+              <img
+                src={reception}
+                alt="Reception at Neo Fertility Clinic, Marathahalli, Bengaluru"
+                width={720}
+                height={780}
+                loading="lazy"
+                className="relative h-64 w-full rounded-[1.5rem] object-cover sm:h-80 lg:h-[26rem]"
+              />
+            </div>
+
+            {/* Numbered pathway list */}
+            <ol className="grid gap-7 sm:gap-8">
+              {SEGMENTS.map((segment, i) => (
+                <li key={segment.title} className="grid grid-cols-[auto_minmax(0,1fr)] gap-4">
+                  <span
+                    aria-hidden
+                    className="grid size-10 shrink-0 place-items-center rounded-full bg-clay-50 font-display text-[1.0625rem] font-semibold text-clay-600"
+                  >
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <div className="min-w-0">
+                    <h3 className="text-[1.0625rem] font-medium leading-snug text-teal-800 sm:text-[1.125rem]">
+                      {segment.title}
+                    </h3>
+                    <p className="mt-1.5 text-[0.9375rem] leading-relaxed text-ink-muted">
+                      {segment.copy}
+                    </p>
+                    <Link
+                      to={segment.to}
+                      className="mt-2.5 inline-flex items-center gap-1 text-[0.9375rem] font-medium text-teal-700 hover:underline"
+                    >
+                      Read more <ArrowRight className="size-4" />
+                    </Link>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </div>
+
           <Link
             to={ROUTES.whoWeHelp}
-            className="mt-8 inline-flex items-center gap-2 font-medium text-teal-700 hover:underline"
+            className="mt-10 inline-flex items-center gap-2 rounded-full border border-line px-5 py-2.5 font-medium text-teal-700 transition-colors hover:bg-clay-50"
           >
             See all patient pathways <ArrowRight className="size-4" />
           </Link>
         </div>
       </section>
+
 
       {/* What we do */}
       <section className="bg-white section-y">
