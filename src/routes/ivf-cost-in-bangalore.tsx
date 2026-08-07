@@ -36,7 +36,7 @@ const FAQS = [
   },
 ];
 
-export const Route = createFileRoute(PATH)({
+export const Route = createFileRoute("/ivf-cost-in-bangalore")({
   head: () => ({
     ...pageMeta({
       title: "IVF Cost in Bangalore 2026 | Transparent Pricing | Neo Fertility",

@@ -15,7 +15,7 @@ import { pageMeta, jsonLd, breadcrumbSchema } from "@/lib/seo";
 const PATH = ROUTES.fertilityAssessment;
 const SOURCE_PAGE = "fertility-assessment";
 
-export const Route = createFileRoute(PATH)({
+export const Route = createFileRoute("/fertility-assessment")({
   head: () => ({
     ...pageMeta({
       title: "Fertility Self-Assessment | Neo Fertility Clinic, Bangalore",

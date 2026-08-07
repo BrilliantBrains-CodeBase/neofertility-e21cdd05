@@ -32,7 +32,7 @@ const FAQS = [
   },
 ];
 
-export const Route = createFileRoute(PATH)({
+export const Route = createFileRoute("/fertility-clinic-in-bellandur-bangalore")({
   head: () => ({
     ...pageMeta({
       title: "Fertility Clinic Near Bellandur, Bangalore | Neo Fertility",

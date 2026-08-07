@@ -37,7 +37,7 @@ const FAQS = [
   },
 ];
 
-export const Route = createFileRoute(PATH)({
+export const Route = createFileRoute("/family-planning-services-in-bangalore")({
   head: () => ({
     ...pageMeta({
       title: "Family Planning Services in Bangalore | Neo Fertility",

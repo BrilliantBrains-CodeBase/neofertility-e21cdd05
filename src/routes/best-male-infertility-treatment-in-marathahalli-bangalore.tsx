@@ -33,7 +33,7 @@ const FAQS = [
   },
 ];
 
-export const Route = createFileRoute(PATH)({
+export const Route = createFileRoute("/best-male-infertility-treatment-in-marathahalli-bangalore")({
   head: () => ({
     ...pageMeta({
       title: "Male Infertility Treatment in Marathahalli | Neo Fertility",

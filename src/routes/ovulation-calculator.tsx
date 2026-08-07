@@ -13,7 +13,7 @@ import { pageMeta, jsonLd, breadcrumbSchema } from "@/lib/seo";
 const PATH = ROUTES.ovulationCalculator;
 const SOURCE_PAGE = "ovulation-calculator";
 
-export const Route = createFileRoute(PATH)({
+export const Route = createFileRoute("/ovulation-calculator")({
   head: () => ({
     ...pageMeta({
       title: "Ovulation Calculator | Neo Fertility Clinic, Bangalore",

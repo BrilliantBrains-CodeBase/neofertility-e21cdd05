@@ -33,7 +33,7 @@ const FAQS = [
   },
 ];
 
-export const Route = createFileRoute(PATH)({
+export const Route = createFileRoute("/donor-eggs-and-sperm-program-in-marathahalli-bangalore")({
   head: () => ({
     ...pageMeta({
       title: "Donor Egg and Sperm Programme | Neo Fertility",

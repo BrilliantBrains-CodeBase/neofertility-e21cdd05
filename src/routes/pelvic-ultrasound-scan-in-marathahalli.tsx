@@ -37,7 +37,7 @@ const FAQS = [
   },
 ];
 
-export const Route = createFileRoute(PATH)({
+export const Route = createFileRoute("/pelvic-ultrasound-scan-in-marathahalli")({
   head: () => ({
     ...pageMeta({
       title: "Pelvic Ultrasound Scan in Marathahalli | Neo Fertility",

@@ -37,7 +37,7 @@ const FAQS = [
   },
 ];
 
-export const Route = createFileRoute(PATH)({
+export const Route = createFileRoute("/best-pregnancy-care-in-marathahalli-whitefield-bangalore")({
   head: () => ({
     ...pageMeta({
       title: "Pregnancy Care in Marathahalli & Whitefield | Neo Fertility",

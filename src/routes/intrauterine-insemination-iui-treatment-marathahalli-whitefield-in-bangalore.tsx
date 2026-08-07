@@ -41,7 +41,7 @@ const FAQS = [
   },
 ];
 
-export const Route = createFileRoute(PATH)({
+export const Route = createFileRoute("/intrauterine-insemination-iui-treatment-marathahalli-whitefield-in-bangalore")({
   head: () => ({
     ...pageMeta({
       title: "IUI Treatment in Marathahalli, Whitefield | Neo Fertility",
