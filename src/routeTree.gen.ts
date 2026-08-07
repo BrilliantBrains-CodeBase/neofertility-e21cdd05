@@ -16,11 +16,17 @@ import { Route as BestGynecologistAndFertilityDoctorInMarathahalliRouteImport } 
 import { Route as BestHysteroscopyTreatmentInMarathahalliBangaloreRouteImport } from './routes/best-hysteroscopy-treatment-in-marathahalli-bangalore'
 import { Route as BestIvfTreatmentInMarathahalliWhitefieldBangaloreRouteImport } from './routes/best-ivf-treatment-in-marathahalli-whitefield-bangalore'
 import { Route as BestMaleInfertilityTreatmentInMarathahalliBangaloreRouteImport } from './routes/best-male-infertility-treatment-in-marathahalli-bangalore'
+import { Route as BestPcodTreatmentInMarathahalliWhitefieldBangaloreRouteImport } from './routes/best-pcod-treatment-in-marathahalli-whitefield-bangalore'
+import { Route as BestPcosTreatmentInMarathahalliWhitefieldBangaloreRouteImport } from './routes/best-pcos-treatment-in-marathahalli-whitefield-bangalore'
 import { Route as BestPreConceptionHealthCheckInMarathahalliBangaloreRouteImport } from './routes/best-pre-conception-health-check-in-marathahalli-bangalore'
 import { Route as BestPregnancyCareInMarathahalliWhitefieldBangaloreRouteImport } from './routes/best-pregnancy-care-in-marathahalli-whitefield-bangalore'
+import { Route as BlogsRouteImport } from './routes/blogs'
 import { Route as BreastLumpsTreatmentInMarathahalliWhitefieldBangaloreRouteImport } from './routes/breast-lumps-treatment-in-marathahalli-whitefield-bangalore'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as DonorEggsAndSpermProgramInMarathahalliBangaloreRouteImport } from './routes/donor-eggs-and-sperm-program-in-marathahalli-bangalore'
 import { Route as FamilyPlanningServicesInBangaloreRouteImport } from './routes/family-planning-services-in-bangalore'
+import { Route as FaqRouteImport } from './routes/faq'
+import { Route as FemaleSexualDysfunctionTreatmentBangaloreRouteImport } from './routes/female-sexual-dysfunction-treatment-bangalore'
 import { Route as FertilityAssessmentRouteImport } from './routes/fertility-assessment'
 import { Route as FertilityClinicInBellandurBangaloreRouteImport } from './routes/fertility-clinic-in-bellandur-bangalore'
 import { Route as FertilitySolutionsRouteImport } from './routes/fertility-solutions'
@@ -31,15 +37,22 @@ import { Route as InfertilityTreatmentInMarathahalliWhitefieldInBangaloreRouteIm
 import { Route as IntrauterineInseminationIuiTreatmentMarathahalliWhitefieldInBangaloreRouteImport } from './routes/intrauterine-insemination-iui-treatment-marathahalli-whitefield-in-bangalore'
 import { Route as IvfClinicInWhitefieldBangaloreRouteImport } from './routes/ivf-clinic-in-whitefield-bangalore'
 import { Route as IvfCostInBangaloreRouteImport } from './routes/ivf-cost-in-bangalore'
+import { Route as IvfTreatmentInBangaloreRouteImport } from './routes/ivf-treatment-in-bangalore'
 import { Route as LaparoscopicSurgeryForInfertilityInMarathahalliBangaloreRouteImport } from './routes/laparoscopic-surgery-for-infertility-in-marathahalli-bangalore'
+import { Route as MaleInfertilityCausesDiagnosisAndTreatmentRouteImport } from './routes/male-infertility-causes-diagnosis-and-treatment'
 import { Route as MedicalTerminationOfPregnancyMtpMarathahalliWhitefieldRouteImport } from './routes/medical-termination-of-pregnancy-mtp-marathahalli-whitefield'
 import { Route as MenstrualBleedingAndIrregularPeriodTreatmentInMarathahalliBangaloreRouteImport } from './routes/menstrual-bleeding-and-irregular-period-treatment-in-marathahalli-bangalore'
 import { Route as OvarianHyperstimulationSyndromeOhssTreatmentBangaloreRouteImport } from './routes/ovarian-hyperstimulation-syndrome-ohss-treatment-bangalore'
 import { Route as OvulationCalculatorRouteImport } from './routes/ovulation-calculator'
+import { Route as PatientStoriesRouteImport } from './routes/patient-stories'
 import { Route as PelvicInflammatoryDiseasePidsTreatmentInBangaloreRouteImport } from './routes/pelvic-inflammatory-disease-pids-treatment-in-bangalore'
 import { Route as PelvicUltrasoundScanInMarathahalliRouteImport } from './routes/pelvic-ultrasound-scan-in-marathahalli'
+import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
 import { Route as SexuallyTransmittedInfectionsStisTreatmentInBangaloreRouteImport } from './routes/sexually-transmitted-infections-stis-treatment-in-bangalore'
+import { Route as TermsOfUseRouteImport } from './routes/terms-of-use'
 import { Route as VaginalDischargeInfectionTreatmentInMarathahalliBangaloreRouteImport } from './routes/vaginal-discharge-infection-treatment-in-marathahalli-bangalore'
+import { Route as VaginalTighteningTreatmentBangaloreRouteImport } from './routes/vaginal-tightening-treatment-bangalore'
+import { Route as WhenShouldACoupleSeekFertilityTreatmentRouteImport } from './routes/when-should-a-couple-seek-fertility-treatment'
 import { Route as WhoWeHelpRouteImport } from './routes/who-we-help'
 
 const IndexRoute = IndexRouteImport.update({
@@ -83,6 +96,18 @@ const BestMaleInfertilityTreatmentInMarathahalliBangaloreRoute =
     path: '/best-male-infertility-treatment-in-marathahalli-bangalore',
     getParentRoute: () => rootRouteImport,
   } as any)
+const BestPcodTreatmentInMarathahalliWhitefieldBangaloreRoute =
+  BestPcodTreatmentInMarathahalliWhitefieldBangaloreRouteImport.update({
+    id: '/best-pcod-treatment-in-marathahalli-whitefield-bangalore',
+    path: '/best-pcod-treatment-in-marathahalli-whitefield-bangalore',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BestPcosTreatmentInMarathahalliWhitefieldBangaloreRoute =
+  BestPcosTreatmentInMarathahalliWhitefieldBangaloreRouteImport.update({
+    id: '/best-pcos-treatment-in-marathahalli-whitefield-bangalore',
+    path: '/best-pcos-treatment-in-marathahalli-whitefield-bangalore',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const BestPreConceptionHealthCheckInMarathahalliBangaloreRoute =
   BestPreConceptionHealthCheckInMarathahalliBangaloreRouteImport.update({
     id: '/best-pre-conception-health-check-in-marathahalli-bangalore',
@@ -95,12 +120,22 @@ const BestPregnancyCareInMarathahalliWhitefieldBangaloreRoute =
     path: '/best-pregnancy-care-in-marathahalli-whitefield-bangalore',
     getParentRoute: () => rootRouteImport,
   } as any)
+const BlogsRoute = BlogsRouteImport.update({
+  id: '/blogs',
+  path: '/blogs',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BreastLumpsTreatmentInMarathahalliWhitefieldBangaloreRoute =
   BreastLumpsTreatmentInMarathahalliWhitefieldBangaloreRouteImport.update({
     id: '/breast-lumps-treatment-in-marathahalli-whitefield-bangalore',
     path: '/breast-lumps-treatment-in-marathahalli-whitefield-bangalore',
     getParentRoute: () => rootRouteImport,
   } as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DonorEggsAndSpermProgramInMarathahalliBangaloreRoute =
   DonorEggsAndSpermProgramInMarathahalliBangaloreRouteImport.update({
     id: '/donor-eggs-and-sperm-program-in-marathahalli-bangalore',
@@ -111,6 +146,17 @@ const FamilyPlanningServicesInBangaloreRoute =
   FamilyPlanningServicesInBangaloreRouteImport.update({
     id: '/family-planning-services-in-bangalore',
     path: '/family-planning-services-in-bangalore',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const FaqRoute = FaqRouteImport.update({
+  id: '/faq',
+  path: '/faq',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FemaleSexualDysfunctionTreatmentBangaloreRoute =
+  FemaleSexualDysfunctionTreatmentBangaloreRouteImport.update({
+    id: '/female-sexual-dysfunction-treatment-bangalore',
+    path: '/female-sexual-dysfunction-treatment-bangalore',
     getParentRoute: () => rootRouteImport,
   } as any)
 const FertilityAssessmentRoute = FertilityAssessmentRouteImport.update({
@@ -171,10 +217,21 @@ const IvfCostInBangaloreRoute = IvfCostInBangaloreRouteImport.update({
   path: '/ivf-cost-in-bangalore',
   getParentRoute: () => rootRouteImport,
 } as any)
+const IvfTreatmentInBangaloreRoute = IvfTreatmentInBangaloreRouteImport.update({
+  id: '/ivf-treatment-in-bangalore',
+  path: '/ivf-treatment-in-bangalore',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LaparoscopicSurgeryForInfertilityInMarathahalliBangaloreRoute =
   LaparoscopicSurgeryForInfertilityInMarathahalliBangaloreRouteImport.update({
     id: '/laparoscopic-surgery-for-infertility-in-marathahalli-bangalore',
     path: '/laparoscopic-surgery-for-infertility-in-marathahalli-bangalore',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const MaleInfertilityCausesDiagnosisAndTreatmentRoute =
+  MaleInfertilityCausesDiagnosisAndTreatmentRouteImport.update({
+    id: '/male-infertility-causes-diagnosis-and-treatment',
+    path: '/male-infertility-causes-diagnosis-and-treatment',
     getParentRoute: () => rootRouteImport,
   } as any)
 const MedicalTerminationOfPregnancyMtpMarathahalliWhitefieldRoute =
@@ -202,6 +259,11 @@ const OvulationCalculatorRoute = OvulationCalculatorRouteImport.update({
   path: '/ovulation-calculator',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PatientStoriesRoute = PatientStoriesRouteImport.update({
+  id: '/patient-stories',
+  path: '/patient-stories',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PelvicInflammatoryDiseasePidsTreatmentInBangaloreRoute =
   PelvicInflammatoryDiseasePidsTreatmentInBangaloreRouteImport.update({
     id: '/pelvic-inflammatory-disease-pids-treatment-in-bangalore',
@@ -214,16 +276,38 @@ const PelvicUltrasoundScanInMarathahalliRoute =
     path: '/pelvic-ultrasound-scan-in-marathahalli',
     getParentRoute: () => rootRouteImport,
   } as any)
+const PrivacyPolicyRoute = PrivacyPolicyRouteImport.update({
+  id: '/privacy-policy',
+  path: '/privacy-policy',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SexuallyTransmittedInfectionsStisTreatmentInBangaloreRoute =
   SexuallyTransmittedInfectionsStisTreatmentInBangaloreRouteImport.update({
     id: '/sexually-transmitted-infections-stis-treatment-in-bangalore',
     path: '/sexually-transmitted-infections-stis-treatment-in-bangalore',
     getParentRoute: () => rootRouteImport,
   } as any)
+const TermsOfUseRoute = TermsOfUseRouteImport.update({
+  id: '/terms-of-use',
+  path: '/terms-of-use',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const VaginalDischargeInfectionTreatmentInMarathahalliBangaloreRoute =
   VaginalDischargeInfectionTreatmentInMarathahalliBangaloreRouteImport.update({
     id: '/vaginal-discharge-infection-treatment-in-marathahalli-bangalore',
     path: '/vaginal-discharge-infection-treatment-in-marathahalli-bangalore',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const VaginalTighteningTreatmentBangaloreRoute =
+  VaginalTighteningTreatmentBangaloreRouteImport.update({
+    id: '/vaginal-tightening-treatment-bangalore',
+    path: '/vaginal-tightening-treatment-bangalore',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const WhenShouldACoupleSeekFertilityTreatmentRoute =
+  WhenShouldACoupleSeekFertilityTreatmentRouteImport.update({
+    id: '/when-should-a-couple-seek-fertility-treatment',
+    path: '/when-should-a-couple-seek-fertility-treatment',
     getParentRoute: () => rootRouteImport,
   } as any)
 const WhoWeHelpRoute = WhoWeHelpRouteImport.update({
@@ -240,11 +324,17 @@ export interface FileRoutesByFullPath {
   '/best-hysteroscopy-treatment-in-marathahalli-bangalore': typeof BestHysteroscopyTreatmentInMarathahalliBangaloreRoute
   '/best-ivf-treatment-in-marathahalli-whitefield-bangalore': typeof BestIvfTreatmentInMarathahalliWhitefieldBangaloreRoute
   '/best-male-infertility-treatment-in-marathahalli-bangalore': typeof BestMaleInfertilityTreatmentInMarathahalliBangaloreRoute
+  '/best-pcod-treatment-in-marathahalli-whitefield-bangalore': typeof BestPcodTreatmentInMarathahalliWhitefieldBangaloreRoute
+  '/best-pcos-treatment-in-marathahalli-whitefield-bangalore': typeof BestPcosTreatmentInMarathahalliWhitefieldBangaloreRoute
   '/best-pre-conception-health-check-in-marathahalli-bangalore': typeof BestPreConceptionHealthCheckInMarathahalliBangaloreRoute
   '/best-pregnancy-care-in-marathahalli-whitefield-bangalore': typeof BestPregnancyCareInMarathahalliWhitefieldBangaloreRoute
+  '/blogs': typeof BlogsRoute
   '/breast-lumps-treatment-in-marathahalli-whitefield-bangalore': typeof BreastLumpsTreatmentInMarathahalliWhitefieldBangaloreRoute
+  '/contact': typeof ContactRoute
   '/donor-eggs-and-sperm-program-in-marathahalli-bangalore': typeof DonorEggsAndSpermProgramInMarathahalliBangaloreRoute
   '/family-planning-services-in-bangalore': typeof FamilyPlanningServicesInBangaloreRoute
+  '/faq': typeof FaqRoute
+  '/female-sexual-dysfunction-treatment-bangalore': typeof FemaleSexualDysfunctionTreatmentBangaloreRoute
   '/fertility-assessment': typeof FertilityAssessmentRoute
   '/fertility-clinic-in-bellandur-bangalore': typeof FertilityClinicInBellandurBangaloreRoute
   '/fertility-solutions': typeof FertilitySolutionsRoute
@@ -255,15 +345,22 @@ export interface FileRoutesByFullPath {
   '/intrauterine-insemination-iui-treatment-marathahalli-whitefield-in-bangalore': typeof IntrauterineInseminationIuiTreatmentMarathahalliWhitefieldInBangaloreRoute
   '/ivf-clinic-in-whitefield-bangalore': typeof IvfClinicInWhitefieldBangaloreRoute
   '/ivf-cost-in-bangalore': typeof IvfCostInBangaloreRoute
+  '/ivf-treatment-in-bangalore': typeof IvfTreatmentInBangaloreRoute
   '/laparoscopic-surgery-for-infertility-in-marathahalli-bangalore': typeof LaparoscopicSurgeryForInfertilityInMarathahalliBangaloreRoute
+  '/male-infertility-causes-diagnosis-and-treatment': typeof MaleInfertilityCausesDiagnosisAndTreatmentRoute
   '/medical-termination-of-pregnancy-mtp-marathahalli-whitefield': typeof MedicalTerminationOfPregnancyMtpMarathahalliWhitefieldRoute
   '/menstrual-bleeding-and-irregular-period-treatment-in-marathahalli-bangalore': typeof MenstrualBleedingAndIrregularPeriodTreatmentInMarathahalliBangaloreRoute
   '/ovarian-hyperstimulation-syndrome-ohss-treatment-bangalore': typeof OvarianHyperstimulationSyndromeOhssTreatmentBangaloreRoute
   '/ovulation-calculator': typeof OvulationCalculatorRoute
+  '/patient-stories': typeof PatientStoriesRoute
   '/pelvic-inflammatory-disease-pids-treatment-in-bangalore': typeof PelvicInflammatoryDiseasePidsTreatmentInBangaloreRoute
   '/pelvic-ultrasound-scan-in-marathahalli': typeof PelvicUltrasoundScanInMarathahalliRoute
+  '/privacy-policy': typeof PrivacyPolicyRoute
   '/sexually-transmitted-infections-stis-treatment-in-bangalore': typeof SexuallyTransmittedInfectionsStisTreatmentInBangaloreRoute
+  '/terms-of-use': typeof TermsOfUseRoute
   '/vaginal-discharge-infection-treatment-in-marathahalli-bangalore': typeof VaginalDischargeInfectionTreatmentInMarathahalliBangaloreRoute
+  '/vaginal-tightening-treatment-bangalore': typeof VaginalTighteningTreatmentBangaloreRoute
+  '/when-should-a-couple-seek-fertility-treatment': typeof WhenShouldACoupleSeekFertilityTreatmentRoute
   '/who-we-help': typeof WhoWeHelpRoute
 }
 export interface FileRoutesByTo {
@@ -274,11 +371,17 @@ export interface FileRoutesByTo {
   '/best-hysteroscopy-treatment-in-marathahalli-bangalore': typeof BestHysteroscopyTreatmentInMarathahalliBangaloreRoute
   '/best-ivf-treatment-in-marathahalli-whitefield-bangalore': typeof BestIvfTreatmentInMarathahalliWhitefieldBangaloreRoute
   '/best-male-infertility-treatment-in-marathahalli-bangalore': typeof BestMaleInfertilityTreatmentInMarathahalliBangaloreRoute
+  '/best-pcod-treatment-in-marathahalli-whitefield-bangalore': typeof BestPcodTreatmentInMarathahalliWhitefieldBangaloreRoute
+  '/best-pcos-treatment-in-marathahalli-whitefield-bangalore': typeof BestPcosTreatmentInMarathahalliWhitefieldBangaloreRoute
   '/best-pre-conception-health-check-in-marathahalli-bangalore': typeof BestPreConceptionHealthCheckInMarathahalliBangaloreRoute
   '/best-pregnancy-care-in-marathahalli-whitefield-bangalore': typeof BestPregnancyCareInMarathahalliWhitefieldBangaloreRoute
+  '/blogs': typeof BlogsRoute
   '/breast-lumps-treatment-in-marathahalli-whitefield-bangalore': typeof BreastLumpsTreatmentInMarathahalliWhitefieldBangaloreRoute
+  '/contact': typeof ContactRoute
   '/donor-eggs-and-sperm-program-in-marathahalli-bangalore': typeof DonorEggsAndSpermProgramInMarathahalliBangaloreRoute
   '/family-planning-services-in-bangalore': typeof FamilyPlanningServicesInBangaloreRoute
+  '/faq': typeof FaqRoute
+  '/female-sexual-dysfunction-treatment-bangalore': typeof FemaleSexualDysfunctionTreatmentBangaloreRoute
   '/fertility-assessment': typeof FertilityAssessmentRoute
   '/fertility-clinic-in-bellandur-bangalore': typeof FertilityClinicInBellandurBangaloreRoute
   '/fertility-solutions': typeof FertilitySolutionsRoute
@@ -289,15 +392,22 @@ export interface FileRoutesByTo {
   '/intrauterine-insemination-iui-treatment-marathahalli-whitefield-in-bangalore': typeof IntrauterineInseminationIuiTreatmentMarathahalliWhitefieldInBangaloreRoute
   '/ivf-clinic-in-whitefield-bangalore': typeof IvfClinicInWhitefieldBangaloreRoute
   '/ivf-cost-in-bangalore': typeof IvfCostInBangaloreRoute
+  '/ivf-treatment-in-bangalore': typeof IvfTreatmentInBangaloreRoute
   '/laparoscopic-surgery-for-infertility-in-marathahalli-bangalore': typeof LaparoscopicSurgeryForInfertilityInMarathahalliBangaloreRoute
+  '/male-infertility-causes-diagnosis-and-treatment': typeof MaleInfertilityCausesDiagnosisAndTreatmentRoute
   '/medical-termination-of-pregnancy-mtp-marathahalli-whitefield': typeof MedicalTerminationOfPregnancyMtpMarathahalliWhitefieldRoute
   '/menstrual-bleeding-and-irregular-period-treatment-in-marathahalli-bangalore': typeof MenstrualBleedingAndIrregularPeriodTreatmentInMarathahalliBangaloreRoute
   '/ovarian-hyperstimulation-syndrome-ohss-treatment-bangalore': typeof OvarianHyperstimulationSyndromeOhssTreatmentBangaloreRoute
   '/ovulation-calculator': typeof OvulationCalculatorRoute
+  '/patient-stories': typeof PatientStoriesRoute
   '/pelvic-inflammatory-disease-pids-treatment-in-bangalore': typeof PelvicInflammatoryDiseasePidsTreatmentInBangaloreRoute
   '/pelvic-ultrasound-scan-in-marathahalli': typeof PelvicUltrasoundScanInMarathahalliRoute
+  '/privacy-policy': typeof PrivacyPolicyRoute
   '/sexually-transmitted-infections-stis-treatment-in-bangalore': typeof SexuallyTransmittedInfectionsStisTreatmentInBangaloreRoute
+  '/terms-of-use': typeof TermsOfUseRoute
   '/vaginal-discharge-infection-treatment-in-marathahalli-bangalore': typeof VaginalDischargeInfectionTreatmentInMarathahalliBangaloreRoute
+  '/vaginal-tightening-treatment-bangalore': typeof VaginalTighteningTreatmentBangaloreRoute
+  '/when-should-a-couple-seek-fertility-treatment': typeof WhenShouldACoupleSeekFertilityTreatmentRoute
   '/who-we-help': typeof WhoWeHelpRoute
 }
 export interface FileRoutesById {
@@ -309,11 +419,17 @@ export interface FileRoutesById {
   '/best-hysteroscopy-treatment-in-marathahalli-bangalore': typeof BestHysteroscopyTreatmentInMarathahalliBangaloreRoute
   '/best-ivf-treatment-in-marathahalli-whitefield-bangalore': typeof BestIvfTreatmentInMarathahalliWhitefieldBangaloreRoute
   '/best-male-infertility-treatment-in-marathahalli-bangalore': typeof BestMaleInfertilityTreatmentInMarathahalliBangaloreRoute
+  '/best-pcod-treatment-in-marathahalli-whitefield-bangalore': typeof BestPcodTreatmentInMarathahalliWhitefieldBangaloreRoute
+  '/best-pcos-treatment-in-marathahalli-whitefield-bangalore': typeof BestPcosTreatmentInMarathahalliWhitefieldBangaloreRoute
   '/best-pre-conception-health-check-in-marathahalli-bangalore': typeof BestPreConceptionHealthCheckInMarathahalliBangaloreRoute
   '/best-pregnancy-care-in-marathahalli-whitefield-bangalore': typeof BestPregnancyCareInMarathahalliWhitefieldBangaloreRoute
+  '/blogs': typeof BlogsRoute
   '/breast-lumps-treatment-in-marathahalli-whitefield-bangalore': typeof BreastLumpsTreatmentInMarathahalliWhitefieldBangaloreRoute
+  '/contact': typeof ContactRoute
   '/donor-eggs-and-sperm-program-in-marathahalli-bangalore': typeof DonorEggsAndSpermProgramInMarathahalliBangaloreRoute
   '/family-planning-services-in-bangalore': typeof FamilyPlanningServicesInBangaloreRoute
+  '/faq': typeof FaqRoute
+  '/female-sexual-dysfunction-treatment-bangalore': typeof FemaleSexualDysfunctionTreatmentBangaloreRoute
   '/fertility-assessment': typeof FertilityAssessmentRoute
   '/fertility-clinic-in-bellandur-bangalore': typeof FertilityClinicInBellandurBangaloreRoute
   '/fertility-solutions': typeof FertilitySolutionsRoute
@@ -324,15 +440,22 @@ export interface FileRoutesById {
   '/intrauterine-insemination-iui-treatment-marathahalli-whitefield-in-bangalore': typeof IntrauterineInseminationIuiTreatmentMarathahalliWhitefieldInBangaloreRoute
   '/ivf-clinic-in-whitefield-bangalore': typeof IvfClinicInWhitefieldBangaloreRoute
   '/ivf-cost-in-bangalore': typeof IvfCostInBangaloreRoute
+  '/ivf-treatment-in-bangalore': typeof IvfTreatmentInBangaloreRoute
   '/laparoscopic-surgery-for-infertility-in-marathahalli-bangalore': typeof LaparoscopicSurgeryForInfertilityInMarathahalliBangaloreRoute
+  '/male-infertility-causes-diagnosis-and-treatment': typeof MaleInfertilityCausesDiagnosisAndTreatmentRoute
   '/medical-termination-of-pregnancy-mtp-marathahalli-whitefield': typeof MedicalTerminationOfPregnancyMtpMarathahalliWhitefieldRoute
   '/menstrual-bleeding-and-irregular-period-treatment-in-marathahalli-bangalore': typeof MenstrualBleedingAndIrregularPeriodTreatmentInMarathahalliBangaloreRoute
   '/ovarian-hyperstimulation-syndrome-ohss-treatment-bangalore': typeof OvarianHyperstimulationSyndromeOhssTreatmentBangaloreRoute
   '/ovulation-calculator': typeof OvulationCalculatorRoute
+  '/patient-stories': typeof PatientStoriesRoute
   '/pelvic-inflammatory-disease-pids-treatment-in-bangalore': typeof PelvicInflammatoryDiseasePidsTreatmentInBangaloreRoute
   '/pelvic-ultrasound-scan-in-marathahalli': typeof PelvicUltrasoundScanInMarathahalliRoute
+  '/privacy-policy': typeof PrivacyPolicyRoute
   '/sexually-transmitted-infections-stis-treatment-in-bangalore': typeof SexuallyTransmittedInfectionsStisTreatmentInBangaloreRoute
+  '/terms-of-use': typeof TermsOfUseRoute
   '/vaginal-discharge-infection-treatment-in-marathahalli-bangalore': typeof VaginalDischargeInfectionTreatmentInMarathahalliBangaloreRoute
+  '/vaginal-tightening-treatment-bangalore': typeof VaginalTighteningTreatmentBangaloreRoute
+  '/when-should-a-couple-seek-fertility-treatment': typeof WhenShouldACoupleSeekFertilityTreatmentRoute
   '/who-we-help': typeof WhoWeHelpRoute
 }
 export interface FileRouteTypes {
@@ -345,11 +468,17 @@ export interface FileRouteTypes {
     | '/best-hysteroscopy-treatment-in-marathahalli-bangalore'
     | '/best-ivf-treatment-in-marathahalli-whitefield-bangalore'
     | '/best-male-infertility-treatment-in-marathahalli-bangalore'
+    | '/best-pcod-treatment-in-marathahalli-whitefield-bangalore'
+    | '/best-pcos-treatment-in-marathahalli-whitefield-bangalore'
     | '/best-pre-conception-health-check-in-marathahalli-bangalore'
     | '/best-pregnancy-care-in-marathahalli-whitefield-bangalore'
+    | '/blogs'
     | '/breast-lumps-treatment-in-marathahalli-whitefield-bangalore'
+    | '/contact'
     | '/donor-eggs-and-sperm-program-in-marathahalli-bangalore'
     | '/family-planning-services-in-bangalore'
+    | '/faq'
+    | '/female-sexual-dysfunction-treatment-bangalore'
     | '/fertility-assessment'
     | '/fertility-clinic-in-bellandur-bangalore'
     | '/fertility-solutions'
@@ -360,15 +489,22 @@ export interface FileRouteTypes {
     | '/intrauterine-insemination-iui-treatment-marathahalli-whitefield-in-bangalore'
     | '/ivf-clinic-in-whitefield-bangalore'
     | '/ivf-cost-in-bangalore'
+    | '/ivf-treatment-in-bangalore'
     | '/laparoscopic-surgery-for-infertility-in-marathahalli-bangalore'
+    | '/male-infertility-causes-diagnosis-and-treatment'
     | '/medical-termination-of-pregnancy-mtp-marathahalli-whitefield'
     | '/menstrual-bleeding-and-irregular-period-treatment-in-marathahalli-bangalore'
     | '/ovarian-hyperstimulation-syndrome-ohss-treatment-bangalore'
     | '/ovulation-calculator'
+    | '/patient-stories'
     | '/pelvic-inflammatory-disease-pids-treatment-in-bangalore'
     | '/pelvic-ultrasound-scan-in-marathahalli'
+    | '/privacy-policy'
     | '/sexually-transmitted-infections-stis-treatment-in-bangalore'
+    | '/terms-of-use'
     | '/vaginal-discharge-infection-treatment-in-marathahalli-bangalore'
+    | '/vaginal-tightening-treatment-bangalore'
+    | '/when-should-a-couple-seek-fertility-treatment'
     | '/who-we-help'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -379,11 +515,17 @@ export interface FileRouteTypes {
     | '/best-hysteroscopy-treatment-in-marathahalli-bangalore'
     | '/best-ivf-treatment-in-marathahalli-whitefield-bangalore'
     | '/best-male-infertility-treatment-in-marathahalli-bangalore'
+    | '/best-pcod-treatment-in-marathahalli-whitefield-bangalore'
+    | '/best-pcos-treatment-in-marathahalli-whitefield-bangalore'
     | '/best-pre-conception-health-check-in-marathahalli-bangalore'
     | '/best-pregnancy-care-in-marathahalli-whitefield-bangalore'
+    | '/blogs'
     | '/breast-lumps-treatment-in-marathahalli-whitefield-bangalore'
+    | '/contact'
     | '/donor-eggs-and-sperm-program-in-marathahalli-bangalore'
     | '/family-planning-services-in-bangalore'
+    | '/faq'
+    | '/female-sexual-dysfunction-treatment-bangalore'
     | '/fertility-assessment'
     | '/fertility-clinic-in-bellandur-bangalore'
     | '/fertility-solutions'
@@ -394,15 +536,22 @@ export interface FileRouteTypes {
     | '/intrauterine-insemination-iui-treatment-marathahalli-whitefield-in-bangalore'
     | '/ivf-clinic-in-whitefield-bangalore'
     | '/ivf-cost-in-bangalore'
+    | '/ivf-treatment-in-bangalore'
     | '/laparoscopic-surgery-for-infertility-in-marathahalli-bangalore'
+    | '/male-infertility-causes-diagnosis-and-treatment'
     | '/medical-termination-of-pregnancy-mtp-marathahalli-whitefield'
     | '/menstrual-bleeding-and-irregular-period-treatment-in-marathahalli-bangalore'
     | '/ovarian-hyperstimulation-syndrome-ohss-treatment-bangalore'
     | '/ovulation-calculator'
+    | '/patient-stories'
     | '/pelvic-inflammatory-disease-pids-treatment-in-bangalore'
     | '/pelvic-ultrasound-scan-in-marathahalli'
+    | '/privacy-policy'
     | '/sexually-transmitted-infections-stis-treatment-in-bangalore'
+    | '/terms-of-use'
     | '/vaginal-discharge-infection-treatment-in-marathahalli-bangalore'
+    | '/vaginal-tightening-treatment-bangalore'
+    | '/when-should-a-couple-seek-fertility-treatment'
     | '/who-we-help'
   id:
     | '__root__'
@@ -413,11 +562,17 @@ export interface FileRouteTypes {
     | '/best-hysteroscopy-treatment-in-marathahalli-bangalore'
     | '/best-ivf-treatment-in-marathahalli-whitefield-bangalore'
     | '/best-male-infertility-treatment-in-marathahalli-bangalore'
+    | '/best-pcod-treatment-in-marathahalli-whitefield-bangalore'
+    | '/best-pcos-treatment-in-marathahalli-whitefield-bangalore'
     | '/best-pre-conception-health-check-in-marathahalli-bangalore'
     | '/best-pregnancy-care-in-marathahalli-whitefield-bangalore'
+    | '/blogs'
     | '/breast-lumps-treatment-in-marathahalli-whitefield-bangalore'
+    | '/contact'
     | '/donor-eggs-and-sperm-program-in-marathahalli-bangalore'
     | '/family-planning-services-in-bangalore'
+    | '/faq'
+    | '/female-sexual-dysfunction-treatment-bangalore'
     | '/fertility-assessment'
     | '/fertility-clinic-in-bellandur-bangalore'
     | '/fertility-solutions'
@@ -428,15 +583,22 @@ export interface FileRouteTypes {
     | '/intrauterine-insemination-iui-treatment-marathahalli-whitefield-in-bangalore'
     | '/ivf-clinic-in-whitefield-bangalore'
     | '/ivf-cost-in-bangalore'
+    | '/ivf-treatment-in-bangalore'
     | '/laparoscopic-surgery-for-infertility-in-marathahalli-bangalore'
+    | '/male-infertility-causes-diagnosis-and-treatment'
     | '/medical-termination-of-pregnancy-mtp-marathahalli-whitefield'
     | '/menstrual-bleeding-and-irregular-period-treatment-in-marathahalli-bangalore'
     | '/ovarian-hyperstimulation-syndrome-ohss-treatment-bangalore'
     | '/ovulation-calculator'
+    | '/patient-stories'
     | '/pelvic-inflammatory-disease-pids-treatment-in-bangalore'
     | '/pelvic-ultrasound-scan-in-marathahalli'
+    | '/privacy-policy'
     | '/sexually-transmitted-infections-stis-treatment-in-bangalore'
+    | '/terms-of-use'
     | '/vaginal-discharge-infection-treatment-in-marathahalli-bangalore'
+    | '/vaginal-tightening-treatment-bangalore'
+    | '/when-should-a-couple-seek-fertility-treatment'
     | '/who-we-help'
   fileRoutesById: FileRoutesById
 }
@@ -448,11 +610,17 @@ export interface RootRouteChildren {
   BestHysteroscopyTreatmentInMarathahalliBangaloreRoute: typeof BestHysteroscopyTreatmentInMarathahalliBangaloreRoute
   BestIvfTreatmentInMarathahalliWhitefieldBangaloreRoute: typeof BestIvfTreatmentInMarathahalliWhitefieldBangaloreRoute
   BestMaleInfertilityTreatmentInMarathahalliBangaloreRoute: typeof BestMaleInfertilityTreatmentInMarathahalliBangaloreRoute
+  BestPcodTreatmentInMarathahalliWhitefieldBangaloreRoute: typeof BestPcodTreatmentInMarathahalliWhitefieldBangaloreRoute
+  BestPcosTreatmentInMarathahalliWhitefieldBangaloreRoute: typeof BestPcosTreatmentInMarathahalliWhitefieldBangaloreRoute
   BestPreConceptionHealthCheckInMarathahalliBangaloreRoute: typeof BestPreConceptionHealthCheckInMarathahalliBangaloreRoute
   BestPregnancyCareInMarathahalliWhitefieldBangaloreRoute: typeof BestPregnancyCareInMarathahalliWhitefieldBangaloreRoute
+  BlogsRoute: typeof BlogsRoute
   BreastLumpsTreatmentInMarathahalliWhitefieldBangaloreRoute: typeof BreastLumpsTreatmentInMarathahalliWhitefieldBangaloreRoute
+  ContactRoute: typeof ContactRoute
   DonorEggsAndSpermProgramInMarathahalliBangaloreRoute: typeof DonorEggsAndSpermProgramInMarathahalliBangaloreRoute
   FamilyPlanningServicesInBangaloreRoute: typeof FamilyPlanningServicesInBangaloreRoute
+  FaqRoute: typeof FaqRoute
+  FemaleSexualDysfunctionTreatmentBangaloreRoute: typeof FemaleSexualDysfunctionTreatmentBangaloreRoute
   FertilityAssessmentRoute: typeof FertilityAssessmentRoute
   FertilityClinicInBellandurBangaloreRoute: typeof FertilityClinicInBellandurBangaloreRoute
   FertilitySolutionsRoute: typeof FertilitySolutionsRoute
@@ -463,15 +631,22 @@ export interface RootRouteChildren {
   IntrauterineInseminationIuiTreatmentMarathahalliWhitefieldInBangaloreRoute: typeof IntrauterineInseminationIuiTreatmentMarathahalliWhitefieldInBangaloreRoute
   IvfClinicInWhitefieldBangaloreRoute: typeof IvfClinicInWhitefieldBangaloreRoute
   IvfCostInBangaloreRoute: typeof IvfCostInBangaloreRoute
+  IvfTreatmentInBangaloreRoute: typeof IvfTreatmentInBangaloreRoute
   LaparoscopicSurgeryForInfertilityInMarathahalliBangaloreRoute: typeof LaparoscopicSurgeryForInfertilityInMarathahalliBangaloreRoute
+  MaleInfertilityCausesDiagnosisAndTreatmentRoute: typeof MaleInfertilityCausesDiagnosisAndTreatmentRoute
   MedicalTerminationOfPregnancyMtpMarathahalliWhitefieldRoute: typeof MedicalTerminationOfPregnancyMtpMarathahalliWhitefieldRoute
   MenstrualBleedingAndIrregularPeriodTreatmentInMarathahalliBangaloreRoute: typeof MenstrualBleedingAndIrregularPeriodTreatmentInMarathahalliBangaloreRoute
   OvarianHyperstimulationSyndromeOhssTreatmentBangaloreRoute: typeof OvarianHyperstimulationSyndromeOhssTreatmentBangaloreRoute
   OvulationCalculatorRoute: typeof OvulationCalculatorRoute
+  PatientStoriesRoute: typeof PatientStoriesRoute
   PelvicInflammatoryDiseasePidsTreatmentInBangaloreRoute: typeof PelvicInflammatoryDiseasePidsTreatmentInBangaloreRoute
   PelvicUltrasoundScanInMarathahalliRoute: typeof PelvicUltrasoundScanInMarathahalliRoute
+  PrivacyPolicyRoute: typeof PrivacyPolicyRoute
   SexuallyTransmittedInfectionsStisTreatmentInBangaloreRoute: typeof SexuallyTransmittedInfectionsStisTreatmentInBangaloreRoute
+  TermsOfUseRoute: typeof TermsOfUseRoute
   VaginalDischargeInfectionTreatmentInMarathahalliBangaloreRoute: typeof VaginalDischargeInfectionTreatmentInMarathahalliBangaloreRoute
+  VaginalTighteningTreatmentBangaloreRoute: typeof VaginalTighteningTreatmentBangaloreRoute
+  WhenShouldACoupleSeekFertilityTreatmentRoute: typeof WhenShouldACoupleSeekFertilityTreatmentRoute
   WhoWeHelpRoute: typeof WhoWeHelpRoute
 }
 
@@ -526,6 +701,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BestMaleInfertilityTreatmentInMarathahalliBangaloreRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/best-pcod-treatment-in-marathahalli-whitefield-bangalore': {
+      id: '/best-pcod-treatment-in-marathahalli-whitefield-bangalore'
+      path: '/best-pcod-treatment-in-marathahalli-whitefield-bangalore'
+      fullPath: '/best-pcod-treatment-in-marathahalli-whitefield-bangalore'
+      preLoaderRoute: typeof BestPcodTreatmentInMarathahalliWhitefieldBangaloreRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/best-pcos-treatment-in-marathahalli-whitefield-bangalore': {
+      id: '/best-pcos-treatment-in-marathahalli-whitefield-bangalore'
+      path: '/best-pcos-treatment-in-marathahalli-whitefield-bangalore'
+      fullPath: '/best-pcos-treatment-in-marathahalli-whitefield-bangalore'
+      preLoaderRoute: typeof BestPcosTreatmentInMarathahalliWhitefieldBangaloreRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/best-pre-conception-health-check-in-marathahalli-bangalore': {
       id: '/best-pre-conception-health-check-in-marathahalli-bangalore'
       path: '/best-pre-conception-health-check-in-marathahalli-bangalore'
@@ -540,11 +729,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BestPregnancyCareInMarathahalliWhitefieldBangaloreRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blogs': {
+      id: '/blogs'
+      path: '/blogs'
+      fullPath: '/blogs'
+      preLoaderRoute: typeof BlogsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/breast-lumps-treatment-in-marathahalli-whitefield-bangalore': {
       id: '/breast-lumps-treatment-in-marathahalli-whitefield-bangalore'
       path: '/breast-lumps-treatment-in-marathahalli-whitefield-bangalore'
       fullPath: '/breast-lumps-treatment-in-marathahalli-whitefield-bangalore'
       preLoaderRoute: typeof BreastLumpsTreatmentInMarathahalliWhitefieldBangaloreRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/donor-eggs-and-sperm-program-in-marathahalli-bangalore': {
@@ -559,6 +762,20 @@ declare module '@tanstack/react-router' {
       path: '/family-planning-services-in-bangalore'
       fullPath: '/family-planning-services-in-bangalore'
       preLoaderRoute: typeof FamilyPlanningServicesInBangaloreRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/faq': {
+      id: '/faq'
+      path: '/faq'
+      fullPath: '/faq'
+      preLoaderRoute: typeof FaqRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/female-sexual-dysfunction-treatment-bangalore': {
+      id: '/female-sexual-dysfunction-treatment-bangalore'
+      path: '/female-sexual-dysfunction-treatment-bangalore'
+      fullPath: '/female-sexual-dysfunction-treatment-bangalore'
+      preLoaderRoute: typeof FemaleSexualDysfunctionTreatmentBangaloreRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/fertility-assessment': {
@@ -631,11 +848,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IvfCostInBangaloreRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/ivf-treatment-in-bangalore': {
+      id: '/ivf-treatment-in-bangalore'
+      path: '/ivf-treatment-in-bangalore'
+      fullPath: '/ivf-treatment-in-bangalore'
+      preLoaderRoute: typeof IvfTreatmentInBangaloreRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/laparoscopic-surgery-for-infertility-in-marathahalli-bangalore': {
       id: '/laparoscopic-surgery-for-infertility-in-marathahalli-bangalore'
       path: '/laparoscopic-surgery-for-infertility-in-marathahalli-bangalore'
       fullPath: '/laparoscopic-surgery-for-infertility-in-marathahalli-bangalore'
       preLoaderRoute: typeof LaparoscopicSurgeryForInfertilityInMarathahalliBangaloreRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/male-infertility-causes-diagnosis-and-treatment': {
+      id: '/male-infertility-causes-diagnosis-and-treatment'
+      path: '/male-infertility-causes-diagnosis-and-treatment'
+      fullPath: '/male-infertility-causes-diagnosis-and-treatment'
+      preLoaderRoute: typeof MaleInfertilityCausesDiagnosisAndTreatmentRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/medical-termination-of-pregnancy-mtp-marathahalli-whitefield': {
@@ -666,6 +897,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OvulationCalculatorRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/patient-stories': {
+      id: '/patient-stories'
+      path: '/patient-stories'
+      fullPath: '/patient-stories'
+      preLoaderRoute: typeof PatientStoriesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/pelvic-inflammatory-disease-pids-treatment-in-bangalore': {
       id: '/pelvic-inflammatory-disease-pids-treatment-in-bangalore'
       path: '/pelvic-inflammatory-disease-pids-treatment-in-bangalore'
@@ -680,6 +918,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PelvicUltrasoundScanInMarathahalliRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/privacy-policy': {
+      id: '/privacy-policy'
+      path: '/privacy-policy'
+      fullPath: '/privacy-policy'
+      preLoaderRoute: typeof PrivacyPolicyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/sexually-transmitted-infections-stis-treatment-in-bangalore': {
       id: '/sexually-transmitted-infections-stis-treatment-in-bangalore'
       path: '/sexually-transmitted-infections-stis-treatment-in-bangalore'
@@ -687,11 +932,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SexuallyTransmittedInfectionsStisTreatmentInBangaloreRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/terms-of-use': {
+      id: '/terms-of-use'
+      path: '/terms-of-use'
+      fullPath: '/terms-of-use'
+      preLoaderRoute: typeof TermsOfUseRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/vaginal-discharge-infection-treatment-in-marathahalli-bangalore': {
       id: '/vaginal-discharge-infection-treatment-in-marathahalli-bangalore'
       path: '/vaginal-discharge-infection-treatment-in-marathahalli-bangalore'
       fullPath: '/vaginal-discharge-infection-treatment-in-marathahalli-bangalore'
       preLoaderRoute: typeof VaginalDischargeInfectionTreatmentInMarathahalliBangaloreRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/vaginal-tightening-treatment-bangalore': {
+      id: '/vaginal-tightening-treatment-bangalore'
+      path: '/vaginal-tightening-treatment-bangalore'
+      fullPath: '/vaginal-tightening-treatment-bangalore'
+      preLoaderRoute: typeof VaginalTighteningTreatmentBangaloreRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/when-should-a-couple-seek-fertility-treatment': {
+      id: '/when-should-a-couple-seek-fertility-treatment'
+      path: '/when-should-a-couple-seek-fertility-treatment'
+      fullPath: '/when-should-a-couple-seek-fertility-treatment'
+      preLoaderRoute: typeof WhenShouldACoupleSeekFertilityTreatmentRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/who-we-help': {
@@ -718,16 +984,25 @@ const rootRouteChildren: RootRouteChildren = {
     BestIvfTreatmentInMarathahalliWhitefieldBangaloreRoute,
   BestMaleInfertilityTreatmentInMarathahalliBangaloreRoute:
     BestMaleInfertilityTreatmentInMarathahalliBangaloreRoute,
+  BestPcodTreatmentInMarathahalliWhitefieldBangaloreRoute:
+    BestPcodTreatmentInMarathahalliWhitefieldBangaloreRoute,
+  BestPcosTreatmentInMarathahalliWhitefieldBangaloreRoute:
+    BestPcosTreatmentInMarathahalliWhitefieldBangaloreRoute,
   BestPreConceptionHealthCheckInMarathahalliBangaloreRoute:
     BestPreConceptionHealthCheckInMarathahalliBangaloreRoute,
   BestPregnancyCareInMarathahalliWhitefieldBangaloreRoute:
     BestPregnancyCareInMarathahalliWhitefieldBangaloreRoute,
+  BlogsRoute: BlogsRoute,
   BreastLumpsTreatmentInMarathahalliWhitefieldBangaloreRoute:
     BreastLumpsTreatmentInMarathahalliWhitefieldBangaloreRoute,
+  ContactRoute: ContactRoute,
   DonorEggsAndSpermProgramInMarathahalliBangaloreRoute:
     DonorEggsAndSpermProgramInMarathahalliBangaloreRoute,
   FamilyPlanningServicesInBangaloreRoute:
     FamilyPlanningServicesInBangaloreRoute,
+  FaqRoute: FaqRoute,
+  FemaleSexualDysfunctionTreatmentBangaloreRoute:
+    FemaleSexualDysfunctionTreatmentBangaloreRoute,
   FertilityAssessmentRoute: FertilityAssessmentRoute,
   FertilityClinicInBellandurBangaloreRoute:
     FertilityClinicInBellandurBangaloreRoute,
@@ -743,8 +1018,11 @@ const rootRouteChildren: RootRouteChildren = {
     IntrauterineInseminationIuiTreatmentMarathahalliWhitefieldInBangaloreRoute,
   IvfClinicInWhitefieldBangaloreRoute: IvfClinicInWhitefieldBangaloreRoute,
   IvfCostInBangaloreRoute: IvfCostInBangaloreRoute,
+  IvfTreatmentInBangaloreRoute: IvfTreatmentInBangaloreRoute,
   LaparoscopicSurgeryForInfertilityInMarathahalliBangaloreRoute:
     LaparoscopicSurgeryForInfertilityInMarathahalliBangaloreRoute,
+  MaleInfertilityCausesDiagnosisAndTreatmentRoute:
+    MaleInfertilityCausesDiagnosisAndTreatmentRoute,
   MedicalTerminationOfPregnancyMtpMarathahalliWhitefieldRoute:
     MedicalTerminationOfPregnancyMtpMarathahalliWhitefieldRoute,
   MenstrualBleedingAndIrregularPeriodTreatmentInMarathahalliBangaloreRoute:
@@ -752,26 +1030,23 @@ const rootRouteChildren: RootRouteChildren = {
   OvarianHyperstimulationSyndromeOhssTreatmentBangaloreRoute:
     OvarianHyperstimulationSyndromeOhssTreatmentBangaloreRoute,
   OvulationCalculatorRoute: OvulationCalculatorRoute,
+  PatientStoriesRoute: PatientStoriesRoute,
   PelvicInflammatoryDiseasePidsTreatmentInBangaloreRoute:
     PelvicInflammatoryDiseasePidsTreatmentInBangaloreRoute,
   PelvicUltrasoundScanInMarathahalliRoute:
     PelvicUltrasoundScanInMarathahalliRoute,
+  PrivacyPolicyRoute: PrivacyPolicyRoute,
   SexuallyTransmittedInfectionsStisTreatmentInBangaloreRoute:
     SexuallyTransmittedInfectionsStisTreatmentInBangaloreRoute,
+  TermsOfUseRoute: TermsOfUseRoute,
   VaginalDischargeInfectionTreatmentInMarathahalliBangaloreRoute:
     VaginalDischargeInfectionTreatmentInMarathahalliBangaloreRoute,
+  VaginalTighteningTreatmentBangaloreRoute:
+    VaginalTighteningTreatmentBangaloreRoute,
+  WhenShouldACoupleSeekFertilityTreatmentRoute:
+    WhenShouldACoupleSeekFertilityTreatmentRoute,
   WhoWeHelpRoute: WhoWeHelpRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
