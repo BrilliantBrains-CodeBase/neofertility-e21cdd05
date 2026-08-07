@@ -16,8 +16,6 @@ import { ROUTES } from "@/data/navigation";
 import { pageMeta, jsonLd, clinicSchema, doctorSchema, faqSchema } from "@/lib/seo";
 import portrait from "@/assets/dr-payal-portrait.jpg";
 import reception from "@/assets/clinic-reception.jpg";
-import consultRoom from "@/assets/clinic-consult-room.jpg";
-import ultrasound from "@/assets/clinic-ultrasound.jpg";
 
 const FAQS = [
   {
