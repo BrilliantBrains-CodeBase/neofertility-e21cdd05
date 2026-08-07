@@ -66,9 +66,9 @@ export function SectionHeading({
   centered = false,
   light = false,
 }: {
-  eyebrow?: string;
+  eyebrow?: string | undefined;
   title: string;
-  copy?: string;
+  copy?: string | undefined;
   centered?: boolean;
   light?: boolean;
 }) {
