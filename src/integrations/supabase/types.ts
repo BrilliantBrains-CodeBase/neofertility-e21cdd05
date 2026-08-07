@@ -14,7 +14,57 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      enquiries: {
+        Row: {
+          consent: boolean
+          created_at: string
+          email: string | null
+          id: string
+          message: string | null
+          mobile: string
+          name: string
+          preferred_day: string | null
+          source_page: string
+          source_variant: string | null
+          topic: string
+          utm_campaign: string | null
+          utm_medium: string | null
+          utm_source: string | null
+        }
+        Insert: {
+          consent?: boolean
+          created_at?: string
+          email?: string | null
+          id?: string
+          message?: string | null
+          mobile: string
+          name: string
+          preferred_day?: string | null
+          source_page: string
+          source_variant?: string | null
+          topic: string
+          utm_campaign?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
+        }
+        Update: {
+          consent?: boolean
+          created_at?: string
+          email?: string | null
+          id?: string
+          message?: string | null
+          mobile?: string
+          name?: string
+          preferred_day?: string | null
+          source_page?: string
+          source_variant?: string | null
+          topic?: string
+          utm_campaign?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
