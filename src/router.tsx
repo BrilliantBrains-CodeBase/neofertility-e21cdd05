@@ -10,6 +10,8 @@ export const getRouter = () => {
     context: { queryClient },
     scrollRestoration: true,
     defaultPreloadStaleTime: 0,
+    // Every published URL on this domain is canonical with a trailing slash.
+    trailingSlash: "always",
   });
 
   return router;
