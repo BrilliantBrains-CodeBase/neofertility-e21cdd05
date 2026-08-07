@@ -162,67 +162,76 @@ function Home() {
   return (
     <>
       {/* Hero */}
-      <section className="border-b border-line bg-teal-50/50">
-        <div className="container-page grid gap-12 py-14 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:py-20">
-          <div>
-            <p className="eyebrow">Marathahalli · Whitefield · Bengaluru</p>
-            <h1 className="mt-4">IVF and fertility treatment in Marathahalli, Bangalore</h1>
-            <p className="mt-5 font-display text-[1.375rem] leading-snug text-teal-700">
-              Answers first. Then treatment.
-            </p>
-            <p className="mt-4 max-w-[58ch] text-[1.0625rem] text-ink-muted">
-              Most couples arrive here after months of being told to relax and wait. You will leave
-              your first consultation knowing what is actually happening and what the options are, in
-              order, with the simplest one first.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <AppointmentSheet sourcePage="home_hero">
-                <Button variant="cta" size="lg">
-                  <CalendarCheck /> Book a consultation
-                </Button>
-              </AppointmentSheet>
-              <Button variant="outlineTeal" size="lg" asChild>
-                <a
-                  href={CLINIC.phoneHref}
-                  onClick={() => track("call_click", { source_page: "home_hero" })}
-                >
-                  <Phone /> Call {CLINIC.phoneDisplay}
-                </a>
-              </Button>
-            </div>
-            <p className="mt-5 text-[0.9375rem] text-ink-muted">
-              Open all seven days, {CLINIC.hours.replace("Monday to Sunday, ", "")}. No referral
-              needed.
-            </p>
-          </div>
+      <section className="border-b border-line bg-white pt-4 pb-0 lg:pt-6">
+        <div className="container-page">
+          <div className="relative overflow-hidden rounded-[2rem] bg-clay-50">
+            <div className="grid lg:grid-cols-2">
+              <div className="relative min-h-[300px] lg:min-h-[520px]">
+                <img
+                  src={portrait}
+                  alt={`${CLINIC.doctor}, fertility specialist at Neo Fertility Clinic Marathahalli`}
+                  width={720}
+                  height={900}
+                  className="h-full w-full object-cover object-top"
+                />
+              </div>
 
-          <div className="grid grid-cols-2 gap-4">
-            <img
-              src={portrait}
-              alt={`${CLINIC.doctor}, fertility specialist at Neo Fertility Clinic Marathahalli`}
-              width={720}
-              height={900}
-              className="col-span-2 h-[340px] w-full rounded-xl object-cover object-top lg:h-[420px]"
-            />
-            <img
-              src={consultRoom}
-              alt="Consultation room at Neo Fertility Clinic, Marathahalli"
-              width={640}
-              height={480}
-              loading="lazy"
-              className="h-32 w-full rounded-lg object-cover lg:h-40"
-            />
-            <img
-              src={ultrasound}
-              alt="Ultrasound and follicular study room at Neo Fertility Clinic"
-              width={640}
-              height={480}
-              loading="lazy"
-              className="h-32 w-full rounded-lg object-cover lg:h-40"
-            />
+              <div className="flex flex-col justify-center px-6 py-12 sm:px-10 lg:px-14 lg:py-16">
+                <p className="eyebrow">Marathahalli · Whitefield · Bengaluru</p>
+                <h1 className="mt-4 text-[2.5rem] leading-[1.02] lg:text-[3.5rem]">
+                  Answers first.
+                  <br />
+                  Then treatment.
+                </h1>
+                <p className="mt-5 max-w-[42ch] text-[1.0625rem] text-ink-muted">
+                  IVF and fertility treatment in Marathahalli, Bangalore. Most couples arrive after
+                  months of being told to relax and wait. You will leave your first consultation
+                  knowing what is actually happening, and what the options are, simplest first.
+                </p>
+                <div className="mt-8 flex flex-wrap gap-3">
+                  <AppointmentSheet sourcePage="home_hero">
+                    <Button variant="cta" size="lg" className="rounded-full">
+                      <CalendarCheck /> Book a consultation
+                    </Button>
+                  </AppointmentSheet>
+                  <Button variant="outlineTeal" size="lg" asChild className="rounded-full">
+                    <a
+                      href={CLINIC.phoneHref}
+                      onClick={() => track("call_click", { source_page: "home_hero" })}
+                    >
+                      <Phone /> Call {CLINIC.phoneDisplay}
+                    </a>
+                  </Button>
+                </div>
+                <p className="mt-5 text-[0.9375rem] text-ink-muted">
+                  Open all seven days, {CLINIC.hours.replace("Monday to Sunday, ", "")}. No referral
+                  needed.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
+
+        {/* Ghost-figure clinical volume band */}
+        <div className="container-page py-10 lg:py-14">
+          <ul className="grid grid-cols-2 gap-x-6 gap-y-10 md:grid-cols-3 lg:grid-cols-6">
+            {CLINICAL_VOLUME.map((s) => (
+              <li key={s.label} className="relative text-center">
+                <span
+                  aria-hidden
+                  className="block font-display text-[3.25rem] font-semibold leading-none text-clay-50 lg:text-[4rem]"
+                >
+                  {s.figure}
+                </span>
+                <span className="absolute inset-x-0 top-1/2 -translate-y-1/2 px-1 font-display text-[0.9375rem] italic leading-tight text-teal-700">
+                  {s.label}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
       </section>
+
 
       {/* Direct answer block */}
       <section className="border-b border-line bg-white py-10">
