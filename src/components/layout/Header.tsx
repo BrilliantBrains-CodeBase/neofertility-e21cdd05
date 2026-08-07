@@ -25,7 +25,7 @@ function MegaPanel({ groups, columns }: { groups: NavGroup[]; columns: string })
               <li key={link.label}>
                 <Link
                   to={link.to}
-                  hash={link.hash}
+                  {...(link.hash ? { hash: link.hash } : {})}
                   className="block text-[0.9375rem] text-ink hover:text-teal-600 hover:underline"
                 >
                   {link.label}
@@ -62,7 +62,7 @@ function MobileGroup({ title, groups }: { title: string; groups: NavGroup[] }) {
                   <li key={link.label}>
                     <Link
                       to={link.to}
-                      hash={link.hash}
+                      {...(link.hash ? { hash: link.hash } : {})}
                       className="block text-[0.9375rem] text-ink"
                     >
                       {link.label}
