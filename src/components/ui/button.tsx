@@ -17,10 +17,10 @@ const buttonVariants = cva(
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
         /* Brand variants: teal is the brand, clay is the action. */
-        cta: "bg-clay-600 text-white hover:bg-clay-700",
-        teal: "bg-teal-600 text-white hover:bg-teal-700",
+        cta: "bg-clay-600 text-sand hover:bg-clay-700",
+        teal: "bg-teal-600 text-sand hover:bg-teal-700",
         outlineTeal: "border border-teal-600 text-teal-700 bg-transparent hover:bg-teal-50",
-        outlineLight: "border border-white/40 text-white bg-transparent hover:bg-white/10",
+        outlineLight: "border border-sand/40 text-sand bg-transparent hover:bg-sand/10",
         quiet: "border border-line bg-white text-teal-900 hover:bg-teal-50",
       },
       size: {
