@@ -41,7 +41,7 @@ const FAQS = [
   },
 ];
 
-export const Route = createFileRoute(PATH)({
+export const Route = createFileRoute("/best-egg-freezing-clinic-in-marathahalli-bangalore")({
   head: () => ({
     ...pageMeta({
       title: "Egg Freezing Clinic in Marathahalli | Neo Fertility",

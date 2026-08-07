@@ -41,7 +41,7 @@ const FAQS = [
   },
 ];
 
-export const Route = createFileRoute(PATH)({
+export const Route = createFileRoute("/infertility-treatment-in-marathahalli-whitefield-in-bangalore")({
   head: () => ({
     ...pageMeta({
       title: "Infertility Treatment in Marathahalli, Whitefield | Neo Fertility",

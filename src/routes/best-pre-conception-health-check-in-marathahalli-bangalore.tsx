@@ -37,7 +37,7 @@ const FAQS = [
   },
 ];
 
-export const Route = createFileRoute(PATH)({
+export const Route = createFileRoute("/best-pre-conception-health-check-in-marathahalli-bangalore")({
   head: () => ({
     ...pageMeta({
       title: "Pre-Conception Health Check in Marathahalli | Neo Fertility",

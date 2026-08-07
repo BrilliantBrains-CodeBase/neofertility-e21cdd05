@@ -32,7 +32,7 @@ const FAQS = [
   },
 ];
 
-export const Route = createFileRoute(PATH)({
+export const Route = createFileRoute("/ivf-clinic-in-whitefield-bangalore")({
   head: () => ({
     ...pageMeta({
       title: "IVF & Fertility Clinic Near Whitefield, Bangalore | Neo Fertility",

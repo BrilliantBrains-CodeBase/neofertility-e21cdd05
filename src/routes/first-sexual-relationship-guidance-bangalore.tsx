@@ -13,7 +13,7 @@ const FAQS = [
   { q: "Will there be an examination?", a: "Not unless it is clinically necessary and you are comfortable with it. Many first consultations are entirely conversation and information." },
 ];
 
-export const Route = createFileRoute(PATH)({
+export const Route = createFileRoute("/first-sexual-relationship-guidance-bangalore")({
   head: () => ({
     ...pageMeta({
       title: "First Sexual Relationship Guidance in Bangalore | Neo Fertility",

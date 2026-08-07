@@ -14,7 +14,7 @@ const FAQS = [
   { q: "Who is at higher risk of OHSS?", a: "Women with PCOS, a high antral follicle count, or a strong response to previous stimulation are at higher risk. This is discussed and planned for before your cycle starts." },
 ];
 
-export const Route = createFileRoute(PATH)({
+export const Route = createFileRoute("/ovarian-hyperstimulation-syndrome-ohss-treatment-bangalore")({
   head: () => ({
     ...pageMeta({
       title: "OHSS Treatment in Bangalore | Neo Fertility Clinic",
