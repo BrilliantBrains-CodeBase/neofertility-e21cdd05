@@ -11,7 +11,7 @@ import {
   FaqBlock,
   DoctorNote,
 } from "@/components/sections/blocks";
-import { CLINIC, QUALIFICATIONS, MEMBERSHIPS, track } from "@/lib/clinic";
+import { CLINIC, CLINICAL_VOLUME, QUALIFICATIONS, MEMBERSHIPS, track } from "@/lib/clinic";
 import { ROUTES } from "@/data/navigation";
 import { pageMeta, jsonLd, clinicSchema, doctorSchema, faqSchema } from "@/lib/seo";
 import portrait from "@/assets/dr-payal-portrait.jpg";
