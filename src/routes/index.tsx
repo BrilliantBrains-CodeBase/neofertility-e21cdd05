@@ -212,12 +212,12 @@ function Home() {
 
         {/* Ghost-figure clinical volume band */}
         <div className="container-page py-10 lg:py-14">
-          <ul className="grid grid-cols-2 gap-x-6 gap-y-10 md:grid-cols-3 lg:grid-cols-6">
+          <ul className="grid grid-cols-2 gap-x-6 gap-y-10 md:grid-cols-3">
             {CLINICAL_VOLUME.map((s) => (
-              <li key={s.label} className="relative text-center">
+              <li key={s.label} className="relative overflow-hidden text-center">
                 <span
                   aria-hidden
-                  className="block font-display text-[3.25rem] font-semibold leading-none text-clay-50 lg:text-[4rem]"
+                  className="block font-display text-[2.75rem] font-semibold leading-none text-clay-50 lg:text-[4.5rem]"
                 >
                   {s.figure}
                 </span>
