@@ -49,23 +49,32 @@ const SEGMENTS = [
     title: "Trying for 12 months, or 6 months if you are over 35",
     copy: "Start with a fertility evaluation for both partners. Hormones, ultrasound, tubal patency and semen analysis in the first cycle.",
     to: ROUTES.infertility,
+    image: pathwayTrying.url,
+    alt: "Woman holding a pregnancy test after months of trying to conceive",
   },
   {
     title: "Irregular periods, PCOS, endometriosis or fibroids",
     copy: "Start with a hormonal and gynecological assessment so the cycle is understood before any fertility treatment is discussed.",
     to: ROUTES.pcos,
+    image: pathwayIrregular.url,
+    alt: "Calendar with circled dates tracking irregular periods",
   },
   {
     title: "Not ready for a family yet, but want to protect the option",
     copy: "Start with ovarian reserve testing, then decide about egg freezing with real numbers rather than guesswork.",
     to: ROUTES.eggFreezing,
+    image: pathwayEggFreezing.url,
+    alt: "Egg preserved inside a block of ice, representing egg freezing",
   },
   {
     title: "A failed IVF cycle or repeated miscarriage elsewhere",
     copy: "Bring your records for a second opinion and a full cycle review. We tell you what we would change and why.",
     to: ROUTES.ivf,
+    image: pathwayFailedIvf.url,
+    alt: "Woman standing between empty cots after a failed IVF cycle",
   },
 ];
+
 
 const SERVICES = [
   {
