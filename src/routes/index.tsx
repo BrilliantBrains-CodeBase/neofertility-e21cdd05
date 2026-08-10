@@ -15,7 +15,7 @@ import { CLINIC, CLINICAL_VOLUME, QUALIFICATIONS, MEMBERSHIPS, track } from "@/l
 import { ROUTES } from "@/data/navigation";
 import { pageMeta, jsonLd, clinicSchema, doctorSchema, faqSchema } from "@/lib/seo";
 import heroPortraitAsset from "@/assets/dr-payal-hero.png.asset.json";
-import reception from "@/assets/clinic-reception.jpg";
+import newbornHands from "@/assets/newborn-hands.png.asset.json";
 import pathwayTrying from "@/assets/pathway-trying.jpg.asset.json";
 import pathwayIrregular from "@/assets/pathway-irregular.jpg.asset.json";
 import pathwayEggFreezing from "@/assets/pathway-egg-freezing.jpg.asset.json";
@@ -443,8 +443,8 @@ function Home() {
 
           <div className="mt-14 grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
             <img
-              src={reception}
-              alt="Reception at Neo Fertility Clinic, Scorpio House, Marathahalli"
+              src={newbornHands.url}
+              alt="Newborn baby held in a parent's hands after fertility treatment"
               width={640}
               height={800}
               loading="lazy"
