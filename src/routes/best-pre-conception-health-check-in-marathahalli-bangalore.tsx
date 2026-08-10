@@ -1,7 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ServicePage, Prose, DataTable, COMMON_RELATED } from "@/components/sections/ServicePage";
+import { ServicePage, Prose, COMMON_RELATED } from "@/components/sections/ServicePage";
 import { SectionHeading, CheckList } from "@/components/sections/blocks";
 import { JourneyFlow } from "@/components/sections/JourneyFlow";
+import { TimelineBand } from "@/components/sections/TimelineBand";
 import consultationImg from "@/assets/visit-consultation.jpg.asset.json";
 import testingImg from "@/assets/visit-testing.jpg.asset.json";
 import reviewImg from "@/assets/visit-review.jpg.asset.json";
@@ -147,15 +148,24 @@ function Page() {
       </section>
 
 
-      <DataTable
+      <TimelineBand
         caption="Typical preconception timeline"
-        head={["When", "What happens"]}
-        rows={[
-          ["3 to 6 months before trying", "Preconception consultation, testing and correction of any findings"],
-          ["1 month before trying", "Folic acid established, review of results complete"],
-          ["When trying begins", "Ovulation tracking or timed intercourse guidance, if requested"],
+        items={[
+          {
+            when: "3 to 6 months before trying",
+            what: "Preconception consultation, testing and correction of any findings",
+          },
+          {
+            when: "1 month before trying",
+            what: "Folic acid established, review of results complete",
+          },
+          {
+            when: "When trying begins",
+            what: "Ovulation tracking or timed intercourse guidance, if requested",
+          },
         ]}
       />
+
 
       <Prose title="Why this matters">
         <p>
