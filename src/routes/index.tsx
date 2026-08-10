@@ -282,58 +282,56 @@ function Home() {
             </p>
           </div>
 
-          <div className="mt-10 grid gap-8 lg:mt-14 lg:grid-cols-[0.95fr_1.05fr] lg:items-center lg:gap-14">
-            {/* Image with offset blush panel */}
-            <div className="relative">
-              <div
-                aria-hidden
-                className="absolute -left-3 -top-3 bottom-6 right-6 rounded-[1.75rem] bg-clay-50 sm:-left-5 sm:-top-5"
-              />
-              <img
-                src={reception}
-                alt="Reception at Neo Fertility Clinic, Marathahalli, Bengaluru"
-                width={720}
-                height={780}
-                loading="lazy"
-                className="relative h-64 w-full rounded-[1.5rem] object-cover sm:h-80 lg:h-[26rem]"
-              />
-            </div>
+          {/* Infographic pathway cards */}
+          <ol className="mt-12 grid gap-y-10 gap-x-5 sm:grid-cols-2 lg:mt-16 lg:grid-cols-4 lg:gap-x-4">
+            {SEGMENTS.map((segment, i) => (
+              <li key={segment.title} className="relative pl-7 sm:pl-8">
+                {/* Number badge */}
+                <span
+                  aria-hidden
+                  className="absolute left-0 top-1/2 z-0 grid h-24 w-16 -translate-y-1/2 place-items-center rounded-l-full bg-clay-100 pr-4 font-display text-[1.25rem] font-semibold text-teal-900"
+                >
+                  {String(i + 1).padStart(2, "0")}
+                </span>
 
-            {/* Numbered pathway list */}
-            <ol className="grid gap-7 sm:gap-8">
-              {SEGMENTS.map((segment, i) => (
-                <li key={segment.title} className="grid grid-cols-[auto_minmax(0,1fr)] gap-4">
-                  <span
-                    aria-hidden
-                    className="grid size-10 shrink-0 place-items-center rounded-full bg-clay-50 font-display text-[1.0625rem] font-semibold text-clay-600"
-                  >
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <div className="min-w-0">
-                    <h3 className="text-[1.0625rem] font-medium leading-snug text-teal-800 sm:text-[1.125rem]">
-                      {segment.title}
-                    </h3>
-                    <p className="mt-1.5 text-[0.9375rem] leading-relaxed text-ink-muted">
-                      {segment.copy}
-                    </p>
-                    <Link
-                      to={segment.to}
-                      className="mt-2.5 inline-flex items-center gap-1 text-[0.9375rem] font-medium text-teal-700 hover:underline"
-                    >
-                      Read more <ArrowRight className="size-4" />
-                    </Link>
+                {/* Blush frame + white card */}
+                <div className="relative z-10 rounded-[1.75rem] bg-clay-100 p-2 shadow-[0_18px_40px_-28px_rgba(1,49,55,0.45)]">
+                  <div className="flex h-full flex-col overflow-hidden rounded-[1.375rem] bg-white">
+                    <img
+                      src={segment.image}
+                      alt={segment.alt}
+                      width={640}
+                      height={420}
+                      loading="lazy"
+                      className="h-40 w-full object-cover sm:h-44"
+                    />
+                    <div className="flex flex-1 flex-col p-5">
+                      <h3 className="text-[1rem] font-medium leading-snug text-teal-900">
+                        {segment.title}
+                      </h3>
+                      <p className="mt-2 text-[0.875rem] leading-relaxed text-ink-muted">
+                        {segment.copy}
+                      </p>
+                      <Link
+                        to={segment.to}
+                        className="mt-4 inline-flex items-center gap-1 text-[0.875rem] font-medium text-teal-700 hover:underline"
+                      >
+                        Read more <ArrowRight className="size-4" />
+                      </Link>
+                    </div>
                   </div>
-                </li>
-              ))}
-            </ol>
-          </div>
+                </div>
+              </li>
+            ))}
+          </ol>
 
           <Link
             to={ROUTES.whoWeHelp}
-            className="mt-10 inline-flex items-center gap-2 rounded-full border border-line px-5 py-2.5 font-medium text-teal-700 transition-colors hover:bg-clay-50"
+            className="mt-12 inline-flex items-center gap-2 rounded-full border border-line px-5 py-2.5 font-medium text-teal-700 transition-colors hover:bg-clay-50"
           >
             See all patient pathways <ArrowRight className="size-4" />
           </Link>
+
         </div>
       </section>
 
