@@ -14,7 +14,7 @@ import {
 import { CLINIC, CLINICAL_VOLUME, QUALIFICATIONS, MEMBERSHIPS, track } from "@/lib/clinic";
 import { ROUTES } from "@/data/navigation";
 import { pageMeta, jsonLd, clinicSchema, doctorSchema, faqSchema } from "@/lib/seo";
-import portrait from "@/assets/dr-payal-portrait.jpg";
+import heroPortraitAsset from "@/assets/dr-payal-hero.png.asset.json";
 import reception from "@/assets/clinic-reception.jpg";
 
 const FAQS = [
