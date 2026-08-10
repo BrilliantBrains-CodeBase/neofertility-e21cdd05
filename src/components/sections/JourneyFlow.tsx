@@ -25,7 +25,7 @@ export function JourneyFlow({ steps }: { steps: JourneyStep[] }) {
             className="relative grid items-center gap-6 lg:grid-cols-2 lg:gap-14 lg:py-6"
           >
             <div className={flip ? "lg:order-2 lg:pl-10" : "lg:order-1 lg:pr-10"}>
-              <div className="relative mx-auto aspect-square w-[220px] overflow-hidden rounded-full border-4 border-clay-50 shadow-rail sm:w-[260px] lg:mx-0 lg:w-[300px] lg:ml-auto">
+              <div className={`relative mx-auto aspect-square w-[220px] overflow-hidden rounded-full border-4 border-clay-50 shadow-rail sm:w-[260px] lg:mx-0 lg:w-[300px] ${flip ? "lg:mr-auto" : "lg:ml-auto"}`}>
                 <img
                   src={step.image}
                   alt={step.alt}
