@@ -6,7 +6,7 @@ import { LeadFormBand } from "@/components/conversion/LeadFormBand";
 import {
   SectionHeading,
   StatStrip,
-  StepList,
+  
   InfoCard,
   FaqBlock,
   DoctorNote,
