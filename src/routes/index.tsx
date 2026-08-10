@@ -285,17 +285,17 @@ function Home() {
           {/* Infographic pathway cards */}
           <ol className="mt-12 grid gap-y-10 gap-x-5 sm:grid-cols-2 lg:mt-16 lg:grid-cols-4 lg:gap-x-4">
             {SEGMENTS.map((segment, i) => (
-              <li key={segment.title} className="relative pl-7 sm:pl-8">
+              <li key={segment.title} className="relative flex h-full pl-11">
                 {/* Number badge */}
                 <span
                   aria-hidden
-                  className="absolute left-0 top-1/2 z-0 grid h-24 w-16 -translate-y-1/2 place-items-center rounded-l-full bg-clay-50 pr-4 font-display text-[1.25rem] font-semibold text-teal-900"
+                  className="absolute left-0 top-1/2 z-0 grid h-24 w-24 -translate-y-1/2 place-items-center rounded-full bg-clay-50 pr-11 font-display text-[1.25rem] font-semibold text-teal-900"
                 >
                   {String(i + 1).padStart(2, "0")}
                 </span>
 
                 {/* Blush frame + white card */}
-                <div className="relative z-10 rounded-[1.75rem] bg-clay-50 p-2 shadow-[0_18px_40px_-28px_rgba(1,49,55,0.45)]">
+                <div className="relative z-10 w-full rounded-[1.75rem] bg-clay-50 p-2 shadow-[0_18px_40px_-28px_rgba(1,49,55,0.45)]">
                   <div className="flex h-full flex-col overflow-hidden rounded-[1.375rem] bg-white">
                     <img
                       src={segment.image}
