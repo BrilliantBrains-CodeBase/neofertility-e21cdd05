@@ -353,27 +353,90 @@ function Home() {
 
       {/* How we work */}
       <section className="section-y">
-        <div className="container-page grid gap-12 lg:grid-cols-[1.1fr_0.9fr]">
-          <div>
-            <SectionHeading
-              eyebrow="How we work"
-              title="A sequence you can see from the first consultation"
-            />
-            <StepList steps={STEPS} />
+        <div className="container-page">
+          <div className="mx-auto max-w-[52rem] text-center">
+            <p className="eyebrow">How we work</p>
+            <h2 className="mt-3 font-display text-[1.75rem] leading-[1.1] text-teal-900 sm:text-[2.25rem] lg:text-[2.75rem]">
+              <span className="block font-semibold">A sequence you can see</span>
+              <span className="block font-normal italic text-teal-700">
+                from the first consultation
+              </span>
+            </h2>
           </div>
-          <div className="space-y-6">
+
+          {/* Serpentine timeline — desktop */}
+          <div className="relative mt-16 hidden lg:block">
+            {/* connector: right-hand U-turn between the two rows */}
+            <div
+              aria-hidden
+              className="absolute right-0 top-5 h-64 w-16 rounded-r-full border-y border-r border-line"
+            />
+
+            {/* row one: steps 01 → 03, left to right */}
+            <div className="relative grid h-64 grid-cols-3 pr-16">
+              <div
+                aria-hidden
+                className="absolute left-[16.666%] right-0 top-5 border-t border-line"
+              />
+              {STEPS.slice(0, 3).map((step, i) => (
+                <TimelineNode key={step.title} index={i} step={step} />
+              ))}
+            </div>
+
+            {/* row two: steps 05 ← 04, right to left */}
+            <div className="relative grid grid-cols-3 pr-16">
+              <div
+                aria-hidden
+                className="absolute left-[16.666%] right-0 top-5 border-t border-line"
+              />
+              <div className="relative flex justify-center">
+                <ArrowRight
+                  aria-hidden
+                  className="absolute right-0 top-[0.3125rem] size-6 -translate-x-1/2 rotate-180 text-line"
+                />
+              </div>
+              <TimelineNode index={4} step={STEPS[4]!} />
+              <TimelineNode index={3} step={STEPS[3]!} />
+            </div>
+          </div>
+
+          {/* Stacked timeline — mobile and tablet */}
+          <ol className="mt-12 lg:hidden">
+            {STEPS.map((step, i) => (
+              <li key={step.title} className="relative flex gap-4 pb-8 last:pb-0">
+                {i < STEPS.length - 1 && (
+                  <span
+                    aria-hidden
+                    className="absolute left-[1.25rem] top-10 bottom-0 w-px bg-line"
+                  />
+                )}
+                <span className="relative z-10 grid size-10 shrink-0 place-items-center rounded-full bg-teal-900 font-display text-[0.875rem] text-sand">
+                  {i + 1}
+                </span>
+                <div className="pt-1">
+                  <h3 className="text-[1.0625rem] font-medium text-teal-900">{step.title}</h3>
+                  <p className="mt-2 text-[0.9375rem] leading-relaxed text-ink-muted">
+                    {step.copy}
+                  </p>
+                </div>
+              </li>
+            ))}
+          </ol>
+
+          <div className="mt-14 grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
             <img
               src={reception}
               alt="Reception at Neo Fertility Clinic, Scorpio House, Marathahalli"
               width={640}
               height={800}
               loading="lazy"
-              className="h-64 w-full rounded-xl object-cover lg:h-80"
+              className="h-56 w-full rounded-2xl object-cover lg:h-64"
             />
             <DoctorNote quote="Most couples do not need IVF on day one. They need someone to find the reason, say it plainly, and start with the simplest treatment that fits it." />
           </div>
         </div>
       </section>
+
 
       {/* Why patients choose us */}
       <section className="bg-white section-y">
