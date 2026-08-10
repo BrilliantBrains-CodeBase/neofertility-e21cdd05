@@ -289,13 +289,13 @@ function Home() {
                 {/* Number badge */}
                 <span
                   aria-hidden
-                  className="absolute left-0 top-1/2 z-0 grid h-24 w-16 -translate-y-1/2 place-items-center rounded-l-full bg-clay-100 pr-4 font-display text-[1.25rem] font-semibold text-teal-900"
+                  className="absolute left-0 top-1/2 z-0 grid h-24 w-16 -translate-y-1/2 place-items-center rounded-l-full bg-clay-50 pr-4 font-display text-[1.25rem] font-semibold text-teal-900"
                 >
                   {String(i + 1).padStart(2, "0")}
                 </span>
 
                 {/* Blush frame + white card */}
-                <div className="relative z-10 rounded-[1.75rem] bg-clay-100 p-2 shadow-[0_18px_40px_-28px_rgba(1,49,55,0.45)]">
+                <div className="relative z-10 rounded-[1.75rem] bg-clay-50 p-2 shadow-[0_18px_40px_-28px_rgba(1,49,55,0.45)]">
                   <div className="flex h-full flex-col overflow-hidden rounded-[1.375rem] bg-white">
                     <img
                       src={segment.image}
