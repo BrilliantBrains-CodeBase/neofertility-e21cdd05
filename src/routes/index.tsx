@@ -153,7 +153,25 @@ const DIFFERENTIATORS = [
   },
 ];
 
+function TimelineNode({ index, step }: { index: number; step: { title: string; copy: string } }) {
+  return (
+    <div className="relative flex flex-col items-center px-4 text-center">
+      <span className="relative z-10 grid size-10 place-items-center rounded-full bg-teal-900 font-display text-[0.9375rem] text-sand">
+        {index + 1}
+      </span>
+      <span aria-hidden className="h-8 w-px bg-line" />
+      <h3 className="max-w-[22ch] text-[1.0625rem] font-medium leading-snug text-teal-900">
+        {step.title}
+      </h3>
+      <p className="mt-2 max-w-[34ch] text-[0.875rem] leading-relaxed text-ink-muted">
+        {step.copy}
+      </p>
+    </div>
+  );
+}
+
 export const Route = createFileRoute("/")({
+
   head: () => {
     const base = pageMeta({
       title: "IVF & Fertility Clinic in Marathahalli, Bangalore | Neo Fertility",
