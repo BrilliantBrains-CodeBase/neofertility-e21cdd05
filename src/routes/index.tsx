@@ -16,6 +16,10 @@ import { ROUTES } from "@/data/navigation";
 import { pageMeta, jsonLd, clinicSchema, doctorSchema, faqSchema } from "@/lib/seo";
 import heroPortraitAsset from "@/assets/dr-payal-hero.png.asset.json";
 import reception from "@/assets/clinic-reception.jpg";
+import pathwayTrying from "@/assets/pathway-trying.jpg.asset.json";
+import pathwayIrregular from "@/assets/pathway-irregular.jpg.asset.json";
+import pathwayEggFreezing from "@/assets/pathway-egg-freezing.jpg.asset.json";
+import pathwayFailedIvf from "@/assets/pathway-failed-ivf.jpg.asset.json";
 
 const FAQS = [
   {
