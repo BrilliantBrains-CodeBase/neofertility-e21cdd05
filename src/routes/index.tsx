@@ -166,25 +166,26 @@ function Home() {
             <div className="grid lg:grid-cols-2">
               <div className="relative min-h-[300px] lg:min-h-[520px]">
                 <img
-                  src={portrait}
+                  src={heroPortraitAsset.url}
                   alt={`${CLINIC.doctor}, fertility specialist at Neo Fertility Clinic Marathahalli`}
-                  width={720}
+                  width={650}
                   height={900}
                   className="h-full w-full object-cover object-top"
                 />
               </div>
 
               <div className="flex flex-col justify-center px-6 py-12 sm:px-10 lg:px-14 lg:py-16">
-                <p className="eyebrow">Marathahalli · Whitefield · Bengaluru</p>
+                <p className="eyebrow">
+                  Dr. Payal Mahapatra · Fertility &amp; IVF Specialist · Bengaluru
+                </p>
                 <h1 className="mt-4 text-[2.5rem] leading-[1.02] lg:text-[3.5rem]">
-                  Answers first.
-                  <br />
-                  Then treatment.
+                  You deserve more than “just keep trying.”
                 </h1>
-                <p className="mt-5 max-w-[42ch] text-[1.0625rem] text-ink-muted">
-                  IVF and fertility treatment in Marathahalli, Bangalore. Most couples arrive after
-                  months of being told to relax and wait. You will leave your first consultation
-                  knowing what is actually happening, and what the options are, simplest first.
+                <p className="mt-5 max-w-[46ch] text-[1.0625rem] text-ink-muted">
+                  With Dr. Payal Mahapatra, your fertility journey starts with being heard,
+                  understanding what may be holding you back, and finding a treatment plan that feels
+                  right for you — whether that means simple fertility support, IUI, IVF, ICSI or
+                  advanced care.
                 </p>
                 <div className="mt-8 flex flex-wrap gap-3">
                   <AppointmentSheet sourcePage="home_hero">
@@ -202,9 +203,10 @@ function Home() {
                   </Button>
                 </div>
                 <p className="mt-5 text-[0.9375rem] text-ink-muted">
-                  Open all seven days, {CLINIC.hours.replace("Monday to Sunday, ", "")}. No referral
-                  needed.
+                  18+ Years of Experience · Personalised Fertility Care · Marathahalli &amp;
+                  Whitefield
                 </p>
+
               </div>
             </div>
           </div>
