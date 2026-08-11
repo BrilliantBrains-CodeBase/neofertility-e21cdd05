@@ -1,7 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ServicePage, Prose, DataTable, COMMON_RELATED } from "@/components/sections/ServicePage";
-import { SectionHeading, CheckList, StepList, SafetyNote } from "@/components/sections/blocks";
+import { SectionHeading, CheckList, SafetyNote } from "@/components/sections/blocks";
 import { ArrowTimeline } from "@/components/sections/ArrowTimeline";
+import { JourneyFlow } from "@/components/sections/JourneyFlow";
+import stimulation from "@/assets/icsi-stimulation.png.asset.json";
+import retrieval from "@/assets/icsi-egg-retrieval.jpg.asset.json";
+import injection from "@/assets/icsi-sperm-injection.jpg.asset.json";
+import embryo from "@/assets/icsi-embryo-development.jpg.asset.json";
+import pregnancyTest from "@/assets/icsi-transfer-test.jpg.asset.json";
 import { ROUTES } from "@/data/navigation";
 import { pageMeta, jsonLd, faqSchema, breadcrumbSchema } from "@/lib/seo";
 
