@@ -1,6 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ServicePage, Prose, DataTable, COMMON_RELATED } from "@/components/sections/ServicePage";
-import { SectionHeading, CheckList, StepList, SafetyNote } from "@/components/sections/blocks";
+import { SectionHeading, CheckList, SafetyNote } from "@/components/sections/blocks";
+import { ZigzagSteps } from "@/components/sections/ZigzagSteps";
+import selectionImg from "@/assets/donor-selection.png.asset.json";
+import retrievalImg from "@/assets/donor-retrieval.jpg.asset.json";
+import fertilisationImg from "@/assets/donor-fertilisation.jpg.asset.json";
+import transferImg from "@/assets/donor-transfer.png.asset.json";
 import { ROUTES } from "@/data/navigation";
 import { pageMeta, jsonLd, faqSchema, breadcrumbSchema } from "@/lib/seo";
 
