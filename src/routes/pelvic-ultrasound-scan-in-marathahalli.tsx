@@ -1,7 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ServicePage, Prose, DataTable, COMMON_RELATED } from "@/components/sections/ServicePage";
+import { ServicePage, Prose, COMMON_RELATED } from "@/components/sections/ServicePage";
 import { SectionHeading, CheckList } from "@/components/sections/blocks";
 import { NumberedSteps } from "@/components/sections/NumberedSteps";
+import { CircleInfographic } from "@/components/sections/CircleInfographic";
+import transvaginalImg from "@/assets/scan-transvaginal.jpg.asset.json";
+import abdominalImg from "@/assets/scan-abdominal.jpg.asset.json";
+import follicularImg from "@/assets/scan-follicular.jpg.asset.json";
 import { ROUTES } from "@/data/navigation";
 import { pageMeta, jsonLd, faqSchema, breadcrumbSchema } from "@/lib/seo";
 
