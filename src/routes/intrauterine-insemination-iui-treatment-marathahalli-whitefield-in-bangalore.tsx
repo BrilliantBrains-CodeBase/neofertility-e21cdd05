@@ -1,6 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ServicePage, Prose, DataTable, COMMON_RELATED } from "@/components/sections/ServicePage";
-import { SectionHeading, CheckList, StepList, SafetyNote } from "@/components/sections/blocks";
+import { SectionHeading, CheckList, SafetyNote } from "@/components/sections/blocks";
+import { ZigzagSteps } from "@/components/sections/ZigzagSteps";
+import stepOvulation from "@/assets/iui-Ovulation.jpg.asset.json";
+import stepSperm from "@/assets/iui-Sperm_Prep.jpg.asset.json";
+import stepProcedure from "@/assets/iui-iui_procedure.jpg.asset.json";
+import stepCare from "@/assets/iui-post_procedure_care.jpg.asset.json";
+import stepTest from "@/assets/iui-Pregnancy_test.jpg.asset.json";
 import { ROUTES } from "@/data/navigation";
 import { pageMeta, jsonLd, faqSchema, breadcrumbSchema } from "@/lib/seo";
 
@@ -109,31 +115,42 @@ function Page() {
 
       <section>
         <SectionHeading eyebrow="How it works" title="The IUI process, step by step" />
-        <StepList
+        <ZigzagSteps
           steps={[
             {
               title: "Ovulation monitoring",
               copy: "Your cycle is tracked to pinpoint the best time for insemination. Medications may be used to stimulate ovulation.",
+              image: stepOvulation.url,
+              alt: "Woman recording ovulation test results at home",
             },
             {
               title: "Sperm preparation",
               copy: "The healthiest sperm are separated and concentrated in a lab to maximise the chances of fertilisation.",
+              image: stepSperm.url,
+              alt: "Laboratory illustration of sperm being prepared",
             },
             {
               title: "IUI procedure",
               copy: "The prepared sperm is inserted directly into the uterus using a thin catheter. This is a quick, painless process.",
+              image: stepProcedure.url,
+              alt: "Illustration of the insemination catheter procedure",
             },
             {
               title: "Post-procedure care",
               copy: "You may be advised to rest briefly after the procedure, but normal activities can resume the same day.",
+              image: stepCare.url,
+              alt: "Nurse holding a patient's hand during aftercare",
             },
             {
               title: "Pregnancy test",
               copy: "A follow-up pregnancy test is done after two weeks to check the success of the procedure.",
+              image: stepTest.url,
+              alt: "Hands holding a home pregnancy test",
             },
           ]}
         />
       </section>
+
 
       <Prose title="Is IUI right for you">
         <p>
