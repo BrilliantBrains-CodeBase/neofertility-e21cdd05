@@ -1,8 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ServicePage, Prose, DataTable, COMMON_RELATED } from "@/components/sections/ServicePage";
-import { SectionHeading, CheckList, StepList, SafetyNote } from "@/components/sections/blocks";
+import { SectionHeading, CheckList, SafetyNote } from "@/components/sections/blocks";
+import { StepCards } from "@/components/sections/StepCards";
 import { ROUTES } from "@/data/navigation";
 import { pageMeta, jsonLd, faqSchema, breadcrumbSchema } from "@/lib/seo";
+import visitFirst from "@/assets/visit-first-antenatal-visit.jpg.asset.json";
+import visitFirstTrimester from "@/assets/visit-1st-trimester.png.asset.json";
+import visitLaterTrimesters from "@/assets/visit-2nd-and-3rd-trimester.jpg.asset.json";
+import visitDelivery from "@/assets/visit-delivery.jpg.asset.json";
 
 const PATH = ROUTES.pregnancyCare;
 
