@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ServicePage, Prose, DataTable, COMMON_RELATED } from "@/components/sections/ServicePage";
-import { SectionHeading, CheckList, StepList } from "@/components/sections/blocks";
+import { SectionHeading, CheckList } from "@/components/sections/blocks";
+import { NumberedSteps } from "@/components/sections/NumberedSteps";
 import { ROUTES } from "@/data/navigation";
 import { pageMeta, jsonLd, faqSchema, breadcrumbSchema } from "@/lib/seo";
 
@@ -108,8 +109,12 @@ function Page() {
       </section>
 
       <section>
-        <SectionHeading eyebrow="What to expect" title="What happens at the appointment" />
-        <StepList
+        <SectionHeading
+          eyebrow="What to expect"
+          title="What happens at the appointment"
+          centered
+        />
+        <NumberedSteps
           steps={[
             {
               title: "Booking and preparation",
