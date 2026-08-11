@@ -102,23 +102,31 @@ function Page() {
 
       <section>
         <SectionHeading eyebrow="How it works" title="The programme, step by step" />
-        <StepList
+        <ZigzagSteps
           steps={[
             {
               title: "Consultation and donor selection",
               copy: "We guide you in selecting the best donor based on medical compatibility and personal preferences.",
+              image: selectionImg.url,
+              alt: "Illustration of a donor egg passed between two hands",
             },
             {
               title: "Fertility treatment and synchronisation",
               copy: "The donor's egg retrieval or sperm collection is timed with the recipient's cycle for optimal success.",
+              image: retrievalImg.url,
+              alt: "Embryologist handling a sample tube during egg retrieval",
             },
             {
               title: "Fertilisation and embryo development",
               copy: "Donated eggs or sperm are used in IVF procedures to create healthy embryos.",
+              image: fertilisationImg.url,
+              alt: "Illustration of eggs being fertilised in the laboratory",
             },
             {
               title: "Embryo transfer and pregnancy monitoring",
               copy: "The fertilised embryo is transferred to the recipient's uterus for implantation, followed by regular pregnancy monitoring.",
+              image: transferImg.url,
+              alt: "Illustration of an embryo transfer into the uterus",
             },
           ]}
         />
