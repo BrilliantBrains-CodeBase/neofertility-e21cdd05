@@ -7,6 +7,7 @@ import stimulation from "@/assets/ivf-stimulation.png.asset.json";
 import retrieval from "@/assets/ivf-egg-retrieval.jpg.asset.json";
 import fertilization from "@/assets/ivf-fertilization.jpg.asset.json";
 import embryo from "@/assets/ivf-embryo.jpg.asset.json";
+import embryoTransfer from "@/assets/ivf-embryo-transfer.jpg.asset.json";
 import pregnancyTest from "@/assets/ivf-pregnancy-test.jpg.asset.json";
 import { ROUTES } from "@/data/navigation";
 import { pageMeta, jsonLd, faqSchema, breadcrumbSchema } from "@/lib/seo";
@@ -134,8 +135,8 @@ function Page() {
             {
               title: "Embryo transfer into the uterus",
               copy: "The selected embryo is transferred into the uterus using a gentle, painless procedure. No anesthesia is required, and patients go home the same day.",
-              image: embryo.url,
-              alt: "Embryo prepared for transfer",
+              image: embryoTransfer.url,
+              alt: "Illustration of embryo transfer into the uterus",
             },
             {
               title: "Pregnancy test and follow-up",
