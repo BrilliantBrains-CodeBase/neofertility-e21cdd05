@@ -1,6 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ServicePage, Prose, DataTable, COMMON_RELATED } from "@/components/sections/ServicePage";
-import { SafetyNote, StepList } from "@/components/sections/blocks";
+import { SafetyNote } from "@/components/sections/blocks";
+import { ZigzagSteps } from "@/components/sections/ZigzagSteps";
+import menoConsultation from "@/assets/meno-consultation.jpg.asset.json";
+import menoAssessment from "@/assets/meno-assessment.jpg.asset.json";
+import menoPlan from "@/assets/meno-plan.jpg.asset.json";
 import { ROUTES } from "@/data/navigation";
 import { pageMeta, jsonLd, faqSchema, breadcrumbSchema } from "@/lib/seo";
 
