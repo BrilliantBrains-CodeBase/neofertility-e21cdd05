@@ -1,7 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ServicePage, Prose, DataTable, COMMON_RELATED } from "@/components/sections/ServicePage";
-import { SectionHeading, CheckList, StepList, SafetyNote } from "@/components/sections/blocks";
+import { SectionHeading, CheckList, SafetyNote } from "@/components/sections/blocks";
 import { ArrowTimeline } from "@/components/sections/ArrowTimeline";
+import { JourneyFlow } from "@/components/sections/JourneyFlow";
+import stimulation from "@/assets/icsi-stimulation.png.asset.json";
+import retrieval from "@/assets/icsi-egg-retrieval.jpg.asset.json";
+import injection from "@/assets/icsi-sperm-injection.jpg.asset.json";
+import embryo from "@/assets/icsi-embryo-development.jpg.asset.json";
+import pregnancyTest from "@/assets/icsi-transfer-test.jpg.asset.json";
 import { ROUTES } from "@/data/navigation";
 import { pageMeta, jsonLd, faqSchema, breadcrumbSchema } from "@/lib/seo";
 
@@ -87,27 +93,37 @@ function Page() {
 
       <section>
         <SectionHeading eyebrow="How it works" title="The ICSI process, step by step" />
-        <StepList
+        <JourneyFlow
           steps={[
             {
               title: "Ovarian stimulation and monitoring",
               copy: "The female partner receives hormonal injections to stimulate the ovaries to produce multiple mature eggs. Regular ultrasounds and blood tests monitor follicle development.",
+              image: stimulation.url,
+              alt: "Hormonal injection being administered near an anatomical model of the ovary",
             },
             {
               title: "Egg retrieval procedure",
               copy: "Once the eggs are mature, they are retrieved through a minor outpatient procedure under sedation. The procedure is painless and takes 10 to 15 minutes.",
+              image: retrieval.url,
+              alt: "Embryologist holding a test tube during egg retrieval",
             },
             {
               title: "Sperm selection and injection",
               copy: "A single, healthy sperm is selected and injected directly into each mature egg using a fine microneedle in the lab.",
+              image: injection.url,
+              alt: "Single sperm being injected into an egg with a microneedle",
             },
             {
               title: "Embryo development",
               copy: "Fertilised eggs are monitored for a few days as they develop, and the best-quality embryo is chosen for transfer.",
+              image: embryo.url,
+              alt: "Illustration of a developing baby in the womb",
             },
             {
               title: "Embryo transfer and pregnancy test",
               copy: "The embryo is transferred into the uterus without anesthesia. A pregnancy test follows 10 to 14 days later.",
+              image: pregnancyTest.url,
+              alt: "Couple holding a positive pregnancy test",
             },
           ]}
         />
