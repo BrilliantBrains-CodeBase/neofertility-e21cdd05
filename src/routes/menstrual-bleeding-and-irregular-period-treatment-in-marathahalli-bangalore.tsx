@@ -200,19 +200,25 @@ function MenstrualPage() {
           <strong>Treatment options</strong> include hormone therapy, weighed against your
           personal and family history, and non-hormonal measures for symptom control.
         </p>
-        <StepList
+        <ZigzagSteps
           steps={[
             {
               title: "Consultation and history",
               copy: "Bleeding pattern, symptom timeline and family history are reviewed.",
+              image: menoConsultation.url,
+              alt: "Doctor discussing symptoms with a patient at consultation",
             },
             {
               title: "Assessment",
               copy: "Pelvic ultrasound and, where indicated, endometrial assessment.",
+              image: menoAssessment.url,
+              alt: "Sonographer performing a pelvic ultrasound scan",
             },
             {
               title: "Plan",
               copy: "Hormonal or non-hormonal management is agreed based on your findings and preference.",
+              image: menoPlan.url,
+              alt: "Doctor explaining a treatment plan to a patient",
             },
           ]}
         />
