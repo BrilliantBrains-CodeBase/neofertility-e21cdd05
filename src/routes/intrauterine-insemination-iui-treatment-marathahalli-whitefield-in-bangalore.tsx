@@ -109,31 +109,42 @@ function Page() {
 
       <section>
         <SectionHeading eyebrow="How it works" title="The IUI process, step by step" />
-        <StepList
+        <ZigzagSteps
           steps={[
             {
               title: "Ovulation monitoring",
               copy: "Your cycle is tracked to pinpoint the best time for insemination. Medications may be used to stimulate ovulation.",
+              image: stepOvulation.url,
+              alt: "Woman recording ovulation test results at home",
             },
             {
               title: "Sperm preparation",
               copy: "The healthiest sperm are separated and concentrated in a lab to maximise the chances of fertilisation.",
+              image: stepSperm.url,
+              alt: "Laboratory illustration of sperm being prepared",
             },
             {
               title: "IUI procedure",
               copy: "The prepared sperm is inserted directly into the uterus using a thin catheter. This is a quick, painless process.",
+              image: stepProcedure.url,
+              alt: "Illustration of the insemination catheter procedure",
             },
             {
               title: "Post-procedure care",
               copy: "You may be advised to rest briefly after the procedure, but normal activities can resume the same day.",
+              image: stepCare.url,
+              alt: "Nurse holding a patient's hand during aftercare",
             },
             {
               title: "Pregnancy test",
               copy: "A follow-up pregnancy test is done after two weeks to check the success of the procedure.",
+              image: stepTest.url,
+              alt: "Hands holding a home pregnancy test",
             },
           ]}
         />
       </section>
+
 
       <Prose title="Is IUI right for you">
         <p>
