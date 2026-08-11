@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ServicePage, Prose, DataTable, COMMON_RELATED } from "@/components/sections/ServicePage";
 import { SectionHeading, CheckList, StepList, SafetyNote } from "@/components/sections/blocks";
+import { ArrowTimeline } from "@/components/sections/ArrowTimeline";
 import { ROUTES } from "@/data/navigation";
 import { pageMeta, jsonLd, faqSchema, breadcrumbSchema } from "@/lib/seo";
 
@@ -112,17 +113,17 @@ function Page() {
         />
       </section>
 
-      <DataTable
+      <ArrowTimeline
         caption="A typical ICSI cycle timeline"
-        head={["Timeframe", "Stage"]}
-        rows={[
-          ["Week 1 to 2", "Ovarian stimulation with hormone injections"],
-          ["Week 3", "Egg retrieval and sperm collection"],
-          ["Week 3 to 4", "Fertilisation via ICSI and embryo development in the lab"],
-          ["Week 4 to 5", "Embryo transfer to the uterus"],
-          ["Week 6", "Pregnancy test to confirm success"],
+        items={[
+          { when: "Week 1 to 2", what: "Ovarian stimulation with hormone injections" },
+          { when: "Week 3", what: "Egg retrieval and sperm collection" },
+          { when: "Week 3 to 4", what: "Fertilisation via ICSI and embryo development in the lab" },
+          { when: "Week 4 to 5", what: "Embryo transfer to the uterus" },
+          { when: "Week 6", what: "Pregnancy test to confirm success" },
         ]}
       />
+
 
       <section>
         <SectionHeading eyebrow="Who benefits" title="ICSI is best suited to" />
