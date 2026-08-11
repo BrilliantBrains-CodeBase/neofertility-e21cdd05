@@ -11,7 +11,7 @@ import {
 import { CLINIC, QUALIFICATIONS, MEMBERSHIPS } from "@/lib/clinic";
 import { ROUTES } from "@/data/navigation";
 import { pageMeta, jsonLd, doctorSchema, faqSchema, breadcrumbSchema } from "@/lib/seo";
-import portrait from "@/assets/dr-payal-portrait.jpg";
+import portraitAsset from "@/assets/dr-payal-desk.png.asset.json";
 import reception from "@/assets/clinic-reception.jpg";
 
 const FAQS = [
@@ -119,7 +119,7 @@ function AboutPage() {
         trail={[{ name: "Home", to: ROUTES.home }, { name: "About" }]}
       >
         <img
-          src={portrait}
+          src={portraitAsset.url}
           alt="Dr. Payal Mahapatra, fertility specialist at Neo Fertility Clinic Marathahalli"
           width={720}
           height={480}
