@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ServicePage, Prose, DataTable, COMMON_RELATED } from "@/components/sections/ServicePage";
 import { SectionHeading, CheckList, SafetyNote } from "@/components/sections/blocks";
 import { ZigzagSteps } from "@/components/sections/ZigzagSteps";
+import { AlternatingTimeline } from "@/components/sections/AlternatingTimeline";
 import consultation from "@/assets/ivf-consultation.jpg.asset.json";
 import stimulation from "@/assets/ivf-stimulation.png.asset.json";
 import retrieval from "@/assets/ivf-egg-retrieval.jpg.asset.json";
@@ -148,17 +149,17 @@ function Page() {
         />
       </section>
 
-      <DataTable
+      <AlternatingTimeline
         caption="A typical IVF cycle timeline"
-        head={["Days", "Stage"]}
-        rows={[
-          ["Day 1 to 14", "Ovarian stimulation with hormone injections"],
-          ["Day 15 to 18", "Egg retrieval and sperm collection"],
-          ["Day 19 to 21", "Fertilisation and embryo growth in the lab"],
-          ["Day 22 to 25", "Embryo transfer"],
-          ["Day 30 to 35", "Pregnancy test, 10 to 14 days after embryo transfer"],
+        items={[
+          { when: "Day 1 to 14", what: "Ovarian stimulation with hormone injections" },
+          { when: "Day 15 to 18", what: "Egg retrieval and sperm collection" },
+          { when: "Day 19 to 21", what: "Fertilisation and embryo growth in the lab" },
+          { when: "Day 22 to 25", what: "Embryo transfer" },
+          { when: "Day 30 to 35", what: "Pregnancy test, 10 to 14 days after embryo transfer" },
         ]}
       />
+
 
       <section>
         <SectionHeading eyebrow="Who it helps" title="Who can benefit from IVF" />
