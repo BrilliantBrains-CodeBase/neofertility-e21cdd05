@@ -1,6 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ServicePage, Prose, DataTable, COMMON_RELATED } from "@/components/sections/ServicePage";
-import { SectionHeading, CheckList, StepList, SafetyNote } from "@/components/sections/blocks";
+import { SectionHeading, CheckList, SafetyNote } from "@/components/sections/blocks";
+import { ZigzagSteps } from "@/components/sections/ZigzagSteps";
+import stepConsult from "@/assets/ef-consultation.jpg.asset.json";
+import stepStimulation from "@/assets/ef-stimulation.png.asset.json";
+import stepRetrieval from "@/assets/ef-retrieval.jpg.asset.json";
+import stepCryo from "@/assets/ef-cryopreservation.png.asset.json";
+import stepStorage from "@/assets/ef-storage.png.asset.json";
 import { ROUTES } from "@/data/navigation";
 import { pageMeta, jsonLd, faqSchema, breadcrumbSchema } from "@/lib/seo";
 
