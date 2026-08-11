@@ -1,6 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ServicePage, Prose, DataTable, COMMON_RELATED } from "@/components/sections/ServicePage";
-import { SectionHeading, CheckList, StepList, SafetyNote } from "@/components/sections/blocks";
+import { SectionHeading, CheckList, SafetyNote } from "@/components/sections/blocks";
+import { ZigzagSteps } from "@/components/sections/ZigzagSteps";
+import stepConsult from "@/assets/ef-consultation.jpg.asset.json";
+import stepStimulation from "@/assets/ef-stimulation.png.asset.json";
+import stepRetrieval from "@/assets/ef-retrieval.jpg.asset.json";
+import stepCryo from "@/assets/ef-cryopreservation.png.asset.json";
+import stepStorage from "@/assets/ef-storage.png.asset.json";
 import { ROUTES } from "@/data/navigation";
 import { pageMeta, jsonLd, faqSchema, breadcrumbSchema } from "@/lib/seo";
 
@@ -121,27 +127,37 @@ function Page() {
 
       <section>
         <SectionHeading eyebrow="How it works" title="The egg freezing process, step by step" />
-        <StepList
+        <ZigzagSteps
           steps={[
             {
               title: "Initial consultation and fertility testing",
               copy: "Hormonal blood tests and ultrasound scans assess ovarian reserve and suitability for egg freezing.",
+              image: stepConsult.url,
+              alt: "Clinician holding a patient's hand during consultation",
             },
             {
               title: "Ovarian stimulation and monitoring",
               copy: "Hormonal injections are given for 10 to 12 days to stimulate egg production, with regular monitoring via ultrasound and blood tests.",
+              image: stepStimulation.url,
+              alt: "Doctor examining a model of the uterus and ovaries",
             },
             {
               title: "Egg retrieval procedure",
               copy: "Mature eggs are collected in a short, painless procedure under light anesthesia.",
+              image: stepRetrieval.url,
+              alt: "Embryologist handling a collection tube in theatre",
             },
             {
               title: "Cryopreservation",
               copy: "Vitrification is used to rapidly freeze eggs at ultra-low temperatures to maintain quality.",
+              image: stepCryo.url,
+              alt: "Cryovial being lifted from liquid nitrogen vapour",
             },
             {
               title: "Egg storage for future use",
               copy: "Eggs are safely stored in a specialised cryogenic facility until you are ready to use them.",
+              image: stepStorage.url,
+              alt: "Frozen egg preserved in a chilled dish",
             },
           ]}
         />
