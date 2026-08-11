@@ -7,6 +7,7 @@ import stimulation from "@/assets/ivf-stimulation.png.asset.json";
 import retrieval from "@/assets/ivf-egg-retrieval.jpg.asset.json";
 import fertilization from "@/assets/ivf-fertilization.jpg.asset.json";
 import embryo from "@/assets/ivf-embryo.jpg.asset.json";
+import embryoTransfer from "@/assets/ivf-embryo-transfer.jpg.asset.json";
 import pregnancyTest from "@/assets/ivf-pregnancy-test.jpg.asset.json";
 import { ROUTES } from "@/data/navigation";
 import { pageMeta, jsonLd, faqSchema, breadcrumbSchema } from "@/lib/seo";
