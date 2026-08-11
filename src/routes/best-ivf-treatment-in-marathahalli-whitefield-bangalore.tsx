@@ -1,6 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ServicePage, Prose, DataTable, COMMON_RELATED } from "@/components/sections/ServicePage";
-import { SectionHeading, CheckList, StepList, SafetyNote } from "@/components/sections/blocks";
+import { SectionHeading, CheckList, SafetyNote } from "@/components/sections/blocks";
+import { ZigzagSteps } from "@/components/sections/ZigzagSteps";
+import consultation from "@/assets/ivf-consultation.jpg.asset.json";
+import stimulation from "@/assets/ivf-stimulation.png.asset.json";
+import retrieval from "@/assets/ivf-egg-retrieval.jpg.asset.json";
+import fertilization from "@/assets/ivf-fertilization.jpg.asset.json";
+import embryo from "@/assets/ivf-embryo.jpg.asset.json";
+import pregnancyTest from "@/assets/ivf-pregnancy-test.jpg.asset.json";
 import { ROUTES } from "@/data/navigation";
 import { pageMeta, jsonLd, faqSchema, breadcrumbSchema } from "@/lib/seo";
 
@@ -92,35 +99,49 @@ function Page() {
 
       <section>
         <SectionHeading eyebrow="How it works" title="The IVF cycle, step by step" />
-        <StepList
+        <ZigzagSteps
           steps={[
             {
               title: "Initial consultation and fertility assessment",
               copy: "Every journey starts with a detailed consultation and fertility evaluation. Dr. Payal conducts tests to understand the root cause of infertility.",
+              image: consultation.url,
+              alt: "Couple in consultation with a fertility doctor",
             },
             {
               title: "Ovarian stimulation and monitoring",
               copy: "The ovaries are stimulated using fertility medications to produce multiple mature eggs, closely monitored with regular ultrasounds and blood tests.",
+              image: stimulation.url,
+              alt: "Doctor examining a model of the uterus and ovaries",
             },
             {
               title: "Egg retrieval procedure",
               copy: "Once the eggs are ready, they are retrieved in a minor outpatient procedure under light sedation, using a fine needle guided by ultrasound.",
+              image: retrieval.url,
+              alt: "Egg retrieval procedure illustration",
             },
             {
               title: "Sperm collection and fertilization",
               copy: "On the same day as egg retrieval, a sperm sample is collected and prepared. The most active and healthy sperm are selected to fertilise the eggs.",
+              image: fertilization.url,
+              alt: "Sperm approaching an egg during fertilisation",
             },
             {
               title: "Embryo development and selection",
               copy: "The fertilised eggs are monitored for a few days to ensure proper development. The best-quality embryo is chosen for transfer.",
+              image: embryo.url,
+              alt: "Embryo in a laboratory dish",
             },
             {
               title: "Embryo transfer into the uterus",
               copy: "The selected embryo is transferred into the uterus using a gentle, painless procedure. No anesthesia is required, and patients go home the same day.",
+              image: embryo.url,
+              alt: "Embryo prepared for transfer",
             },
             {
               title: "Pregnancy test and follow-up",
               copy: "After 10 to 14 days, a blood test confirms pregnancy. If successful, close monitoring continues during the early weeks.",
+              image: pregnancyTest.url,
+              alt: "Hands holding a pregnancy test",
             },
           ]}
         />
