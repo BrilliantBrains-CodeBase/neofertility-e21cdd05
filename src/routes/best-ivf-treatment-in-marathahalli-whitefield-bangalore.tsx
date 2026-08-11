@@ -135,8 +135,8 @@ function Page() {
             {
               title: "Embryo transfer into the uterus",
               copy: "The selected embryo is transferred into the uterus using a gentle, painless procedure. No anesthesia is required, and patients go home the same day.",
-              image: embryo.url,
-              alt: "Embryo prepared for transfer",
+              image: embryoTransfer.url,
+              alt: "Illustration of embryo transfer into the uterus",
             },
             {
               title: "Pregnancy test and follow-up",
