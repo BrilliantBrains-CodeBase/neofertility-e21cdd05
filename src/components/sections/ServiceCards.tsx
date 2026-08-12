@@ -66,15 +66,42 @@ export function ServiceCards({
   const trackRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(0);
 
+  const scrollToIndex = (i: number) => {
+    const el = trackRef.current;
+    if (!el) return;
+    const target = el.children[i] as HTMLElement | undefined;
+    if (!target) return;
+    el.scrollTo({ left: target.offsetLeft - el.offsetLeft, behavior: "smooth" });
+  };
+
   useEffect(() => {
     const el = trackRef.current;
     if (!el) return;
+    let raf = 0;
     const onScroll = () => {
-      const slide = el.clientWidth * 0.86;
-      setActive(Math.min(items.length - 1, Math.round(el.scrollLeft / slide)));
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        const center = el.scrollLeft + el.clientWidth / 2;
+        let best = 0;
+        let bestDist = Infinity;
+        Array.from(el.children).forEach((child, i) => {
+          const node = child as HTMLElement;
+          const mid = node.offsetLeft - el.offsetLeft + node.offsetWidth / 2;
+          const dist = Math.abs(mid - center);
+          if (dist < bestDist) {
+            bestDist = dist;
+            best = i;
+          }
+        });
+        setActive(best);
+      });
     };
+    onScroll();
     el.addEventListener("scroll", onScroll, { passive: true });
-    return () => el.removeEventListener("scroll", onScroll);
+    return () => {
+      cancelAnimationFrame(raf);
+      el.removeEventListener("scroll", onScroll);
+    };
   }, [items.length]);
 
   return (
@@ -83,7 +110,7 @@ export function ServiceCards({
       <div className="md:hidden">
         <div
           ref={trackRef}
-          className="-mx-5 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          className="-mx-5 flex snap-x snap-mandatory gap-4 overflow-x-auto overscroll-x-contain scroll-smooth px-5 pb-2 [-webkit-overflow-scrolling:touch] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
           {items.map((item, i) => (
             <div key={item.title} className="w-[86%] shrink-0 snap-center">
@@ -91,25 +118,46 @@ export function ServiceCards({
             </div>
           ))}
         </div>
-        <div className="mt-4 flex justify-center gap-2">
-          {items.map((item, i) => (
-            <button
-              key={item.title}
-              type="button"
-              aria-label={`Go to ${item.title}`}
-              aria-current={i === active}
-              onClick={() => {
-                const el = trackRef.current;
-                if (el) el.scrollTo({ left: i * el.clientWidth * 0.86, behavior: "smooth" });
-              }}
-              className={cn(
-                "h-[3px] rounded-[2px] transition-all duration-300",
-                i === active ? "w-8 bg-teal-700" : "w-4 bg-teal-900/20",
-              )}
-            />
-          ))}
+
+        <div className="mt-4 flex items-center justify-center gap-4">
+          <button
+            type="button"
+            aria-label="Previous service"
+            disabled={active === 0}
+            onClick={() => scrollToIndex(Math.max(0, active - 1))}
+            className="inline-flex size-9 items-center justify-center rounded-full border border-line bg-white text-teal-900 transition-opacity disabled:opacity-35"
+          >
+            <ArrowLeft className="size-4" />
+          </button>
+
+          <div className="flex items-center gap-2">
+            {items.map((item, i) => (
+              <button
+                key={item.title}
+                type="button"
+                aria-label={`Go to ${item.title}`}
+                aria-current={i === active}
+                onClick={() => scrollToIndex(i)}
+                className={cn(
+                  "h-[6px] rounded-full transition-all duration-300",
+                  i === active ? "w-7 bg-teal-700" : "w-[6px] bg-teal-900/25",
+                )}
+              />
+            ))}
+          </div>
+
+          <button
+            type="button"
+            aria-label="Next service"
+            disabled={active === items.length - 1}
+            onClick={() => scrollToIndex(Math.min(items.length - 1, active + 1))}
+            className="inline-flex size-9 items-center justify-center rounded-full border border-line bg-white text-teal-900 transition-opacity disabled:opacity-35"
+          >
+            <ArrowRight className="size-4" />
+          </button>
         </div>
       </div>
+
 
       {/* Tablet and desktop grid */}
       <div className="hidden gap-5 md:grid md:grid-cols-2 lg:grid-cols-4">
