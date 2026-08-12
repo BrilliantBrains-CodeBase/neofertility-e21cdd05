@@ -7,7 +7,7 @@ import {
   SectionHeading,
   StatStrip,
   
-  InfoCard,
+  
   FaqBlock,
   DoctorNote,
 } from "@/components/sections/blocks";
@@ -16,6 +16,8 @@ import { ROUTES, SITE_URL } from "@/data/navigation";
 import { pageMeta, jsonLd, clinicSchema, websiteSchema, doctorSchema, faqSchema } from "@/lib/seo";
 import { HeroSlider } from "@/components/sections/HeroSlider";
 import { MarqueeBar } from "@/components/sections/MarqueeBar";
+import { ServiceCards } from "@/components/sections/ServiceCards";
+
 
 import pinkBannerAsset from "@/assets/hero-banner-pink.png.asset.json";
 import heroPortraitAsset from "@/assets/dr-payal-hero.png.asset.json";
@@ -24,6 +26,11 @@ import pathwayTrying from "@/assets/pathway-trying.jpg.asset.json";
 import pathwayIrregular from "@/assets/pathway-irregular.jpg.asset.json";
 import pathwayEggFreezing from "@/assets/pathway-egg-freezing.jpg.asset.json";
 import pathwayFailedIvf from "@/assets/pathway-failed-ivf.jpg.asset.json";
+import serviceFertility from "@/assets/ivf-consultation.jpg.asset.json";
+import serviceHormonal from "@/assets/meno-consultation.jpg.asset.json";
+import serviceGynecology from "@/assets/scan-transvaginal.jpg.asset.json";
+import servicePregnancy from "@/assets/visit-2nd-and-3rd-trimester.jpg.asset.json";
+
 
 const FAQS = [
   {
@@ -89,23 +96,32 @@ const SERVICES = [
     title: "Fertility treatment",
     copy: "IVF, IUI, ICSI, egg freezing, male fertility treatment including surgical sperm retrieval, and donor egg and sperm programmes.",
     to: ROUTES.fertilitySolutions,
+    image: serviceFertility.url,
+    alt: "Couple in a fertility consultation with Dr. Payal Mahapatra",
   },
   {
     title: "Hormonal and reproductive health",
     copy: "PCOS and PCOD, thyroid-related cycle disorders, irregular and heavy periods, endometriosis and menopause care.",
     to: ROUTES.pcos,
+    image: serviceHormonal.url,
+    alt: "Doctor discussing hormonal and reproductive health with a patient",
   },
   {
     title: "Gynecology and surgery",
     copy: "Hysteroscopy, laparoscopic surgery for infertility, pelvic ultrasound and follicular studies, infection treatment and breast health.",
     to: ROUTES.gynecologyTreatments,
+    image: serviceGynecology.url,
+    alt: "Transvaginal ultrasound scan being performed at the clinic",
   },
   {
     title: "Pregnancy care",
     copy: "Preconception health checks, complete antenatal care and high-risk pregnancy management, including IVF pregnancies.",
     to: ROUTES.pregnancyCare,
+    image: servicePregnancy.url,
+    alt: "Pregnant woman during a routine antenatal check",
   },
 ];
+
 
 const STEPS = [
   {
@@ -383,11 +399,10 @@ function Home() {
             eyebrow="What we do"
             title="Fertility, hormones, surgery and pregnancy in one practice"
           />
-          <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-            {SERVICES.map((service) => (
-              <InfoCard key={service.title} {...service} />
-            ))}
+          <div className="mt-10">
+            <ServiceCards items={SERVICES} featuredIndex={2} />
           </div>
+
         </div>
       </section>
 
