@@ -92,22 +92,18 @@ export function HeroSlider() {
             />
           ))}
 
-          {/* CTAs - marked position (lower right of the panel) */}
-          <div className="pointer-events-none absolute inset-0 hidden lg:block">
+          {/* CTAs - same marked position (lower right of the artwork) at every breakpoint */}
+          <div className="pointer-events-none absolute inset-0">
             <div className="pointer-events-auto absolute right-[4%] bottom-[7%] xl:bottom-[8%]">
               <Ctas />
             </div>
           </div>
         </div>
-
-        {/* CTAs on small screens */}
-        <div className="flex justify-center px-6 pt-6 lg:hidden">
-          <Ctas />
-        </div>
       </div>
 
       {/* Pagination */}
-      <div className="relative z-30 flex justify-center gap-3 pt-6 pb-8 lg:absolute lg:inset-x-0 lg:bottom-6 lg:p-0">
+      <div className="absolute inset-x-0 bottom-2 z-30 flex justify-center gap-3 sm:bottom-4 lg:bottom-6">
+
         {SLIDES.map((slide, index) => (
           <button
             key={slide.src}
