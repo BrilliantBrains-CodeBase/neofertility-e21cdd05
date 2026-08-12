@@ -62,8 +62,8 @@ function Imagery({ slide, priority }: { slide: Slide; priority: boolean }) {
     );
   }
   return (
-    <div className="grid h-full grid-cols-2 items-center gap-4 px-4 lg:gap-5 lg:px-0">
-      <div className="space-y-4 lg:space-y-5 lg:pt-[60px]">
+    <div className="grid h-full grid-cols-2 items-center gap-4 p-4 lg:gap-6 lg:p-6">
+      <div className="space-y-4 lg:space-y-6">
         <img
           src={slide.images[0]!.src}
           alt={slide.images[0]!.alt}
@@ -77,7 +77,7 @@ function Imagery({ slide, priority }: { slide: Slide; priority: boolean }) {
           className="aspect-square w-full rounded-2xl object-cover"
         />
       </div>
-      <div className="lg:-ml-6">
+      <div>
         <img
           src={slide.images[1]!.src}
           alt={slide.images[1]!.alt}
@@ -155,7 +155,7 @@ export function HeroSlider() {
               index === active ? "opacity-100" : "pointer-events-none opacity-0 lg:block hidden",
             )}
           >
-            <div className={cn("h-full", slide.variant === "collage" && "lg:pr-0 lg:pl-8")}>
+            <div className={cn("h-full", slide.variant === "collage" && "lg:pl-2")}>
               <Imagery slide={slide} priority={index === 0} />
             </div>
           </div>
