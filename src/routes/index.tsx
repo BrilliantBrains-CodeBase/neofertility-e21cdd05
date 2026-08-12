@@ -14,6 +14,9 @@ import {
 import { CLINIC, CLINICAL_VOLUME, QUALIFICATIONS, MEMBERSHIPS, track } from "@/lib/clinic";
 import { ROUTES } from "@/data/navigation";
 import { pageMeta, jsonLd, clinicSchema, doctorSchema, faqSchema } from "@/lib/seo";
+import { HeroSlider } from "@/components/sections/HeroSlider";
+import { MarqueeBar } from "@/components/sections/MarqueeBar";
+
 import heroPortraitAsset from "@/assets/dr-payal-hero.png.asset.json";
 import newbornHands from "@/assets/newborn-hands.png.asset.json";
 import pathwayTrying from "@/assets/pathway-trying.jpg.asset.json";
@@ -190,8 +193,11 @@ export const Route = createFileRoute("/")({
 function Home() {
   return (
     <>
+      <HeroSlider />
+      <MarqueeBar />
+
       {/* Hero */}
-      <section className="border-b border-line bg-white pt-4 pb-0 lg:pt-6">
+      <section className="border-b border-line bg-white pt-14 pb-0 lg:pt-24">
         <div className="container-page">
           <div className="relative overflow-hidden rounded-[2rem] bg-clay-50">
             <div className="grid lg:grid-cols-2">
@@ -209,9 +215,10 @@ function Home() {
                 <p className="eyebrow">
                   Dr. Payal Mahapatra · Fertility &amp; IVF Specialist · Bengaluru
                 </p>
-                <h1 className="mt-4 text-[2.5rem] leading-[1.02] lg:text-[3.5rem]">
+                <h2 className="mt-4 text-[2.5rem] leading-[1.02] lg:text-[3.5rem]">
                   You deserve more than “just keep trying.”
-                </h1>
+                </h2>
+
                 <p className="mt-5 max-w-[46ch] text-[1.0625rem] text-ink-muted">
                   With Dr. Payal Mahapatra, your fertility journey starts with being heard,
                   understanding what may be holding you back, and finding a treatment plan that feels
