@@ -383,11 +383,10 @@ function Home() {
             eyebrow="What we do"
             title="Fertility, hormones, surgery and pregnancy in one practice"
           />
-          <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-            {SERVICES.map((service) => (
-              <InfoCard key={service.title} {...service} />
-            ))}
+          <div className="mt-10">
+            <ServiceCards items={SERVICES} featuredIndex={2} />
           </div>
+
         </div>
       </section>
 
