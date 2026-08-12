@@ -12,11 +12,12 @@ import {
   DoctorNote,
 } from "@/components/sections/blocks";
 import { CLINIC, CLINICAL_VOLUME, QUALIFICATIONS, MEMBERSHIPS, track } from "@/lib/clinic";
-import { ROUTES } from "@/data/navigation";
-import { pageMeta, jsonLd, clinicSchema, doctorSchema, faqSchema } from "@/lib/seo";
+import { ROUTES, SITE_URL } from "@/data/navigation";
+import { pageMeta, jsonLd, clinicSchema, websiteSchema, doctorSchema, faqSchema } from "@/lib/seo";
 import { HeroSlider } from "@/components/sections/HeroSlider";
 import { MarqueeBar } from "@/components/sections/MarqueeBar";
 
+import pinkBannerAsset from "@/assets/hero-banner-pink.png.asset.json";
 import heroPortraitAsset from "@/assets/dr-payal-hero.png.asset.json";
 import newbornHands from "@/assets/newborn-hands.png.asset.json";
 import pathwayTrying from "@/assets/pathway-trying.jpg.asset.json";
