@@ -70,7 +70,7 @@ export function HeroSlider() {
     >
       <div className="relative w-full">
         {/* Aspect-ratio keeper */}
-        <div className="relative w-full" style={{ aspectRatio: "1656 / 944" }}>
+        <div className="relative w-full" style={{ aspectRatio: "1672 / 941" }}>
           {SLIDES.map((slide, index) => (
             <img
               key={slide.src}
@@ -80,7 +80,7 @@ export function HeroSlider() {
               loading={index === 0 ? "eager" : "lazy"}
               {...(index === 0 ? { fetchPriority: "high" as const } : {})}
               className={cn(
-                "absolute inset-0 h-full w-full object-cover object-center transition-opacity duration-700 ease-in-out",
+                "absolute inset-0 h-full w-full object-contain object-center transition-opacity duration-700 ease-in-out",
                 index === active ? "opacity-100" : "pointer-events-none opacity-0",
               )}
             />
