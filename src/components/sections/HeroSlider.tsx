@@ -20,25 +20,30 @@ const SLIDES = [
 
 function Ctas({ className }: { className?: string }) {
   return (
-    <div className={cn("flex flex-col items-start gap-3 sm:flex-row sm:items-center", className)}>
+    <div className={cn("flex flex-row items-center gap-2 sm:gap-3", className)}>
       <AppointmentSheet sourcePage="home_hero_slider">
         <Button
           variant="cta"
-          className="rounded-full px-[26px] py-[14px] text-[0.875rem] font-medium tracking-[0.03em] shadow-lg transition-transform duration-200 hover:-translate-y-0.5 lg:px-[30px] lg:py-[16px] lg:text-[0.9375rem]"
+          className="h-auto rounded-full px-3 py-1.5 text-[0.625rem] font-medium tracking-[0.03em] shadow-lg transition-transform duration-200 hover:-translate-y-0.5 sm:px-[22px] sm:py-[12px] sm:text-[0.8125rem] lg:px-[30px] lg:py-[16px] lg:text-[0.9375rem]"
         >
-          <CalendarCheck /> Book a consultation
+          <CalendarCheck className="size-3.5 sm:size-4" />
+          <span className="sm:hidden">Book</span>
+          <span className="hidden sm:inline">Book a consultation</span>
         </Button>
       </AppointmentSheet>
       <a
         href={CLINIC.phoneHref}
         onClick={() => track("call_click", { source_page: "home_hero_slider" })}
-        className="rounded-full bg-background/90 px-[24px] py-[13px] text-[0.875rem] font-medium text-teal-700 shadow-md backdrop-blur transition-transform duration-200 hover:-translate-y-0.5 hover:text-primary lg:text-[0.9375rem]"
+        className="rounded-full bg-background/90 px-3 py-1.5 text-center text-[0.625rem] font-medium whitespace-nowrap text-teal-700 shadow-md backdrop-blur transition-transform duration-200 hover:-translate-y-0.5 hover:text-primary sm:px-[22px] sm:py-[12px] sm:text-[0.8125rem] lg:text-[0.9375rem]"
       >
-        Call {CLINIC.phoneDisplay}
+        <span className="sm:hidden">Call</span>
+        <span className="hidden sm:inline">Call {CLINIC.phoneDisplay}</span>
       </a>
     </div>
   );
 }
+
+
 
 export function HeroSlider() {
   const [active, setActive] = useState(0);
@@ -86,22 +91,18 @@ export function HeroSlider() {
             />
           ))}
 
-          {/* CTAs - marked position (lower right of the panel) */}
-          <div className="pointer-events-none absolute inset-0 hidden lg:block">
+          {/* CTAs - same marked position (lower right of the artwork) at every breakpoint */}
+          <div className="pointer-events-none absolute inset-0">
             <div className="pointer-events-auto absolute right-[4%] bottom-[7%] xl:bottom-[8%]">
               <Ctas />
             </div>
           </div>
         </div>
-
-        {/* CTAs on small screens */}
-        <div className="flex justify-center px-6 pt-6 lg:hidden">
-          <Ctas />
-        </div>
       </div>
 
       {/* Pagination */}
-      <div className="relative z-30 flex justify-center gap-3 pt-6 pb-8 lg:absolute lg:inset-x-0 lg:bottom-6 lg:p-0">
+      <div className="absolute inset-x-0 bottom-2 z-30 flex justify-center gap-3 sm:bottom-4 lg:bottom-6">
+
         {SLIDES.map((slide, index) => (
           <button
             key={slide.src}
