@@ -181,12 +181,26 @@ export const Route = createFileRoute("/")({
       description:
         "Fertility and IVF care in Marathahalli and Whitefield, Bangalore. IVF, IUI, ICSI, egg freezing and PCOS care with Dr. Payal Mahapatra, 18 years in reproductive medicine. Open all seven days.",
       path: "/",
+      image: `${SITE_URL}${pinkBannerAsset.url}`,
     });
     return {
       ...base,
-      scripts: [jsonLd(clinicSchema), jsonLd(doctorSchema), jsonLd(faqSchema(FAQS))],
+      meta: [
+        ...base.meta,
+        { name: "robots", content: "index, follow, max-image-preview:large" },
+        { property: "og:locale", content: "en_IN" },
+        { name: "geo.region", content: "IN-KA" },
+        { name: "geo.placename", content: "Marathahalli, Bengaluru" },
+      ],
+      scripts: [
+        jsonLd(clinicSchema),
+        jsonLd(websiteSchema),
+        jsonLd(doctorSchema),
+        jsonLd(faqSchema(FAQS)),
+      ],
     };
   },
+
   component: Home,
 });
 
