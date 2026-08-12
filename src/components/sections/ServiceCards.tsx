@@ -15,8 +15,10 @@ function Card({ item, featured }: { item: ServiceCardItem; featured?: boolean })
   return (
     <Link
       to={item.to}
+      aria-label={`${item.title} — view all details`}
       className={cn(
         "group flex h-full flex-col overflow-hidden rounded-2xl border transition-all duration-300 hover:-translate-y-1",
+        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-700 focus-visible:ring-offset-2 focus-visible:ring-offset-background",
         featured
           ? "border-teal-900 bg-teal-900 shadow-rail"
           : "border-line bg-white hover:border-teal-300 hover:shadow-rail",
