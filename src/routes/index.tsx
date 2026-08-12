@@ -17,7 +17,8 @@ import { pageMeta, jsonLd, clinicSchema, websiteSchema, doctorSchema, faqSchema 
 import { HeroSlider } from "@/components/sections/HeroSlider";
 import { MarqueeBar } from "@/components/sections/MarqueeBar";
 import { ServiceCards } from "@/components/sections/ServiceCards";
-import { TreatmentGrid, type TreatmentItem } from "@/components/sections/TreatmentGrid";
+import { TreatmentGrid } from "@/components/sections/TreatmentGrid";
+import type { TreatmentItem } from "@/components/sections/TreatmentGrid";
 import {
   Syringe,
   FlaskConical,
