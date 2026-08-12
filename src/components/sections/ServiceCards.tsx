@@ -15,8 +15,10 @@ function Card({ item, featured }: { item: ServiceCardItem; featured?: boolean })
   return (
     <Link
       to={item.to}
+      aria-label={`${item.title} — view all details`}
       className={cn(
         "group flex h-full flex-col overflow-hidden rounded-2xl border transition-all duration-300 hover:-translate-y-1",
+        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-700 focus-visible:ring-offset-2 focus-visible:ring-offset-background",
         featured
           ? "border-teal-900 bg-teal-900 shadow-rail"
           : "border-line bg-white hover:border-teal-300 hover:shadow-rail",
@@ -107,56 +109,99 @@ export function ServiceCards({
   return (
     <>
       {/* Mobile: swipeable carousel */}
-      <div className="md:hidden">
+      <div
+        className="md:hidden"
+        role="group"
+        aria-roledescription="carousel"
+        aria-label="Our services"
+      >
         <div
           ref={trackRef}
-          className="-mx-5 flex snap-x snap-mandatory gap-4 overflow-x-auto overscroll-x-contain scroll-smooth px-5 pb-2 [-webkit-overflow-scrolling:touch] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          id="service-carousel-track"
+          tabIndex={0}
+          role="group"
+          aria-label={`Services carousel, showing ${active + 1} of ${items.length}`}
+          onKeyDown={(e) => {
+            if (e.key === "ArrowRight") {
+              e.preventDefault();
+              scrollToIndex(Math.min(items.length - 1, active + 1));
+            } else if (e.key === "ArrowLeft") {
+              e.preventDefault();
+              scrollToIndex(Math.max(0, active - 1));
+            } else if (e.key === "Home") {
+              e.preventDefault();
+              scrollToIndex(0);
+            } else if (e.key === "End") {
+              e.preventDefault();
+              scrollToIndex(items.length - 1);
+            }
+          }}
+          className="-mx-5 flex snap-x snap-mandatory gap-4 overflow-x-auto overscroll-x-contain scroll-smooth px-5 pb-2 [-webkit-overflow-scrolling:touch] [scrollbar-width:none] focus-visible:outline-none [&::-webkit-scrollbar]:hidden"
         >
           {items.map((item, i) => (
-            <div key={item.title} className="w-[86%] shrink-0 snap-center">
+            <div
+              key={item.title}
+              role="group"
+              aria-roledescription="slide"
+              aria-label={`${i + 1} of ${items.length}: ${item.title}`}
+              className="w-[86%] shrink-0 snap-center"
+            >
               <Card item={item} featured={i === featuredIndex} />
             </div>
           ))}
         </div>
 
+        <p aria-live="polite" className="sr-only">
+          {`Service ${active + 1} of ${items.length}: ${items[active]?.title ?? ""}`}
+        </p>
+
         <div className="mt-4 flex items-center justify-center gap-4">
           <button
             type="button"
             aria-label="Previous service"
+            aria-controls="service-carousel-track"
             disabled={active === 0}
             onClick={() => scrollToIndex(Math.max(0, active - 1))}
-            className="inline-flex size-9 items-center justify-center rounded-full border border-line bg-white text-teal-900 transition-opacity disabled:opacity-35"
+            className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-full border border-line bg-white text-teal-900 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-700 focus-visible:ring-offset-2 disabled:opacity-35"
           >
-            <ArrowLeft className="size-4" />
+            <ArrowLeft className="size-4" aria-hidden="true" />
           </button>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1" role="tablist" aria-label="Select service">
             {items.map((item, i) => (
               <button
                 key={item.title}
                 type="button"
+                role="tab"
                 aria-label={`Go to ${item.title}`}
-                aria-current={i === active}
+                aria-selected={i === active}
                 onClick={() => scrollToIndex(i)}
-                className={cn(
-                  "h-[6px] rounded-full transition-all duration-300",
-                  i === active ? "w-7 bg-teal-700" : "w-[6px] bg-teal-900/25",
-                )}
-              />
+                className="flex min-h-11 min-w-6 items-center justify-center rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-700 focus-visible:ring-offset-2"
+              >
+                <span
+                  aria-hidden="true"
+                  className={cn(
+                    "block h-[6px] rounded-full transition-all duration-300",
+                    i === active ? "w-7 bg-teal-700" : "w-[6px] bg-teal-900/25",
+                  )}
+                />
+              </button>
             ))}
           </div>
 
           <button
             type="button"
             aria-label="Next service"
+            aria-controls="service-carousel-track"
             disabled={active === items.length - 1}
             onClick={() => scrollToIndex(Math.min(items.length - 1, active + 1))}
-            className="inline-flex size-9 items-center justify-center rounded-full border border-line bg-white text-teal-900 transition-opacity disabled:opacity-35"
+            className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-full border border-line bg-white text-teal-900 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-700 focus-visible:ring-offset-2 disabled:opacity-35"
           >
-            <ArrowRight className="size-4" />
+            <ArrowRight className="size-4" aria-hidden="true" />
           </button>
         </div>
       </div>
+
 
 
       {/* Tablet and desktop grid */}
