@@ -16,6 +16,8 @@ import { ROUTES, SITE_URL } from "@/data/navigation";
 import { pageMeta, jsonLd, clinicSchema, websiteSchema, doctorSchema, faqSchema } from "@/lib/seo";
 import { HeroSlider } from "@/components/sections/HeroSlider";
 import { MarqueeBar } from "@/components/sections/MarqueeBar";
+import { ServiceCards } from "@/components/sections/ServiceCards";
+
 
 import pinkBannerAsset from "@/assets/hero-banner-pink.png.asset.json";
 import heroPortraitAsset from "@/assets/dr-payal-hero.png.asset.json";
