@@ -7,7 +7,7 @@ import {
   SectionHeading,
   StatStrip,
   
-  InfoCard,
+  
   FaqBlock,
   DoctorNote,
 } from "@/components/sections/blocks";
