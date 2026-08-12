@@ -316,7 +316,20 @@ function Home() {
         </div>
       </section>
 
+      {/* Treatments */}
+      <TreatmentGrid
+        eyebrow="Fertility Treatments in Marathahalli, Bangalore"
+        title="Advanced Fertility Treatments for Every Path to Parenthood"
+        intro="Neo Fertility and IVF Clinic in Marathahalli, Whitefield offers a complete range of fertility treatments including IUI, IVF, ICSI, egg freezing, male infertility solutions, and PCOD and PCOS care. Every treatment plan is personally designed by Dr. Payal Mahapatra, a fertility specialist with 18+ years of experience, based on your medical history, test results, and family goals."
+        items={TREATMENTS}
+        closing={{
+          heading: "Not sure which fertility treatment is right for you?",
+          copy: "Book a consultation with Dr. Payal Mahapatra at Neo Fertility and IVF Clinic in Marathahalli, Whitefield. In a single visit, she will review your reports, explain your options clearly, and recommend the treatment path best suited to you.",
+        }}
+      />
+
       {/* Who we help */}
+
       <section className="section-y">
         <div className="container-page">
           {/* Split heading, reference style */}
