@@ -117,6 +117,7 @@ export function ServiceCards({
       >
         <div
           ref={trackRef}
+          id="service-carousel-track"
           tabIndex={0}
           role="group"
           aria-label={`Services carousel, showing ${active + 1} of ${items.length}`}
