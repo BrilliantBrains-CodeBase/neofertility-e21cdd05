@@ -17,6 +17,85 @@ import { pageMeta, jsonLd, clinicSchema, websiteSchema, doctorSchema, faqSchema 
 import { HeroSlider } from "@/components/sections/HeroSlider";
 import { MarqueeBar } from "@/components/sections/MarqueeBar";
 import { ServiceCards } from "@/components/sections/ServiceCards";
+import { TreatmentGrid, type TreatmentItem } from "@/components/sections/TreatmentGrid";
+import {
+  Syringe,
+  FlaskConical,
+  Microscope,
+  Snowflake,
+  Users,
+  HeartHandshake,
+  Activity,
+  Sparkles,
+} from "lucide-react";
+
+const TREATMENTS: TreatmentItem[] = [
+  {
+    tag: "Assisted Conception",
+    title: "Intrauterine Insemination (IUI) Treatment",
+    copy: "IUI is a simple, minimally invasive fertility treatment in which prepared, healthy sperm is placed directly into the uterus during ovulation. It is often the recommended first step for couples with unexplained infertility, mild male factor issues, or ovulation problems.",
+    linkText: "Explore IUI treatment in Marathahalli",
+    to: ROUTES.iui,
+    icon: Syringe,
+  },
+  {
+    tag: "Assisted Conception",
+    title: "In Vitro Fertilization (IVF) Treatment",
+    copy: "IVF is one of the most effective fertility treatments available today. Eggs are fertilised with sperm in our advanced laboratory, and the healthiest embryo is transferred to the uterus. IVF is recommended for blocked fallopian tubes, low ovarian reserve, failed IUI cycles, and unexplained infertility.",
+    linkText: "Explore IVF treatment in Marathahalli",
+    to: ROUTES.ivf,
+    icon: FlaskConical,
+  },
+  {
+    tag: "Assisted Conception",
+    title: "Intracytoplasmic Sperm Injection (ICSI)",
+    copy: "ICSI is an advanced form of IVF in which a single healthy sperm is injected directly into the egg to achieve fertilisation. It is the most effective option for severe male factor infertility, including low sperm count and poor sperm motility.",
+    linkText: "Explore ICSI treatment",
+    to: ROUTES.icsi,
+    icon: Microscope,
+  },
+  {
+    tag: "Fertility Preservation",
+    title: "Egg Freezing and Fertility Preservation",
+    copy: "Egg freezing allows women to preserve their fertility by storing healthy eggs for future use. It is ideal for women who want to delay pregnancy for career, health, or personal reasons, and before medical treatments that may affect fertility.",
+    linkText: "Explore egg freezing in Bangalore",
+    to: ROUTES.eggFreezing,
+    icon: Snowflake,
+  },
+  {
+    tag: "Male Fertility",
+    title: "Male Infertility Treatment",
+    copy: "Male factors contribute to nearly half of all infertility cases. Our male fertility solutions include advanced semen analysis, hormonal evaluation, sperm retrieval techniques, and targeted treatment for low sperm count, motility, and morphology issues.",
+    linkText: "Explore male infertility treatment",
+    to: ROUTES.maleInfertility,
+    icon: Users,
+  },
+  {
+    tag: "Donor Care",
+    title: "Donor Egg and Sperm Programs",
+    copy: "Donor programs help couples conceive when pregnancy is not possible with their own eggs or sperm. All donors are medically screened, and every case is handled with complete confidentiality and compassionate counselling support.",
+    linkText: "Explore donor egg and sperm programs",
+    to: ROUTES.donor,
+    icon: HeartHandshake,
+  },
+  {
+    tag: "Hormonal Health",
+    title: "PCOD Treatment",
+    copy: "PCOD (Polycystic Ovarian Disease) causes irregular periods, ovarian cysts, and difficulty conceiving. Our PCOD treatment combines medical management, cycle regulation, and lifestyle guidance to restore hormonal balance and improve fertility naturally.",
+    linkText: "Explore PCOD treatment in Marathahalli",
+    to: ROUTES.pcod,
+    icon: Activity,
+  },
+  {
+    tag: "Hormonal Health",
+    title: "PCOS Treatment",
+    copy: "PCOS (Polycystic Ovary Syndrome) is a hormonal disorder that affects ovulation, weight, and fertility. We offer comprehensive PCOS care including hormonal therapy, ovulation induction, metabolic support, and long term fertility protection.",
+    linkText: "Explore PCOS treatment in Marathahalli",
+    to: ROUTES.pcos,
+    icon: Sparkles,
+  },
+];
+
 
 
 import pinkBannerAsset from "@/assets/hero-banner-pink.png.asset.json";
