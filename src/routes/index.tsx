@@ -91,23 +91,32 @@ const SERVICES = [
     title: "Fertility treatment",
     copy: "IVF, IUI, ICSI, egg freezing, male fertility treatment including surgical sperm retrieval, and donor egg and sperm programmes.",
     to: ROUTES.fertilitySolutions,
+    image: serviceFertility.url,
+    alt: "Couple in a fertility consultation with Dr. Payal Mahapatra",
   },
   {
     title: "Hormonal and reproductive health",
     copy: "PCOS and PCOD, thyroid-related cycle disorders, irregular and heavy periods, endometriosis and menopause care.",
     to: ROUTES.pcos,
+    image: serviceHormonal.url,
+    alt: "Doctor discussing hormonal and reproductive health with a patient",
   },
   {
     title: "Gynecology and surgery",
     copy: "Hysteroscopy, laparoscopic surgery for infertility, pelvic ultrasound and follicular studies, infection treatment and breast health.",
     to: ROUTES.gynecologyTreatments,
+    image: serviceGynecology.url,
+    alt: "Transvaginal ultrasound scan being performed at the clinic",
   },
   {
     title: "Pregnancy care",
     copy: "Preconception health checks, complete antenatal care and high-risk pregnancy management, including IVF pregnancies.",
     to: ROUTES.pregnancyCare,
+    image: servicePregnancy.url,
+    alt: "Pregnant woman during a routine antenatal check",
   },
 ];
+
 
 const STEPS = [
   {
