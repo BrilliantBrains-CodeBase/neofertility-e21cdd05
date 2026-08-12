@@ -25,7 +25,9 @@ export function JourneyFlow({ steps }: { steps: JourneyStep[] }) {
             className="relative grid items-center gap-6 lg:grid-cols-2 lg:gap-8 lg:py-6"
           >
             <div className={flip ? "lg:order-2 lg:pl-8" : "lg:order-1 lg:pr-8"}>
-              <div className={`relative mx-auto aspect-square w-[220px] overflow-hidden rounded-full border-4 border-clay-50 shadow-rail sm:w-[260px] lg:mx-0 lg:w-[300px] ${flip ? "lg:mr-auto" : "lg:ml-auto"}`}>
+              <div
+                className={`relative mx-auto aspect-square w-[220px] overflow-hidden rounded-full border-4 border-clay-50 shadow-rail sm:w-[260px] lg:mx-0 lg:w-[300px] ${flip ? "lg:mr-auto" : "lg:ml-auto"}`}
+              >
                 <img
                   src={step.image}
                   alt={step.alt}
@@ -35,16 +37,8 @@ export function JourneyFlow({ steps }: { steps: JourneyStep[] }) {
               </div>
             </div>
 
-            <div
-              className={
-                flip
-                  ? "lg:order-1 lg:pr-8 lg:text-right"
-                  : "lg:order-2 lg:pl-8"
-              }
-            >
-              <div
-                className={`flex items-center gap-3 ${flip ? "lg:justify-end" : ""}`}
-              >
+            <div className={flip ? "lg:order-1 lg:pr-8 lg:text-right" : "lg:order-2 lg:pl-8"}>
+              <div className={`flex items-center gap-3 ${flip ? "lg:justify-end" : ""}`}>
                 <span className="font-display text-[2rem] leading-none text-clay-600">
                   {String(index + 1).padStart(2, "0")}
                 </span>

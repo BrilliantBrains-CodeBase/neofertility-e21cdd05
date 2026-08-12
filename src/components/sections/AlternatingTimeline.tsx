@@ -33,7 +33,7 @@ export function AlternatingTimeline({
               return (
                 <div key={item.when} className="flex justify-center">
                   <div className="flex size-[9.5rem] flex-col items-center justify-center rounded-full bg-teal-900 px-4 text-center ring-8 ring-white">
-                    <p className="font-display text-[0.9375rem] text-white">{item.when}</p>
+                    <p className="font-medium text-[0.9375rem] text-white">{item.when}</p>
                     <p className="mt-1 text-[0.75rem] leading-snug text-teal-50/80">{item.what}</p>
                   </div>
                 </div>
@@ -46,10 +46,12 @@ export function AlternatingTimeline({
                   <>
                     <div className="flex flex-1 flex-col justify-end pb-2 text-center">
                       <p className="text-[0.9375rem] font-medium text-teal-900">{item.when}</p>
-                      <p className="mt-1 text-[0.8125rem] leading-snug text-ink-muted">{item.what}</p>
+                      <p className="mt-1 text-[0.8125rem] leading-snug text-ink-muted">
+                        {item.what}
+                      </p>
                     </div>
                     <span aria-hidden className="h-5 w-px bg-teal-300" />
-                    <span className="flex size-9 items-center justify-center rounded-full bg-clay-600 font-display text-[0.8125rem] text-white ring-4 ring-white">
+                    <span className="flex size-9 items-center justify-center rounded-full bg-clay-600 font-semibold text-[0.8125rem] text-white ring-4 ring-white">
                       {String(index + 1).padStart(2, "0")}
                     </span>
                     <span className="flex-1" />
@@ -57,13 +59,15 @@ export function AlternatingTimeline({
                 ) : (
                   <>
                     <span className="flex-1" />
-                    <span className="flex size-9 items-center justify-center rounded-full bg-clay-600 font-display text-[0.8125rem] text-white ring-4 ring-white">
+                    <span className="flex size-9 items-center justify-center rounded-full bg-clay-600 font-semibold text-[0.8125rem] text-white ring-4 ring-white">
                       {String(index + 1).padStart(2, "0")}
                     </span>
                     <span aria-hidden className="h-5 w-px bg-teal-300" />
                     <div className="flex flex-1 flex-col justify-start pt-2 text-center">
                       <p className="text-[0.9375rem] font-medium text-teal-900">{item.when}</p>
-                      <p className="mt-1 text-[0.8125rem] leading-snug text-ink-muted">{item.what}</p>
+                      <p className="mt-1 text-[0.8125rem] leading-snug text-ink-muted">
+                        {item.what}
+                      </p>
                     </div>
                   </>
                 )}
@@ -84,7 +88,7 @@ export function AlternatingTimeline({
               />
             )}
             <span
-              className={`flex size-9 shrink-0 items-center justify-center rounded-full font-display text-[0.8125rem] text-white ${
+              className={`flex size-9 shrink-0 items-center justify-center rounded-full font-semibold text-[0.8125rem] text-white ${
                 index === last ? "bg-teal-900" : "bg-clay-600"
               }`}
             >

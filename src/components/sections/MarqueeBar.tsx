@@ -22,10 +22,7 @@ function Track({ ariaHidden }: { ariaHidden?: boolean }) {
           >
             {item.label}
           </Link>
-          <span
-            aria-hidden
-            className="mx-6 size-2 rounded-full bg-foreground/40 lg:mx-10"
-          />
+          <span aria-hidden className="mx-6 size-2 rounded-full bg-foreground/40 lg:mx-10" />
         </span>
       ))}
     </span>

@@ -1,4 +1,5 @@
-import { Phone, MessageCircle, CalendarCheck } from "lucide-react";
+import { Phone, CalendarCheck } from "lucide-react";
+import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
 import { Button } from "@/components/ui/button";
 import { AppointmentSheet } from "./AppointmentSheet";
 import { CLINIC, buildWhatsAppUrl, track } from "@/lib/clinic";
@@ -26,7 +27,10 @@ export function ClosingCta({
             </Button>
           </AppointmentSheet>
           <Button variant="outlineTeal" size="lg" asChild>
-            <a href={CLINIC.phoneHref} onClick={() => track("call_click", { source_page: sourcePage })}>
+            <a
+              href={CLINIC.phoneHref}
+              onClick={() => track("call_click", { source_page: sourcePage })}
+            >
               <Phone /> Call {CLINIC.phoneDisplay}
             </a>
           </Button>
@@ -37,7 +41,7 @@ export function ClosingCta({
               rel="noreferrer"
               onClick={() => track("whatsapp_click", { source_page: sourcePage })}
             >
-              <MessageCircle className="text-success" /> WhatsApp
+              <WhatsAppIcon className="size-5 text-success" /> WhatsApp
             </a>
           </Button>
         </div>

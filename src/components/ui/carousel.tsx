@@ -132,25 +132,28 @@ const Carousel = React.forwardRef<
 });
 Carousel.displayName = "Carousel";
 
-const CarouselContent = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
-  ({ className, ...props }, ref) => {
-    const { carouselRef, orientation } = useCarousel();
+/**
+ * `viewportClassName` styles the `overflow-hidden` box that clips the slides. Use it
+ * to give slides room to grow on hover — `-my-8 py-8` opens 32px of vertical slack
+ * inside the clip without changing the carousel's outer height. Keep any padding
+ * vertical: horizontal padding would let the neighbouring slides peek through.
+ */
+const CarouselContent = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement> & { viewportClassName?: string }
+>(({ className, viewportClassName, ...props }, ref) => {
+  const { carouselRef, orientation } = useCarousel();
 
-    return (
-      <div ref={carouselRef} className="overflow-hidden">
-        <div
-          ref={ref}
-          className={cn(
-            "flex",
-            orientation === "horizontal" ? "-ml-4" : "-mt-4 flex-col",
-            className,
-          )}
-          {...props}
-        />
-      </div>
-    );
-  },
-);
+  return (
+    <div ref={carouselRef} className={cn("overflow-hidden", viewportClassName)}>
+      <div
+        ref={ref}
+        className={cn("flex", orientation === "horizontal" ? "-ml-4" : "-mt-4 flex-col", className)}
+        {...props}
+      />
+    </div>
+  );
+});
 CarouselContent.displayName = "CarouselContent";
 
 const CarouselItem = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(

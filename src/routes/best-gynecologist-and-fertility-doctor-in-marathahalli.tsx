@@ -11,7 +11,7 @@ import {
 import { CLINIC, QUALIFICATIONS, MEMBERSHIPS } from "@/lib/clinic";
 import { ROUTES } from "@/data/navigation";
 import { pageMeta, jsonLd, doctorSchema, faqSchema, breadcrumbSchema } from "@/lib/seo";
-import portraitAsset from "@/assets/dr-payal-desk.png.asset.json";
+import portraitAsset from "@/assets/dr-payal-desk.png";
 import reception from "@/assets/clinic-reception.jpg";
 
 const FAQS = [
@@ -119,7 +119,7 @@ function AboutPage() {
         trail={[{ name: "Home", to: ROUTES.home }, { name: "About" }]}
       >
         <img
-          src={portraitAsset.url}
+          src={portraitAsset}
           alt="Dr. Payal Mahapatra, fertility specialist at Neo Fertility Clinic Marathahalli"
           width={720}
           height={480}
@@ -127,7 +127,7 @@ function AboutPage() {
         />
       </PageHero>
 
-      <section className="bg-white section-y">
+      <section className="bg-sand section-y">
         <div className="container-page grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
           <div>
             <SectionHeading eyebrow="Background" title="From gynecology into reproductive medicine" />
@@ -164,7 +164,7 @@ function AboutPage() {
             {QUALIFICATIONS.map((q) => (
               <li key={q.title} className="relative">
                 <span className="absolute top-1.5 -left-[1.6rem] size-2.5 rounded-full bg-teal-600" />
-                <p className="font-display text-[1.0625rem] text-teal-900">
+                <p className="font-medium text-[1.0625rem] text-teal-900">
                   {q.title} <span className="text-ink-muted">— {q.year}</span>
                 </p>
                 <p className="mt-1 text-[0.9375rem] text-ink-muted">{q.institution}</p>
@@ -182,7 +182,7 @@ function AboutPage() {
         </div>
       </section>
 
-      <section className="bg-white section-y">
+      <section className="bg-sand section-y">
         <div className="container-page">
           <SectionHeading eyebrow="Clinical focus" title="What she treats" />
           <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
@@ -214,7 +214,7 @@ function AboutPage() {
         </div>
       </section>
 
-      <section className="bg-white section-y">
+      <section className="bg-sand section-y">
         <div className="container-page">
           <SectionHeading eyebrow="The clinic" title="Scorpio House, Marathahalli Bridge Service Road" />
           <p className="prose-measure mt-5 text-ink-muted">

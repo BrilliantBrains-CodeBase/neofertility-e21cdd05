@@ -4,10 +4,10 @@ import { SectionHeading, CheckList, SafetyNote } from "@/components/sections/blo
 import { StepCards } from "@/components/sections/StepCards";
 import { ROUTES } from "@/data/navigation";
 import { pageMeta, jsonLd, faqSchema, breadcrumbSchema } from "@/lib/seo";
-import visitFirst from "@/assets/visit-first-antenatal-visit.jpg.asset.json";
-import visitFirstTrimester from "@/assets/visit-1st-trimester.png.asset.json";
-import visitLaterTrimesters from "@/assets/visit-2nd-and-3rd-trimester.jpg.asset.json";
-import visitDelivery from "@/assets/visit-delivery.jpg.asset.json";
+import visitFirst from "@/assets/visit-first-antenatal-visit.jpg";
+import visitFirstTrimester from "@/assets/visit-1st-trimester.webp";
+import visitLaterTrimesters from "@/assets/visit-2nd-and-3rd-trimester.jpg";
+import visitDelivery from "@/assets/visit-delivery.jpg";
 
 const PATH = ROUTES.pregnancyCare;
 
@@ -121,25 +121,25 @@ function Page() {
             {
               title: "First antenatal visit",
               copy: "History, dating scan, baseline blood tests and a discussion of your risk profile and visit schedule.",
-              image: visitFirst.url,
+              image: visitFirst,
               alt: "Baseline blood test being taken at a first antenatal visit",
             },
             {
               title: "First trimester",
               copy: "Closer monitoring where the pregnancy followed IVF, or where a risk factor is identified.",
-              image: visitFirstTrimester.url,
+              image: visitFirstTrimester,
               alt: "Early pregnancy scan images beside a positive pregnancy test",
             },
             {
               title: "Second and third trimester",
               copy: "Scheduled scans, screening for gestational diabetes and hypertension, and regular monitoring.",
-              image: visitLaterTrimesters.url,
+              image: visitLaterTrimesters,
               alt: "Pregnant woman holding a scan photograph against her bump",
             },
             {
               title: "Delivery",
               copy: "Managed by the same doctor who has followed the pregnancy throughout.",
-              image: visitDelivery.url,
+              image: visitDelivery,
               alt: "Newborn baby held by the doctor moments after delivery",
             },
           ]}

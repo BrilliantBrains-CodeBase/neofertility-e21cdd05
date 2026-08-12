@@ -3,10 +3,10 @@ import { ServicePage, Prose, COMMON_RELATED } from "@/components/sections/Servic
 import { SectionHeading, CheckList } from "@/components/sections/blocks";
 import { JourneyFlow } from "@/components/sections/JourneyFlow";
 import { TimelineBand } from "@/components/sections/TimelineBand";
-import consultationImg from "@/assets/visit-consultation.jpg.asset.json";
-import testingImg from "@/assets/visit-testing.jpg.asset.json";
-import reviewImg from "@/assets/visit-review.jpg.asset.json";
-import supplementsImg from "@/assets/visit-supplements.jpg.asset.json";
+import consultationImg from "@/assets/visit-consultation.jpg";
+import testingImg from "@/assets/visit-testing.jpg";
+import reviewImg from "@/assets/visit-review.jpg";
+import supplementsImg from "@/assets/visit-supplements.jpg";
 import { ROUTES } from "@/data/navigation";
 import { pageMeta, jsonLd, faqSchema, breadcrumbSchema } from "@/lib/seo";
 
@@ -122,25 +122,25 @@ function Page() {
             {
               title: "Consultation and history",
               copy: "A detailed conversation about your cycle, medical history and any previous pregnancies, for both partners.",
-              image: consultationImg.url,
+              image: consultationImg,
               alt: "Doctor discussing medical history with a patient at a consultation desk",
             },
             {
               title: "Testing",
               copy: "Blood tests, pelvic ultrasound and semen analysis are arranged, usually completed within one menstrual cycle.",
-              image: testingImg.url,
+              image: testingImg,
               alt: "Clinician performing a pelvic ultrasound scan",
             },
             {
               title: "Review and correction",
               copy: "Results are explained in plain language. Any deficiencies, thyroid imbalance or infections found are treated before you start trying.",
-              image: reviewImg.url,
+              image: reviewImg,
               alt: "Doctor explaining test results to a patient",
             },
             {
               title: "Folic acid and supplements",
               copy: "Folic acid is started ahead of conception. Other supplements are added only where testing shows they are needed.",
-              image: supplementsImg.url,
+              image: supplementsImg,
               alt: "Woman taking folic acid supplement tablets with a glass of water",
             },
           ]}

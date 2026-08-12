@@ -1,18 +1,28 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useRouterState } from "@tanstack/react-router";
 import { Menu, X, Phone, ChevronDown, MapPin, Clock, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { AppointmentSheet } from "@/components/conversion/AppointmentSheet";
 import { CLINIC, track } from "@/lib/clinic";
 import { FERTILITY_MENU, GYNECOLOGY_MENU, ROUTES, type NavGroup } from "@/data/navigation";
-import logoAsset from "@/assets/neo-logo.png.asset.json";
+/* Trimmed copy of neo-logo.png. The original sits on a 500×500 canvas whose artwork
+   fills only 47% of the height, so any `h-*` rendered the mark at half the size it
+   looked like it should be. Cropping to the content bbox makes h-* mean what it says. */
+import logoAsset from "@/assets/neo-logo-trimmed.png";
 import { cn } from "@/lib/utils";
 
 type MenuKey = "fertility" | "gynecology" | null;
 
-function AnnouncementBar() {
+function AnnouncementBar({ onHero }: { onHero: boolean }) {
   return (
-    <div className="border-b border-line/70 bg-secondary text-muted-foreground">
+    <div
+      className={cn(
+        "border-b transition-colors duration-300 ease-out",
+        onHero
+          ? "border-white/20 bg-transparent text-sand"
+          : "border-line/70 bg-secondary text-teal-700",
+      )}
+    >
       <div className="flex h-12 items-center justify-between px-4 text-[0.8125rem] tracking-[0.02em] lg:h-11 lg:px-8">
         <span className="flex min-w-0 items-center gap-2">
           <MapPin className="size-4 shrink-0" aria-hidden />
@@ -30,14 +40,14 @@ function AnnouncementBar() {
           <a
             href={CLINIC.phoneHref}
             onClick={() => track("call_click", { source_page: "announcement_bar" })}
-            className="flex items-center gap-2 hover:opacity-70"
+            className="flex min-h-11 items-center gap-2 hover:opacity-70"
           >
             <Phone className="size-4" aria-hidden />
             {CLINIC.phoneDisplay}
           </a>
           <a
             href={`mailto:${CLINIC.email}`}
-            className="hidden items-center gap-2 hover:opacity-70 lg:flex"
+            className="hidden min-h-11 items-center gap-2 hover:opacity-70 lg:flex"
           >
             <Mail className="size-4" aria-hidden />
             {CLINIC.email}
@@ -129,7 +139,7 @@ function MobileGroup({ title, groups }: { title: string; groups: NavGroup[] }) {
   );
 }
 
-function Logo({ compact }: { compact: boolean }) {
+function Logo({ compact, onHero = false }: { compact: boolean; onHero?: boolean }) {
   return (
     <Link
       to={ROUTES.home}
@@ -137,13 +147,17 @@ function Logo({ compact }: { compact: boolean }) {
       className="flex flex-col items-center leading-none"
     >
       <img
-        src={logoAsset.url}
+        src={logoAsset}
         alt="Neo Fertility Clinic"
-        width={520}
-        height={520}
+        width={413}
+        height={240}
         className={cn(
           "w-auto object-contain transition-all duration-300 ease-out",
-          compact ? "h-[52px]" : "h-[100px] lg:h-[130px]",
+          compact ? "h-12" : "h-15.5 lg:h-19",
+          /* The mark is near-black artwork on transparent, so it disappears against the
+             video. Flattening it to solid white keeps it legible over the hero; it
+             returns to full colour the moment the bar turns solid. */
+          onHero && "brightness-0 invert",
         )}
       />
     </Link>
@@ -154,7 +168,18 @@ export function Header() {
   const [openMenu, setOpenMenu] = useState<MenuKey>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [heroBehind, setHeroBehind] = useState(false);
+  const [headerHeight, setHeaderHeight] = useState(0);
+  const headerRef = useRef<HTMLElement>(null);
   const pathname = useRouterState({ select: (s) => s.location.pathname });
+
+  /* Only the home route renders a hero for the bar to sit on. Deriving this from the
+     route (rather than probing the DOM) keeps the server and first client render
+     identical, so the bar never flashes solid before turning transparent. */
+  const hasHero = pathname === ROUTES.home;
+
+  /* Transparent, light-on-dark bar while the hero is still under it. */
+  const onHero = hasHero && !heroBehind;
 
   useEffect(() => {
     setOpenMenu(null);
@@ -168,6 +193,39 @@ export function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  /* Track the bar's own height so the observer can flip exactly as the hero's bottom
+     edge passes under it. This only feeds the observer, never layout. */
+  useEffect(() => {
+    const el = headerRef.current;
+    if (!el) return;
+    const measure = () => setHeaderHeight(el.getBoundingClientRect().height);
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  /* Hero visibility drives the colour change — no scroll-pixel threshold. The negative
+     top inset shrinks the observed area by the bar's height, so the switch happens the
+     moment the hero stops sitting behind the bar rather than when it leaves the screen. */
+  useEffect(() => {
+    if (!hasHero) {
+      setHeroBehind(false);
+      return;
+    }
+    const hero = document.querySelector<HTMLElement>("[data-hero]");
+    if (!hero) {
+      setHeroBehind(true);
+      return;
+    }
+    const observer = new IntersectionObserver(([entry]) => setHeroBehind(!entry?.isIntersecting), {
+      rootMargin: `-${Math.max(1, Math.round(headerHeight))}px 0px 0px 0px`,
+      threshold: 0,
+    });
+    observer.observe(hero);
+    return () => observer.disconnect();
+  }, [hasHero, headerHeight, pathname]);
+
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : "";
     return () => {
@@ -175,19 +233,27 @@ export function Header() {
     };
   }, [mobileOpen]);
 
-  const link =
-    "relative py-2 text-[1rem] font-semibold tracking-[0.01em] text-foreground transition-colors hover:text-primary after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-primary after:transition-all after:duration-200 hover:after:w-full";
+  const link = cn(
+    "relative py-2 text-[1rem] font-semibold tracking-[0.01em] transition-colors after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:transition-all after:duration-200 hover:after:w-full",
+    onHero
+      ? "text-sand hover:text-white after:bg-sand"
+      : "text-teal-700 hover:text-teal-600 after:bg-teal-600",
+  );
 
   return (
     <header
+      ref={headerRef}
       className={cn(
-        "sticky top-0 z-40 transition-all duration-300 ease-out",
-        scrolled
-          ? "border-b border-border bg-background shadow-rail"
-          : "border-b border-transparent bg-background/0",
+        "top-0 z-40 border-b transition-[background-color,border-color,box-shadow] duration-300 ease-out",
+        /* On the hero route the bar overlays the video instead of sitting above it, so
+           it is taken out of flow. Elsewhere it keeps its original sticky behaviour. */
+        hasHero ? "fixed inset-x-0" : "sticky",
+        onHero
+          ? "border-transparent bg-transparent"
+          : cn("bg-background", scrolled ? "border-border shadow-rail" : "border-transparent"),
       )}
     >
-      <AnnouncementBar />
+      <AnnouncementBar onHero={onHero} />
 
       {/* Desktop row */}
       <nav
@@ -233,10 +299,6 @@ export function Header() {
               <MegaPanel groups={GYNECOLOGY_MENU} columns="grid grid-cols-2 gap-x-12 gap-y-6" />
             )}
           </div>
-
-          <Link to={ROUTES.about} className={link}>
-            About Dr. Payal
-          </Link>
         </div>
 
         <div
@@ -246,11 +308,14 @@ export function Header() {
           )}
         >
           <div className="pointer-events-auto">
-            <Logo compact={scrolled} />
+            <Logo compact={scrolled} onHero={onHero} />
           </div>
         </div>
 
         <div className="flex items-center gap-8">
+          <Link to={ROUTES.about} className={link}>
+            About Dr. Payal
+          </Link>
           <Link to={ROUTES.blogs} className={link}>
             Blogs
           </Link>
@@ -270,12 +335,17 @@ export function Header() {
 
       {/* Mobile row */}
       <div className="flex h-[4.5rem] items-center justify-between px-4 lg:hidden">
-        <Logo compact />
+        <Logo compact onHero={onHero} />
         <button
           type="button"
           onClick={() => setMobileOpen(true)}
           aria-label="Open menu"
-          className="flex size-11 items-center justify-center rounded-[10px] border border-line bg-card text-teal-900"
+          className={cn(
+            "flex size-11 items-center justify-center rounded-[10px] border transition-colors duration-300 ease-out",
+            onHero
+              ? "border-white/40 bg-white/10 text-sand backdrop-blur-sm"
+              : "border-line bg-card text-teal-900",
+          )}
         >
           <Menu className="size-6" />
         </button>

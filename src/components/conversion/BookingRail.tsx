@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
-import { Phone, MessageCircle } from "lucide-react";
+import { Phone } from "lucide-react";
+import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
 import { LeadForm } from "./LeadForm";
 import { CLINIC, buildWhatsAppUrl, track } from "@/lib/clinic";
 import { ROUTES } from "@/data/navigation";
@@ -60,7 +61,7 @@ export function BookingRail({
             onClick={() => track("whatsapp_click", { source_page: sourcePage })}
             className="flex h-11 items-center justify-center gap-2 rounded-md border border-line text-[0.9375rem] font-medium text-teal-900 hover:bg-teal-50"
           >
-            <MessageCircle className="size-4 text-success" /> WhatsApp
+            <WhatsAppIcon className="size-4 text-success" /> WhatsApp
           </a>
         </div>
         <p className="mt-4 text-[0.8125rem] text-ink-muted">Open all 7 days, 09:30 to 18:30</p>

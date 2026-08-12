@@ -62,14 +62,11 @@ export function LeadForm({
   const isRail = variant === "rail";
   const showFullFields = !isRail && !compact;
 
-  const labelClass = cn(
-    "text-[0.8125rem] font-medium",
-    onLight ? "text-teal-900" : "text-sand/90",
-  );
+  const labelClass = cn("text-[0.8125rem] font-medium", onLight ? "text-teal-900" : "text-sand/90");
   const fieldClass = cn(
     "mt-1.5 h-11 rounded-lg",
     onLight
-      ? "border-line bg-white text-ink placeholder:text-ink-muted/70"
+      ? "border-input bg-white text-ink placeholder:text-ink-muted/70"
       : "border-sand/25 bg-sand/10 text-sand placeholder:text-sand/50",
   );
 
@@ -85,7 +82,8 @@ export function LeadForm({
     if (!name.trim()) next.name = "Please tell us your name.";
     const mobileError = validateMobile(mobile);
     if (mobileError) next.mobile = mobileError;
-    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) next.email = "Check this email address.";
+    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
+      next.email = "Check this email address.";
     if (!isRail && !topic) next.topic = "Choose what you would like to discuss.";
     if (!consent) next.consent = "Please confirm we may contact you.";
     setErrors(next);
@@ -94,9 +92,7 @@ export function LeadForm({
     setPending(true);
     setFailed(false);
 
-    const params = new URLSearchParams(
-      typeof window === "undefined" ? "" : window.location.search,
-    );
+    const params = new URLSearchParams(typeof window === "undefined" ? "" : window.location.search);
 
     const { error } = await supabase.from("enquiries").insert({
       name: name.trim(),
@@ -251,7 +247,8 @@ export function LeadForm({
       {showFullFields && (
         <div>
           <Label htmlFor={`lf-message-${variant}`} className={labelClass}>
-            Anything you'd like us to know <span className="font-normal opacity-70">(optional)</span>
+            Anything you'd like us to know{" "}
+            <span className="font-normal opacity-70">(optional)</span>
           </Label>
           <Textarea
             id={`lf-message-${variant}`}
@@ -261,7 +258,7 @@ export function LeadForm({
             className={cn(
               "mt-1.5 rounded-lg",
               onLight
-                ? "border-line bg-white text-ink"
+                ? "border-input bg-white text-ink"
                 : "border-sand/25 bg-sand/10 text-sand placeholder:text-sand/50",
             )}
           />

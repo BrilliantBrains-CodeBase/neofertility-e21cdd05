@@ -1,0 +1,641 @@
+- generic [active] [ref=f64e1]:
+  - link "Skip to content" [ref=f64e2] [cursor=pointer]:
+    - /url: "#main"
+  - banner [ref=f64e3]:
+    - generic [ref=f64e5]:
+      - generic [ref=f64e6]: Scorpio House, Marathahalli Bridge Service Road, opposite Purva Apartments, Bengaluru 560037
+      - generic [ref=f64e11]:
+        - generic [ref=f64e12]: Mon to Sun · 09:30 to 18:30
+        - link "+91 73377 61236" [ref=f64e16] [cursor=pointer]:
+          - /url: tel:+917337761236
+        - link "care@neofertility.co.in" [ref=f64e19] [cursor=pointer]:
+          - /url: mailto:care@neofertility.co.in
+    - navigation "Main" [ref=f64e23]:
+      - generic [ref=f64e24]:
+        - button "Fertility Solutions" [ref=f64e26]
+        - button "Gynecology Treatments" [ref=f64e30]
+      - link "Neo Fertility Clinic home" [ref=f64e34] [cursor=pointer]:
+        - /url: /
+        - img "Neo Fertility Clinic" [ref=f64e35]
+      - generic [ref=f64e36]:
+        - link "About Dr. Payal" [ref=f64e37] [cursor=pointer]:
+          - /url: /best-gynecologist-and-fertility-doctor-in-marathahalli/
+        - link "Blogs" [ref=f64e38] [cursor=pointer]:
+          - /url: /blogs/
+        - link "Contact" [ref=f64e39] [cursor=pointer]:
+          - /url: /contact/
+        - button "Book appointment" [ref=f64e40] [cursor=pointer]
+  - main [ref=f64e41]:
+    - region "Neo Fertility Clinic introduction" [ref=f64e42]:
+      - generic [ref=f64e43]:
+        - generic "A mother kissing her newborn baby" [ref=f64e44]
+        - generic [ref=f64e46]:
+          - paragraph [ref=f64e47]: Marathahalli - Whitefield
+          - heading "Best Fertility and IVF Clinic" [level=1] [ref=f64e49]
+          - paragraph [ref=f64e50]: Expert, Personalized & Advanced Fertility Care by Dr. Payal Mahapatra (Founder Neo Fertility & IVF Clinic in Marathahalli - Whitefield)
+          - generic [ref=f64e51]:
+            - button "Book a consultation" [ref=f64e52] [cursor=pointer]
+            - link "Call +91 73377 61236" [ref=f64e53] [cursor=pointer]:
+              - /url: tel:+917337761236
+    - generic [ref=f64e57]:
+      - generic [ref=f64e58]:
+        - link "IVF" [ref=f64e60] [cursor=pointer]:
+          - /url: /best-ivf-treatment-in-marathahalli-whitefield-bangalore/
+        - link "IUI" [ref=f64e63] [cursor=pointer]:
+          - /url: /intrauterine-insemination-iui-treatment-marathahalli-whitefield-in-bangalore/
+        - link "ICSI" [ref=f64e66] [cursor=pointer]:
+          - /url: /icsi-treatment-in-marathahalli-whitefield-bangalore/
+        - link "Egg Freezing" [ref=f64e69] [cursor=pointer]:
+          - /url: /best-egg-freezing-clinic-in-marathahalli-bangalore/
+        - link "PCOS" [ref=f64e72] [cursor=pointer]:
+          - /url: /best-pcos-treatment-in-marathahalli-whitefield-bangalore/
+        - link "Pregnancy Care" [ref=f64e75] [cursor=pointer]:
+          - /url: /best-pregnancy-care-in-marathahalli-whitefield-bangalore/
+      - generic [ref=f64e77]:
+        - link [ref=f64e79] [cursor=pointer]:
+          - /url: /best-ivf-treatment-in-marathahalli-whitefield-bangalore/
+          - text: IVF
+        - link [ref=f64e82] [cursor=pointer]:
+          - /url: /intrauterine-insemination-iui-treatment-marathahalli-whitefield-in-bangalore/
+          - text: IUI
+        - link [ref=f64e85] [cursor=pointer]:
+          - /url: /icsi-treatment-in-marathahalli-whitefield-bangalore/
+          - text: ICSI
+        - link [ref=f64e88] [cursor=pointer]:
+          - /url: /best-egg-freezing-clinic-in-marathahalli-bangalore/
+          - text: Egg Freezing
+        - link [ref=f64e91] [cursor=pointer]:
+          - /url: /best-pcos-treatment-in-marathahalli-whitefield-bangalore/
+          - text: PCOS
+        - link [ref=f64e94] [cursor=pointer]:
+          - /url: /best-pregnancy-care-in-marathahalli-whitefield-bangalore/
+          - text: Pregnancy Care
+    - region [ref=f64e96]:
+      - generic [ref=f64e98]:
+        - img "Dr. Payal Mahapatra, fertility specialist at Neo Fertility Clinic Marathahalli" [ref=f64e100]
+        - generic [ref=f64e101]:
+          - paragraph [ref=f64e102]: About the doctor
+          - heading "Dr. Payal Mahapatra" [level=2] [ref=f64e107]
+          - paragraph [ref=f64e108]: MBBS, DGO, DNB, FRM · 18 years in fertility and gynecology
+          - paragraph [ref=f64e109]: Founder of Neo Fertility & IVF Clinic in Marathahalli — Whitefield. A compassionate approach combined with cutting-edge fertility treatment, so every couple gets a plan built around them and the best possible chance of success.
+          - list [ref=f64e111]:
+            - listitem [ref=f64e112]:
+              - generic [ref=f64e115]: IVF (In Vitro Fertilization)
+            - listitem [ref=f64e116]:
+              - generic [ref=f64e119]: IUI (Intra Uterine Insemination)
+            - listitem [ref=f64e120]:
+              - generic [ref=f64e123]: PCOS management
+            - listitem [ref=f64e124]:
+              - generic [ref=f64e127]: High-risk pregnancy care
+            - listitem [ref=f64e128]:
+              - generic [ref=f64e131]: Advanced reproductive solutions
+          - generic [ref=f64e132]:
+            - link "About Dr. Payal" [ref=f64e133] [cursor=pointer]:
+              - /url: /best-gynecologist-and-fertility-doctor-in-marathahalli/
+            - link "Contact us? +91 73377 61236" [ref=f64e134] [cursor=pointer]:
+              - /url: tel:+917337761236
+              - generic [ref=f64e138]:
+                - generic [ref=f64e139]: Contact us?
+                - generic [ref=f64e140]: +91 73377 61236
+    - generic [ref=f64e142]:
+      - generic [ref=f64e143]:
+        - paragraph [ref=f64e144]: Experience and clinical volume
+        - heading "Numbers we are willing to publish" [level=2] [ref=f64e145]
+      - generic [ref=f64e147]:
+        - generic [ref=f64e148]:
+          - paragraph [ref=f64e149]: "18"
+          - paragraph [ref=f64e150]: Years in clinical practice
+        - generic [ref=f64e151]:
+          - paragraph [ref=f64e152]: 80,000+
+          - paragraph [ref=f64e153]: Obstetrics and gynecology patients
+        - generic [ref=f64e154]:
+          - paragraph [ref=f64e155]: 6,789+
+          - paragraph [ref=f64e156]: IUI procedures
+        - generic [ref=f64e157]:
+          - paragraph [ref=f64e158]: 3,764+
+          - paragraph [ref=f64e159]: Fertility surgeries
+        - generic [ref=f64e160]:
+          - paragraph [ref=f64e161]: 2,046+
+          - paragraph [ref=f64e162]: IVF cycles
+        - generic [ref=f64e163]:
+          - paragraph [ref=f64e164]: 728+
+          - paragraph [ref=f64e165]: Deliveries
+      - paragraph [ref=f64e166]: As of August 2026.
+      - generic [ref=f64e167]:
+        - generic [ref=f64e168]:
+          - paragraph [ref=f64e169]: Credentials
+          - list [ref=f64e170]:
+            - listitem [ref=f64e171]: MBBS — MGM Medical College, Jamshedpur, 2005
+            - listitem [ref=f64e172]: DGO, Obstetrics and Gynecology — RIMS, Ranchi, 2011
+            - listitem [ref=f64e173]: DNB, Diplomate of National Board — Sagar Apollo, Bangalore, 2014
+            - listitem [ref=f64e174]: Fellowship in Reproductive Medicine — IIRRH, International Institute for Training and Research in Reproductive Health, 2017
+            - listitem [ref=f64e175]: Member, Indian Society for Assisted Reproduction (ISAR)
+            - listitem [ref=f64e176]: Member, Federation of Obstetric and Gynecological Societies of India (FOGSI)
+            - listitem [ref=f64e177]: Member, Medical Council of India
+        - generic [ref=f64e178]:
+          - paragraph [ref=f64e179]: Where our patients come from
+          - paragraph [ref=f64e180]: The clinic sits on Marathahalli Bridge Service Road, opposite Purva Apartments, which puts it within twenty to thirty minutes of most of east Bangalore. Patients travel to us from Marathahalli, Whitefield, Bellandur, Brookefield, Kundalahalli, Varthur, Hoodi, Mahadevpura, HSR Layout, Koramangala, BTM Layout, CV Raman Nagar, KR Puram, Banaswadi, Kalyan Nagar, Kammanahalli, Horamavu, Ramamurthy Nagar, HBR Layout and Lingarajpuram.
+          - generic [ref=f64e181]:
+            - link "IVF clinic in Whitefield" [ref=f64e182] [cursor=pointer]:
+              - /url: /ivf-clinic-in-whitefield-bangalore/
+            - link "Fertility clinic in Bellandur" [ref=f64e183] [cursor=pointer]:
+              - /url: /fertility-clinic-in-bellandur-bangalore/
+    - generic [ref=f64e185]:
+      - generic [ref=f64e186]:
+        - paragraph [ref=f64e187]: Fertility Treatments in Marathahalli, Bangalore
+        - heading "Advanced Fertility Treatments for Every Path to Parenthood" [level=2] [ref=f64e188]
+      - region "Fertility treatments" [ref=f64e189]:
+        - generic [ref=f64e191]:
+          - 'group "1 of 8: Intrauterine Insemination (IUI) Treatment" [ref=f64e192]':
+            - generic [ref=f64e193]:
+              - generic [ref=f64e194]:
+                - generic [ref=f64e195]: Assisted Conception
+                - heading "Intrauterine Insemination (IUI) Treatment" [level=3] [ref=f64e205]
+                - paragraph [ref=f64e206]: IUI is a simple, minimally invasive fertility treatment in which prepared, healthy sperm is placed directly into the uterus during ovulation. It is often the recommended first step for couples with unexplained infertility, mild male factor issues, or ovulation problems.
+              - generic [ref=f64e207]:
+                - img "Intrauterine Insemination (IUI) Treatment" [ref=f64e208]
+                - link "Explore IUI treatment in Marathahalli" [ref=f64e209] [cursor=pointer]:
+                  - /url: /intrauterine-insemination-iui-treatment-marathahalli-whitefield-in-bangalore/
+                  - text: Read More
+          - 'group "2 of 8: In Vitro Fertilization (IVF) Treatment" [ref=f64e213]':
+            - generic [ref=f64e214]:
+              - generic [ref=f64e215]:
+                - generic [ref=f64e216]: Assisted Conception
+                - heading "In Vitro Fertilization (IVF) Treatment" [level=3] [ref=f64e221]
+                - paragraph [ref=f64e222]: IVF is one of the most effective fertility treatments available today. Eggs are fertilised with sperm in our advanced laboratory, and the healthiest embryo is transferred to the uterus. IVF is recommended for blocked fallopian tubes, low ovarian reserve, failed IUI cycles, and unexplained infertility.
+              - generic [ref=f64e223]:
+                - img "In Vitro Fertilization (IVF) Treatment" [ref=f64e224]
+                - link "Explore IVF treatment in Marathahalli" [ref=f64e225] [cursor=pointer]:
+                  - /url: /best-ivf-treatment-in-marathahalli-whitefield-bangalore/
+                  - text: Read More
+          - 'group "3 of 8: Intracytoplasmic Sperm Injection (ICSI)" [ref=f64e229]':
+            - generic [ref=f64e230]:
+              - generic [ref=f64e231]:
+                - generic [ref=f64e232]: Assisted Conception
+                - heading "Intracytoplasmic Sperm Injection (ICSI)" [level=3] [ref=f64e239]
+                - paragraph [ref=f64e240]: ICSI is an advanced form of IVF in which a single healthy sperm is injected directly into the egg to achieve fertilisation. It is the most effective option for severe male factor infertility, including low sperm count and poor sperm motility.
+              - generic [ref=f64e241]:
+                - img "Intracytoplasmic Sperm Injection (ICSI)" [ref=f64e242]
+                - link "Explore ICSI treatment" [ref=f64e243] [cursor=pointer]:
+                  - /url: /icsi-treatment-in-marathahalli-whitefield-bangalore/
+                  - text: Read More
+          - 'group "4 of 8: Egg Freezing and Fertility Preservation" [ref=f64e247]':
+            - generic [ref=f64e248]:
+              - generic [ref=f64e249]:
+                - generic [ref=f64e250]: Fertility Preservation
+                - heading "Egg Freezing and Fertility Preservation" [level=3] [ref=f64e266]
+                - paragraph [ref=f64e267]: Egg freezing allows women to preserve their fertility by storing healthy eggs for future use. It is ideal for women who want to delay pregnancy for career, health, or personal reasons, and before medical treatments that may affect fertility.
+              - generic [ref=f64e268]:
+                - img "Egg Freezing and Fertility Preservation" [ref=f64e269]
+                - link "Explore egg freezing in Bangalore" [ref=f64e270] [cursor=pointer]:
+                  - /url: /best-egg-freezing-clinic-in-marathahalli-bangalore/
+                  - text: Read More
+          - 'group "5 of 8: Male Infertility Treatment" [ref=f64e274]':
+            - generic [ref=f64e275]:
+              - generic [ref=f64e276]:
+                - generic [ref=f64e277]: Male Fertility
+                - heading "Male Infertility Treatment" [level=3] [ref=f64e285]
+                - paragraph [ref=f64e286]: Male factors contribute to nearly half of all infertility cases. Our male fertility solutions include advanced semen analysis, hormonal evaluation, sperm retrieval techniques, and targeted treatment for low sperm count, motility, and morphology issues.
+              - generic [ref=f64e287]:
+                - img "Male Infertility Treatment" [ref=f64e288]
+                - link "Explore male infertility treatment" [ref=f64e289] [cursor=pointer]:
+                  - /url: /best-male-infertility-treatment-in-marathahalli-bangalore/
+                  - text: Read More
+          - 'group "6 of 8: Donor Egg and Sperm Programs" [ref=f64e293]':
+            - generic [ref=f64e294]:
+              - generic [ref=f64e295]:
+                - generic [ref=f64e296]: Donor Care
+                - heading "Donor Egg and Sperm Programs" [level=3] [ref=f64e301]
+                - paragraph [ref=f64e302]: Donor programs help couples conceive when pregnancy is not possible with their own eggs or sperm. All donors are medically screened, and every case is handled with complete confidentiality and compassionate counselling support.
+              - generic [ref=f64e303]:
+                - img "Donor Egg and Sperm Programs" [ref=f64e304]
+                - link "Explore donor egg and sperm programs" [ref=f64e305] [cursor=pointer]:
+                  - /url: /donor-eggs-and-sperm-program-in-marathahalli-bangalore/
+                  - text: Read More
+          - 'group "7 of 8: PCOD Treatment" [ref=f64e309]':
+            - generic [ref=f64e310]:
+              - generic [ref=f64e311]:
+                - generic [ref=f64e312]: Hormonal Health
+                - heading "PCOD Treatment" [level=3] [ref=f64e317]
+                - paragraph [ref=f64e318]: PCOD (Polycystic Ovarian Disease) causes irregular periods, ovarian cysts, and difficulty conceiving. Our PCOD treatment combines medical management, cycle regulation, and lifestyle guidance to restore hormonal balance and improve fertility naturally.
+              - generic [ref=f64e319]:
+                - img "PCOD Treatment" [ref=f64e320]
+                - link "Explore PCOD treatment in Marathahalli" [ref=f64e321] [cursor=pointer]:
+                  - /url: /best-pcod-treatment-in-marathahalli-whitefield-bangalore/
+                  - text: Read More
+          - 'group "8 of 8: PCOS Treatment" [ref=f64e325]':
+            - generic [ref=f64e326]:
+              - generic [ref=f64e327]:
+                - generic [ref=f64e328]: Hormonal Health
+                - heading "PCOS Treatment" [level=3] [ref=f64e334]
+                - paragraph [ref=f64e335]: PCOS (Polycystic Ovary Syndrome) is a hormonal disorder that affects ovulation, weight, and fertility. We offer comprehensive PCOS care including hormonal therapy, ovulation induction, metabolic support, and long term fertility protection.
+              - generic [ref=f64e336]:
+                - img "PCOS Treatment" [ref=f64e337]
+                - link "Explore PCOS treatment in Marathahalli" [ref=f64e338] [cursor=pointer]:
+                  - /url: /best-pcos-treatment-in-marathahalli-whitefield-bangalore/
+                  - text: Read More
+        - button "Previous slide" [disabled]
+        - button "Next slide" [disabled]
+      - generic [ref=f64e343]:
+        - generic [ref=f64e344]:
+          - heading "Not sure which fertility treatment is right for you?" [level=3] [ref=f64e345]
+          - paragraph [ref=f64e346]: Book a consultation with Dr. Payal Mahapatra at Neo Fertility and IVF Clinic in Marathahalli, Whitefield. In a single visit, she will review your reports, explain your options clearly, and recommend the treatment path best suited to you.
+        - generic [ref=f64e347]:
+          - button "Book a Consultation" [ref=f64e348] [cursor=pointer]
+          - link "Call +91 73377 61236" [ref=f64e349] [cursor=pointer]:
+            - /url: tel:+917337761236
+    - generic [ref=f64e351]:
+      - generic [ref=f64e353]:
+        - paragraph [ref=f64e354]: Who we help
+        - heading "Four ways people arrive here, four different starting points" [level=2] [ref=f64e355]:
+          - generic [ref=f64e356]: Four ways people arrive here,
+          - generic [ref=f64e357]: four different starting points
+      - region "Patient pathways" [ref=f64e358]:
+        - generic [ref=f64e360]:
+          - 'group "1 of 4: Trying for 12 months, or 6 months if you are over 35" [ref=f64e361]':
+            - generic [ref=f64e362]:
+              - generic [ref=f64e363]: "01"
+              - generic [ref=f64e365]:
+                - img "Woman holding a pregnancy test after months of trying to conceive" [ref=f64e366]
+                - generic [ref=f64e367]:
+                  - heading "Trying for 12 months, or 6 months if you are over 35" [level=3] [ref=f64e368]
+                  - paragraph [ref=f64e369]: Start with a fertility evaluation for both partners. Hormones, ultrasound, tubal patency and semen analysis in the first cycle.
+                  - link "Read more" [ref=f64e370] [cursor=pointer]:
+                    - /url: /infertility-treatment-in-marathahalli-whitefield-in-bangalore/
+          - 'group "2 of 4: Irregular periods, PCOS, endometriosis or fibroids" [ref=f64e373]':
+            - generic [ref=f64e374]:
+              - generic [ref=f64e375]: "02"
+              - generic [ref=f64e377]:
+                - img "Calendar with circled dates tracking irregular periods" [ref=f64e378]
+                - generic [ref=f64e379]:
+                  - heading "Irregular periods, PCOS, endometriosis or fibroids" [level=3] [ref=f64e380]
+                  - paragraph [ref=f64e381]: Start with a hormonal and gynecological assessment so the cycle is understood before any fertility treatment is discussed.
+                  - link "Read more" [ref=f64e382] [cursor=pointer]:
+                    - /url: /best-pcos-treatment-in-marathahalli-whitefield-bangalore/
+          - 'group "3 of 4: Not ready for a family yet, but want to protect the option" [ref=f64e385]':
+            - generic [ref=f64e386]:
+              - generic [ref=f64e387]: "03"
+              - generic [ref=f64e389]:
+                - img "Egg preserved inside a block of ice, representing egg freezing" [ref=f64e390]
+                - generic [ref=f64e391]:
+                  - heading "Not ready for a family yet, but want to protect the option" [level=3] [ref=f64e392]
+                  - paragraph [ref=f64e393]: Start with ovarian reserve testing, then decide about egg freezing with real numbers rather than guesswork.
+                  - link "Read more" [ref=f64e394] [cursor=pointer]:
+                    - /url: /best-egg-freezing-clinic-in-marathahalli-bangalore/
+          - 'group "4 of 4: A failed IVF cycle or repeated miscarriage elsewhere" [ref=f64e397]':
+            - generic [ref=f64e398]:
+              - generic [ref=f64e399]: "04"
+              - generic [ref=f64e401]:
+                - img "Woman standing between empty cots after a failed IVF cycle" [ref=f64e402]
+                - generic [ref=f64e403]:
+                  - heading "A failed IVF cycle or repeated miscarriage elsewhere" [level=3] [ref=f64e404]
+                  - paragraph [ref=f64e405]: Bring your records for a second opinion and a full cycle review. We tell you what we would change and why.
+                  - link "Read more" [ref=f64e406] [cursor=pointer]:
+                    - /url: /best-ivf-treatment-in-marathahalli-whitefield-bangalore/
+        - button "Previous slide" [disabled]
+        - button "Next slide" [disabled]
+      - link "See all patient pathways" [ref=f64e410] [cursor=pointer]:
+        - /url: /who-we-help/
+    - generic [ref=f64e414]:
+      - generic [ref=f64e415]:
+        - paragraph [ref=f64e416]: What we do
+        - heading "Fertility, hormones, surgery and pregnancy in one practice" [level=2] [ref=f64e417]
+      - generic [ref=f64e419]:
+        - link "Fertility treatment — view all details" [ref=f64e420] [cursor=pointer]:
+          - /url: /fertility-solutions/
+          - img "Couple in a fertility consultation with Dr. Payal Mahapatra" [ref=f64e422]
+          - generic [ref=f64e423]:
+            - heading "Fertility treatment" [level=3] [ref=f64e424]
+            - paragraph [ref=f64e425]: IVF, IUI, ICSI, egg freezing, male fertility treatment including surgical sperm retrieval, and donor egg and sperm programmes.
+            - generic [ref=f64e426]: View all details
+        - link "Hormonal and reproductive health — view all details" [ref=f64e429] [cursor=pointer]:
+          - /url: /best-pcos-treatment-in-marathahalli-whitefield-bangalore/
+          - img "Doctor discussing hormonal and reproductive health with a patient" [ref=f64e431]
+          - generic [ref=f64e432]:
+            - heading "Hormonal and reproductive health" [level=3] [ref=f64e433]
+            - paragraph [ref=f64e434]: PCOS and PCOD, thyroid-related cycle disorders, irregular and heavy periods, endometriosis and menopause care.
+            - generic [ref=f64e435]: View all details
+        - link "Gynecology and surgery — view all details" [ref=f64e438] [cursor=pointer]:
+          - /url: /gynecology-treatments/
+          - img "Transvaginal ultrasound scan being performed at the clinic" [ref=f64e440]
+          - generic [ref=f64e441]:
+            - heading "Gynecology and surgery" [level=3] [ref=f64e442]
+            - paragraph [ref=f64e443]: Hysteroscopy, laparoscopic surgery for infertility, pelvic ultrasound and follicular studies, infection treatment and breast health.
+            - generic [ref=f64e444]: View all details
+        - link "Pregnancy care — view all details" [ref=f64e447] [cursor=pointer]:
+          - /url: /best-pregnancy-care-in-marathahalli-whitefield-bangalore/
+          - img "Pregnant woman during a routine antenatal check" [ref=f64e449]
+          - generic [ref=f64e450]:
+            - heading "Pregnancy care" [level=3] [ref=f64e451]
+            - paragraph [ref=f64e452]: Preconception health checks, complete antenatal care and high-risk pregnancy management, including IVF pregnancies.
+            - generic [ref=f64e453]: View all details
+    - generic [ref=f64e457]:
+      - generic [ref=f64e458]:
+        - paragraph [ref=f64e459]: How we work
+        - heading "A sequence you can see from the first consultation" [level=2] [ref=f64e460]:
+          - generic [ref=f64e461]: A sequence you can see
+          - generic [ref=f64e462]: from the first consultation
+      - list [ref=f64e464]:
+        - listitem [ref=f64e467]:
+          - generic [ref=f64e468]: "1"
+          - heading "Full evaluation, both partners" [level=3] [ref=f64e469]
+          - paragraph [ref=f64e470]: Both partners tested in week one, not month three.
+        - listitem [ref=f64e471]:
+          - generic [ref=f64e472]: "2"
+          - heading "A named diagnosis" [level=3] [ref=f64e473]
+          - paragraph [ref=f64e474]: A cause, or an honest “unexplained” — in plain language.
+        - listitem [ref=f64e475]:
+          - generic [ref=f64e476]: "3"
+          - heading "The simplest effective treatment first" [level=3] [ref=f64e477]
+          - paragraph [ref=f64e478]: Ovulation induction before IUI. IUI before IVF.
+        - listitem [ref=f64e479]:
+          - generic [ref=f64e480]: "4"
+          - heading "A defined review point" [level=3] [ref=f64e481]
+          - paragraph [ref=f64e482]: "Agreed upfront: 3–4 IUI cycles or one IVF cycle, then review."
+        - listitem [ref=f64e483]:
+          - generic [ref=f64e484]: "5"
+          - heading "Continuity through pregnancy" [level=3] [ref=f64e485]
+          - paragraph [ref=f64e486]: The same doctor sees the pregnancy through to delivery.
+      - generic [ref=f64e487]:
+        - list [ref=f64e488]:
+          - listitem [ref=f64e489]:
+            - img "Patient at Neo Fertility Clinic" [ref=f64e490]
+          - listitem [ref=f64e491]:
+            - img "Patient at Neo Fertility Clinic" [ref=f64e492]
+          - listitem [ref=f64e493]:
+            - img "Patient at Neo Fertility Clinic" [ref=f64e494]
+          - listitem [ref=f64e495]:
+            - img "Patient at Neo Fertility Clinic" [ref=f64e496]
+        - button "Show 6 more" [ref=f64e498]
+    - region [ref=f64e499]:
+      - button [ref=f64e502]: Explore map
+      - generic [ref=f64e507]:
+        - generic [ref=f64e508]:
+          - paragraph [ref=f64e509]: Book a consultation
+          - heading "Make An Appointment" [level=2] [ref=f64e512]
+        - generic [ref=f64e513]:
+          - generic [ref=f64e515]:
+            - textbox "Your Name" [ref=f64e516]
+            - generic: Your Name
+          - generic [ref=f64e518]:
+            - textbox "Phone Number" [ref=f64e519]
+            - generic: Phone Number
+          - generic [ref=f64e521]:
+            - textbox "Your Email" [ref=f64e522]
+            - generic: Your Email
+          - combobox [ref=f64e525] [cursor=pointer]:
+            - option "Treatment Interested In" [selected]
+            - option "IVF"
+            - option "IUI"
+            - option "ICSI"
+            - option "Fertility Consultation"
+            - option "PCOS / Irregular Cycles"
+            - option "Male Infertility"
+            - option "Other"
+          - button "Preferred Date & Time" [ref=f64e527]
+          - generic [ref=f64e530]:
+            - textbox "Message (optional)" [ref=f64e531]
+            - generic: Message (optional)
+          - generic [ref=f64e533] [cursor=pointer]:
+            - checkbox "I agree to be contacted by phone/WhatsApp about my enquiry and accept the Privacy Policy." [ref=f64e534]
+            - generic [ref=f64e535]:
+              - text: I agree to be contacted by phone/WhatsApp about my enquiry and accept the
+              - link "Privacy Policy" [ref=f64e536]:
+                - /url: /privacy-policy/
+              - text: .
+          - generic [ref=f64e537]:
+            - button "Book Appointment" [disabled] [ref=f64e538]
+            - paragraph
+      - generic [ref=f64e541]:
+        - paragraph [ref=f64e542]: Neo Fertility Clinic
+        - paragraph [ref=f64e543]: 1st floor, Scorpio House, Marathahalli Bridge Service Road, Munnekolala, opposite Purva Apartments, Bengaluru, Karnataka 560037
+        - link "Open in Google Maps" [ref=f64e544] [cursor=pointer]:
+          - /url: https://www.google.com/maps/dir/?api=1&destination=Scorpio+House+Marathahalli+Bridge+Service+Road+Munnekolala+Bengaluru+560037
+    - generic [ref=f64e550]:
+      - generic [ref=f64e551]:
+        - paragraph [ref=f64e552]: FAQ
+        - heading "Frequently asked questions" [level=2] [ref=f64e553]
+      - generic [ref=f64e554]:
+        - heading [level=3] [ref=f64e556]:
+          - button "Where is Neo Fertility Clinic located?" [ref=f64e557] [cursor=pointer]
+        - heading [level=3] [ref=f64e561]:
+          - button "Who is the fertility specialist at Neo Fertility Clinic?" [ref=f64e562] [cursor=pointer]
+        - heading [level=3] [ref=f64e566]:
+          - button "What fertility treatments are available in Marathahalli?" [ref=f64e567] [cursor=pointer]
+        - heading [level=3] [ref=f64e571]:
+          - button "How much does IVF cost in Bangalore?" [ref=f64e572] [cursor=pointer]
+        - heading [level=3] [ref=f64e576]:
+          - button "Do I need a referral to book a fertility consultation?" [ref=f64e577] [cursor=pointer]
+        - heading [level=3] [ref=f64e581]:
+          - button "Is the clinic open on Sundays?" [ref=f64e582] [cursor=pointer]
+    - region [ref=f64e585]:
+      - generic [ref=f64e587]:
+        - generic [ref=f64e588]:
+          - paragraph [ref=f64e589]: Testimonials
+          - heading "What our patients say about us" [level=2] [ref=f64e593]
+        - generic [ref=f64e594]:
+          - generic [ref=f64e595]:
+            - generic [ref=f64e596]:
+              - generic [ref=f64e597]: SS
+              - generic [ref=f64e598]: PS
+              - generic [ref=f64e599]: SG
+              - generic [ref=f64e600]: +
+            - generic [ref=f64e602]: Talk to our fertility expert
+          - button "Book an appointment" [ref=f64e603]
+      - region "Patient reviews" [ref=f64e609]:
+        - generic [ref=f64e611]:
+          - 'group "1 of 3: Sneha Subudhi" [ref=f64e612]':
+            - generic [ref=f64e613]:
+              - img "Consultation room at Neo Fertility Clinic" [ref=f64e615]
+              - generic [ref=f64e616]:
+                - generic: ”
+                - generic [ref=f64e617]:
+                  - list "5 out of 5" [ref=f64e618]:
+                    - listitem [ref=f64e619]
+                    - listitem [ref=f64e622]
+                    - listitem [ref=f64e625]
+                    - listitem [ref=f64e628]
+                    - listitem [ref=f64e631]
+                  - heading "A Miracle After A Long Wait" [level=3] [ref=f64e634]
+                - paragraph [ref=f64e635]: I had been trying to conceive for almost a year without any positive results. On the recommendation of some friends, I consulted Dr. Payal at Neo Clinic. Under her expert guidance and care, I underwent pregnancy induction treatment. Dr. Payal took the time to explain every step of the process in detail, which made me feel informed and reassured throughout my journey. Within just six months of starting treatment with Neo Clinic, I received the long-awaited positive result. It truly felt like a miracle after such a long journey. I am deeply grateful to Dr. Payal and the entire Neo Clinic team for their professionalism, expertise, and compassionate support throughout the process.
+                - button "Read more of Sneha Subudhi’s review" [ref=f64e636]:
+                  - text: Read more
+                  - generic [ref=f64e637]: of Sneha Subudhi’s review
+                - generic [ref=f64e638]:
+                  - generic [ref=f64e639]: SS
+                  - generic [ref=f64e640]:
+                    - generic [ref=f64e641]: Sneha Subudhi
+                    - generic [ref=f64e642]: Patient · Neo Fertility Clinic
+          - 'group "2 of 3: Pramila Sahu" [ref=f64e643]':
+            - generic [ref=f64e644]:
+              - img "Reception area at Neo Fertility Clinic" [ref=f64e646]
+              - generic [ref=f64e647]:
+                - generic: ”
+                - generic [ref=f64e648]:
+                  - list "5 out of 5" [ref=f64e649]:
+                    - listitem [ref=f64e650]
+                    - listitem [ref=f64e653]
+                    - listitem [ref=f64e656]
+                    - listitem [ref=f64e659]
+                    - listitem [ref=f64e662]
+                  - heading "Best Fertility Expert" [level=3] [ref=f64e665]
+                - paragraph [ref=f64e666]: I have been trying to conceive since February and consulted Dr. Payal at Neo Fertility Clinic. From the very first consultation, she explained everything clearly, guided me through timely scans and injections, and made the whole process so smooth and reassuring. I'm so happy to share that I have conceived after a long wait. Dr. Payal is the best Fertility Expert and I would highly recommend Dr. Payal and Neo Fertility Clinic to anyone dealing with fertility related issues. The entire team at Neo Fertility Clinic is professional, caring, and supportive.
+                - button "Read more of Pramila Sahu’s review" [ref=f64e667]:
+                  - text: Read more
+                  - generic [ref=f64e668]: of Pramila Sahu’s review
+                - generic [ref=f64e669]:
+                  - generic [ref=f64e670]: PS
+                  - generic [ref=f64e671]:
+                    - generic [ref=f64e672]: Pramila Sahu
+                    - generic [ref=f64e673]: Patient · Neo Fertility Clinic
+          - 'group "3 of 3: Shruti Gupta" [ref=f64e674]':
+            - generic [ref=f64e675]:
+              - img "Ultrasound room at Neo Fertility Clinic" [ref=f64e677]
+              - generic [ref=f64e678]:
+                - generic: ”
+                - generic [ref=f64e679]:
+                  - list "5 out of 5" [ref=f64e680]:
+                    - listitem [ref=f64e681]
+                    - listitem [ref=f64e684]
+                    - listitem [ref=f64e687]
+                    - listitem [ref=f64e690]
+                    - listitem [ref=f64e693]
+                  - heading "Constant Support And Care" [level=3] [ref=f64e696]
+                - paragraph [ref=f64e697]: Words can't express how thankful I am to Payal ma'am. Throughout my journey to become pregnant, she stood by me with constant support and care. My husband and I struggled for a long time, and our dream came true only because of Dr. Payal. I have deep trust in her. Whenever I felt scared or unsure, I would remind myself that Payal ma'am is an excellent doctor—and just that thought would bring me peace. She is truly dedicated, always listening patiently and answering every doubt with compassion. She personally did all my scans, even coming to the clinic on holidays when needed. There were times when scans were required daily, and she was always there without fail. Her treatment is always accurate, and her deep knowledge gave me so much confidence. I'm truly grateful to be going through this journey with her. The clinic is always very hygienic, and everyone there always treated us with respect and care. I would definitely recommend Dr. Payal to anyone struggling with infertility and looking for a specialist.
+                - button "Read more of Shruti Gupta’s review" [ref=f64e698]:
+                  - text: Read more
+                  - generic [ref=f64e699]: of Shruti Gupta’s review
+                - generic [ref=f64e700]:
+                  - generic [ref=f64e701]: SG
+                  - generic [ref=f64e702]:
+                    - generic [ref=f64e703]: Shruti Gupta
+                    - generic [ref=f64e704]: Patient · Neo Fertility Clinic
+        - button "Previous slide" [disabled]
+        - button "Next slide" [disabled]
+  - contentinfo [ref=f64e705]:
+    - generic [ref=f64e706]:
+      - generic [ref=f64e707]:
+        - paragraph [ref=f64e708]: Neo Fertility Clinic
+        - paragraph [ref=f64e709]: Fertility and gynecology care led by Dr. Payal Mahapatra, MBBS, DGO, DNB, FRM, in Marathahalli, Bengaluru.
+        - generic [ref=f64e710]:
+          - paragraph [ref=f64e711]:
+            - generic [ref=f64e715]: 1st floor, Scorpio House, Marathahalli Bridge Service Road, Munnekolala, opposite Purva Apartments, Bengaluru, Karnataka 560037
+          - paragraph [ref=f64e716]:
+            - link "+91 73377 61236" [ref=f64e719] [cursor=pointer]:
+              - /url: tel:+917337761236
+          - paragraph [ref=f64e720]:
+            - link "care@neofertility.co.in" [ref=f64e724] [cursor=pointer]:
+              - /url: mailto:care@neofertility.co.in
+          - paragraph [ref=f64e725]:
+            - generic [ref=f64e729]: Monday to Sunday, 09:30 to 18:30
+        - generic [ref=f64e730]:
+          - link "Facebook" [ref=f64e731] [cursor=pointer]:
+            - /url: https://facebook.com/NeoFertilityClinic
+          - link "Instagram" [ref=f64e734] [cursor=pointer]:
+            - /url: https://instagram.com/neofertilityclinic
+          - link "LinkedIn" [ref=f64e738] [cursor=pointer]:
+            - /url: https://linkedin.com/company/neo-fertility-clinic/
+          - link "YouTube" [ref=f64e743] [cursor=pointer]:
+            - /url: https://youtube.com/@NeoFertilityIVFClinicBengaluru
+      - navigation "Fertility services" [ref=f64e747]:
+        - paragraph [ref=f64e748]: Fertility
+        - list [ref=f64e749]:
+          - listitem [ref=f64e750]:
+            - link "Preconception Checkup" [ref=f64e751] [cursor=pointer]:
+              - /url: /best-pre-conception-health-check-in-marathahalli-bangalore/
+          - listitem [ref=f64e752]:
+            - link "Pain While Having Sex" [ref=f64e753] [cursor=pointer]:
+              - /url: /best-doctor-for-pain-during-sex-treatment-in-bangalore/
+          - listitem [ref=f64e754]:
+            - link "Pregnancy Care" [ref=f64e755] [cursor=pointer]:
+              - /url: /best-pregnancy-care-in-marathahalli-whitefield-bangalore/
+          - listitem [ref=f64e756]:
+            - link "Family Planning" [ref=f64e757] [cursor=pointer]:
+              - /url: /family-planning-services-in-bangalore/
+          - listitem [ref=f64e758]:
+            - link "Pelvic Ultrasound Scan" [ref=f64e759] [cursor=pointer]:
+              - /url: /pelvic-ultrasound-scan-in-marathahalli/
+          - listitem [ref=f64e760]:
+            - link "Infertility Evaluation / Treatments" [ref=f64e761] [cursor=pointer]:
+              - /url: /infertility-treatment-in-marathahalli-whitefield-in-bangalore/
+          - listitem [ref=f64e762]:
+            - link "Intra Uterine Insemination (IUI)" [ref=f64e763] [cursor=pointer]:
+              - /url: /intrauterine-insemination-iui-treatment-marathahalli-whitefield-in-bangalore/
+          - listitem [ref=f64e764]:
+            - link "In-Vitro Fertilization (IVF)" [ref=f64e765] [cursor=pointer]:
+              - /url: /best-ivf-treatment-in-marathahalli-whitefield-bangalore/
+          - listitem [ref=f64e766]:
+            - link "Intracytoplasmic Sperm Injection (ICSI)" [ref=f64e767] [cursor=pointer]:
+              - /url: /icsi-treatment-in-marathahalli-whitefield-bangalore/
+      - navigation "Gynecology services" [ref=f64e768]:
+        - paragraph [ref=f64e769]: Gynecology
+        - list [ref=f64e770]:
+          - listitem [ref=f64e771]:
+            - link "STIs" [ref=f64e772] [cursor=pointer]:
+              - /url: /sexually-transmitted-infections-stis-treatment-in-bangalore/
+          - listitem [ref=f64e773]:
+            - link "PIDs" [ref=f64e774] [cursor=pointer]:
+              - /url: /pelvic-inflammatory-disease-pids-treatment-in-bangalore/
+          - listitem [ref=f64e775]:
+            - link "Vaginal Itching / Infection / Odour" [ref=f64e776] [cursor=pointer]:
+              - /url: /vaginal-discharge-infection-treatment-in-marathahalli-bangalore/
+          - listitem [ref=f64e777]:
+            - link "Lumps in Your Breasts" [ref=f64e778] [cursor=pointer]:
+              - /url: /breast-lumps-treatment-in-marathahalli-whitefield-bangalore/
+          - listitem [ref=f64e779]:
+            - link "Pain While Having Sex" [ref=f64e780] [cursor=pointer]:
+              - /url: /best-doctor-for-pain-during-sex-treatment-in-bangalore/
+          - listitem [ref=f64e781]:
+            - link "Medical Termination of Pregnancy" [ref=f64e782] [cursor=pointer]:
+              - /url: /medical-termination-of-pregnancy-mtp-marathahalli-whitefield/
+          - listitem [ref=f64e783]:
+            - link "Hysteroscopy" [ref=f64e784] [cursor=pointer]:
+              - /url: /best-hysteroscopy-treatment-in-marathahalli-bangalore/
+          - listitem [ref=f64e785]:
+            - link "Laparoscopy" [ref=f64e786] [cursor=pointer]:
+              - /url: /laparoscopic-surgery-for-infertility-in-marathahalli-bangalore/
+      - navigation "Clinic" [ref=f64e787]:
+        - paragraph [ref=f64e788]: Clinic
+        - list [ref=f64e789]:
+          - listitem [ref=f64e790]:
+            - link "About Dr. Payal" [ref=f64e791] [cursor=pointer]:
+              - /url: /best-gynecologist-and-fertility-doctor-in-marathahalli/
+          - listitem [ref=f64e792]:
+            - link "Who we help" [ref=f64e793] [cursor=pointer]:
+              - /url: /who-we-help/
+          - listitem [ref=f64e794]:
+            - link "Patient stories" [ref=f64e795] [cursor=pointer]:
+              - /url: /patient-stories/
+          - listitem [ref=f64e796]:
+            - link "IVF cost in Bangalore" [ref=f64e797] [cursor=pointer]:
+              - /url: /ivf-cost-in-bangalore/
+          - listitem [ref=f64e798]:
+            - link "Fertility assessment" [ref=f64e799] [cursor=pointer]:
+              - /url: /fertility-assessment/
+          - listitem [ref=f64e800]:
+            - link "Ovulation calculator" [ref=f64e801] [cursor=pointer]:
+              - /url: /ovulation-calculator/
+          - listitem [ref=f64e802]:
+            - link "FAQ" [ref=f64e803] [cursor=pointer]:
+              - /url: /faq/
+          - listitem [ref=f64e804]:
+            - link "Blogs" [ref=f64e805] [cursor=pointer]:
+              - /url: /blogs/
+          - listitem [ref=f64e806]:
+            - link "IVF clinic in Whitefield" [ref=f64e807] [cursor=pointer]:
+              - /url: /ivf-clinic-in-whitefield-bangalore/
+          - listitem [ref=f64e808]:
+            - link "Fertility clinic in Bellandur" [ref=f64e809] [cursor=pointer]:
+              - /url: /fertility-clinic-in-bellandur-bangalore/
+    - generic [ref=f64e810]:
+      - paragraph [ref=f64e811]: Patients travel to us from Marathahalli, Whitefield, Bellandur, Brookefield, Kundalahalli, Varthur, Hoodi, Mahadevpura, HSR Layout, Koramangala, BTM Layout, CV Raman Nagar, KR Puram, Banaswadi, Kalyan Nagar, Kammanahalli, Horamavu, Ramamurthy Nagar, HBR Layout and Lingarajpuram.
+      - generic [ref=f64e812]:
+        - paragraph [ref=f64e813]: © 2026 Neo Fertility Clinic. All rights reserved.
+        - generic [ref=f64e814]:
+          - link "Privacy Policy" [ref=f64e815] [cursor=pointer]:
+            - /url: /privacy-policy/
+          - link "Terms of Use" [ref=f64e816] [cursor=pointer]:
+            - /url: /terms-of-use/
+      - paragraph [ref=f64e817]: Information on this website is for general education and is not a substitute for a consultation. Treatment outcomes vary between individuals. As of August 2026.
+  - link "Chat with Neo Fertility Clinic on WhatsApp" [ref=f64e818] [cursor=pointer]:
+    - /url: https://wa.me/917337761236?text=Hi%2C%20I%20found%20Neo%20Fertility%20Clinic%20online%20and%20would%20like%20to%20book%20an%20appointment.

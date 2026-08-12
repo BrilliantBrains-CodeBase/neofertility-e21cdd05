@@ -16,7 +16,7 @@ export function StepCards({ steps }: { steps: StepCard[] }) {
         <li key={step.title} className="relative flex h-full pl-10 sm:pl-11">
           <span
             aria-hidden
-            className="absolute left-0 top-1/2 z-0 grid h-24 w-24 -translate-y-1/2 place-items-center rounded-full bg-clay-50 pr-10 font-display text-[1.25rem] font-semibold text-teal-900 sm:pr-11"
+            className="absolute left-0 top-1/2 z-0 grid h-24 w-24 -translate-y-1/2 place-items-center rounded-full bg-clay-50 pr-10 font-display text-[1.375rem] font-semibold text-teal-900 sm:pr-11"
           >
             {String(i + 1).padStart(2, "0")}
           </span>
@@ -32,9 +32,7 @@ export function StepCards({ steps }: { steps: StepCard[] }) {
                 className="h-40 w-full object-cover sm:h-44"
               />
               <div className="flex flex-1 flex-col p-5">
-                <h3 className="text-[1rem] font-medium leading-snug text-teal-900">
-                  {step.title}
-                </h3>
+                <h3 className="text-[1rem] font-medium leading-snug text-teal-900">{step.title}</h3>
                 <p className="mt-2 text-[0.875rem] leading-relaxed text-ink-muted">{step.copy}</p>
               </div>
             </div>

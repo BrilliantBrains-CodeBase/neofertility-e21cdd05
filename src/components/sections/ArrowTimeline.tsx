@@ -41,7 +41,7 @@ export function ArrowTimeline({
               </div>
 
               <div className="mt-5 px-3 text-center">
-                <p className="font-display text-[1.0625rem] leading-tight text-teal-900">
+                <p className="font-medium text-[1.0625rem] leading-tight text-teal-900">
                   {String(index + 1).padStart(2, "0")}
                 </p>
                 <p className="mt-2 text-[0.9375rem] leading-snug text-ink-muted">{item.what}</p>
@@ -61,7 +61,7 @@ export function ArrowTimeline({
                 className="absolute top-10 left-[1.125rem] h-[calc(100%-2.5rem)] w-px bg-teal-300"
               />
             )}
-            <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-clay-600 font-display text-[0.8125rem] text-white">
+            <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-clay-600 font-semibold text-[0.8125rem] text-white">
               {String(index + 1).padStart(2, "0")}
             </span>
             <div>

@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { Link } from "@tanstack/react-router";
 import { ChevronRight, Check } from "lucide-react";
 import {
@@ -10,6 +10,8 @@ import {
 import { CLINIC, CLINICAL_VOLUME } from "@/lib/clinic";
 import { ROUTES } from "@/data/navigation";
 import portrait from "@/assets/dr-payal-portrait.jpg";
+import { Reveal } from "@/components/motion/Reveal";
+import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
 import { cn } from "@/lib/utils";
 
 export function Breadcrumbs({ trail }: { trail: { name: string; to?: string }[] }) {
@@ -73,8 +75,10 @@ export function SectionHeading({
   light?: boolean;
 }) {
   return (
-    <div className={cn(centered && "text-center")}>
-      {eyebrow && <p className="eyebrow">{eyebrow}</p>}
+    <Reveal className={cn(centered && "text-center")}>
+      {/* The eyebrow's default Dusty Turquoise is only 2.6:1 on the Midnight Teal
+          bands, so the light variant lifts it to the pale brand tint. */}
+      {eyebrow && <p className={cn("eyebrow", light && "text-teal-300")}>{eyebrow}</p>}
       <h2 className={cn("mt-2", light && "text-sand")}>{title}</h2>
       {copy && (
         <p
@@ -87,13 +91,81 @@ export function SectionHeading({
           {copy}
         </p>
       )}
-    </div>
+    </Reveal>
+  );
+}
+
+const COUNT_MS = 1800;
+
+/**
+ * Counts a figure like "80,000+" up from zero, preserving its separators and suffix.
+ *
+ * It renders the final figure on the server and until mount, so the real numbers are
+ * in the initial HTML rather than a row of zeros; the reset to zero happens in an
+ * effect, by which point the strip is below the fold.
+ */
+function CountUpFigure({ figure, active }: { figure: string; active: boolean }) {
+  const target = Number(figure.replace(/[^\d]/g, ""));
+  const suffix = figure.replace(/[\d,]/g, "");
+  const reduced = usePrefersReducedMotion();
+  const [display, setDisplay] = useState(target);
+
+  useEffect(() => {
+    if (!reduced) setDisplay(0);
+  }, [reduced]);
+
+  useEffect(() => {
+    if (reduced) {
+      setDisplay(target);
+      return;
+    }
+    if (!active) return;
+    let frame = 0;
+    const start = performance.now();
+    const tick = (now: number) => {
+      const t = Math.min(1, (now - start) / COUNT_MS);
+      setDisplay(Math.round(target * (1 - Math.pow(1 - t, 3)))); // ease-out cubic
+      if (t < 1) frame = requestAnimationFrame(tick);
+    };
+    frame = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(frame);
+  }, [active, reduced, target]);
+
+  // Non-numeric figures are left exactly as authored.
+  if (!Number.isFinite(target)) return <>{figure}</>;
+
+  return (
+    <>
+      {display.toLocaleString("en-US")}
+      {suffix}
+    </>
   );
 }
 
 export function StatStrip({ light = false }: { light?: boolean }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [inView, setInView] = useState(false);
+
+  /* Count starts when the strip scrolls into view, once. */
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry?.isIntersecting) {
+          setInView(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.25 },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div
+      ref={ref}
       className={cn(
         "grid grid-cols-2 gap-x-6 gap-y-8 md:grid-cols-3 lg:grid-cols-6",
         light && "text-sand",
@@ -101,13 +173,14 @@ export function StatStrip({ light = false }: { light?: boolean }) {
     >
       {CLINICAL_VOLUME.map((stat) => (
         <div key={stat.label}>
+          {/* tabular-nums keeps the figure from jittering in width as it counts */}
           <p
             className={cn(
-              "font-display text-[1.75rem] leading-none font-semibold",
+              "font-display text-[1.75rem] leading-none font-semibold tabular-nums",
               light ? "text-sand" : "text-teal-900",
             )}
           >
-            {stat.figure}
+            <CountUpFigure figure={stat.figure} active={inView} />
           </p>
           <p className={cn("mt-2 text-[0.8125rem]", light ? "text-sand/70" : "text-ink-muted")}>
             {stat.label}
@@ -128,10 +201,14 @@ export function CheckList({
   columns?: 1 | 2;
 }) {
   return (
-    <ul className={cn("space-y-3", columns === 2 && "sm:grid sm:grid-cols-2 sm:gap-4 sm:space-y-0")}>
+    <ul
+      className={cn("space-y-3", columns === 2 && "sm:grid sm:grid-cols-2 sm:gap-4 sm:space-y-0")}
+    >
       {items.map((item) => (
         <li key={item} className="flex gap-3">
-          <Check className={cn("mt-1 size-4 shrink-0", light ? "text-teal-300" : "text-teal-600")} />
+          <Check
+            className={cn("mt-1 size-4 shrink-0", light ? "text-teal-300" : "text-teal-600")}
+          />
           <span className={cn("text-[1rem]", light ? "text-sand/85" : "text-ink")}>{item}</span>
         </li>
       ))}
@@ -144,7 +221,7 @@ export function StepList({ steps }: { steps: { title: string; copy: string }[] }
     <ol className="mt-8 space-y-6">
       {steps.map((step, index) => (
         <li key={step.title} className="flex gap-5">
-          <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-teal-900 font-display text-[0.9375rem] text-sand">
+          <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-teal-900 font-semibold text-[0.9375rem] text-sand">
             {index + 1}
           </span>
           <div>
@@ -194,29 +271,61 @@ export function InfoCard({
   return <div className="rounded-xl border border-line bg-white p-6">{body}</div>;
 }
 
+/**
+ * FAQ accordion. Pass `image` to get the two-column treatment — picture on the
+ * leading side, questions on the trailing side. Without it the block stays a plain
+ * single column, which is what the service pages use.
+ */
 export function FaqBlock({
   items,
   heading = "Questions patients ask",
   copy,
+  image,
 }: {
   items: { q: string; a: string }[];
   heading?: string;
   copy?: string;
+  image?: { src: string; alt: string; width: number; height: number };
 }) {
+  const questions = (
+    <Accordion type="single" collapsible className={cn("mt-8", !image && "max-w-[68ch]")}>
+      {items.map((item, index) => (
+        <AccordionItem key={item.q} value={`item-${index}`} className="border-line">
+          <AccordionTrigger className="text-left text-[1.0625rem] font-medium text-teal-900 hover:no-underline">
+            {item.q}
+          </AccordionTrigger>
+          <AccordionContent className="text-[1rem] text-ink-muted">{item.a}</AccordionContent>
+        </AccordionItem>
+      ))}
+    </Accordion>
+  );
+
   return (
     <section className="section-y">
       <div className="container-page">
-        <SectionHeading eyebrow="FAQ" title={heading} copy={copy} />
-        <Accordion type="single" collapsible className="mt-8 max-w-[68ch]">
-          {items.map((item, index) => (
-            <AccordionItem key={item.q} value={`item-${index}`} className="border-line">
-              <AccordionTrigger className="text-left text-[1.0625rem] font-medium text-teal-900 hover:no-underline">
-                {item.q}
-              </AccordionTrigger>
-              <AccordionContent className="text-[1rem] text-ink-muted">{item.a}</AccordionContent>
-            </AccordionItem>
-          ))}
-        </Accordion>
+        {image ? (
+          <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+            <Reveal className="overflow-hidden rounded-2xl border border-line bg-clay-50">
+              <img
+                src={image.src}
+                alt={image.alt}
+                width={image.width}
+                height={image.height}
+                loading="lazy"
+                className="aspect-4/5 w-full object-cover"
+              />
+            </Reveal>
+            <div>
+              <SectionHeading eyebrow="FAQ" title={heading} copy={copy} />
+              {questions}
+            </div>
+          </div>
+        ) : (
+          <>
+            <SectionHeading eyebrow="FAQ" title={heading} copy={copy} />
+            {questions}
+          </>
+        )}
       </div>
     </section>
   );
@@ -224,8 +333,8 @@ export function FaqBlock({
 
 export function DoctorNote({ quote }: { quote: string }) {
   return (
-    <figure className="rounded-xl border border-line bg-white p-6">
-      <blockquote className="font-display text-[1.25rem] leading-snug text-teal-900">
+    <figure className="rounded-xl border border-line border-l-4 border-l-clay-500 bg-white p-6">
+      <blockquote className="font-display text-[1.375rem] leading-snug text-teal-900">
         “{quote}”
       </blockquote>
       <figcaption className="mt-5 flex items-center gap-3">
@@ -266,7 +375,7 @@ export function RelatedLinks({
               <Link
                 to={link.to}
                 {...(link.hash ? { hash: link.hash } : {})}
-                className="flex items-center justify-between gap-3 rounded-lg border border-line bg-white px-4 py-3 text-[0.9375rem] text-teal-900 hover:border-teal-300"
+                className="flex items-center justify-between gap-3 rounded-lg border border-line bg-white px-4 py-3 text-[0.9375rem] text-teal-900 hover:border-teal-600"
               >
                 {link.label}
                 <ChevronRight className="size-4 shrink-0 text-teal-600" />

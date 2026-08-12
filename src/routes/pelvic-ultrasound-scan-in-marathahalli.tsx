@@ -3,9 +3,9 @@ import { ServicePage, Prose, COMMON_RELATED } from "@/components/sections/Servic
 import { SectionHeading, CheckList } from "@/components/sections/blocks";
 import { NumberedSteps } from "@/components/sections/NumberedSteps";
 import { CircleInfographic } from "@/components/sections/CircleInfographic";
-import transvaginalImg from "@/assets/scan-transvaginal.jpg.asset.json";
-import abdominalImg from "@/assets/scan-abdominal.jpg.asset.json";
-import follicularImg from "@/assets/scan-follicular.jpg.asset.json";
+import transvaginalImg from "@/assets/scan-transvaginal.jpg";
+import abdominalImg from "@/assets/scan-abdominal.jpg";
+import follicularImg from "@/assets/scan-follicular.jpg";
 import { ROUTES } from "@/data/navigation";
 import { pageMeta, jsonLd, faqSchema, breadcrumbSchema } from "@/lib/seo";
 
@@ -142,19 +142,19 @@ function Page() {
           {
             title: "Transvaginal scan",
             copy: "Detailed view of ovaries, uterus and endometrium",
-            image: transvaginalImg.url,
+            image: transvaginalImg,
             alt: "Clinician preparing a transvaginal ultrasound probe",
           },
           {
             title: "Abdominal scan",
             copy: "General pelvic assessment, sometimes used where transvaginal scanning is not suitable",
-            image: abdominalImg.url,
+            image: abdominalImg,
             alt: "Sonographer performing an abdominal ultrasound scan",
           },
           {
             title: "Follicular study",
             copy: "Tracking follicle development across a cycle for timed intercourse, IUI or IVF",
-            image: follicularImg.url,
+            image: follicularImg,
             alt: "Ultrasound monitor during a follicular tracking scan",
           },
         ]}

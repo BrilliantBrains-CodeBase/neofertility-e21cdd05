@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { ArrowLeft, ArrowRight } from "lucide-react";
+import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
 import { cn } from "@/lib/utils";
 
 export type ServiceCardItem = {
@@ -11,17 +12,17 @@ export type ServiceCardItem = {
   alt: string;
 };
 
-function Card({ item, featured }: { item: ServiceCardItem; featured?: boolean }) {
+/* No card is highlighted by default — the dark teal treatment is applied on hover
+   (and on keyboard focus, so it is not pointer-only). */
+function Card({ item }: { item: ServiceCardItem }) {
   return (
     <Link
       to={item.to}
       aria-label={`${item.title} — view all details`}
       className={cn(
-        "group flex h-full flex-col overflow-hidden rounded-2xl border transition-all duration-300 hover:-translate-y-1",
-        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-700 focus-visible:ring-offset-2 focus-visible:ring-offset-background",
-        featured
-          ? "border-teal-900 bg-teal-900 shadow-rail"
-          : "border-line bg-white hover:border-teal-300 hover:shadow-rail",
+        "group flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-white transition-all duration-300",
+        "hover:-translate-y-1 hover:border-teal-900 hover:bg-teal-900 hover:shadow-rail",
+        "focus-visible:border-teal-900 focus-visible:bg-teal-900 focus-visible:shadow-rail focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-700 focus-visible:ring-offset-2 focus-visible:ring-offset-background",
       )}
     >
       <div className="relative aspect-[4/3] w-full overflow-hidden">
@@ -33,23 +34,13 @@ function Card({ item, featured }: { item: ServiceCardItem; featured?: boolean })
         />
       </div>
       <div className="flex flex-1 flex-col p-6">
-        <h3 className={cn("font-display text-[1.25rem] leading-tight", featured && "text-sand")}>
+        <h3 className="text-[1.25rem] leading-tight transition-colors duration-300 group-hover:text-sand group-focus-visible:text-sand">
           {item.title}
         </h3>
-        <p
-          className={cn(
-            "mt-3 text-[0.9375rem]",
-            featured ? "text-sand/80" : "text-ink-muted",
-          )}
-        >
+        <p className="mt-3 text-[0.9375rem] text-ink-muted transition-colors duration-300 group-hover:text-sand/80 group-focus-visible:text-sand/80">
           {item.copy}
         </p>
-        <span
-          className={cn(
-            "mt-5 inline-flex items-center gap-2 text-[0.9375rem] font-medium",
-            featured ? "text-clay-50" : "text-clay-600",
-          )}
-        >
+        <span className="mt-5 inline-flex items-center gap-2 text-[0.9375rem] font-medium text-clay-600 transition-colors duration-300 group-hover:text-clay-50 group-focus-visible:text-clay-50">
           View all details
           <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
         </span>
@@ -58,15 +49,14 @@ function Card({ item, featured }: { item: ServiceCardItem; featured?: boolean })
   );
 }
 
-export function ServiceCards({
-  items,
-  featuredIndex = 2,
-}: {
-  items: readonly ServiceCardItem[];
-  featuredIndex?: number;
-}) {
+const AUTOPLAY_MS = 4000;
+
+export function ServiceCards({ items }: { items: readonly ServiceCardItem[] }) {
   const trackRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const activeRef = useRef(0);
+  const reduced = usePrefersReducedMotion();
 
   const scrollToIndex = (i: number) => {
     const el = trackRef.current;
@@ -75,6 +65,19 @@ export function ServiceCards({
     if (!target) return;
     el.scrollTo({ left: target.offsetLeft - el.offsetLeft, behavior: "smooth" });
   };
+
+  /* Autoplay. This track is a native scroll-snap container rather than an embla
+     carousel, so it advances by scrolling itself instead of by a plugin — but the
+     pause rules match every other carousel on the site: never under reduced motion
+     (WCAG 2.2.2), and stopped for good the moment the visitor touches it. */
+  useEffect(() => {
+    if (reduced || paused) return;
+    const timer = window.setInterval(
+      () => scrollToIndex((activeRef.current + 1) % items.length),
+      AUTOPLAY_MS,
+    );
+    return () => window.clearInterval(timer);
+  }, [reduced, paused, items.length]);
 
   useEffect(() => {
     const el = trackRef.current;
@@ -96,6 +99,7 @@ export function ServiceCards({
           }
         });
         setActive(best);
+        activeRef.current = best;
       });
     };
     onScroll();
@@ -108,12 +112,16 @@ export function ServiceCards({
 
   return (
     <>
-      {/* Mobile: swipeable carousel */}
+      {/* Mobile: swipeable carousel. Any interaction stops autoplay for good, matching
+          embla's stopOnInteraction — pointer covers drag and button taps, focus covers
+          the keyboard path. */}
       <div
         className="md:hidden"
         role="group"
         aria-roledescription="carousel"
         aria-label="Our services"
+        onPointerDown={() => setPaused(true)}
+        onFocusCapture={() => setPaused(true)}
       >
         <div
           ref={trackRef}
@@ -146,13 +154,18 @@ export function ServiceCards({
               aria-label={`${i + 1} of ${items.length}: ${item.title}`}
               className="w-[86%] shrink-0 snap-center"
             >
-              <Card item={item} featured={i === featuredIndex} />
+              <Card item={item} />
             </div>
           ))}
         </div>
 
+        {/* Silent while autoplay is driving: announcing every automatic step would
+            talk over a screen-reader user every few seconds. Once they interact,
+            autoplay is off for good and the announcements are theirs. */}
         <p aria-live="polite" className="sr-only">
-          {`Service ${active + 1} of ${items.length}: ${items[active]?.title ?? ""}`}
+          {paused || reduced
+            ? `Service ${active + 1} of ${items.length}: ${items[active]?.title ?? ""}`
+            : ""}
         </p>
 
         <div className="mt-4 flex items-center justify-center gap-4">
@@ -202,12 +215,10 @@ export function ServiceCards({
         </div>
       </div>
 
-
-
       {/* Tablet and desktop grid */}
       <div className="hidden gap-5 md:grid md:grid-cols-2 lg:grid-cols-4">
         {items.map((item, i) => (
-          <Card key={item.title} item={item} featured={i === featuredIndex} />
+          <Card key={item.title} item={item} />
         ))}
       </div>
     </>

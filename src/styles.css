@@ -2,12 +2,48 @@
 @source "../src";
 @import "tw-animate-css";
 
+/* Self-hosted, SIL OFL. No third-party font CDN.
+   Italic faces are declared because headings use real italic spans — without
+   them the browser synthesises a slanted upright, which looks wrong at display size. */
+@import "@fontsource-variable/montserrat/wght.css";
+@import "@fontsource-variable/montserrat/wght-italic.css";
+@import "@fontsource/cormorant-garamond/latin-400.css";
+@import "@fontsource/cormorant-garamond/latin-400-italic.css";
+@import "@fontsource/cormorant-garamond/latin-500.css";
+
+/*
+ * Fallback faces metric-matched to the webfonts so the swap does not shift layout.
+ * size-adjust is the measured average advance-width ratio (webfont / fallback);
+ * the overrides are the webfont's own ascent/descent re-expressed against that adjusted em.
+ * Measured in-browser, not estimated. Re-measure if either family changes.
+ */
+@font-face {
+  font-family: "Cormorant Fallback";
+  src: local("Georgia");
+  size-adjust: 86.6%;
+  ascent-override: 106.23%;
+  descent-override: 33.49%;
+  line-gap-override: 0%;
+}
+
+@font-face {
+  font-family: "Montserrat Fallback";
+  src: local("Arial");
+  size-adjust: 110.76%;
+  ascent-override: 87.57%;
+  descent-override: 22.57%;
+  line-gap-override: 0%;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 /*
  * Neo Fertility Clinic design system.
  * Teal is the brand. Clay is the action. Never two competing accents.
  * All colour values are oklch tokens. Never hardcode colours in components.
+ *
+ * Type: Montserrat carries everything (body, nav, buttons, forms, H3/H4, footer).
+ * Cormorant Garamond is display only and must never render below 20px.
  */
 
 @theme inline {
@@ -19,8 +55,9 @@
   --radius-3xl: 24px;
   --radius-4xl: 28px;
 
-  --font-display: "Fraunces", ui-serif, Georgia, serif;
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Cormorant Garamond", "Cormorant Fallback", ui-serif, Georgia, serif;
+  --font-sans:
+    "Montserrat Variable", "Montserrat", "Montserrat Fallback", ui-sans-serif, system-ui, sans-serif;
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -52,42 +89,47 @@
   --color-ink: var(--ink);
   --color-ink-muted: var(--ink-muted);
   --color-sand: var(--sand);
+  --color-clay-500: var(--clay-500);
   --color-clay-600: var(--clay-600);
   --color-clay-700: var(--clay-700);
   --color-clay-50: var(--clay-50);
   --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
   --color-success: var(--success);
   --color-alert: var(--alert);
 
-  --shadow-bar: 0 -4px 20px -6px oklch(0.3053 0.0378 214.96 / 0.22);
-  --shadow-rail: 0 12px 34px -18px oklch(0.3053 0.0378 214.96 / 0.28);
+  --shadow-bar: 0 -4px 20px -6px oklch(0.2867 0.0486 207.92 / 0.22);
+  --shadow-rail: 0 12px 34px -18px oklch(0.2867 0.0486 207.92 / 0.28);
 }
 
 :root {
   --radius: 12px;
 
-  --teal-900: oklch(0.3053 0.0378 214.96);
-  --teal-700: oklch(0.4247 0.0573 217.46);
-  --teal-600: oklch(0.5073 0.0663 214.96);
-  --teal-300: oklch(0.756 0.0457 212.6);
-  --teal-50: oklch(0.9622 0.0076 207.14);
-  --ink: oklch(0.2864 0.0273 215.32);
-  --ink-muted: oklch(0.5155 0.0219 217.44);
-  --sand: oklch(0.9803 0.0062 75.41);
-  --clay-600: oklch(0.5821 0.124 49.94);
-  --clay-700: oklch(0.5028 0.1086 53.07);
-  --clay-50: oklch(0.9596 0.016 52.56);
-  --line: oklch(0.9187 0.0101 212.52);
+  /* Brand ramp — Neo Fertility palette */
+  --teal-900: oklch(0.2867 0.0486 207.92); /* Midnight Teal   #013137 */
+  --teal-700: oklch(0.4473 0.0634 210.18); /* Ocean Teal      #215E68 */
+  --teal-600: oklch(0.5117 0.0717 198.94); /* Dusty Turquoise #297376 */
+  --teal-300: oklch(0.756 0.05 210.18);
+  --teal-50: oklch(0.95 0.014 210.18);
+  --ink: var(--teal-900);
+  --ink-muted: oklch(0.5155 0.025 210.18);
+  --sand: oklch(0.9582 0.0152 90.24); /* Warm Ivory      #F5F1E6 */
+  --clay-500: oklch(0.6608 0.0811 16.47); /* Old Rose        #BF7E81 */
+  --clay-600: oklch(0.54 0.087 16.47); /* Old Rose, AA-safe fill  #9B595D */
+  --clay-700: oklch(0.48 0.0899 16.47); /* Old Rose, hover         #89474C */
+  --clay-50: oklch(0.9478 0.0199 25.17); /* Blush Pink      #FBE9E7 */
+  --line: oklch(0.9187 0.0101 210.18);
+  --line-strong: oklch(0.62 0.022 210.18); /* form-control borders, 3.6:1 on white */
   --success: oklch(0.479 0.0786 161.35);
   --alert: oklch(0.5104 0.1093 72.05);
 
-  --background: var(--sand);
+  --background: oklch(1 0 0);
   --foreground: var(--ink);
   --card: oklch(1 0 0);
   --card-foreground: var(--ink);
   --popover: oklch(1 0 0);
   --popover-foreground: var(--ink);
-  --primary: var(--teal-600);
+  --primary: var(--teal-700);
   --primary-foreground: oklch(1 0 0);
   --secondary: var(--teal-50);
   --secondary-foreground: var(--teal-900);
@@ -98,7 +140,7 @@
   --destructive: oklch(0.55 0.19 27);
   --destructive-foreground: oklch(1 0 0);
   --border: var(--line);
-  --input: var(--line);
+  --input: var(--line-strong);
   --ring: var(--teal-600);
 }
 
@@ -122,25 +164,27 @@
     color: var(--color-teal-900);
   }
 
+  /* Cormorant is drawn light and sets ~13% narrower than Georgia, so it needs
+     more size and less weight/tracking than the previous Fraunces settings. */
   h1 {
-    font-size: clamp(2rem, 5vw, 3.25rem);
-    font-weight: 600;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
+    font-size: clamp(2.25rem, 5.5vw, 3.75rem);
+    font-weight: 400;
+    line-height: 1.08;
+    letter-spacing: -0.005em;
   }
 
   h2 {
-    font-size: clamp(1.5rem, 3vw, 2.125rem);
-    font-weight: 600;
+    font-size: clamp(1.75rem, 3.2vw, 2.5rem);
+    font-weight: 400;
     line-height: 1.15;
-    letter-spacing: -0.01em;
+    letter-spacing: 0;
   }
 
   h3 {
     font-family: var(--font-sans);
     font-size: 1.25rem;
     font-weight: 600;
-    color: var(--color-teal-900);
+    color: var(--color-teal-700);
     line-height: 1.35;
   }
 
@@ -148,11 +192,11 @@
     font-family: var(--font-sans);
     font-size: 1.0625rem;
     font-weight: 600;
-    color: var(--color-teal-900);
+    color: var(--color-teal-700);
   }
 
   :focus-visible {
-    outline: 2px solid var(--color-teal-600);
+    outline: 3px solid var(--color-teal-600);
     outline-offset: 2px;
   }
 

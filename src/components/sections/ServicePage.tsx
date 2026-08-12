@@ -72,7 +72,7 @@ export function ServicePage({
       </div>
 
       {showStats && (
-        <section className="border-y border-line bg-white py-12">
+        <section className="border-y border-line bg-sand py-12">
           <div className="container-page">
             <SectionHeading
               eyebrow="Clinical volume"
@@ -101,7 +101,15 @@ export function ServicePage({
 }
 
 /** Body prose block used inside ServicePage. */
-export function Prose({ id, title, children }: { id?: string; title?: string; children: ReactNode }) {
+export function Prose({
+  id,
+  title,
+  children,
+}: {
+  id?: string;
+  title?: string;
+  children: ReactNode;
+}) {
   return (
     <section {...(id ? { id } : {})}>
       {title && <h2 className="text-[1.625rem]">{title}</h2>}
@@ -140,7 +148,9 @@ export function DataTable({
               {row.map((cell, index) => (
                 <td
                   key={index}
-                  className={index === 0 ? "px-4 py-3 font-medium text-teal-900" : "px-4 py-3 text-ink-muted"}
+                  className={
+                    index === 0 ? "px-4 py-3 font-medium text-teal-900" : "px-4 py-3 text-ink-muted"
+                  }
                 >
                   {cell}
                 </td>

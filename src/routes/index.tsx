@@ -1,20 +1,22 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Phone, CalendarCheck, ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { AppointmentSheet } from "@/components/conversion/AppointmentSheet";
-import { LeadFormBand } from "@/components/conversion/LeadFormBand";
+import { ArrowRight } from "lucide-react";
 import {
-  SectionHeading,
-  StatStrip,
-  
-  
-  FaqBlock,
-  DoctorNote,
-} from "@/components/sections/blocks";
-import { CLINIC, CLINICAL_VOLUME, QUALIFICATIONS, MEMBERSHIPS, track } from "@/lib/clinic";
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import { SectionHeading, StatStrip, FaqBlock } from "@/components/sections/blocks";
+import { CLINIC, QUALIFICATIONS, MEMBERSHIPS, track } from "@/lib/clinic";
 import { ROUTES, SITE_URL } from "@/data/navigation";
 import { pageMeta, jsonLd, clinicSchema, websiteSchema, doctorSchema, faqSchema } from "@/lib/seo";
-import { HeroSlider } from "@/components/sections/HeroSlider";
+import { HeroVideo } from "@/components/sections/HeroVideo";
+import { DoctorAbout } from "@/components/sections/DoctorAbout";
+import { ProcessTimeline } from "@/components/sections/ProcessTimeline";
+import { PatientGallery } from "@/components/sections/PatientGallery";
+import { PatientReviews } from "@/components/sections/PatientReviews";
+import { AppointmentMapForm } from "@/components/sections/AppointmentMapForm";
 import { MarqueeBar } from "@/components/sections/MarqueeBar";
 import { ServiceCards } from "@/components/sections/ServiceCards";
 import { TreatmentGrid } from "@/components/sections/TreatmentGrid";
@@ -38,7 +40,7 @@ const TREATMENTS: TreatmentItem[] = [
     linkText: "Explore IUI treatment in Marathahalli",
     to: ROUTES.iui,
     icon: Syringe,
-    image: trIui.url,
+    image: trIui,
   },
   {
     tag: "Assisted Conception",
@@ -47,7 +49,7 @@ const TREATMENTS: TreatmentItem[] = [
     linkText: "Explore IVF treatment in Marathahalli",
     to: ROUTES.ivf,
     icon: FlaskConical,
-    image: trIvf.url,
+    image: trIvf,
   },
   {
     tag: "Assisted Conception",
@@ -56,7 +58,7 @@ const TREATMENTS: TreatmentItem[] = [
     linkText: "Explore ICSI treatment",
     to: ROUTES.icsi,
     icon: Microscope,
-    image: trIcsi.url,
+    image: trIcsi,
   },
   {
     tag: "Fertility Preservation",
@@ -65,7 +67,7 @@ const TREATMENTS: TreatmentItem[] = [
     linkText: "Explore egg freezing in Bangalore",
     to: ROUTES.eggFreezing,
     icon: Snowflake,
-    image: trEf.url,
+    image: trEf,
   },
   {
     tag: "Male Fertility",
@@ -74,7 +76,7 @@ const TREATMENTS: TreatmentItem[] = [
     linkText: "Explore male infertility treatment",
     to: ROUTES.maleInfertility,
     icon: Users,
-    image: trMale.url,
+    image: trMale,
   },
   {
     tag: "Donor Care",
@@ -83,7 +85,7 @@ const TREATMENTS: TreatmentItem[] = [
     linkText: "Explore donor egg and sperm programs",
     to: ROUTES.donor,
     icon: HeartHandshake,
-    image: trDonor.url,
+    image: trDonor,
   },
   {
     tag: "Hormonal Health",
@@ -92,7 +94,7 @@ const TREATMENTS: TreatmentItem[] = [
     linkText: "Explore PCOD treatment in Marathahalli",
     to: ROUTES.pcod,
     icon: Activity,
-    image: trPcod.url,
+    image: trPcod,
   },
   {
     tag: "Hormonal Health",
@@ -101,32 +103,29 @@ const TREATMENTS: TreatmentItem[] = [
     linkText: "Explore PCOS treatment in Marathahalli",
     to: ROUTES.pcos,
     icon: Sparkles,
-    image: trPcos.url,
+    image: trPcos,
   },
 ];
 
-
-
-import trIui from "@/assets/iui-iui_procedure.jpg.asset.json";
-import trIvf from "@/assets/ivf-embryo-transfer.jpg.asset.json";
-import trIcsi from "@/assets/icsi-sperm-injection.jpg.asset.json";
-import trEf from "@/assets/ef-cryopreservation.png.asset.json";
-import trMale from "@/assets/ivf-fertilization.jpg.asset.json";
-import trDonor from "@/assets/donor-selection.png.asset.json";
-import trPcod from "@/assets/meno-assessment.jpg.asset.json";
-import trPcos from "@/assets/meno-plan.jpg.asset.json";
-import pinkBannerAsset from "@/assets/hero-banner-pink.png.asset.json";
-import heroPortraitAsset from "@/assets/dr-payal-hero.png.asset.json";
-import newbornHands from "@/assets/newborn-hands.png.asset.json";
-import pathwayTrying from "@/assets/pathway-trying.jpg.asset.json";
-import pathwayIrregular from "@/assets/pathway-irregular.jpg.asset.json";
-import pathwayEggFreezing from "@/assets/pathway-egg-freezing.jpg.asset.json";
-import pathwayFailedIvf from "@/assets/pathway-failed-ivf.jpg.asset.json";
-import serviceFertility from "@/assets/ivf-consultation.jpg.asset.json";
-import serviceHormonal from "@/assets/meno-consultation.jpg.asset.json";
-import serviceGynecology from "@/assets/scan-transvaginal.jpg.asset.json";
-import servicePregnancy from "@/assets/visit-2nd-and-3rd-trimester.jpg.asset.json";
-
+import trIui from "@/assets/iui-iui_procedure.jpg";
+import trIvf from "@/assets/ivf-embryo-transfer.jpg";
+import trIcsi from "@/assets/icsi-sperm-injection.jpg";
+import trEf from "@/assets/ef-cryopreservation.webp";
+import trMale from "@/assets/ivf-fertilization.jpg";
+import trDonor from "@/assets/donor-selection.webp";
+import trPcod from "@/assets/meno-assessment.jpg";
+import trPcos from "@/assets/meno-plan.jpg";
+import pinkBannerAsset from "@/assets/hero-banner-pink.webp";
+import faqImage from "@/assets/faq-mother-baby.webp";
+import { useCarouselAutoplay } from "@/hooks/use-carousel-autoplay";
+import pathwayTrying from "@/assets/pathway-trying.jpg";
+import pathwayIrregular from "@/assets/pathway-irregular.jpg";
+import pathwayEggFreezing from "@/assets/pathway-egg-freezing.jpg";
+import pathwayFailedIvf from "@/assets/pathway-failed-ivf.jpg";
+import serviceFertility from "@/assets/ivf-consultation.jpg";
+import serviceHormonal from "@/assets/meno-consultation.jpg";
+import serviceGynecology from "@/assets/scan-transvaginal.jpg";
+import servicePregnancy from "@/assets/visit-2nd-and-3rd-trimester.jpg";
 
 const FAQS = [
   {
@@ -160,141 +159,101 @@ const SEGMENTS = [
     title: "Trying for 12 months, or 6 months if you are over 35",
     copy: "Start with a fertility evaluation for both partners. Hormones, ultrasound, tubal patency and semen analysis in the first cycle.",
     to: ROUTES.infertility,
-    image: pathwayTrying.url,
+    image: pathwayTrying,
     alt: "Woman holding a pregnancy test after months of trying to conceive",
   },
   {
     title: "Irregular periods, PCOS, endometriosis or fibroids",
     copy: "Start with a hormonal and gynecological assessment so the cycle is understood before any fertility treatment is discussed.",
     to: ROUTES.pcos,
-    image: pathwayIrregular.url,
+    image: pathwayIrregular,
     alt: "Calendar with circled dates tracking irregular periods",
   },
   {
     title: "Not ready for a family yet, but want to protect the option",
     copy: "Start with ovarian reserve testing, then decide about egg freezing with real numbers rather than guesswork.",
     to: ROUTES.eggFreezing,
-    image: pathwayEggFreezing.url,
+    image: pathwayEggFreezing,
     alt: "Egg preserved inside a block of ice, representing egg freezing",
   },
   {
     title: "A failed IVF cycle or repeated miscarriage elsewhere",
     copy: "Bring your records for a second opinion and a full cycle review. We tell you what we would change and why.",
     to: ROUTES.ivf,
-    image: pathwayFailedIvf.url,
+    image: pathwayFailedIvf,
     alt: "Woman standing between empty cots after a failed IVF cycle",
   },
 ];
-
 
 const SERVICES = [
   {
     title: "Fertility treatment",
     copy: "IVF, IUI, ICSI, egg freezing, male fertility treatment including surgical sperm retrieval, and donor egg and sperm programmes.",
     to: ROUTES.fertilitySolutions,
-    image: serviceFertility.url,
+    image: serviceFertility,
     alt: "Couple in a fertility consultation with Dr. Payal Mahapatra",
   },
   {
     title: "Hormonal and reproductive health",
     copy: "PCOS and PCOD, thyroid-related cycle disorders, irregular and heavy periods, endometriosis and menopause care.",
     to: ROUTES.pcos,
-    image: serviceHormonal.url,
+    image: serviceHormonal,
     alt: "Doctor discussing hormonal and reproductive health with a patient",
   },
   {
     title: "Gynecology and surgery",
     copy: "Hysteroscopy, laparoscopic surgery for infertility, pelvic ultrasound and follicular studies, infection treatment and breast health.",
     to: ROUTES.gynecologyTreatments,
-    image: serviceGynecology.url,
+    image: serviceGynecology,
     alt: "Transvaginal ultrasound scan being performed at the clinic",
   },
   {
     title: "Pregnancy care",
     copy: "Preconception health checks, complete antenatal care and high-risk pregnancy management, including IVF pregnancies.",
     to: ROUTES.pregnancyCare,
-    image: servicePregnancy.url,
+    image: servicePregnancy,
     alt: "Pregnant woman during a routine antenatal check",
   },
 ];
 
-
+/* `short` is a compression of `copy` for the narrow desktop columns — five across
+   leaves roughly 200px of text width, which the full paragraphs cannot take. */
 const STEPS = [
   {
     title: "Full evaluation, both partners",
+    short: "Both partners tested in week one, not month three.",
     copy: "Hormone profile, pelvic ultrasound, tubal patency testing and semen analysis. The male partner is tested in week one, not month three. One to two cycles.",
   },
   {
     title: "A named diagnosis",
+    short: "A cause, or an honest “unexplained” — in plain language.",
     copy: "You are told what the cause is, or told honestly that it is unexplained. Results are explained in plain language, not handed over as a printout.",
   },
   {
     title: "The simplest effective treatment first",
+    short: "Ovulation induction before IUI. IUI before IVF.",
     copy: "Ovulation induction and timed intercourse before IUI. IUI before IVF. IVF when the diagnosis makes it the right first step, not by default.",
   },
   {
     title: "A defined review point",
+    short: "Agreed upfront: 3–4 IUI cycles or one IVF cycle, then review.",
     copy: "Agreed at the outset. Three to four IUI cycles, or one IVF cycle, then a formal review rather than an indefinite continuation.",
   },
   {
     title: "Continuity through pregnancy",
+    short: "The same doctor sees the pregnancy through to delivery.",
     copy: "The doctor who treated your infertility manages the pregnancy that follows, through to delivery.",
   },
 ];
 
-const DIFFERENTIATORS = [
-  {
-    title: "A single specialist, start to finish",
-    copy: "Dr. Payal Mahapatra performs your scans, your retrieval and your transfer. You are not handed between a consultant, a junior and a sonographer.",
-  },
-  {
-    title: "Fertility and obstetrics under one roof",
-    copy: "Many fertility clinics hand pregnancies over at 8 weeks. Here the same doctor manages the pregnancy she helped you conceive, including high-risk care.",
-  },
-  {
-    title: "Natural conception attempted first",
-    copy: "Ovulation induction and IUI are offered where the diagnosis supports them. IVF is recommended when it is the right answer, not as an opening position.",
-  },
-  {
-    title: "Published price ranges",
-    copy: "IVF, ICSI, sperm retrieval and frozen transfer costs are published on this site rather than disclosed after you commit.",
-  },
-  {
-    title: "Both partners investigated together",
-    copy: "A male factor is present in roughly half of cases. The semen analysis happens in the first week.",
-  },
-  {
-    title: "Open all seven days",
-    copy: "09:30 to 18:30, every day. Follicular tracking and stimulation monitoring do not pause for weekends.",
-  },
-];
-
-function TimelineNode({ index, step }: { index: number; step: { title: string; copy: string } }) {
-  return (
-    <div className="relative flex flex-col items-center px-4 text-center">
-      <span className="relative z-10 grid size-10 place-items-center rounded-full bg-teal-900 font-display text-[0.9375rem] text-sand">
-        {index + 1}
-      </span>
-      <span aria-hidden className="h-8 w-px bg-line" />
-      <h3 className="max-w-[22ch] text-[1.0625rem] font-medium leading-snug text-teal-900">
-        {step.title}
-      </h3>
-      <p className="mt-2 max-w-[34ch] text-[0.875rem] leading-relaxed text-ink-muted">
-        {step.copy}
-      </p>
-    </div>
-  );
-}
-
 export const Route = createFileRoute("/")({
-
   head: () => {
     const base = pageMeta({
       title: "IVF & Fertility Clinic in Marathahalli, Bangalore | Neo Fertility",
       description:
         "Fertility and IVF care in Marathahalli and Whitefield, Bangalore. IVF, IUI, ICSI, egg freezing and PCOS care with Dr. Payal Mahapatra, 18 years in reproductive medicine. Open all seven days.",
       path: "/",
-      image: `${SITE_URL}${pinkBannerAsset.url}`,
+      image: `${SITE_URL}${pinkBannerAsset}`,
     });
     return {
       ...base,
@@ -318,309 +277,17 @@ export const Route = createFileRoute("/")({
 });
 
 function Home() {
+  const pathwayAutoplay = useCarouselAutoplay({ delay: 4500 });
+
   return (
     <>
-      <HeroSlider />
+      <HeroVideo />
       <MarqueeBar />
 
-      {/* Hero */}
-      <section className="border-b border-line bg-white pt-14 pb-0 lg:pt-24">
-        <div className="container-page">
-          <div className="relative overflow-hidden rounded-[2rem] bg-clay-50">
-            <div className="grid lg:grid-cols-2">
-              <div className="relative min-h-[300px] lg:min-h-[520px]">
-                <img
-                  src={heroPortraitAsset.url}
-                  alt={`${CLINIC.doctor}, fertility specialist at Neo Fertility Clinic Marathahalli`}
-                  width={650}
-                  height={900}
-                  className="h-full w-full object-cover object-top"
-                />
-              </div>
+      <DoctorAbout />
 
-              <div className="flex flex-col justify-center px-6 py-12 sm:px-10 lg:px-14 lg:py-16">
-                <p className="eyebrow">
-                  Dr. Payal Mahapatra · Fertility &amp; IVF Specialist · Bengaluru
-                </p>
-                <h2 className="mt-4 text-[2.5rem] leading-[1.02] lg:text-[3.5rem]">
-                  You deserve more than “just keep trying.”
-                </h2>
-
-                <p className="mt-5 max-w-[46ch] text-[1.0625rem] text-ink-muted">
-                  With Dr. Payal Mahapatra, your fertility journey starts with being heard,
-                  understanding what may be holding you back, and finding a treatment plan that feels
-                  right for you — whether that means simple fertility support, IUI, IVF, ICSI or
-                  advanced care.
-                </p>
-                <div className="mt-8 flex flex-wrap gap-3">
-                  <AppointmentSheet sourcePage="home_hero">
-                    <Button variant="cta" size="lg" className="rounded-full">
-                      <CalendarCheck /> Book a consultation
-                    </Button>
-                  </AppointmentSheet>
-                  <Button variant="outlineTeal" size="lg" asChild className="rounded-full">
-                    <a
-                      href={CLINIC.phoneHref}
-                      onClick={() => track("call_click", { source_page: "home_hero" })}
-                    >
-                      <Phone /> Call {CLINIC.phoneDisplay}
-                    </a>
-                  </Button>
-                </div>
-                <p className="mt-5 text-[0.9375rem] text-ink-muted">
-                  18+ Years of Experience · Personalised Fertility Care · Marathahalli &amp;
-                  Whitefield
-                </p>
-
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Ghost-figure clinical volume band */}
-        <div className="container-page py-10 lg:py-14">
-          <ul className="grid grid-cols-2 gap-x-6 gap-y-10 md:grid-cols-3">
-            {CLINICAL_VOLUME.map((s) => (
-              <li key={s.label} className="relative overflow-hidden text-center">
-                <span
-                  aria-hidden
-                  className="block font-display text-[2.75rem] font-semibold leading-none text-clay-50 lg:text-[4.5rem]"
-                >
-                  {s.figure}
-                </span>
-                <span className="absolute inset-x-0 top-1/2 -translate-y-1/2 px-1 font-display text-[0.9375rem] italic leading-tight text-teal-700">
-                  {s.label}
-                </span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-
-
-      {/* Direct answer block */}
-      <section className="border-b border-line bg-white py-10">
-        <div className="container-page">
-          <p className="max-w-[80ch] text-[1.0625rem] text-ink">
-            <strong className="font-semibold text-teal-900">Neo Fertility Clinic</strong> is a
-            fertility and gynecology practice in Marathahalli, Bengaluru, led by Dr. Payal
-            Mahapatra, a reproductive medicine specialist with 18 years of clinical experience. The
-            clinic provides IVF, IUI, ICSI, egg freezing, male fertility treatment, donor programmes,
-            PCOS and PCOD care, and full gynecological services. It is open all seven days, 09:30 to
-            18:30, on Marathahalli Bridge Service Road.
-          </p>
-        </div>
-      </section>
-
-      {/* Treatments */}
-      <TreatmentGrid
-        eyebrow="Fertility Treatments in Marathahalli, Bangalore"
-        title="Advanced Fertility Treatments for Every Path to Parenthood"
-        intro="Neo Fertility and IVF Clinic in Marathahalli, Whitefield offers a complete range of fertility treatments including IUI, IVF, ICSI, egg freezing, male infertility solutions, and PCOD and PCOS care. Every treatment plan is personally designed by Dr. Payal Mahapatra, a fertility specialist with 18+ years of experience, based on your medical history, test results, and family goals."
-        items={TREATMENTS}
-        closing={{
-          heading: "Not sure which fertility treatment is right for you?",
-          copy: "Book a consultation with Dr. Payal Mahapatra at Neo Fertility and IVF Clinic in Marathahalli, Whitefield. In a single visit, she will review your reports, explain your options clearly, and recommend the treatment path best suited to you.",
-        }}
-      />
-
-      {/* Who we help */}
-
-      <section className="section-y">
-        <div className="container-page">
-          {/* Split heading, reference style */}
-          <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr] lg:items-end lg:gap-12">
-            <div>
-              <p className="text-[0.75rem] font-medium uppercase tracking-[0.18em] text-teal-600">
-                Who we help
-              </p>
-              <h2 className="mt-3 font-display text-[1.75rem] leading-[1.1] text-teal-900 sm:text-[2.25rem] lg:text-[2.75rem]">
-                <span className="block font-semibold">Four ways people arrive here,</span>
-                <span className="block italic font-normal text-teal-700">
-                  four different starting points
-                </span>
-              </h2>
-            </div>
-            <p className="text-[1.0625rem] leading-relaxed text-ink-muted lg:pb-2">
-              Neo Fertility Clinic treats four groups of patients, and the pathway is different for
-              each.
-            </p>
-          </div>
-
-          {/* Infographic pathway cards */}
-          <ol className="mt-12 grid gap-y-10 gap-x-5 sm:grid-cols-2 lg:mt-16 lg:grid-cols-4 lg:gap-x-4">
-            {SEGMENTS.map((segment, i) => (
-              <li key={segment.title} className="relative flex h-full pl-11">
-                {/* Number badge */}
-                <span
-                  aria-hidden
-                  className="absolute left-0 top-1/2 z-0 grid h-24 w-24 -translate-y-1/2 place-items-center rounded-full bg-clay-50 pr-11 font-display text-[1.25rem] font-semibold text-teal-900"
-                >
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-
-                {/* Blush frame + white card */}
-                <div className="relative z-10 w-full rounded-[1.75rem] bg-clay-50 p-2 shadow-[0_18px_40px_-28px_rgba(1,49,55,0.45)]">
-                  <div className="flex h-full flex-col overflow-hidden rounded-[1.375rem] bg-white">
-                    <img
-                      src={segment.image}
-                      alt={segment.alt}
-                      width={640}
-                      height={420}
-                      loading="lazy"
-                      className="h-40 w-full object-cover sm:h-44"
-                    />
-                    <div className="flex flex-1 flex-col p-5">
-                      <h3 className="text-[1rem] font-medium leading-snug text-teal-900">
-                        {segment.title}
-                      </h3>
-                      <p className="mt-2 text-[0.875rem] leading-relaxed text-ink-muted">
-                        {segment.copy}
-                      </p>
-                      <Link
-                        to={segment.to}
-                        className="mt-4 inline-flex items-center gap-1 text-[0.875rem] font-medium text-teal-700 hover:underline"
-                      >
-                        Read more <ArrowRight className="size-4" />
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              </li>
-            ))}
-          </ol>
-
-          <Link
-            to={ROUTES.whoWeHelp}
-            className="mt-12 inline-flex items-center gap-2 rounded-full border border-line px-5 py-2.5 font-medium text-teal-700 transition-colors hover:bg-clay-50"
-          >
-            See all patient pathways <ArrowRight className="size-4" />
-          </Link>
-
-        </div>
-      </section>
-
-
-      {/* What we do */}
-      <section className="bg-white section-y">
-        <div className="container-page">
-          <SectionHeading
-            eyebrow="What we do"
-            title="Fertility, hormones, surgery and pregnancy in one practice"
-          />
-          <div className="mt-10">
-            <ServiceCards items={SERVICES} featuredIndex={2} />
-          </div>
-
-        </div>
-      </section>
-
-      {/* How we work */}
-      <section className="section-y">
-        <div className="container-page">
-          <div className="mx-auto max-w-[52rem] text-center">
-            <p className="eyebrow">How we work</p>
-            <h2 className="mt-3 font-display text-[1.75rem] leading-[1.1] text-teal-900 sm:text-[2.25rem] lg:text-[2.75rem]">
-              <span className="block font-semibold">A sequence you can see</span>
-              <span className="block font-normal italic text-teal-700">
-                from the first consultation
-              </span>
-            </h2>
-          </div>
-
-          {/* Serpentine timeline — desktop */}
-          <div className="relative mt-16 hidden lg:block">
-            {/* connector: right-hand U-turn between the two rows */}
-            <div
-              aria-hidden
-              className="absolute right-0 top-5 h-64 w-16 rounded-r-full border-y border-r border-line"
-            />
-
-            {/* row one: steps 01 → 03, left to right */}
-            <div className="relative grid h-64 grid-cols-3 pr-16">
-              <div
-                aria-hidden
-                className="absolute left-[16.666%] right-0 top-5 border-t border-line"
-              />
-              {STEPS.slice(0, 3).map((step, i) => (
-                <TimelineNode key={step.title} index={i} step={step} />
-              ))}
-            </div>
-
-            {/* row two: steps 05 ← 04, right to left */}
-            <div className="relative grid grid-cols-3 pr-16">
-              <div
-                aria-hidden
-                className="absolute left-[16.666%] right-0 top-5 border-t border-line"
-              />
-              <div className="relative flex justify-center">
-                <ArrowRight
-                  aria-hidden
-                  className="absolute right-0 top-[0.3125rem] size-6 -translate-x-1/2 rotate-180 text-line"
-                />
-              </div>
-              <TimelineNode index={4} step={STEPS[4]!} />
-              <TimelineNode index={3} step={STEPS[3]!} />
-            </div>
-          </div>
-
-          {/* Stacked timeline — mobile and tablet */}
-          <ol className="mt-12 lg:hidden">
-            {STEPS.map((step, i) => (
-              <li key={step.title} className="relative flex gap-4 pb-8 last:pb-0">
-                {i < STEPS.length - 1 && (
-                  <span
-                    aria-hidden
-                    className="absolute left-[1.25rem] top-10 bottom-0 w-px bg-line"
-                  />
-                )}
-                <span className="relative z-10 grid size-10 shrink-0 place-items-center rounded-full bg-teal-900 font-display text-[0.875rem] text-sand">
-                  {i + 1}
-                </span>
-                <div className="pt-1">
-                  <h3 className="text-[1.0625rem] font-medium text-teal-900">{step.title}</h3>
-                  <p className="mt-2 text-[0.9375rem] leading-relaxed text-ink-muted">
-                    {step.copy}
-                  </p>
-                </div>
-              </li>
-            ))}
-          </ol>
-
-          <div className="mt-14 grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
-            <img
-              src={newbornHands.url}
-              alt="Newborn baby held in a parent's hands after fertility treatment"
-              width={640}
-              height={800}
-              loading="lazy"
-              className="h-56 w-full rounded-2xl object-cover lg:h-64"
-            />
-            <DoctorNote quote="Most couples do not need IVF on day one. They need someone to find the reason, say it plainly, and start with the simplest treatment that fits it." />
-          </div>
-        </div>
-      </section>
-
-
-      {/* Why patients choose us */}
-      <section className="bg-white section-y">
-        <div className="container-page">
-          <SectionHeading
-            eyebrow="Why Neo Fertility Clinic"
-            title="What that means in practice"
-          />
-          <div className="mt-10 grid gap-x-10 gap-y-8 md:grid-cols-2 lg:grid-cols-3">
-            {DIFFERENTIATORS.map((item) => (
-              <div key={item.title} className="border-t border-line pt-5">
-                <h3>{item.title}</h3>
-                <p className="mt-2 text-[0.9375rem] text-ink-muted">{item.copy}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Experience */}
+      {/* Experience — moved directly under the doctor section: these are her numbers
+          and credentials, so they belong with her rather than further down the page. */}
       <section className="bg-teal-900 section-y">
         <div className="container-page">
           <SectionHeading
@@ -650,8 +317,9 @@ function Home() {
             <div>
               <p className="eyebrow text-teal-300">Where our patients come from</p>
               <p className="mt-4 text-[0.9375rem] text-sand/80">
-                The clinic sits on Marathahalli Bridge Service Road, opposite Purva Apartments, which
-                puts it within twenty to thirty minutes of most of east Bangalore. {CLINIC.catchment}
+                The clinic sits on Marathahalli Bridge Service Road, opposite Purva Apartments,
+                which puts it within twenty to thirty minutes of most of east Bangalore.{" "}
+                {CLINIC.catchment}
               </p>
               <div className="mt-5 flex flex-wrap gap-3">
                 <Link
@@ -672,13 +340,156 @@ function Home() {
         </div>
       </section>
 
-      <LeadFormBand
-        heading="Tell us where you are, and we will tell you the next step"
-        copy="Share your number and Dr. Payal's team will call you back with a plain answer about what to test first and when to come in."
-        sourcePage="home_band"
+      {/* Treatments */}
+      <TreatmentGrid
+        eyebrow="Fertility Treatments in Marathahalli, Bangalore"
+        title="Advanced Fertility Treatments for Every Path to Parenthood"
+        items={TREATMENTS}
+        closing={{
+          heading: "Not sure which fertility treatment is right for you?",
+          copy: "Book a consultation with Dr. Payal Mahapatra at Neo Fertility and IVF Clinic in Marathahalli, Whitefield. In a single visit, she will review your reports, explain your options clearly, and recommend the treatment path best suited to you.",
+        }}
       />
 
-      <FaqBlock items={FAQS} heading="Frequently asked questions" />
+      {/* Who we help */}
+
+      <section className="section-y">
+        <div className="container-page">
+          {/* Split heading, reference style */}
+          <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr] lg:items-end lg:gap-12">
+            <div>
+              <p className="text-[0.75rem] font-medium uppercase tracking-[0.18em] text-teal-600">
+                Who we help
+              </p>
+              <h2 className="mt-3 font-display text-[1.75rem] leading-[1.1] text-teal-900 sm:text-[2.25rem] lg:text-[2.75rem]">
+                <span className="block font-semibold">Four ways people arrive here,</span>
+                <span className="block italic font-normal text-teal-700">
+                  four different starting points
+                </span>
+              </h2>
+            </div>
+          </div>
+
+          {/* Infographic pathway cards — a carousel rather than a 4-up grid, which
+              squeezed each card to ~216px once the number badge took its 44px. */}
+          <Carousel
+            opts={{ align: "start", loop: true }}
+            plugins={pathwayAutoplay.plugins}
+            setApi={pathwayAutoplay.setApi}
+            {...pathwayAutoplay.pauseProps}
+            className="mt-12 lg:mt-16"
+            aria-label="Patient pathways"
+          >
+            <CarouselContent className="-ml-5">
+              {SEGMENTS.map((segment, i) => (
+                <CarouselItem
+                  key={segment.title}
+                  aria-roledescription="slide"
+                  aria-label={`${i + 1} of ${SEGMENTS.length}: ${segment.title}`}
+                  className="basis-[88%] pl-5 sm:basis-1/2 lg:basis-1/3"
+                >
+                  <div className="relative flex h-full pl-11">
+                    {/* Number badge */}
+                    <span
+                      aria-hidden
+                      className="absolute top-1/2 left-0 z-0 grid h-24 w-24 -translate-y-1/2 place-items-center rounded-full bg-clay-50 pr-11 font-display text-[1.375rem] font-semibold text-teal-900"
+                    >
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+
+                    {/* Blush frame + white card */}
+                    <div className="relative z-10 w-full rounded-[1.75rem] bg-clay-50 p-2 shadow-[0_18px_40px_-28px_rgba(1,49,55,0.45)]">
+                      <div className="flex h-full flex-col overflow-hidden rounded-[1.375rem] bg-white">
+                        <img
+                          src={segment.image}
+                          alt={segment.alt}
+                          width={640}
+                          height={420}
+                          loading="lazy"
+                          className="h-40 w-full object-cover sm:h-48"
+                        />
+                        <div className="flex flex-1 flex-col p-5">
+                          <h3 className="text-[1.0625rem] leading-snug font-medium text-teal-900">
+                            {segment.title}
+                          </h3>
+                          <p className="mt-2 text-[0.9375rem] leading-relaxed text-ink-muted">
+                            {segment.copy}
+                          </p>
+                          <Link
+                            to={segment.to}
+                            className="mt-4 inline-flex items-center gap-1 text-[0.875rem] font-medium text-teal-700 hover:underline"
+                          >
+                            Read more <ArrowRight className="size-4" />
+                          </Link>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+
+            <CarouselPrevious className="absolute top-1/2 left-2 z-20 size-11 -translate-y-1/2 border-line bg-white text-teal-900 shadow-rail hover:border-teal-600 hover:bg-white disabled:opacity-35 lg:left-3" />
+            <CarouselNext className="absolute top-1/2 right-2 z-20 size-11 -translate-y-1/2 border-line bg-white text-teal-900 shadow-rail hover:border-teal-600 hover:bg-white disabled:opacity-35 lg:right-3" />
+          </Carousel>
+
+          <div className="mt-12 flex justify-center">
+            <Link
+              to={ROUTES.whoWeHelp}
+              className="inline-flex items-center gap-2 rounded-full border border-line px-5 py-2.5 font-medium text-teal-700 transition-colors hover:bg-clay-50"
+            >
+              See all patient pathways <ArrowRight className="size-4" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* What we do */}
+      <section className="bg-sand section-y">
+        <div className="container-page">
+          <SectionHeading
+            eyebrow="What we do"
+            title="Fertility, hormones, surgery and pregnancy in one practice"
+          />
+          <div className="mt-10">
+            <ServiceCards items={SERVICES} />
+          </div>
+        </div>
+      </section>
+
+      {/* How we work */}
+      <section className="section-y">
+        <div className="container-page">
+          <div className="mx-auto max-w-[52rem] text-center">
+            <p className="eyebrow">How we work</p>
+            <h2 className="mt-3 font-display text-[1.75rem] leading-[1.1] text-teal-900 sm:text-[2.25rem] lg:text-[2.75rem]">
+              <span className="block font-semibold">A sequence you can see</span>
+              <span className="block font-normal italic text-teal-700">
+                from the first consultation
+              </span>
+            </h2>
+          </div>
+
+          <ProcessTimeline steps={STEPS} />
+
+          <PatientGallery />
+        </div>
+      </section>
+
+      <AppointmentMapForm sourcePage="home_band" />
+
+      <FaqBlock
+        items={FAQS}
+        heading="Frequently asked questions"
+        image={{
+          src: faqImage,
+          alt: "A smiling mother in a pink shirt cradling her newborn baby at home",
+          width: 795,
+          height: 870,
+        }}
+      />
+
+      <PatientReviews />
     </>
   );
 }

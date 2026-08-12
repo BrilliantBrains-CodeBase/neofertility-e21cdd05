@@ -2,9 +2,9 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ServicePage, Prose, DataTable, COMMON_RELATED } from "@/components/sections/ServicePage";
 import { SafetyNote } from "@/components/sections/blocks";
 import { ZigzagSteps } from "@/components/sections/ZigzagSteps";
-import menoConsultation from "@/assets/meno-consultation.jpg.asset.json";
-import menoAssessment from "@/assets/meno-assessment.jpg.asset.json";
-import menoPlan from "@/assets/meno-plan.jpg.asset.json";
+import menoConsultation from "@/assets/meno-consultation.jpg";
+import menoAssessment from "@/assets/meno-assessment.jpg";
+import menoPlan from "@/assets/meno-plan.jpg";
 import { ROUTES } from "@/data/navigation";
 import { pageMeta, jsonLd, faqSchema, breadcrumbSchema } from "@/lib/seo";
 
@@ -209,19 +209,19 @@ function MenstrualPage() {
             {
               title: "Consultation and history",
               copy: "Bleeding pattern, symptom timeline and family history are reviewed.",
-              image: menoConsultation.url,
+              image: menoConsultation,
               alt: "Doctor discussing symptoms with a patient at consultation",
             },
             {
               title: "Assessment",
               copy: "Pelvic ultrasound and, where indicated, endometrial assessment.",
-              image: menoAssessment.url,
+              image: menoAssessment,
               alt: "Sonographer performing a pelvic ultrasound scan",
             },
             {
               title: "Plan",
               copy: "Hormonal or non-hormonal management is agreed based on your findings and preference.",
-              image: menoPlan.url,
+              image: menoPlan,
               alt: "Doctor explaining a treatment plan to a patient",
             },
           ]}

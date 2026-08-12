@@ -5,7 +5,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium cursor-pointer transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 disabled:cursor-not-allowed [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium cursor-pointer transition-[colors,transform] duration-200 ease-out active:scale-[0.97] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 disabled:cursor-not-allowed [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
   {
     variants: {
       variant: {
@@ -18,7 +18,7 @@ const buttonVariants = cva(
         link: "text-primary underline-offset-4 hover:underline",
         /* Brand variants: teal is the brand, clay is the action. */
         cta: "bg-clay-600 text-sand hover:bg-clay-700",
-        teal: "bg-teal-600 text-sand hover:bg-teal-700",
+        teal: "bg-teal-700 text-sand hover:bg-teal-600",
         outlineTeal: "border border-teal-600 text-teal-700 bg-transparent hover:bg-teal-50",
         outlineLight: "border border-sand/40 text-sand bg-transparent hover:bg-sand/10",
         quiet: "border border-line bg-white text-teal-900 hover:bg-teal-50",
@@ -37,7 +37,6 @@ const buttonVariants = cva(
     },
   },
 );
-
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>, VariantProps<typeof buttonVariants> {

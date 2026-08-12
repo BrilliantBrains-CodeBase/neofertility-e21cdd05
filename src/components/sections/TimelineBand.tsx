@@ -4,27 +4,16 @@ export type TimelineBandItem = { when: string; what: string };
  * Horizontal branded timeline: time frames above the rail,
  * numbered node and detail copy below. Stacks on mobile.
  */
-export function TimelineBand({
-  caption,
-  items,
-}: {
-  caption?: string;
-  items: TimelineBandItem[];
-}) {
+export function TimelineBand({ caption, items }: { caption?: string; items: TimelineBandItem[] }) {
   return (
     <section className="rounded-xl border border-line bg-white p-5 sm:p-7">
-      {caption && (
-        <p className="eyebrow mb-6">{caption}</p>
-      )}
+      {caption && <p className="eyebrow mb-6">{caption}</p>}
 
       {/* Desktop / tablet: horizontal rail */}
       <div className="hidden sm:block">
         <div className="grid grid-cols-3 gap-6">
           {items.map((item) => (
-            <p
-              key={item.when}
-              className="text-center text-[0.9375rem] font-medium text-teal-900"
-            >
+            <p key={item.when} className="text-center text-[0.9375rem] font-medium text-teal-900">
               {item.when}
             </p>
           ))}
@@ -38,7 +27,7 @@ export function TimelineBand({
           {items.map((item, index) => (
             <div key={item.when} className="flex flex-col items-center">
               <span aria-hidden className="h-6 w-px bg-clay-600/40" />
-              <span className="flex size-11 items-center justify-center rounded-full bg-clay-600 font-display text-[1.0625rem] text-white">
+              <span className="flex size-11 items-center justify-center rounded-full bg-clay-600 font-semibold text-[1.0625rem] text-white">
                 {String(index + 1).padStart(2, "0")}
               </span>
               <p className="mt-3 text-center text-[0.9375rem] text-ink-muted">{item.what}</p>
@@ -57,7 +46,7 @@ export function TimelineBand({
                 className="absolute top-11 left-[1.375rem] h-[calc(100%-2.75rem)] w-px bg-teal-300"
               />
             )}
-            <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-clay-600 font-display text-[1.0625rem] text-white">
+            <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-clay-600 font-semibold text-[1.0625rem] text-white">
               {String(index + 1).padStart(2, "0")}
             </span>
             <div>

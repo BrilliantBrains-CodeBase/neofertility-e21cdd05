@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Phone, MessageCircle, MapPin, Clock } from "lucide-react";
+import { Phone, MapPin, Clock } from "lucide-react";
+import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
 import { PageHero } from "@/components/sections/blocks";
 import { LeadForm } from "@/components/conversion/LeadForm";
 import { CLINIC, buildWhatsAppUrl } from "@/lib/clinic";
@@ -57,7 +58,7 @@ function Page() {
               </a>
             </p>
             <p className="mt-4 flex items-center gap-3 text-ink-muted">
-              <MessageCircle className="size-5 shrink-0 text-teal-600" />
+              <WhatsAppIcon className="size-5 shrink-0 text-teal-600" />
               <a
                 href={buildWhatsAppUrl()}
                 target="_blank"
@@ -68,7 +69,10 @@ function Page() {
               </a>
             </p>
             <p className="mt-4 text-[0.9375rem] text-ink-muted">
-              Email: <a href={`mailto:${CLINIC.email}`} className="hover:underline">{CLINIC.email}</a>
+              Email:{" "}
+              <a href={`mailto:${CLINIC.email}`} className="hover:underline">
+                {CLINIC.email}
+              </a>
             </p>
           </div>
 

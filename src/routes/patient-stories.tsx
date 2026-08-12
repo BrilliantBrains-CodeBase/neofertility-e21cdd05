@@ -67,7 +67,7 @@ function PatientStoriesPage() {
         trail={[{ name: "Home", to: ROUTES.home }, { name: "Patient Stories" }]}
       />
 
-      <section className="bg-white section-y">
+      <section className="bg-sand section-y">
         <div className="container-page">
           <SectionHeading
             eyebrow="Accounts"
@@ -76,7 +76,10 @@ function PatientStoriesPage() {
           />
           <div className="mt-10 grid gap-6 md:grid-cols-2">
             {STORIES.map((story) => (
-              <article key={story.name} className="rounded-xl border border-line bg-teal-50/40 p-6">
+              <article
+                key={story.name}
+                className="rounded-xl border border-line border-l-4 border-l-clay-500 bg-teal-50/40 p-6"
+              >
                 <p className="eyebrow">{story.context}</p>
                 <h3 className="mt-2">{story.name}</h3>
                 <p className="mt-3 text-[0.9375rem] text-ink-muted">{story.summary}</p>

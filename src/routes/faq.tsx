@@ -129,7 +129,7 @@ function FaqPage() {
         trail={[{ name: "Home", to: ROUTES.home }, { name: "FAQ" }]}
       />
 
-      <section className="bg-white section-y">
+      <section className="bg-sand section-y">
         <div className="container-page space-y-14">
           {CATEGORIES.map((category) => (
             <div key={category.heading}>

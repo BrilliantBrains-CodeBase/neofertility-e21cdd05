@@ -2,10 +2,10 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ServicePage, Prose, DataTable, COMMON_RELATED } from "@/components/sections/ServicePage";
 import { SectionHeading, CheckList, SafetyNote } from "@/components/sections/blocks";
 import { ZigzagSteps } from "@/components/sections/ZigzagSteps";
-import selectionImg from "@/assets/donor-selection.png.asset.json";
-import retrievalImg from "@/assets/donor-retrieval.jpg.asset.json";
-import fertilisationImg from "@/assets/donor-fertilisation.jpg.asset.json";
-import transferImg from "@/assets/donor-transfer.png.asset.json";
+import selectionImg from "@/assets/donor-selection.webp";
+import retrievalImg from "@/assets/donor-retrieval.jpg";
+import fertilisationImg from "@/assets/donor-fertilisation.jpg";
+import transferImg from "@/assets/donor-transfer.webp";
 import { ROUTES } from "@/data/navigation";
 import { pageMeta, jsonLd, faqSchema, breadcrumbSchema } from "@/lib/seo";
 
@@ -112,25 +112,25 @@ function Page() {
             {
               title: "Consultation and donor selection",
               copy: "We guide you in selecting the best donor based on medical compatibility and personal preferences.",
-              image: selectionImg.url,
+              image: selectionImg,
               alt: "Illustration of a donor egg passed between two hands",
             },
             {
               title: "Fertility treatment and synchronisation",
               copy: "The donor's egg retrieval or sperm collection is timed with the recipient's cycle for optimal success.",
-              image: retrievalImg.url,
+              image: retrievalImg,
               alt: "Embryologist handling a sample tube during egg retrieval",
             },
             {
               title: "Fertilisation and embryo development",
               copy: "Donated eggs or sperm are used in IVF procedures to create healthy embryos.",
-              image: fertilisationImg.url,
+              image: fertilisationImg,
               alt: "Illustration of eggs being fertilised in the laboratory",
             },
             {
               title: "Embryo transfer and pregnancy monitoring",
               copy: "The fertilised embryo is transferred to the recipient's uterus for implantation, followed by regular pregnancy monitoring.",
-              image: transferImg.url,
+              image: transferImg,
               alt: "Illustration of an embryo transfer into the uterus",
             },
           ]}
