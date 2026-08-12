@@ -26,6 +26,11 @@ import pathwayTrying from "@/assets/pathway-trying.jpg.asset.json";
 import pathwayIrregular from "@/assets/pathway-irregular.jpg.asset.json";
 import pathwayEggFreezing from "@/assets/pathway-egg-freezing.jpg.asset.json";
 import pathwayFailedIvf from "@/assets/pathway-failed-ivf.jpg.asset.json";
+import serviceFertility from "@/assets/ivf-consultation.jpg.asset.json";
+import serviceHormonal from "@/assets/meno-consultation.jpg.asset.json";
+import serviceGynecology from "@/assets/scan-transvaginal.jpg.asset.json";
+import servicePregnancy from "@/assets/visit-2nd-and-3rd-trimester.jpg.asset.json";
+
 
 const FAQS = [
   {
