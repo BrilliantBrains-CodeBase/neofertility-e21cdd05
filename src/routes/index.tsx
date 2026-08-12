@@ -38,6 +38,7 @@ const TREATMENTS: TreatmentItem[] = [
     linkText: "Explore IUI treatment in Marathahalli",
     to: ROUTES.iui,
     icon: Syringe,
+    image: trIui.url,
   },
   {
     tag: "Assisted Conception",
@@ -46,6 +47,7 @@ const TREATMENTS: TreatmentItem[] = [
     linkText: "Explore IVF treatment in Marathahalli",
     to: ROUTES.ivf,
     icon: FlaskConical,
+    image: trIvf.url,
   },
   {
     tag: "Assisted Conception",
@@ -54,6 +56,7 @@ const TREATMENTS: TreatmentItem[] = [
     linkText: "Explore ICSI treatment",
     to: ROUTES.icsi,
     icon: Microscope,
+    image: trIcsi.url,
   },
   {
     tag: "Fertility Preservation",
@@ -62,6 +65,7 @@ const TREATMENTS: TreatmentItem[] = [
     linkText: "Explore egg freezing in Bangalore",
     to: ROUTES.eggFreezing,
     icon: Snowflake,
+    image: trEf.url,
   },
   {
     tag: "Male Fertility",
@@ -70,6 +74,7 @@ const TREATMENTS: TreatmentItem[] = [
     linkText: "Explore male infertility treatment",
     to: ROUTES.maleInfertility,
     icon: Users,
+    image: trMale.url,
   },
   {
     tag: "Donor Care",
@@ -78,6 +83,7 @@ const TREATMENTS: TreatmentItem[] = [
     linkText: "Explore donor egg and sperm programs",
     to: ROUTES.donor,
     icon: HeartHandshake,
+    image: trDonor.url,
   },
   {
     tag: "Hormonal Health",
@@ -86,6 +92,7 @@ const TREATMENTS: TreatmentItem[] = [
     linkText: "Explore PCOD treatment in Marathahalli",
     to: ROUTES.pcod,
     icon: Activity,
+    image: trPcod.url,
   },
   {
     tag: "Hormonal Health",
@@ -94,11 +101,20 @@ const TREATMENTS: TreatmentItem[] = [
     linkText: "Explore PCOS treatment in Marathahalli",
     to: ROUTES.pcos,
     icon: Sparkles,
+    image: trPcos.url,
   },
 ];
 
 
 
+import trIui from "@/assets/iui-iui_procedure.jpg.asset.json";
+import trIvf from "@/assets/ivf-embryo-transfer.jpg.asset.json";
+import trIcsi from "@/assets/icsi-sperm-injection.jpg.asset.json";
+import trEf from "@/assets/ef-cryopreservation.png.asset.json";
+import trMale from "@/assets/ivf-fertilization.jpg.asset.json";
+import trDonor from "@/assets/donor-selection.png.asset.json";
+import trPcod from "@/assets/meno-assessment.jpg.asset.json";
+import trPcos from "@/assets/meno-plan.jpg.asset.json";
 import pinkBannerAsset from "@/assets/hero-banner-pink.png.asset.json";
 import heroPortraitAsset from "@/assets/dr-payal-hero.png.asset.json";
 import newbornHands from "@/assets/newborn-hands.png.asset.json";
