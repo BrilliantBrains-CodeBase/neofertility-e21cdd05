@@ -20,11 +20,16 @@ const SLIDES = [
 
 function Ctas({ className }: { className?: string }) {
   return (
-    <div className={cn("flex flex-col items-start gap-3 sm:flex-row sm:items-center", className)}>
+    <div
+      className={cn(
+        "flex flex-col items-stretch gap-2 sm:flex-row sm:items-center sm:gap-3",
+        className,
+      )}
+    >
       <AppointmentSheet sourcePage="home_hero_slider">
         <Button
           variant="cta"
-          className="rounded-full px-[26px] py-[14px] text-[0.875rem] font-medium tracking-[0.03em] shadow-lg transition-transform duration-200 hover:-translate-y-0.5 lg:px-[30px] lg:py-[16px] lg:text-[0.9375rem]"
+          className="rounded-full px-4 py-2 text-[0.6875rem] font-medium tracking-[0.03em] shadow-lg transition-transform duration-200 hover:-translate-y-0.5 sm:px-[22px] sm:py-[12px] sm:text-[0.8125rem] lg:px-[30px] lg:py-[16px] lg:text-[0.9375rem]"
         >
           <CalendarCheck /> Book a consultation
         </Button>
@@ -32,13 +37,14 @@ function Ctas({ className }: { className?: string }) {
       <a
         href={CLINIC.phoneHref}
         onClick={() => track("call_click", { source_page: "home_hero_slider" })}
-        className="rounded-full bg-background/90 px-[24px] py-[13px] text-[0.875rem] font-medium text-teal-700 shadow-md backdrop-blur transition-transform duration-200 hover:-translate-y-0.5 hover:text-primary lg:text-[0.9375rem]"
+        className="rounded-full bg-background/90 px-4 py-2 text-center text-[0.6875rem] font-medium text-teal-700 shadow-md backdrop-blur transition-transform duration-200 hover:-translate-y-0.5 hover:text-primary sm:px-[22px] sm:py-[12px] sm:text-[0.8125rem] lg:text-[0.9375rem]"
       >
         Call {CLINIC.phoneDisplay}
       </a>
     </div>
   );
 }
+
 
 export function HeroSlider() {
   const [active, setActive] = useState(0);
