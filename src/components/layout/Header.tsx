@@ -146,14 +146,6 @@ function Logo({ compact }: { compact: boolean }) {
           compact ? "h-[52px]" : "h-[100px] lg:h-[130px]",
         )}
       />
-      <span
-        className={cn(
-          "-mt-2 text-[0.6875rem] tracking-[0.18em] text-teal-600 uppercase transition-opacity duration-300",
-          compact && "hidden",
-        )}
-      >
-        Clinic · Marathahalli
-      </span>
     </Link>
   );
 }
