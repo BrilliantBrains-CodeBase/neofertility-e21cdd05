@@ -67,7 +67,7 @@ function PatientStoriesPage() {
         trail={[{ name: "Home", to: ROUTES.home }, { name: "Patient Stories" }]}
       />
 
-      <section className="bg-sand section-y">
+      <section className="bg-clay-25 section-y">
         <div className="container-page">
           <SectionHeading
             eyebrow="Accounts"

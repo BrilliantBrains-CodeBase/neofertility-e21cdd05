@@ -147,7 +147,9 @@ export function Footer() {
       </div>
 
       <div className="container-page mt-12 border-t border-sand/15 pt-6">
-        <p className="text-[0.8125rem] text-sand/65">{CLINIC.catchment}</p>
+        {/* Capped: this is the longest paragraph on the site and had no measure, so
+            once the container became a percentage it ran to ~216 characters a line. */}
+        <p className="max-w-[80ch] text-[0.8125rem] text-sand/65">{CLINIC.catchment}</p>
         <div className="mt-4 flex flex-wrap items-center justify-between gap-3 text-[0.8125rem] text-sand/65">
           <p>© {new Date().getFullYear()} Neo Fertility Clinic. All rights reserved.</p>
           <div className="flex gap-4">

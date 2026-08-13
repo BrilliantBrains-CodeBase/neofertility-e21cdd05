@@ -17,7 +17,7 @@ export function MobileActionBar({
 
   return (
     /* No overflow clipping here: the Book button deliberately breaks the top edge. */
-    <div className="fixed inset-x-0 bottom-0 z-50 border-t border-line bg-sand shadow-bar lg:hidden">
+    <div className="fixed inset-x-0 bottom-0 z-50 border-t border-line bg-white shadow-bar lg:hidden">
       <div className="grid grid-cols-3 items-end pt-1">
         <a
           href={CLINIC.phoneHref}
@@ -33,9 +33,9 @@ export function MobileActionBar({
             type="button"
             className="flex flex-col items-center justify-end gap-1 pb-1 text-[0.75rem] font-medium text-teal-900"
           >
-            {/* -mt-7 lifts the disc through the bar's top edge; the sand ring cuts it
+            {/* -mt-7 lifts the disc through the bar's top edge; the ring cuts it
                 free of the page content it now overlaps. */}
-            <span className="-mt-7 grid size-14 place-items-center rounded-full bg-clay-600 text-sand shadow-rail ring-4 ring-sand">
+            <span className="-mt-7 grid size-14 place-items-center rounded-full bg-clay-600 text-sand shadow-rail ring-4 ring-white">
               <CalendarCheck className="size-6" />
             </span>
             Book

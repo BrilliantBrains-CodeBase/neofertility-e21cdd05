@@ -23,7 +23,7 @@ export function AppointmentSheet({
       }}
     >
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent className="max-h-[92vh] overflow-y-auto rounded-xl bg-sand sm:max-w-lg">
+      <DialogContent className="max-h-[92vh] overflow-y-auto rounded-xl bg-clay-50 sm:max-w-lg">
         <DialogTitle className="sr-only">Book an appointment</DialogTitle>
         <div className="flex items-center gap-3 border-b border-line pb-4">
           <img

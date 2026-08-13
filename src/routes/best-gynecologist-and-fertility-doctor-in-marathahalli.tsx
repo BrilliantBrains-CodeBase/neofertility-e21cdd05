@@ -127,7 +127,7 @@ function AboutPage() {
         />
       </PageHero>
 
-      <section className="bg-sand section-y">
+      <section className="bg-clay-25 section-y">
         <div className="container-page grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
           <div>
             <SectionHeading eyebrow="Background" title="From gynecology into reproductive medicine" />
@@ -182,7 +182,7 @@ function AboutPage() {
         </div>
       </section>
 
-      <section className="bg-sand section-y">
+      <section className="bg-clay-25 section-y">
         <div className="container-page">
           <SectionHeading eyebrow="Clinical focus" title="What she treats" />
           <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
@@ -214,7 +214,7 @@ function AboutPage() {
         </div>
       </section>
 
-      <section className="bg-sand section-y">
+      <section className="bg-clay-25 section-y">
         <div className="container-page">
           <SectionHeading eyebrow="The clinic" title="Scorpio House, Marathahalli Bridge Service Road" />
           <p className="prose-measure mt-5 text-ink-muted">

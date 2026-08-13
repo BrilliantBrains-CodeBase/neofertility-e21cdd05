@@ -105,7 +105,7 @@ function FertilitySolutionsPage() {
         trail={[{ name: "Home", to: ROUTES.home }, { name: "Fertility Solutions" }]}
       />
 
-      <section className="bg-sand section-y">
+      <section className="bg-clay-25 section-y">
         <div className="container-page">
           <SectionHeading
             eyebrow="Start with the diagnosis"
@@ -148,7 +148,7 @@ function FertilitySolutionsPage() {
       </section>
 
       {FERTILITY_MENU.map((group) => (
-        <section key={group.heading} className="bg-sand section-y border-t border-line">
+        <section key={group.heading} className="bg-clay-25 section-y border-t border-line">
           <div className="container-page">
             <SectionHeading eyebrow="Explore" title={group.heading} />
             <ul className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
@@ -196,7 +196,7 @@ function FertilitySolutionsPage() {
         </div>
       </section>
 
-      <section className="bg-sand section-y">
+      <section className="bg-clay-25 section-y">
         <div className="container-page">
           <SectionHeading
             eyebrow="What determines outcomes"

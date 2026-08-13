@@ -41,20 +41,24 @@ export function TreatmentGrid({
   const { plugins, setApi, pauseProps } = useCarouselAutoplay({ delay: 4000 });
 
   return (
-    <section className="relative overflow-hidden bg-sand section-y">
+    <section className="relative overflow-hidden bg-white section-y">
       <div
         aria-hidden
         className="pointer-events-none absolute -right-24 -top-24 size-[26rem] rounded-full bg-clay-50 blur-3xl"
       />
       <div className="container-page relative">
         {/* Header */}
-        <Reveal>
+        <Reveal className="text-center">
           <p className="text-[0.75rem] font-medium tracking-[0.18em] text-teal-600 uppercase">
             {eyebrow}
           </p>
+          {/* Two rows: `block` on the first span breaks the line without a <br>, so the
+              two halves still read as one heading to a screen reader. */}
           <h2 className="mt-3 font-display text-[1.875rem] leading-[1.08] text-teal-900 sm:text-[2.5rem] lg:text-[3rem]">
-            <span className="font-semibold">Advanced Fertility Treatments </span>
-            <span className="font-normal text-teal-700 italic">for Every Path to Parenthood</span>
+            <span className="block font-semibold">Advanced Fertility Treatments</span>
+            <span className="block font-normal text-teal-700 italic">
+              for Every Path to Parenthood
+            </span>
           </h2>
         </Reveal>
 
@@ -99,7 +103,10 @@ export function TreatmentGrid({
                       <h3 className="mt-4 text-[1.25rem] font-semibold leading-[1.15] text-teal-900">
                         {item.title}
                       </h3>
-                      <p className="mt-2.5 text-[0.8125rem] leading-relaxed text-ink-muted">
+                      {/* Clamped to two lines; the full copy lives on the linked page,
+                          which "Read More" below already goes to. The full text stays in
+                          the DOM, so it is still read out and still indexed. */}
+                      <p className="mt-2.5 line-clamp-2 text-[0.8125rem] leading-relaxed text-ink-muted">
                         {item.copy}
                       </p>
                     </div>
@@ -132,11 +139,13 @@ export function TreatmentGrid({
             })}
           </CarouselContent>
 
-          {/* Sit just inside the track edges rather than outside it: the section is
-              overflow-hidden, so anything beyond the container is clipped once the
-              viewport is too narrow to leave a margin. */}
-          <CarouselPrevious className="absolute top-1/2 left-2 z-10 size-11 -translate-y-1/2 border-line bg-white text-teal-900 shadow-rail hover:border-teal-600 hover:bg-white disabled:opacity-35 lg:left-3" />
-          <CarouselNext className="absolute top-1/2 right-2 z-10 size-11 -translate-y-1/2 border-line bg-white text-teal-900 shadow-rail hover:border-teal-600 hover:bg-white disabled:opacity-35 lg:right-3" />
+          {/* Outside the track from xl up, sitting in the container's 5% gutter — about
+              63px at 1280, enough for the 44px control plus a gap, widening to ~76px at
+              2xl where the offset can step out further. Below xl that gutter is too
+              narrow, and an arrow placed outside would land beyond the overflow-hidden
+              section and be clipped, so there they stay just inside the track edges. */}
+          <CarouselPrevious className="absolute top-1/2 left-2 z-10 size-11 -translate-y-1/2 border-line bg-white text-teal-900 shadow-rail hover:border-teal-600 hover:bg-white disabled:opacity-35 lg:left-3 xl:-left-12 2xl:-left-14" />
+          <CarouselNext className="absolute top-1/2 right-2 z-10 size-11 -translate-y-1/2 border-line bg-white text-teal-900 shadow-rail hover:border-teal-600 hover:bg-white disabled:opacity-35 lg:right-3 xl:-right-12 2xl:-right-14" />
         </Carousel>
 
         {/* Closing band */}

@@ -93,6 +93,7 @@
   --color-clay-600: var(--clay-600);
   --color-clay-700: var(--clay-700);
   --color-clay-50: var(--clay-50);
+  --color-clay-25: var(--clay-25);
   --color-line: var(--line);
   --color-line-strong: var(--line-strong);
   --color-success: var(--success);
@@ -118,6 +119,10 @@
   --clay-600: oklch(0.54 0.087 16.47); /* Old Rose, AA-safe fill  #9B595D */
   --clay-700: oklch(0.48 0.0899 16.47); /* Old Rose, hover         #89474C */
   --clay-50: oklch(0.9478 0.0199 25.17); /* Blush Pink      #FBE9E7 */
+  /* Section banding. Sits just off white (1.09:1) so the page reads as predominantly
+     white while adjacent sections stay distinguishable. Blush at 1.15:1 was too heavy
+     for a full-page ground; this is the same hue, lifted almost to white. */
+  --clay-25: oklch(0.972 0.011 25.17); /* Band tint       #FDF3F2 */
   --line: oklch(0.9187 0.0101 210.18);
   --line-strong: oklch(0.62 0.022 210.18); /* form-control borders, 3.6:1 on white */
   --success: oklch(0.479 0.0786 161.35);
@@ -211,14 +216,17 @@
   }
 }
 
+/* Sections scale with the viewport rather than stopping at a fixed width. The 5%
+   gutter either side replaces the old padding-inline — keeping both would mean "90%
+   minus another 64px", so the percentage would no longer describe the content. On
+   small screens the two are near-identical: at 390px the content goes 350px → 351px.
+   The cap holds from roughly 1778px up, so headings and card rows do not stretch
+   across a 4K display. Carousel arrows sit in that 5% gutter, so widening this
+   utility narrows the space they have. */
 @utility container-page {
-  width: 100%;
-  max-width: 72rem;
+  width: 90%;
+  max-width: 100rem;
   margin-inline: auto;
-  padding-inline: 1.25rem;
-  @media (min-width: 768px) {
-    padding-inline: 2rem;
-  }
 }
 
 @utility section-y {

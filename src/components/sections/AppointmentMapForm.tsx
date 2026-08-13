@@ -247,7 +247,7 @@ export function AppointmentMapForm({ sourcePage }: { sourcePage: string }) {
     <section
       ref={sectionRef}
       aria-labelledby={`${ids}-heading`}
-      className="relative z-[1] overflow-hidden bg-sand"
+      className="relative z-[1] overflow-hidden bg-clay-25"
     >
       {/* ── Map layer ───────────────────────────────────────────────
           The iframe's leading edge is pinned at 0 and it grows only to the
@@ -270,7 +270,13 @@ export function AppointmentMapForm({ sourcePage }: { sourcePage: string }) {
         }
         className={cn(
           "relative h-[320px] w-full overflow-hidden rounded-[15px] [--form-cover:0%] sm:h-[380px]",
-          "lg:absolute lg:inset-0 lg:z-0 lg:h-auto lg:rounded-none lg:[--form-cover:58%] xl:[--form-cover:50%]",
+          /* 65%, not the old 58%/50% pair: the form is lg:w-2/3 of a container that is
+             now a constant 90% of the section, so its trailing edge sits at
+             5% + (90% × 2/3) = 65% at every width. The marker lands at (100+F)/2, so
+             F = 65% puts it at 82.5% — the middle of the uncovered strip. The old split
+             values were tuned for a container whose share of the viewport changed with
+             screen size. */
+          "lg:absolute lg:inset-0 lg:z-0 lg:h-auto lg:rounded-none lg:[--form-cover:65%]",
           // muted by default so the form stays readable; comes alive on interaction
           "[filter:grayscale(1)_contrast(.95)_brightness(1.05)] opacity-90 transition-[filter,opacity,transform] duration-700 ease-out",
           "hover:opacity-100 hover:[filter:grayscale(0)] focus-within:opacity-100 focus-within:[filter:grayscale(0)]",

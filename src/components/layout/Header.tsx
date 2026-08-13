@@ -213,17 +213,43 @@ export function Header() {
       setHeroBehind(false);
       return;
     }
+
+    let intersection: IntersectionObserver | undefined;
+    let mutation: MutationObserver | undefined;
+
+    const watch = (hero: HTMLElement) => {
+      intersection = new IntersectionObserver(([entry]) => setHeroBehind(!entry?.isIntersecting), {
+        rootMargin: `-${Math.max(1, Math.round(headerHeight))}px 0px 0px 0px`,
+        threshold: 0,
+      });
+      intersection.observe(hero);
+    };
+
     const hero = document.querySelector<HTMLElement>("[data-hero]");
-    if (!hero) {
-      setHeroBehind(true);
-      return;
+    if (hero) {
+      watch(hero);
+    } else {
+      /* Navigating back to the home route runs this effect before the lazily split
+         route component has mounted its hero, so the element is not there yet.
+         Treating that as "hero is gone" used to latch the bar opaque for the rest of
+         the visit, with no observer left to correct it. Wait for the hero instead.
+         Transparent is the right interim state — a hero route opens at the top of the
+         page with the hero behind the bar — and the IntersectionObserver fires on
+         observe(), so a restored mid-page scroll corrects itself in the same frame. */
+      setHeroBehind(false);
+      mutation = new MutationObserver(() => {
+        const mounted = document.querySelector<HTMLElement>("[data-hero]");
+        if (!mounted) return;
+        mutation?.disconnect();
+        watch(mounted);
+      });
+      mutation.observe(document.body, { childList: true, subtree: true });
     }
-    const observer = new IntersectionObserver(([entry]) => setHeroBehind(!entry?.isIntersecting), {
-      rootMargin: `-${Math.max(1, Math.round(headerHeight))}px 0px 0px 0px`,
-      threshold: 0,
-    });
-    observer.observe(hero);
-    return () => observer.disconnect();
+
+    return () => {
+      intersection?.disconnect();
+      mutation?.disconnect();
+    };
   }, [hasHero, headerHeight, pathname]);
 
   useEffect(() => {

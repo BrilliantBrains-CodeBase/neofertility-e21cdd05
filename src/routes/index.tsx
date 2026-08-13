@@ -8,7 +8,6 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { SectionHeading, StatStrip, FaqBlock } from "@/components/sections/blocks";
-import { CLINIC, QUALIFICATIONS, MEMBERSHIPS, track } from "@/lib/clinic";
 import { ROUTES, SITE_URL } from "@/data/navigation";
 import { pageMeta, jsonLd, clinicSchema, websiteSchema, doctorSchema, faqSchema } from "@/lib/seo";
 import { HeroVideo } from "@/components/sections/HeroVideo";
@@ -286,63 +285,18 @@ function Home() {
 
       <DoctorAbout />
 
-      {/* Experience — moved directly under the doctor section: these are her numbers
-          and credentials, so they belong with her rather than further down the page. */}
-      <section className="bg-teal-900 section-y">
+      {/* Experience — sits directly under the doctor section: these are her numbers, so
+          they belong with her. No heading: each figure carries its own label, punched
+          through the middle of the numeral. */}
+      <section aria-label="Experience and clinical volume" className="bg-clay-25 py-16 lg:py-20">
         <div className="container-page">
-          <SectionHeading
-            eyebrow="Experience and clinical volume"
-            title="Numbers we are willing to publish"
-            light
-          />
-          <div className="mt-10">
-            <StatStrip light />
-          </div>
-          <p className="mt-8 text-[0.8125rem] text-sand/60">{CLINIC.statsAsOf}</p>
-
-          <div className="mt-12 grid gap-10 border-t border-sand/15 pt-10 lg:grid-cols-2">
-            <div>
-              <p className="eyebrow text-teal-300">Credentials</p>
-              <ul className="mt-4 space-y-2 text-[0.9375rem] text-sand/85">
-                {QUALIFICATIONS.map((q) => (
-                  <li key={q.title}>
-                    {q.title} — {q.institution}, {q.year}
-                  </li>
-                ))}
-                {MEMBERSHIPS.map((m) => (
-                  <li key={m}>Member, {m}</li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <p className="eyebrow text-teal-300">Where our patients come from</p>
-              <p className="mt-4 text-[0.9375rem] text-sand/80">
-                The clinic sits on Marathahalli Bridge Service Road, opposite Purva Apartments,
-                which puts it within twenty to thirty minutes of most of east Bangalore.{" "}
-                {CLINIC.catchment}
-              </p>
-              <div className="mt-5 flex flex-wrap gap-3">
-                <Link
-                  to={ROUTES.whitefield}
-                  className="rounded-md border border-sand/25 px-4 py-2 text-[0.875rem] text-sand hover:bg-sand/10"
-                >
-                  IVF clinic in Whitefield
-                </Link>
-                <Link
-                  to={ROUTES.bellandur}
-                  className="rounded-md border border-sand/25 px-4 py-2 text-[0.875rem] text-sand hover:bg-sand/10"
-                >
-                  Fertility clinic in Bellandur
-                </Link>
-              </div>
-            </div>
-          </div>
+          <StatStrip />
         </div>
       </section>
 
       {/* Treatments */}
       <TreatmentGrid
-        eyebrow="Fertility Treatments in Marathahalli, Bangalore"
+        eyebrow="Services We Offer"
         title="Advanced Fertility Treatments for Every Path to Parenthood"
         items={TREATMENTS}
         closing={{
@@ -429,8 +383,8 @@ function Home() {
               ))}
             </CarouselContent>
 
-            <CarouselPrevious className="absolute top-1/2 left-2 z-20 size-11 -translate-y-1/2 border-line bg-white text-teal-900 shadow-rail hover:border-teal-600 hover:bg-white disabled:opacity-35 lg:left-3" />
-            <CarouselNext className="absolute top-1/2 right-2 z-20 size-11 -translate-y-1/2 border-line bg-white text-teal-900 shadow-rail hover:border-teal-600 hover:bg-white disabled:opacity-35 lg:right-3" />
+            <CarouselPrevious className="absolute top-1/2 left-2 z-20 size-11 -translate-y-1/2 border-line bg-white text-teal-900 shadow-rail hover:border-teal-600 hover:bg-white disabled:opacity-35 lg:left-3 xl:-left-12 2xl:-left-14" />
+            <CarouselNext className="absolute top-1/2 right-2 z-20 size-11 -translate-y-1/2 border-line bg-white text-teal-900 shadow-rail hover:border-teal-600 hover:bg-white disabled:opacity-35 lg:right-3 xl:-right-12 2xl:-right-14" />
           </Carousel>
 
           <div className="mt-12 flex justify-center">
@@ -445,7 +399,7 @@ function Home() {
       </section>
 
       {/* What we do */}
-      <section className="bg-sand section-y">
+      <section className="bg-clay-25 section-y">
         <div className="container-page">
           <SectionHeading
             eyebrow="What we do"

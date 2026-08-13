@@ -101,7 +101,7 @@ function WhoWeHelpPage() {
         trail={[{ name: "Home", to: ROUTES.home }, { name: "Who We Help" }]}
       />
 
-      <section className="bg-sand section-y">
+      <section className="bg-clay-25 section-y">
         <div className="container-page space-y-10">
           {SEGMENTS.map((segment) => (
             <div key={segment.title} className="border-t border-line pt-8">

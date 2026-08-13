@@ -114,11 +114,13 @@ export function PatientReviews() {
   return (
     <section
       aria-labelledby="patient-reviews"
-      className="overflow-hidden bg-sand pt-10 pb-5 sm:pt-[50px] md:pt-[70px] md:pb-10 2xl:pt-[100px] 2xl:pb-[70px]"
+      className="overflow-hidden bg-clay-25 pt-10 pb-5 sm:pt-[50px] md:pt-[70px] md:pb-10 2xl:pt-[100px] 2xl:pb-[70px]"
     >
-      {/* Header and carousel share the same 90%-of-screen width so their left edges stay
-          aligned. Widening only the carousel would push the cards outside the heading. */}
-      <div className="mx-auto mb-[30px] w-[90%]">
+      {/* Header and carousel share container-page so their left edges stay aligned —
+          widening only the carousel would push the cards outside the heading. This used
+          to be a bespoke w-[90%]; container-page is now 90% itself, so it lines up with
+          every other section instead of only with itself. */}
+      <div className="container-page mb-[30px]">
         <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
           <Reveal className="lg:w-1/2 xl:w-5/12">
             <p className="flex items-center gap-2 text-[1.125rem] font-semibold tracking-[0.08em] text-teal-600 uppercase">
@@ -182,7 +184,7 @@ export function PatientReviews() {
           carousel without the lopsided full-bleed.
           -mx-[10px] cancels each slide's own 10px padding so the card edges land flush
           with the container, not 10px inside it. */}
-      <div {...pauseProps} className="mx-auto w-[90%]">
+      <div {...pauseProps} className="container-page">
         <div className="-mx-[10px]">
           <Carousel
             setApi={setApi}
@@ -262,8 +264,8 @@ export function PatientReviews() {
               ))}
             </CarouselContent>
 
-            <CarouselPrevious className="absolute top-1/2 left-2 z-10 size-11 -translate-y-1/2 border-line bg-white text-teal-900 shadow-rail hover:border-teal-600 hover:bg-white disabled:opacity-35 lg:left-3" />
-            <CarouselNext className="absolute top-1/2 right-2 z-10 size-11 -translate-y-1/2 border-line bg-white text-teal-900 shadow-rail hover:border-teal-600 hover:bg-white disabled:opacity-35 lg:right-3" />
+            <CarouselPrevious className="absolute top-1/2 left-2 z-10 size-11 -translate-y-1/2 border-line bg-white text-teal-900 shadow-rail hover:border-teal-600 hover:bg-white disabled:opacity-35 lg:left-3 xl:-left-12 2xl:-left-14" />
+            <CarouselNext className="absolute top-1/2 right-2 z-10 size-11 -translate-y-1/2 border-line bg-white text-teal-900 shadow-rail hover:border-teal-600 hover:bg-white disabled:opacity-35 lg:right-3 xl:-right-12 2xl:-right-14" />
           </Carousel>
         </div>
       </div>

@@ -101,7 +101,7 @@ function GynecologyTreatmentsPage() {
         trail={[{ name: "Home", to: ROUTES.home }, { name: "Gynecology Treatments" }]}
       />
 
-      <section className="bg-sand section-y">
+      <section className="bg-clay-25 section-y">
         <div className="container-page">
           <SectionHeading eyebrow="What we treat" title="Every area of gynecology, under one roof" />
           <div className="mt-10 grid gap-x-10 gap-y-8 md:grid-cols-2 lg:grid-cols-3">
@@ -134,7 +134,7 @@ function GynecologyTreatmentsPage() {
       </section>
 
       {GYNECOLOGY_MENU.map((group) => (
-        <section key={group.heading} className="bg-sand section-y border-t border-line">
+        <section key={group.heading} className="bg-clay-25 section-y border-t border-line">
           <div className="container-page">
             <SectionHeading eyebrow="Explore" title={group.heading} />
             <ul className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">

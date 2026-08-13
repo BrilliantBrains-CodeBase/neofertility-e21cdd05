@@ -163,27 +163,53 @@ export function StatStrip({ light = false }: { light?: boolean }) {
     return () => observer.disconnect();
   }, []);
 
+  /* Colour-agnostic: the three tokens are all that change between grounds. --stat-bg
+     MUST match the section behind the strip, because the label's band is what punches
+     the gap through the numeral — a mismatch shows up as a visible stripe. `light`
+     renders on bg-teal-900, the default on bg-clay-25. */
+  const palette = light
+    ? {
+        "--stat-bg": "var(--teal-900)",
+        "--stat-number": "var(--clay-500)",
+        "--stat-label": "var(--sand)",
+      }
+    : {
+        "--stat-bg": "var(--clay-25)",
+        "--stat-number": "var(--clay-600)",
+        "--stat-label": "var(--teal-900)",
+      };
+
   return (
     <div
       ref={ref}
-      className={cn(
-        "grid grid-cols-2 gap-x-6 gap-y-8 md:grid-cols-3 lg:grid-cols-6",
-        light && "text-sand",
-      )}
+      style={palette as React.CSSProperties}
+      className="grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-3"
     >
       {CLINICAL_VOLUME.map((stat) => (
-        <div key={stat.label}>
+        <div key={stat.label} className="relative flex items-center justify-center">
           {/* tabular-nums keeps the figure from jittering in width as it counts */}
-          <p
-            className={cn(
-              "font-display text-[1.75rem] leading-none font-semibold tabular-nums",
-              light ? "text-sand" : "text-teal-900",
-            )}
-          >
+          {/* Montserrat, not the Cormorant display face. Cormorant sets numerals as
+              old-style figures — 3, 7 and 9 drop below the baseline while 6 and 8 rise —
+              so a figure like "6,789+" reads as ragged rather than as a number. The sans
+              face has lining figures, all sitting on the baseline at a uniform height.
+              The clamp is tuned to the widest figure in the narrowest cell: Montserrat
+              Bold sets "80,000+" at roughly 4.36em, and the 3-column cell bottoms out
+              near 294px around 1024px wide. The floor matters as much as the ceiling —
+              at 390px the labels are as long as they are on desktop, so a small figure
+              gets buried under its own band. */}
+          <p className="font-sans text-[clamp(3.75rem,6.2vw,4.6rem)] leading-none font-bold tabular-nums text-[var(--stat-number)]">
             <CountUpFigure figure={stat.figure} active={inView} />
           </p>
-          <p className={cn("mt-2 text-[0.8125rem]", light ? "text-sand/70" : "text-ink-muted")}>
-            {stat.label}
+
+          {/* The label sits across the middle of the numeral, carrying the section's own
+              background so it reads as a clean band cut through the figure. It must stay
+              on ONE line: a wrapped label stacks two or three bands over the numeral and
+              buries it. A band wider than its figure is fine and expected — the short
+              figures ("18") simply get a longer strike than the long ones. */}
+          <p className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center whitespace-nowrap">
+            <span className="bg-[var(--stat-bg)] px-2 py-0.5 text-[0.625rem] font-semibold tracking-[0.12em] uppercase text-[var(--stat-label)] sm:text-[0.6875rem]">
+              {stat.label}
+            </span>
           </p>
         </div>
       ))}

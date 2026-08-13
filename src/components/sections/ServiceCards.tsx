@@ -144,7 +144,10 @@ export function ServiceCards({ items }: { items: readonly ServiceCardItem[] }) {
               scrollToIndex(items.length - 1);
             }
           }}
-          className="-mx-5 flex snap-x snap-mandatory gap-4 overflow-x-auto overscroll-x-contain scroll-smooth px-5 pb-2 [-webkit-overflow-scrolling:touch] [scrollbar-width:none] focus-visible:outline-none [&::-webkit-scrollbar]:hidden"
+          /* No negative bleed: container-page is a 90% width with no padding, so the
+             gutter either side is only ~15px at 320px. The old -mx-5/px-5 pair pushed
+             20px past it and put a horizontal scrollbar on the document. */
+          className="flex snap-x snap-mandatory gap-4 overflow-x-auto overscroll-x-contain scroll-smooth pb-2 [-webkit-overflow-scrolling:touch] [scrollbar-width:none] focus-visible:outline-none [&::-webkit-scrollbar]:hidden"
         >
           {items.map((item, i) => (
             <div

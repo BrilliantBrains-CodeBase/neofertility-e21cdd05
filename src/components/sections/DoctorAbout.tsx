@@ -18,7 +18,7 @@ const SPECIALISATIONS = [
 
 export function DoctorAbout() {
   return (
-    <section className="bg-sand section-y" aria-labelledby="about-doctor">
+    <section className="bg-white section-y" aria-labelledby="about-doctor">
       <div className="container-page">
         <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
           {/* The clinic's own studio portrait, framed at its native 650×900 so the

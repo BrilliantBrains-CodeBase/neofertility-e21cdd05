@@ -242,7 +242,7 @@ function Page() {
         </aside>
       </div>
 
-      <section className="section-y border-t border-line bg-sand">
+      <section className="section-y border-t border-line bg-clay-25">
         <div className="container-page">
           <SectionHeading eyebrow="What a real assessment covers" title="Both partners, tested from the start" />
           <div className="mt-8 grid gap-6 sm:grid-cols-2">

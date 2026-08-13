@@ -72,7 +72,7 @@ export function ServicePage({
       </div>
 
       {showStats && (
-        <section className="border-y border-line bg-sand py-12">
+        <section className="border-y border-line bg-clay-25 py-12">
           <div className="container-page">
             <SectionHeading
               eyebrow="Clinical volume"
