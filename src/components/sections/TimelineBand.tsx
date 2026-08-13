@@ -13,21 +13,21 @@ export function TimelineBand({ caption, items }: { caption?: string; items: Time
       <div className="hidden sm:block">
         <div className="grid grid-cols-3 gap-6">
           {items.map((item) => (
-            <p key={item.when} className="text-center text-[0.9375rem] font-medium text-teal-900">
+            <p key={item.when} className="text-center text-[0.9375rem] font-medium text-plum-900">
               {item.when}
             </p>
           ))}
         </div>
 
-        <div className="relative mt-3 h-1.5 rounded-full bg-teal-50">
-          <div className="absolute inset-y-0 left-0 w-full rounded-full bg-teal-300/70" />
+        <div className="relative mt-3 h-1.5 rounded-full bg-pink-50">
+          <div className="absolute inset-y-0 left-0 w-full rounded-full bg-pink-300/70" />
         </div>
 
         <div className="grid grid-cols-3 gap-6">
           {items.map((item, index) => (
             <div key={item.when} className="flex flex-col items-center">
-              <span aria-hidden className="h-6 w-px bg-clay-600/40" />
-              <span className="flex size-11 items-center justify-center rounded-full bg-clay-600 font-semibold text-[1.0625rem] text-white">
+              <span aria-hidden className="h-6 w-px bg-pink-600/40" />
+              <span className="flex size-11 items-center justify-center rounded-full bg-pink-600 font-semibold text-[1.0625rem] text-white">
                 {String(index + 1).padStart(2, "0")}
               </span>
               <p className="mt-3 text-center text-[0.9375rem] text-ink-muted">{item.what}</p>
@@ -43,14 +43,14 @@ export function TimelineBand({ caption, items }: { caption?: string; items: Time
             {index < items.length - 1 && (
               <span
                 aria-hidden
-                className="absolute top-11 left-[1.375rem] h-[calc(100%-2.75rem)] w-px bg-teal-300"
+                className="absolute top-11 left-[1.375rem] h-[calc(100%-2.75rem)] w-px bg-pink-300"
               />
             )}
-            <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-clay-600 font-semibold text-[1.0625rem] text-white">
+            <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-pink-600 font-semibold text-[1.0625rem] text-white">
               {String(index + 1).padStart(2, "0")}
             </span>
             <div>
-              <p className="text-[0.9375rem] font-medium text-teal-900">{item.when}</p>
+              <p className="text-[0.9375rem] font-medium text-plum-900">{item.when}</p>
               <p className="mt-1 text-[0.9375rem] text-ink-muted">{item.what}</p>
             </div>
           </li>

@@ -21,8 +21,8 @@ function Card({ item }: { item: ServiceCardItem }) {
       aria-label={`${item.title} — view all details`}
       className={cn(
         "group flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-white transition-all duration-300",
-        "hover:-translate-y-1 hover:border-teal-900 hover:bg-teal-900 hover:shadow-rail",
-        "focus-visible:border-teal-900 focus-visible:bg-teal-900 focus-visible:shadow-rail focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-700 focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+        "hover:-translate-y-1 hover:border-plum-900 hover:bg-plum-900 hover:shadow-rail",
+        "focus-visible:border-plum-900 focus-visible:bg-plum-900 focus-visible:shadow-rail focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pink-700 focus-visible:ring-offset-2 focus-visible:ring-offset-background",
       )}
     >
       <div className="relative aspect-[4/3] w-full overflow-hidden">
@@ -34,13 +34,13 @@ function Card({ item }: { item: ServiceCardItem }) {
         />
       </div>
       <div className="flex flex-1 flex-col p-6">
-        <h3 className="text-[1.25rem] leading-tight transition-colors duration-300 group-hover:text-sand group-focus-visible:text-sand">
+        <h3 className="text-[1.25rem] leading-tight transition-colors duration-300 group-hover:text-paper group-focus-visible:text-paper">
           {item.title}
         </h3>
-        <p className="mt-3 text-[0.9375rem] text-ink-muted transition-colors duration-300 group-hover:text-sand/80 group-focus-visible:text-sand/80">
+        <p className="mt-3 text-[0.9375rem] text-ink-muted transition-colors duration-300 group-hover:text-paper/80 group-focus-visible:text-paper/80">
           {item.copy}
         </p>
-        <span className="mt-5 inline-flex items-center gap-2 text-[0.9375rem] font-medium text-clay-600 transition-colors duration-300 group-hover:text-clay-50 group-focus-visible:text-clay-50">
+        <span className="mt-5 inline-flex items-center gap-2 text-[0.9375rem] font-medium text-pink-600 transition-colors duration-300 group-hover:text-pink-50 group-focus-visible:text-pink-50">
           View all details
           <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
         </span>
@@ -178,7 +178,7 @@ export function ServiceCards({ items }: { items: readonly ServiceCardItem[] }) {
             aria-controls="service-carousel-track"
             disabled={active === 0}
             onClick={() => scrollToIndex(Math.max(0, active - 1))}
-            className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-full border border-line bg-white text-teal-900 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-700 focus-visible:ring-offset-2 disabled:opacity-35"
+            className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-full border border-line bg-white text-plum-900 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pink-700 focus-visible:ring-offset-2 disabled:opacity-35"
           >
             <ArrowLeft className="size-4" aria-hidden="true" />
           </button>
@@ -192,13 +192,13 @@ export function ServiceCards({ items }: { items: readonly ServiceCardItem[] }) {
                 aria-label={`Go to ${item.title}`}
                 aria-selected={i === active}
                 onClick={() => scrollToIndex(i)}
-                className="flex min-h-11 min-w-6 items-center justify-center rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-700 focus-visible:ring-offset-2"
+                className="flex min-h-11 min-w-6 items-center justify-center rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pink-700 focus-visible:ring-offset-2"
               >
                 <span
                   aria-hidden="true"
                   className={cn(
                     "block h-[6px] rounded-full transition-all duration-300",
-                    i === active ? "w-7 bg-teal-700" : "w-[6px] bg-teal-900/25",
+                    i === active ? "w-7 bg-pink-700" : "w-[6px] bg-plum-900/25",
                   )}
                 />
               </button>
@@ -211,7 +211,7 @@ export function ServiceCards({ items }: { items: readonly ServiceCardItem[] }) {
             aria-controls="service-carousel-track"
             disabled={active === items.length - 1}
             onClick={() => scrollToIndex(Math.min(items.length - 1, active + 1))}
-            className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-full border border-line bg-white text-teal-900 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-700 focus-visible:ring-offset-2 disabled:opacity-35"
+            className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-full border border-line bg-white text-plum-900 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pink-700 focus-visible:ring-offset-2 disabled:opacity-35"
           >
             <ArrowRight className="size-4" aria-hidden="true" />
           </button>

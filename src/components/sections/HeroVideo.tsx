@@ -23,7 +23,7 @@ function Ctas({ className }: { className?: string }) {
       <a
         href={CLINIC.phoneHref}
         onClick={() => track("call_click", { source_page: "home_hero_video" })}
-        className="inline-flex min-h-12 items-center justify-center rounded-full bg-background/90 px-6 py-3 text-center text-[0.9375rem] font-medium whitespace-nowrap text-teal-700 shadow-md backdrop-blur transition-transform duration-200 hover:-translate-y-0.5 hover:text-primary lg:px-[30px] lg:py-[15px]"
+        className="inline-flex min-h-12 items-center justify-center rounded-full bg-background/90 px-6 py-3 text-center text-[0.9375rem] font-medium whitespace-nowrap text-pink-700 shadow-md backdrop-blur transition-transform duration-200 hover:-translate-y-0.5 hover:text-primary lg:px-[30px] lg:py-[15px]"
       >
         <Phone className="mr-2 size-4" />
         Call {CLINIC.phoneDisplay}
@@ -112,18 +112,18 @@ export function HeroVideo() {
             filling its parent. */}
         <div className="relative flex min-h-[80svh] flex-col justify-center pt-42 pb-14 lg:absolute lg:inset-0 lg:min-h-0 lg:pt-40 lg:pb-16">
           <div className="w-full px-6 sm:px-10 lg:px-14 xl:px-16">
-            <p className="inline-flex items-center gap-2 rounded-full border border-sand/25 bg-teal-900/60 px-4 py-1.5 text-[0.75rem] font-medium tracking-[0.16em] text-sand uppercase backdrop-blur-sm">
-              <span aria-hidden className="size-2 rounded-full bg-teal-300" />
+            <p className="inline-flex items-center gap-2 rounded-full border border-paper/25 bg-plum-900/60 px-4 py-1.5 text-[0.75rem] font-medium tracking-[0.16em] text-paper uppercase backdrop-blur-sm">
+              <span aria-hidden className="size-2 rounded-full bg-pink-300" />
               Marathahalli - Whitefield
             </p>
 
             {/* Sized to hold on one line from lg up; wraps naturally below that. */}
-            <h1 className="mt-5 text-[2.25rem] leading-[1.05] text-sand sm:text-[3rem] lg:text-[3.5rem] lg:whitespace-nowrap xl:text-[4rem]">
+            <h1 className="mt-5 text-[2.25rem] leading-[1.05] text-paper sm:text-[3rem] lg:text-[3.5rem] lg:whitespace-nowrap xl:text-[4rem]">
               Best Fertility and IVF Clinic
             </h1>
 
             {/* max-w tuned so this sets in two lines on desktop. */}
-            <p className="mt-5 max-w-[58ch] text-[1rem] leading-relaxed text-sand/90 lg:max-w-[82ch] lg:text-[1.125rem]">
+            <p className="mt-5 max-w-[58ch] text-[1rem] leading-relaxed text-paper/90 lg:max-w-[82ch] lg:text-[1.125rem]">
               Expert, Personalized &amp; Advanced Fertility Care by Dr. Payal Mahapatra (Founder Neo
               Fertility &amp; IVF Clinic in Marathahalli - Whitefield)
             </p>

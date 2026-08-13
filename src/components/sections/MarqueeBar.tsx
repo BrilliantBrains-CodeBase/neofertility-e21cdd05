@@ -18,7 +18,7 @@ function Track({ ariaHidden }: { ariaHidden?: boolean }) {
           <Link
             to={item.to}
             tabIndex={ariaHidden ? -1 : undefined}
-            className="font-display text-[1.75rem] font-normal tracking-[0.01em] text-foreground transition-colors hover:text-primary lg:text-[2.75rem]"
+            className="text-[1.75rem] font-normal tracking-[0.01em] text-foreground transition-colors hover:text-primary lg:text-[2.75rem]"
           >
             {item.label}
           </Link>

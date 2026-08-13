@@ -34,11 +34,26 @@ const WHAT_WE_TREAT = [
 
 const WHEN_TO_BOOK = [
   { symptom: "Irregular periods", book: "The pattern has lasted three months or more" },
-  { symptom: "Heavy bleeding", book: "You soak a pad hourly, pass clots larger than a rupee coin, or bleed more than seven days" },
-  { symptom: "Period pain", book: "Ordinary painkillers no longer control it, or the pain has worsened over the years" },
-  { symptom: "Pain during intercourse", book: "It has happened more than a few times, or is getting worse" },
-  { symptom: "Vaginal discharge or odour", book: "It is new, or an over-the-counter treatment has already failed once" },
-  { symptom: "Pelvic pain with discharge", book: "Same week. Untreated pelvic infection scars the fallopian tubes within weeks" },
+  {
+    symptom: "Heavy bleeding",
+    book: "You soak a pad hourly, pass clots larger than a rupee coin, or bleed more than seven days",
+  },
+  {
+    symptom: "Period pain",
+    book: "Ordinary painkillers no longer control it, or the pain has worsened over the years",
+  },
+  {
+    symptom: "Pain during intercourse",
+    book: "It has happened more than a few times, or is getting worse",
+  },
+  {
+    symptom: "Vaginal discharge or odour",
+    book: "It is new, or an over-the-counter treatment has already failed once",
+  },
+  {
+    symptom: "Pelvic pain with discharge",
+    book: "Same week. Untreated pelvic infection scars the fallopian tubes within weeks",
+  },
   { symptom: "A breast lump", book: "Any new lump, regardless of whether it hurts" },
   { symptom: "Bleeding after menopause", book: "Promptly, in every case" },
   { symptom: "Bleeding after intercourse", book: "Promptly, in every case" },
@@ -101,9 +116,12 @@ function GynecologyTreatmentsPage() {
         trail={[{ name: "Home", to: ROUTES.home }, { name: "Gynecology Treatments" }]}
       />
 
-      <section className="bg-clay-25 section-y">
+      <section className="bg-pink-25 section-y">
         <div className="container-page">
-          <SectionHeading eyebrow="What we treat" title="Every area of gynecology, under one roof" />
+          <SectionHeading
+            eyebrow="What we treat"
+            title="Every area of gynecology, under one roof"
+          />
           <div className="mt-10 grid gap-x-10 gap-y-8 md:grid-cols-2 lg:grid-cols-3">
             {WHAT_WE_TREAT.map((item) => (
               <div key={item.title} className="border-t border-line pt-5">
@@ -123,7 +141,7 @@ function GynecologyTreatmentsPage() {
               <tbody>
                 {WHEN_TO_BOOK.map((row) => (
                   <tr key={row.symptom} className="border-t border-line first:border-t-0">
-                    <td className="p-4 font-medium text-teal-900">{row.symptom}</td>
+                    <td className="p-4 font-medium text-plum-900">{row.symptom}</td>
                     <td className="p-4 text-ink-muted">{row.book}</td>
                   </tr>
                 ))}
@@ -134,7 +152,7 @@ function GynecologyTreatmentsPage() {
       </section>
 
       {GYNECOLOGY_MENU.map((group) => (
-        <section key={group.heading} className="bg-clay-25 section-y border-t border-line">
+        <section key={group.heading} className="bg-pink-25 section-y border-t border-line">
           <div className="container-page">
             <SectionHeading eyebrow="Explore" title={group.heading} />
             <ul className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
@@ -143,10 +161,10 @@ function GynecologyTreatmentsPage() {
                   <Link
                     to={link.to}
                     {...(link.hash ? { hash: link.hash } : {})}
-                    className="flex items-center justify-between gap-3 rounded-lg border border-line bg-white px-4 py-3 text-[0.9375rem] text-teal-900 hover:border-teal-600"
+                    className="flex items-center justify-between gap-3 rounded-lg border border-line bg-white px-4 py-3 text-[0.9375rem] text-plum-900 hover:border-pink-600"
                   >
                     {link.label}
-                    <ArrowRight className="size-4 shrink-0 text-teal-600" />
+                    <ArrowRight className="size-4 shrink-0 text-pink-600" />
                   </Link>
                 </li>
               ))}

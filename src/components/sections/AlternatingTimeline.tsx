@@ -20,7 +20,7 @@ export function AlternatingTimeline({
 
       {/* Desktop / tablet */}
       <div className="relative hidden md:block">
-        <div className="absolute top-1/2 right-0 left-0 h-px -translate-y-1/2 bg-teal-300" />
+        <div className="absolute top-1/2 right-0 left-0 h-px -translate-y-1/2 bg-pink-300" />
         <div
           className="relative grid items-center gap-4"
           style={{ gridTemplateColumns: `repeat(${items.length}, minmax(0, 1fr))` }}
@@ -32,9 +32,9 @@ export function AlternatingTimeline({
             if (isLast) {
               return (
                 <div key={item.when} className="flex justify-center">
-                  <div className="flex size-[9.5rem] flex-col items-center justify-center rounded-full bg-teal-900 px-4 text-center ring-8 ring-white">
+                  <div className="flex size-[9.5rem] flex-col items-center justify-center rounded-full bg-plum-900 px-4 text-center ring-8 ring-white">
                     <p className="font-medium text-[0.9375rem] text-white">{item.when}</p>
-                    <p className="mt-1 text-[0.75rem] leading-snug text-teal-50/80">{item.what}</p>
+                    <p className="mt-1 text-[0.75rem] leading-snug text-pink-50/80">{item.what}</p>
                   </div>
                 </div>
               );
@@ -45,13 +45,13 @@ export function AlternatingTimeline({
                 {above ? (
                   <>
                     <div className="flex flex-1 flex-col justify-end pb-2 text-center">
-                      <p className="text-[0.9375rem] font-medium text-teal-900">{item.when}</p>
+                      <p className="text-[0.9375rem] font-medium text-plum-900">{item.when}</p>
                       <p className="mt-1 text-[0.8125rem] leading-snug text-ink-muted">
                         {item.what}
                       </p>
                     </div>
-                    <span aria-hidden className="h-5 w-px bg-teal-300" />
-                    <span className="flex size-9 items-center justify-center rounded-full bg-clay-600 font-semibold text-[0.8125rem] text-white ring-4 ring-white">
+                    <span aria-hidden className="h-5 w-px bg-pink-300" />
+                    <span className="flex size-9 items-center justify-center rounded-full bg-pink-600 font-semibold text-[0.8125rem] text-white ring-4 ring-white">
                       {String(index + 1).padStart(2, "0")}
                     </span>
                     <span className="flex-1" />
@@ -59,12 +59,12 @@ export function AlternatingTimeline({
                 ) : (
                   <>
                     <span className="flex-1" />
-                    <span className="flex size-9 items-center justify-center rounded-full bg-clay-600 font-semibold text-[0.8125rem] text-white ring-4 ring-white">
+                    <span className="flex size-9 items-center justify-center rounded-full bg-pink-600 font-semibold text-[0.8125rem] text-white ring-4 ring-white">
                       {String(index + 1).padStart(2, "0")}
                     </span>
-                    <span aria-hidden className="h-5 w-px bg-teal-300" />
+                    <span aria-hidden className="h-5 w-px bg-pink-300" />
                     <div className="flex flex-1 flex-col justify-start pt-2 text-center">
-                      <p className="text-[0.9375rem] font-medium text-teal-900">{item.when}</p>
+                      <p className="text-[0.9375rem] font-medium text-plum-900">{item.when}</p>
                       <p className="mt-1 text-[0.8125rem] leading-snug text-ink-muted">
                         {item.what}
                       </p>
@@ -84,18 +84,18 @@ export function AlternatingTimeline({
             {index < last && (
               <span
                 aria-hidden
-                className="absolute top-10 left-[1.125rem] h-[calc(100%-2.5rem)] w-px bg-teal-300"
+                className="absolute top-10 left-[1.125rem] h-[calc(100%-2.5rem)] w-px bg-pink-300"
               />
             )}
             <span
               className={`flex size-9 shrink-0 items-center justify-center rounded-full font-semibold text-[0.8125rem] text-white ${
-                index === last ? "bg-teal-900" : "bg-clay-600"
+                index === last ? "bg-plum-900" : "bg-pink-600"
               }`}
             >
               {String(index + 1).padStart(2, "0")}
             </span>
             <div>
-              <p className="text-[0.9375rem] font-medium text-teal-900">{item.when}</p>
+              <p className="text-[0.9375rem] font-medium text-plum-900">{item.when}</p>
               <p className="mt-1 text-[0.9375rem] text-ink-muted">{item.what}</p>
             </div>
           </li>

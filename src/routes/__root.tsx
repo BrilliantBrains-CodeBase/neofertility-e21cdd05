@@ -31,7 +31,7 @@ function NotFoundComponent() {
         <div className="mt-6">
           <Link
             to="/"
-            className="inline-flex items-center justify-center rounded-md bg-clay-600 px-5 py-2.5 text-[0.9375rem] font-medium text-sand hover:bg-clay-700"
+            className="inline-flex items-center justify-center rounded-md bg-pink-600 px-5 py-2.5 text-[0.9375rem] font-medium text-paper hover:bg-pink-700"
           >
             Go to home
           </Link>
@@ -61,13 +61,13 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
               router.invalidate();
               reset();
             }}
-            className="inline-flex items-center justify-center rounded-md bg-clay-600 px-5 py-2.5 text-[0.9375rem] font-medium text-sand hover:bg-clay-700"
+            className="inline-flex items-center justify-center rounded-md bg-pink-600 px-5 py-2.5 text-[0.9375rem] font-medium text-paper hover:bg-pink-700"
           >
             Try again
           </button>
           <a
             href="/"
-            className="inline-flex items-center justify-center rounded-md border border-teal-600 px-5 py-2.5 text-[0.9375rem] font-medium text-teal-700"
+            className="inline-flex items-center justify-center rounded-md border border-pink-600 px-5 py-2.5 text-[0.9375rem] font-medium text-pink-700"
           >
             Go home
           </a>
@@ -127,7 +127,7 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       <a
         href="#main"
-        className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:rounded-md focus:bg-teal-900 focus:px-4 focus:py-2 focus:text-sand"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:rounded-md focus:bg-plum-900 focus:px-4 focus:py-2 focus:text-paper"
       >
         Skip to content
       </a>

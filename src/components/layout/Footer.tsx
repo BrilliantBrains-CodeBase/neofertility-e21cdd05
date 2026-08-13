@@ -17,15 +17,15 @@ export function Footer() {
     .slice(0, 8);
 
   return (
-    <footer className="mt-0 bg-teal-900 pt-16 pb-28 text-sand lg:pb-16">
+    <footer className="mt-0 bg-navy-900 pt-16 pb-28 text-paper lg:pb-16">
       <div className="container-page grid gap-12 lg:grid-cols-[1.2fr_1fr_1fr_1fr]">
         <div>
-          <p className="font-display text-[1.375rem] font-semibold">Neo Fertility Clinic</p>
-          <p className="mt-3 max-w-[36ch] text-[0.9375rem] text-sand/75">
+          <p className="text-[1.375rem] font-semibold">Neo Fertility Clinic</p>
+          <p className="mt-3 max-w-[36ch] text-[0.9375rem] text-paper/75">
             Fertility and gynecology care led by {CLINIC.doctor}, {CLINIC.credentialsShort}, in
             Marathahalli, Bengaluru.
           </p>
-          <div className="mt-5 space-y-2 text-[0.9375rem] text-sand/80">
+          <div className="mt-5 space-y-2 text-[0.9375rem] text-paper/80">
             <p className="flex gap-2">
               <MapPin className="mt-0.5 size-4 shrink-0" />
               <span>{CLINIC.addressLine}</span>
@@ -55,7 +55,7 @@ export function Footer() {
                 target="_blank"
                 rel="noreferrer"
                 aria-label={label}
-                className="flex size-9 items-center justify-center rounded-full border border-sand/25 hover:bg-sand/10"
+                className="flex size-9 items-center justify-center rounded-full border border-paper/25 hover:bg-paper/10"
               >
                 <Icon className="size-4" />
               </a>
@@ -64,8 +64,8 @@ export function Footer() {
         </div>
 
         <nav aria-label="Fertility services">
-          <p className="text-[0.75rem] tracking-[0.16em] text-sand/60 uppercase">Fertility</p>
-          <ul className="mt-3 space-y-2 text-[0.9375rem] text-sand/85">
+          <p className="text-[0.75rem] tracking-[0.16em] text-paper/60 uppercase">Fertility</p>
+          <ul className="mt-3 space-y-2 text-[0.9375rem] text-paper/85">
             {fertilityLinks.map((link) => (
               <li key={link.label}>
                 <Link to={link.to} className="hover:underline">
@@ -77,8 +77,8 @@ export function Footer() {
         </nav>
 
         <nav aria-label="Gynecology services">
-          <p className="text-[0.75rem] tracking-[0.16em] text-sand/60 uppercase">Gynecology</p>
-          <ul className="mt-3 space-y-2 text-[0.9375rem] text-sand/85">
+          <p className="text-[0.75rem] tracking-[0.16em] text-paper/60 uppercase">Gynecology</p>
+          <ul className="mt-3 space-y-2 text-[0.9375rem] text-paper/85">
             {gynecologyLinks.map((link) => (
               <li key={link.label}>
                 <Link to={link.to} className="hover:underline">
@@ -90,8 +90,8 @@ export function Footer() {
         </nav>
 
         <nav aria-label="Clinic">
-          <p className="text-[0.75rem] tracking-[0.16em] text-sand/60 uppercase">Clinic</p>
-          <ul className="mt-3 space-y-2 text-[0.9375rem] text-sand/85">
+          <p className="text-[0.75rem] tracking-[0.16em] text-paper/60 uppercase">Clinic</p>
+          <ul className="mt-3 space-y-2 text-[0.9375rem] text-paper/85">
             <li>
               <Link to={ROUTES.about} className="hover:underline">
                 About Dr. Payal
@@ -146,11 +146,11 @@ export function Footer() {
         </nav>
       </div>
 
-      <div className="container-page mt-12 border-t border-sand/15 pt-6">
+      <div className="container-page mt-12 border-t border-paper/15 pt-6">
         {/* Capped: this is the longest paragraph on the site and had no measure, so
             once the container became a percentage it ran to ~216 characters a line. */}
-        <p className="max-w-[80ch] text-[0.8125rem] text-sand/65">{CLINIC.catchment}</p>
-        <div className="mt-4 flex flex-wrap items-center justify-between gap-3 text-[0.8125rem] text-sand/65">
+        <p className="max-w-[80ch] text-[0.8125rem] text-paper/65">{CLINIC.catchment}</p>
+        <div className="mt-4 flex flex-wrap items-center justify-between gap-3 text-[0.8125rem] text-paper/65">
           <p>© {new Date().getFullYear()} Neo Fertility Clinic. All rights reserved.</p>
           <div className="flex gap-4">
             <Link to={ROUTES.privacy} className="hover:underline">
@@ -161,7 +161,7 @@ export function Footer() {
             </Link>
           </div>
         </div>
-        <p className="mt-4 max-w-[80ch] text-[0.8125rem] text-sand/55">
+        <p className="mt-4 max-w-[80ch] text-[0.8125rem] text-paper/55">
           Information on this website is for general education and is not a substitute for a
           consultation. Treatment outcomes vary between individuals. {CLINIC.statsAsOf}
         </p>

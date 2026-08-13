@@ -23,7 +23,7 @@ export function AppointmentSheet({
       }}
     >
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent className="max-h-[92vh] overflow-y-auto rounded-xl bg-clay-50 sm:max-w-lg">
+      <DialogContent className="max-h-[92vh] overflow-y-auto rounded-xl bg-pink-50 sm:max-w-lg">
         <DialogTitle className="sr-only">Book an appointment</DialogTitle>
         <div className="flex items-center gap-3 border-b border-line pb-4">
           <img
@@ -35,9 +35,9 @@ export function AppointmentSheet({
             className="size-14 rounded-full object-cover object-top"
           />
           <div>
-            <p className="font-medium text-teal-900">{CLINIC.doctor}</p>
+            <p className="font-medium text-plum-900">{CLINIC.doctor}</p>
             <p className="text-[0.8125rem] text-ink-muted">{CLINIC.credentialsShort}</p>
-            <p className="text-[0.8125rem] text-teal-600">Usually replies within an hour</p>
+            <p className="text-[0.8125rem] text-pink-600">Usually replies within an hour</p>
           </div>
         </div>
 
@@ -58,7 +58,7 @@ export function AppointmentSheet({
               target="_blank"
               rel="noreferrer"
               onClick={() => track("booking_calendar_open", { source_page: sourcePage })}
-              className="mt-4 inline-flex h-12 w-full items-center justify-center rounded-md bg-clay-600 px-6 text-[0.9375rem] font-medium text-sand hover:bg-clay-700"
+              className="mt-4 inline-flex h-12 w-full items-center justify-center rounded-md bg-pink-600 px-6 text-[0.9375rem] font-medium text-paper hover:bg-pink-700"
             >
               Open the booking calendar
             </a>

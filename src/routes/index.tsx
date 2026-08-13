@@ -1,12 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
 import { SectionHeading, StatStrip, FaqBlock } from "@/components/sections/blocks";
 import { ROUTES, SITE_URL } from "@/data/navigation";
 import { pageMeta, jsonLd, clinicSchema, websiteSchema, doctorSchema, faqSchema } from "@/lib/seo";
@@ -19,6 +12,8 @@ import { AppointmentMapForm } from "@/components/sections/AppointmentMapForm";
 import { MarqueeBar } from "@/components/sections/MarqueeBar";
 import { ServiceCards } from "@/components/sections/ServiceCards";
 import { TreatmentGrid } from "@/components/sections/TreatmentGrid";
+import { TabbedFeatureSection } from "@/components/sections/TabbedFeatureSection";
+import type { TabbedFeatureTab } from "@/components/sections/TabbedFeatureSection";
 import type { TreatmentItem } from "@/components/sections/TreatmentGrid";
 import {
   Syringe,
@@ -40,6 +35,7 @@ const TREATMENTS: TreatmentItem[] = [
     to: ROUTES.iui,
     icon: Syringe,
     image: trIui,
+    group: "fertility",
   },
   {
     tag: "Assisted Conception",
@@ -49,6 +45,7 @@ const TREATMENTS: TreatmentItem[] = [
     to: ROUTES.ivf,
     icon: FlaskConical,
     image: trIvf,
+    group: "fertility",
   },
   {
     tag: "Assisted Conception",
@@ -58,6 +55,7 @@ const TREATMENTS: TreatmentItem[] = [
     to: ROUTES.icsi,
     icon: Microscope,
     image: trIcsi,
+    group: "fertility",
   },
   {
     tag: "Fertility Preservation",
@@ -67,6 +65,7 @@ const TREATMENTS: TreatmentItem[] = [
     to: ROUTES.eggFreezing,
     icon: Snowflake,
     image: trEf,
+    group: "fertility",
   },
   {
     tag: "Male Fertility",
@@ -76,6 +75,7 @@ const TREATMENTS: TreatmentItem[] = [
     to: ROUTES.maleInfertility,
     icon: Users,
     image: trMale,
+    group: "fertility",
   },
   {
     tag: "Donor Care",
@@ -85,6 +85,7 @@ const TREATMENTS: TreatmentItem[] = [
     to: ROUTES.donor,
     icon: HeartHandshake,
     image: trDonor,
+    group: "fertility",
   },
   {
     tag: "Hormonal Health",
@@ -94,6 +95,7 @@ const TREATMENTS: TreatmentItem[] = [
     to: ROUTES.pcod,
     icon: Activity,
     image: trPcod,
+    group: "gynecology",
   },
   {
     tag: "Hormonal Health",
@@ -103,6 +105,7 @@ const TREATMENTS: TreatmentItem[] = [
     to: ROUTES.pcos,
     icon: Sparkles,
     image: trPcos,
+    group: "gynecology",
   },
 ];
 
@@ -116,7 +119,6 @@ import trPcod from "@/assets/meno-assessment.jpg";
 import trPcos from "@/assets/meno-plan.jpg";
 import pinkBannerAsset from "@/assets/hero-banner-pink.webp";
 import faqImage from "@/assets/faq-mother-baby.webp";
-import { useCarouselAutoplay } from "@/hooks/use-carousel-autoplay";
 import pathwayTrying from "@/assets/pathway-trying.jpg";
 import pathwayIrregular from "@/assets/pathway-irregular.jpg";
 import pathwayEggFreezing from "@/assets/pathway-egg-freezing.jpg";
@@ -153,36 +155,100 @@ const FAQS = [
   },
 ];
 
-const SEGMENTS = [
+/* Tab labels are short plain-language versions of each title, which stays as the panel
+   heading. Bullets are lifted verbatim from the page each pathway already links to, so
+   nothing clinical is authored here — see the CheckList on each linked route. */
+const SEGMENTS: TabbedFeatureTab[] = [
   {
-    title: "Trying for 12 months, or 6 months if you are over 35",
-    copy: "Start with a fertility evaluation for both partners. Hormones, ultrasound, tubal patency and semen analysis in the first cycle.",
-    to: ROUTES.infertility,
-    image: pathwayTrying,
-    alt: "Woman holding a pregnancy test after months of trying to conceive",
+    id: "trying",
+    label: "Trying to conceive",
+    icon: <HeartHandshake />,
+    panel: {
+      title: "Trying for 12 months, or 6 months if you are over 35",
+      description:
+        "Start with a fertility evaluation for both partners. Hormones, ultrasound, tubal patency and semen analysis in the first cycle.",
+      bullets: [
+        "Ovulation disorders",
+        "Blocked fallopian tubes",
+        "Endometriosis",
+        "Poor egg quality",
+      ],
+      cta: { label: "Fertility evaluation", href: ROUTES.infertility },
+      image: {
+        src: pathwayTrying,
+        alt: "Woman holding a pregnancy test after months of trying to conceive",
+      },
+    },
   },
   {
-    title: "Irregular periods, PCOS, endometriosis or fibroids",
-    copy: "Start with a hormonal and gynecological assessment so the cycle is understood before any fertility treatment is discussed.",
-    to: ROUTES.pcos,
-    image: pathwayIrregular,
-    alt: "Calendar with circled dates tracking irregular periods",
+    id: "cycles",
+    label: "Irregular cycles",
+    icon: <Activity />,
+    panel: {
+      title: "Irregular periods, PCOS, endometriosis or fibroids",
+      description:
+        "Start with a hormonal and gynecological assessment so the cycle is understood before any fertility treatment is discussed.",
+      bullets: [
+        "Irregular, infrequent or absent periods",
+        "Difficulty conceiving",
+        "Excess facial or body hair (hirsutism)",
+        "Weight gain, particularly around the abdomen",
+      ],
+      cta: { label: "PCOS and PCOD care", href: ROUTES.pcos },
+      image: {
+        src: pathwayIrregular,
+        alt: "Calendar with circled dates tracking irregular periods",
+      },
+    },
   },
   {
-    title: "Not ready for a family yet, but want to protect the option",
-    copy: "Start with ovarian reserve testing, then decide about egg freezing with real numbers rather than guesswork.",
-    to: ROUTES.eggFreezing,
-    image: pathwayEggFreezing,
-    alt: "Egg preserved inside a block of ice, representing egg freezing",
+    id: "preserve",
+    label: "Fertility preservation",
+    icon: <Snowflake />,
+    panel: {
+      title: "Not ready for a family yet, but want to protect the option",
+      description:
+        "Start with ovarian reserve testing, then decide about egg freezing with real numbers rather than guesswork.",
+      bullets: [
+        "Preserve fertility before age-related decline",
+        "Medical reasons such as cancer treatment or surgery",
+        "Personal or career planning",
+        "Eggs can be frozen for future treatment cycles",
+      ],
+      cta: { label: "Egg freezing", href: ROUTES.eggFreezing },
+      image: {
+        src: pathwayEggFreezing,
+        alt: "Egg preserved inside a block of ice, representing egg freezing",
+      },
+    },
   },
   {
-    title: "A failed IVF cycle or repeated miscarriage elsewhere",
-    copy: "Bring your records for a second opinion and a full cycle review. We tell you what we would change and why.",
-    to: ROUTES.ivf,
-    image: pathwayFailedIvf,
-    alt: "Woman standing between empty cots after a failed IVF cycle",
+    id: "second-opinion",
+    label: "Second opinion",
+    icon: <Microscope />,
+    panel: {
+      title: "A failed IVF cycle or repeated miscarriage elsewhere",
+      description:
+        "Bring your records for a second opinion and a full cycle review. We tell you what we would change and why.",
+      bullets: [
+        "Blocked or damaged fallopian tubes",
+        "Ovulation disorders such as PCOS and irregular periods",
+        "Low sperm count or poor sperm quality",
+        "Unexplained infertility, where no medical reason is found",
+      ],
+      cta: { label: "IVF treatment", href: ROUTES.ivf },
+      image: {
+        src: pathwayFailedIvf,
+        alt: "Woman standing between empty cots after a failed IVF cycle",
+      },
+    },
   },
 ];
+
+/* The "What we do" band is hidden for now. Typed as boolean rather than left as a literal
+   so TypeScript does not narrow it to `false` and mark the whole block unreachable — flip
+   this to true to bring the section back exactly as it was. */
+const SHOW_WHAT_WE_DO: boolean = false;
 
 const SERVICES = [
   {
@@ -276,8 +342,6 @@ export const Route = createFileRoute("/")({
 });
 
 function Home() {
-  const pathwayAutoplay = useCarouselAutoplay({ delay: 4500 });
-
   return (
     <>
       <HeroVideo />
@@ -288,7 +352,7 @@ function Home() {
       {/* Experience — sits directly under the doctor section: these are her numbers, so
           they belong with her. No heading: each figure carries its own label, punched
           through the middle of the numeral. */}
-      <section aria-label="Experience and clinical volume" className="bg-clay-25 py-16 lg:py-20">
+      <section aria-label="Experience and clinical volume" className="bg-pink-25 py-16 lg:py-20">
         <div className="container-page">
           <StatStrip />
         </div>
@@ -306,119 +370,56 @@ function Home() {
       />
 
       {/* Who we help */}
+      {/* No background override: the component already defaults --tfs-section-bg to
+          pink-25, the same greyish tint the stat strip and patient reviews use. */}
+      <TabbedFeatureSection
+        sectionTitle={
+          <>
+            <span className="block font-semibold">Four ways people arrive here,</span>
+            <span className="block font-normal text-pink-700 italic">
+              four different starting points
+            </span>
+          </>
+        }
+        tabs={SEGMENTS}
+      />
 
-      <section className="section-y">
-        <div className="container-page">
-          {/* Split heading, reference style */}
-          <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr] lg:items-end lg:gap-12">
-            <div>
-              <p className="text-[0.75rem] font-medium uppercase tracking-[0.18em] text-teal-600">
-                Who we help
-              </p>
-              <h2 className="mt-3 font-display text-[1.75rem] leading-[1.1] text-teal-900 sm:text-[2.25rem] lg:text-[2.75rem]">
-                <span className="block font-semibold">Four ways people arrive here,</span>
-                <span className="block italic font-normal text-teal-700">
-                  four different starting points
-                </span>
-              </h2>
+      {/* Continues the tabbed section's background — this link belongs to it, and a white
+          strip here would read as a separate band. */}
+      <div className="bg-pink-25 pb-[clamp(3rem,7vw,6.5rem)]">
+        <div className="container-page flex justify-center">
+          <Link
+            to={ROUTES.whoWeHelp}
+            className="inline-flex min-h-11 items-center gap-2 rounded-full border border-line bg-white px-5 py-2.5 font-medium text-pink-700 transition-colors hover:bg-pink-50"
+          >
+            See all patient pathways <ArrowRight className="size-4 rtl:rotate-180" />
+          </Link>
+        </div>
+      </div>
+
+      {/* What we do — hidden, see SHOW_WHAT_WE_DO */}
+      {SHOW_WHAT_WE_DO && (
+        <section className="bg-pink-25 section-y">
+          <div className="container-page">
+            <SectionHeading
+              eyebrow="What we do"
+              title="Fertility, hormones, surgery and pregnancy in one practice"
+            />
+            <div className="mt-10">
+              <ServiceCards items={SERVICES} />
             </div>
           </div>
-
-          {/* Infographic pathway cards — a carousel rather than a 4-up grid, which
-              squeezed each card to ~216px once the number badge took its 44px. */}
-          <Carousel
-            opts={{ align: "start", loop: true }}
-            plugins={pathwayAutoplay.plugins}
-            setApi={pathwayAutoplay.setApi}
-            {...pathwayAutoplay.pauseProps}
-            className="mt-12 lg:mt-16"
-            aria-label="Patient pathways"
-          >
-            <CarouselContent className="-ml-5">
-              {SEGMENTS.map((segment, i) => (
-                <CarouselItem
-                  key={segment.title}
-                  aria-roledescription="slide"
-                  aria-label={`${i + 1} of ${SEGMENTS.length}: ${segment.title}`}
-                  className="basis-[88%] pl-5 sm:basis-1/2 lg:basis-1/3"
-                >
-                  <div className="relative flex h-full pl-11">
-                    {/* Number badge */}
-                    <span
-                      aria-hidden
-                      className="absolute top-1/2 left-0 z-0 grid h-24 w-24 -translate-y-1/2 place-items-center rounded-full bg-clay-50 pr-11 font-display text-[1.375rem] font-semibold text-teal-900"
-                    >
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-
-                    {/* Blush frame + white card */}
-                    <div className="relative z-10 w-full rounded-[1.75rem] bg-clay-50 p-2 shadow-[0_18px_40px_-28px_rgba(1,49,55,0.45)]">
-                      <div className="flex h-full flex-col overflow-hidden rounded-[1.375rem] bg-white">
-                        <img
-                          src={segment.image}
-                          alt={segment.alt}
-                          width={640}
-                          height={420}
-                          loading="lazy"
-                          className="h-40 w-full object-cover sm:h-48"
-                        />
-                        <div className="flex flex-1 flex-col p-5">
-                          <h3 className="text-[1.0625rem] leading-snug font-medium text-teal-900">
-                            {segment.title}
-                          </h3>
-                          <p className="mt-2 text-[0.9375rem] leading-relaxed text-ink-muted">
-                            {segment.copy}
-                          </p>
-                          <Link
-                            to={segment.to}
-                            className="mt-4 inline-flex items-center gap-1 text-[0.875rem] font-medium text-teal-700 hover:underline"
-                          >
-                            Read more <ArrowRight className="size-4" />
-                          </Link>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-
-            <CarouselPrevious className="absolute top-1/2 left-2 z-20 size-11 -translate-y-1/2 border-line bg-white text-teal-900 shadow-rail hover:border-teal-600 hover:bg-white disabled:opacity-35 lg:left-3 xl:-left-12 2xl:-left-14" />
-            <CarouselNext className="absolute top-1/2 right-2 z-20 size-11 -translate-y-1/2 border-line bg-white text-teal-900 shadow-rail hover:border-teal-600 hover:bg-white disabled:opacity-35 lg:right-3 xl:-right-12 2xl:-right-14" />
-          </Carousel>
-
-          <div className="mt-12 flex justify-center">
-            <Link
-              to={ROUTES.whoWeHelp}
-              className="inline-flex items-center gap-2 rounded-full border border-line px-5 py-2.5 font-medium text-teal-700 transition-colors hover:bg-clay-50"
-            >
-              See all patient pathways <ArrowRight className="size-4" />
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* What we do */}
-      <section className="bg-clay-25 section-y">
-        <div className="container-page">
-          <SectionHeading
-            eyebrow="What we do"
-            title="Fertility, hormones, surgery and pregnancy in one practice"
-          />
-          <div className="mt-10">
-            <ServiceCards items={SERVICES} />
-          </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* How we work */}
       <section className="section-y">
         <div className="container-page">
           <div className="mx-auto max-w-[52rem] text-center">
             <p className="eyebrow">How we work</p>
-            <h2 className="mt-3 font-display text-[1.75rem] leading-[1.1] text-teal-900 sm:text-[2.25rem] lg:text-[2.75rem]">
+            <h2 className="mt-3 text-[1.75rem] leading-[1.1] text-plum-900 sm:text-[2.25rem] lg:text-[2.75rem]">
               <span className="block font-semibold">A sequence you can see</span>
-              <span className="block font-normal italic text-teal-700">
+              <span className="block font-normal italic text-pink-700">
                 from the first consultation
               </span>
             </h2>

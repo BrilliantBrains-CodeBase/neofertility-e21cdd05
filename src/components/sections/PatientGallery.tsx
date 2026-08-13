@@ -57,7 +57,7 @@ export function PatientGallery() {
           <li
             key={image.src}
             {...(i === VISIBLE_COUNT ? { ref: firstRevealed, tabIndex: -1 } : {})}
-            className="overflow-hidden rounded-2xl border border-line focus-visible:ring-2 focus-visible:ring-teal-700 focus-visible:ring-offset-2 focus-visible:outline-none"
+            className="overflow-hidden rounded-2xl border border-line focus-visible:ring-2 focus-visible:ring-pink-700 focus-visible:ring-offset-2 focus-visible:outline-none"
           >
             {/* 40ms per tile: enough to read as a sequence, short enough that the
                 last tile is not still arriving after the eye has moved on. */}
@@ -81,7 +81,7 @@ export function PatientGallery() {
           onClick={toggle}
           aria-expanded={expanded}
           aria-controls={gridId}
-          className="inline-flex min-h-11 items-center gap-2 rounded-full border border-line px-5 py-2.5 font-medium text-teal-700 transition-colors hover:bg-clay-50 focus-visible:ring-2 focus-visible:ring-teal-700 focus-visible:ring-offset-2 focus-visible:outline-none"
+          className="inline-flex min-h-11 items-center gap-2 rounded-full border border-line px-5 py-2.5 font-medium text-pink-700 transition-colors hover:bg-pink-50 focus-visible:ring-2 focus-visible:ring-pink-700 focus-visible:ring-offset-2 focus-visible:outline-none"
         >
           {expanded ? "Show less" : `Show ${hiddenCount} more`}
         </button>

@@ -43,7 +43,9 @@ type Answers = {
   maleTested: string;
 };
 
-function recommend(a: Answers): { heading: string; copy: string; to: string; label: string } | null {
+function recommend(
+  a: Answers,
+): { heading: string; copy: string; to: string; label: string } | null {
   if (!a.age || !a.months || !a.cycle || !a.diagnosis || !a.maleTested) return null;
 
   if (a.cycle === "irregular" || a.diagnosis === "pcos") {
@@ -112,15 +114,19 @@ function Page() {
         <div className="min-w-0 space-y-10">
           <Prose>
             <p>
-              This tool asks about age, how long you have been trying, your cycle, any known diagnoses and whether
-              the male partner has been tested. It gives a plain recommendation of where to start, not a medical
-              verdict. Only a consultation and tests can establish a diagnosis.
+              This tool asks about age, how long you have been trying, your cycle, any known
+              diagnoses and whether the male partner has been tested. It gives a plain
+              recommendation of where to start, not a medical verdict. Only a consultation and tests
+              can establish a diagnosis.
             </p>
           </Prose>
 
-          <form className="space-y-8 rounded-xl border border-line bg-white p-6" aria-label="Fertility self-assessment">
+          <form
+            className="space-y-8 rounded-xl border border-line bg-white p-6"
+            aria-label="Fertility self-assessment"
+          >
             <fieldset>
-              <legend className="mb-3 font-medium text-teal-900">Your age</legend>
+              <legend className="mb-3 font-medium text-plum-900">Your age</legend>
               <RadioGroup value={answers.age} onValueChange={(v) => set("age", v)}>
                 {[
                   { v: "under35", l: "Under 35" },
@@ -135,7 +141,9 @@ function Page() {
             </fieldset>
 
             <fieldset>
-              <legend className="mb-3 font-medium text-teal-900">How long have you been trying to conceive?</legend>
+              <legend className="mb-3 font-medium text-plum-900">
+                How long have you been trying to conceive?
+              </legend>
               <RadioGroup value={answers.months} onValueChange={(v) => set("months", v)}>
                 {[
                   { v: "under6", l: "Under 6 months" },
@@ -151,7 +159,9 @@ function Page() {
             </fieldset>
 
             <fieldset>
-              <legend className="mb-3 font-medium text-teal-900">Is your menstrual cycle regular?</legend>
+              <legend className="mb-3 font-medium text-plum-900">
+                Is your menstrual cycle regular?
+              </legend>
               <RadioGroup value={answers.cycle} onValueChange={(v) => set("cycle", v)}>
                 {[
                   { v: "regular", l: "Regular, roughly the same length each month" },
@@ -166,7 +176,7 @@ function Page() {
             </fieldset>
 
             <fieldset>
-              <legend className="mb-3 font-medium text-teal-900">Any known diagnoses?</legend>
+              <legend className="mb-3 font-medium text-plum-900">Any known diagnoses?</legend>
               <RadioGroup value={answers.diagnosis} onValueChange={(v) => set("diagnosis", v)}>
                 {[
                   { v: "none", l: "None that I know of" },
@@ -182,7 +192,9 @@ function Page() {
             </fieldset>
 
             <fieldset>
-              <legend className="mb-3 font-medium text-teal-900">Has the male partner had a semen analysis?</legend>
+              <legend className="mb-3 font-medium text-plum-900">
+                Has the male partner had a semen analysis?
+              </legend>
               <RadioGroup value={answers.maleTested} onValueChange={(v) => set("maleTested", v)}>
                 {[
                   { v: "yes", l: "Yes" },
@@ -199,12 +211,12 @@ function Page() {
 
           <div role="status" aria-live="polite">
             {result && (
-              <div className="rounded-xl border-l-4 border-teal-600 bg-teal-50 p-6">
-                <h2 className="text-[1.25rem] text-teal-900">{result.heading}</h2>
+              <div className="rounded-xl border-l-4 border-pink-600 bg-pink-50 p-6">
+                <h2 className="text-[1.25rem] text-plum-900">{result.heading}</h2>
                 <p className="mt-2 text-ink-muted">{result.copy}</p>
                 <Link
                   to={result.to}
-                  className="mt-4 inline-flex items-center gap-1 font-medium text-teal-700 hover:underline"
+                  className="mt-4 inline-flex items-center gap-1 font-medium text-pink-700 hover:underline"
                 >
                   Read about {result.label}
                 </Link>
@@ -212,19 +224,21 @@ function Page() {
             )}
           </div>
 
-          <div className="rounded-xl border-l-4 border-alert bg-clay-50 p-5">
+          <div className="rounded-xl border-l-4 border-alert bg-pink-50 p-5">
             <p className="text-[0.9375rem] text-ink">
-              This tool gives a general starting point only. It is not a diagnosis and does not replace a
-              consultation. Only tests interpreted by a doctor can establish a diagnosis or a treatment plan.
+              This tool gives a general starting point only. It is not a diagnosis and does not
+              replace a consultation. Only tests interpreted by a doctor can establish a diagnosis
+              or a treatment plan.
             </p>
           </div>
         </div>
 
         <aside className="hidden lg:block">
           <div className="sticky top-24 w-[320px] rounded-xl border border-line bg-white p-5 shadow-rail">
-            <p className="font-medium text-teal-900">Prefer to talk it through?</p>
+            <p className="font-medium text-plum-900">Prefer to talk it through?</p>
             <p className="mt-2 text-[0.9375rem] text-ink-muted">
-              Book a fertility assessment with {CLINIC.doctor} and get a plan built on your test results.
+              Book a fertility assessment with {CLINIC.doctor} and get a plan built on your test
+              results.
             </p>
             <div className="mt-4 space-y-2">
               <AppointmentSheet sourcePage={SOURCE_PAGE}>
@@ -233,7 +247,10 @@ function Page() {
                 </Button>
               </AppointmentSheet>
               <Button variant="outlineTeal" className="w-full" asChild>
-                <a href={CLINIC.phoneHref} onClick={() => track("call_click", { source_page: SOURCE_PAGE })}>
+                <a
+                  href={CLINIC.phoneHref}
+                  onClick={() => track("call_click", { source_page: SOURCE_PAGE })}
+                >
                   <Phone /> Call {CLINIC.phoneDisplay}
                 </a>
               </Button>
@@ -242,22 +259,25 @@ function Page() {
         </aside>
       </div>
 
-      <section className="section-y border-t border-line bg-clay-25">
+      <section className="section-y border-t border-line bg-pink-25">
         <div className="container-page">
-          <SectionHeading eyebrow="What a real assessment covers" title="Both partners, tested from the start" />
+          <SectionHeading
+            eyebrow="What a real assessment covers"
+            title="Both partners, tested from the start"
+          />
           <div className="mt-8 grid gap-6 sm:grid-cols-2">
             <div className="rounded-xl border border-line bg-white p-6">
               <h3>For you</h3>
               <p className="mt-2 text-ink-muted">
-                Hormone profile including AMH, FSH, LH, thyroid and prolactin. Pelvic ultrasound with antral follicle
-                count. Tubal patency testing. Endometrial assessment.
+                Hormone profile including AMH, FSH, LH, thyroid and prolactin. Pelvic ultrasound
+                with antral follicle count. Tubal patency testing. Endometrial assessment.
               </p>
             </div>
             <div className="rounded-xl border border-line bg-white p-6">
               <h3>For him</h3>
               <p className="mt-2 text-ink-muted">
-                Semen analysis covering count, motility and morphology, arranged in the first week rather than three
-                months later.
+                Semen analysis covering count, motility and morphology, arranged in the first week
+                rather than three months later.
               </p>
             </div>
           </div>

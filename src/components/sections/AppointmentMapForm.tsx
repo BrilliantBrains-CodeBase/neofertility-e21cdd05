@@ -8,10 +8,8 @@ import {
   ExternalLink,
   Loader2,
   Mail,
-  MapPin,
   PenLine,
   Phone,
-  RotateCcw,
   User,
 } from "lucide-react";
 import { Calendar } from "@/components/ui/calendar";
@@ -20,6 +18,7 @@ import { CLINIC, track } from "@/lib/clinic";
 import { ROUTES } from "@/data/navigation";
 import { Reveal } from "@/components/motion/Reveal";
 import { cn } from "@/lib/utils";
+import backdrop from "@/assets/appointment-mother-baby.webp";
 
 /* ─────────────────────────── CONFIG ───────────────────────────
  * ENDPOINT — the deployed Google Apps Script Web App URL.
@@ -32,18 +31,8 @@ import { cn } from "@/lib/utils";
  *   request" and skips preflight. In doPost(e), read e.postData.contents
  *   and JSON.parse it. Do not switch this to application/json.
  *
- * MAP_SRC — from CLINIC so the clinic location has one source of truth.
- *   Alternative if this ever misbehaves in an iframe:
- *   https://www.google.com/maps?cid=1851221529633718164&hl=en-US&output=embed
- *
- * PIN_NUDGE_X/Y — small px knobs; Google draws the place card slightly
- *   off the geometric centre. Default 0.
- * --form-cover is set per breakpoint on the map layer below (0 / 58% / 50%).
  * ─────────────────────────────────────────────────────────────── */
 const ENDPOINT = "";
-const MAP_SRC = CLINIC.mapEmbed;
-const PIN_NUDGE_X = "0px";
-const PIN_NUDGE_Y = "0px";
 
 const TREATMENTS = [
   "IVF",
@@ -77,33 +66,30 @@ const TIMES = [
 type Errors = Partial<Record<"name" | "mobile" | "email" | "treatment" | "consent", string>>;
 
 const inputBase =
-  "peer min-h-[60px] w-full rounded-full border-2 border-ink-muted/30 bg-white ps-5 pe-12 py-[15px] text-start text-[15px] text-ink duration-300 placeholder:text-transparent focus:border-teal-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-700/40";
+  "peer min-h-[60px] w-full rounded-full border-2 border-ink-muted/30 bg-white ps-5 pe-12 py-[15px] text-start text-[15px] text-ink duration-300 placeholder:text-transparent focus:border-pink-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-pink-700/40";
 
 /* Floated label clears the pill entirely instead of sitting on the border. A notch
    straddling a 2px border on a fully-rounded pill leaves the text visibly cut in
    half, because no single background colour can mask both the white inside and the
    section colour outside. The wrapper carries pt-6 to make room above the field. */
 const labelBase =
-  "pointer-events-none absolute start-5 top-[15px] z-10 origin-[0] -translate-y-10 scale-75 bg-transparent px-2 text-[15px] font-medium text-teal-700 duration-300 peer-placeholder-shown:translate-y-1.5 peer-placeholder-shown:scale-100 peer-placeholder-shown:text-ink-muted/60 peer-focus:-translate-y-10 peer-focus:scale-75 peer-focus:text-teal-700";
+  "pointer-events-none absolute start-5 top-[15px] z-10 origin-[0] -translate-y-10 scale-75 bg-transparent px-2 text-[15px] font-medium text-pink-700 duration-300 peer-placeholder-shown:translate-y-1.5 peer-placeholder-shown:scale-100 peer-placeholder-shown:text-ink-muted/60 peer-focus:-translate-y-10 peer-focus:scale-75 peer-focus:text-pink-700";
 
 /* Same resting place as a floated `labelBase`, for controls with no peer input */
 const labelFloated =
-  "pointer-events-none absolute start-5 top-[15px] z-10 origin-[0] -translate-y-10 scale-75 px-2 text-[15px] font-medium text-teal-700";
+  "pointer-events-none absolute start-5 top-[15px] z-10 origin-[0] -translate-y-10 scale-75 px-2 text-[15px] font-medium text-pink-700";
 
 const fieldWrap = "mb-2.5 w-full pt-6 sm:w-[calc(50%-0.5rem)] xl:w-[calc(33.333%-0.75rem)]";
 
-const iconBase = "pointer-events-none absolute top-[13px] end-[5px] px-5 py-[5px] text-teal-600";
+const iconBase = "pointer-events-none absolute top-[13px] end-[5px] px-5 py-[5px] text-pink-600";
 
 export function AppointmentMapForm({ sourcePage }: { sourcePage: string }) {
   const sectionRef = useRef<HTMLElement>(null);
-  const iframeRef = useRef<HTMLIFrameElement>(null);
-  const recenterTimer = useRef<number | undefined>(undefined);
   const renderedAt = useRef(Date.now());
   const ids = useId();
 
   const [inView, setInView] = useState(false);
   const [reduced, setReduced] = useState(false);
-  const [mapLive, setMapLive] = useState(false);
 
   const [name, setName] = useState("");
   const [mobile, setMobile] = useState("");
@@ -127,8 +113,7 @@ export function AppointmentMapForm({ sourcePage }: { sourcePage: string }) {
     return () => mq.removeEventListener("change", apply);
   }, []);
 
-  /* The iframe src is only assigned once the section is reached, so no request
-     goes to Google until then — lazy and privacy-friendlier. */
+  /* Gates the backdrop's entrance fade so it plays when the section is reached. */
   useEffect(() => {
     const el = sectionRef.current;
     if (!el) return;
@@ -144,16 +129,6 @@ export function AppointmentMapForm({ sourcePage }: { sourcePage: string }) {
     observer.observe(el);
     return () => observer.disconnect();
   }, []);
-
-  useEffect(() => () => window.clearTimeout(recenterTimer.current), []);
-
-  /* Reassigning src restores Google's default framing, which puts the marker back
-     in the centre of the visible strip. */
-  const recenter = () => {
-    const frame = iframeRef.current;
-    if (frame) frame.src = MAP_SRC;
-    setMapLive(false);
-  };
 
   /* No weekday: "Thu 20 Aug 2026, 15:30" wraps to two lines inside the pill at the
      narrowest column width, and the weekday adds nothing the date does not. */
@@ -247,106 +222,57 @@ export function AppointmentMapForm({ sourcePage }: { sourcePage: string }) {
     <section
       ref={sectionRef}
       aria-labelledby={`${ids}-heading`}
-      className="relative z-[1] overflow-hidden bg-clay-25"
+      className="relative z-[1] overflow-hidden bg-pink-25"
     >
-      {/* ── Map layer ───────────────────────────────────────────────
-          The iframe's leading edge is pinned at 0 and it grows only to the
-          trailing side by --form-cover, so Google's always-centred marker lands
-          in the middle of the strip NOT covered by the form. Pure CSS, so it
-          survives any resize without JS geometry. */}
+      {/* ── Backdrop image ─────────────────────────────────────────
+          Decorative, so aria-hidden with an empty alt: the form beside it carries all
+          the meaning. object-right keeps the mother and baby in the strip the form does
+          not cover — they sit in the right half of the source frame, and the form takes
+          the leading ~65%. */}
       <div
-        aria-hidden={!inView}
-        onMouseLeave={() => {
-          if (!mapLive) return;
-          window.clearTimeout(recenterTimer.current);
-          recenterTimer.current = window.setTimeout(recenter, 4000);
-        }}
-        onMouseEnter={() => window.clearTimeout(recenterTimer.current)}
-        style={
-          {
-            "--pin-nudge-x": PIN_NUDGE_X,
-            "--pin-nudge-y": PIN_NUDGE_Y,
-          } as React.CSSProperties
-        }
+        aria-hidden
         className={cn(
-          "relative h-[320px] w-full overflow-hidden rounded-[15px] [--form-cover:0%] sm:h-[380px]",
-          /* 65%, not the old 58%/50% pair: the form is lg:w-2/3 of a container that is
-             now a constant 90% of the section, so its trailing edge sits at
-             5% + (90% × 2/3) = 65% at every width. The marker lands at (100+F)/2, so
-             F = 65% puts it at 82.5% — the middle of the uncovered strip. The old split
-             values were tuned for a container whose share of the viewport changed with
-             screen size. */
-          "lg:absolute lg:inset-0 lg:z-0 lg:h-auto lg:rounded-none lg:[--form-cover:65%]",
-          // muted by default so the form stays readable; comes alive on interaction
-          "[filter:grayscale(1)_contrast(.95)_brightness(1.05)] opacity-90 transition-[filter,opacity,transform] duration-700 ease-out",
-          "hover:opacity-100 hover:[filter:grayscale(0)] focus-within:opacity-100 focus-within:[filter:grayscale(0)]",
-          // entrance fade
+          "relative h-[320px] w-full overflow-hidden rounded-[15px] sm:h-[380px]",
+          "lg:absolute lg:inset-0 lg:z-0 lg:h-auto lg:rounded-none",
+          "transition-[opacity,transform] duration-700 ease-out",
           !reduced && "will-change-transform",
           !reduced && !inView && "scale-[1.04] opacity-0",
-          !reduced && inView && "scale-100",
-          // edge dissolve — map melts into the surface behind the form
-          "lg:[-webkit-mask-image:linear-gradient(to_right,transparent_0%,rgba(0,0,0,.15)_18%,rgba(0,0,0,.6)_34%,#000_52%)]",
-          "lg:[mask-image:linear-gradient(to_right,transparent_0%,rgba(0,0,0,.15)_18%,rgba(0,0,0,.6)_34%,#000_52%)]",
+          !reduced && inView && "scale-100 opacity-100",
+          /* Edge dissolve so the photo melts into the surface behind the form rather
+             than ending on a hard vertical line. It stays fully transparent to 60% —
+             past the form's trailing edge at 65% — because body copy over a photograph
+             has no guaranteed contrast: the consent row landed on the mother's hair at
+             2.64:1 when the ramp finished at 52%. The old map could sit under the form
+             because it was greyed and flattened; a photo cannot. */
+          "lg:[-webkit-mask-image:linear-gradient(to_right,transparent_0%,transparent_60%,rgba(0,0,0,.35)_72%,#000_88%)]",
+          "lg:[mask-image:linear-gradient(to_right,transparent_0%,transparent_60%,rgba(0,0,0,.35)_72%,#000_88%)]",
         )}
       >
-        {/* Reserves the box so nothing shifts while the iframe loads */}
-        <div aria-hidden className="absolute inset-0 bg-teal-50" />
-
-        {inView && (
-          <iframe
-            ref={iframeRef}
-            title="Neo Fertility Clinic location on Google Maps"
-            src={MAP_SRC}
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-            allowFullScreen
-            className={cn(
-              "absolute top-1/2 border-0 ltr:left-0 rtl:right-0",
-              "h-[calc(100%+var(--v-bleed,0px))] w-[calc(100%+var(--form-cover))]",
-              "translate-y-[-50%] translate-x-[var(--pin-nudge-x)]",
-              mapLive ? "pointer-events-auto" : "pointer-events-none",
-            )}
-          />
-        )}
-
-        {/* Scroll guard: the map cannot swallow page scroll until asked. */}
-        {!mapLive && (
-          <button
-            type="button"
-            onClick={() => setMapLive(true)}
-            className="absolute bottom-4 z-10 inline-flex min-h-11 items-center gap-2 rounded-full border border-line bg-white/90 px-4 text-[0.875rem] font-medium text-teal-900 shadow-rail backdrop-blur ltr:right-4 rtl:left-4"
-          >
-            <MapPin aria-hidden className="size-4" />
-            Explore map
-          </button>
-        )}
-        {mapLive && (
-          <button
-            type="button"
-            onClick={recenter}
-            aria-label="Recenter map"
-            className="absolute bottom-4 z-10 grid size-11 place-items-center rounded-full border border-line bg-white/90 text-teal-900 shadow-rail backdrop-blur ltr:right-4 rtl:left-4"
-          >
-            <RotateCcw aria-hidden className="size-4" />
-          </button>
-        )}
+        <img
+          src={backdrop}
+          alt=""
+          width={1366}
+          height={768}
+          loading="lazy"
+          className="size-full object-cover object-right"
+        />
       </div>
 
       {/* Fallback for browsers without mask-image support */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 z-0 hidden supports-[not_(mask-image:linear-gradient(#000,#000))]:lg:block ltr:bg-gradient-to-r rtl:bg-gradient-to-l from-sand via-sand/70 to-transparent"
+        className="pointer-events-none absolute inset-0 z-0 hidden supports-[not_(mask-image:linear-gradient(#000,#000))]:lg:block ltr:bg-gradient-to-r rtl:bg-gradient-to-l from-paper via-paper/70 to-transparent"
       />
 
       <div className="relative z-10 container-page">
         <div className="w-full py-[50px] pb-10 lg:me-[110px] lg:w-2/3 2xl:pt-[115px] 2xl:pb-[130px]">
           <Reveal className="mb-10">
-            <p className="flex items-center gap-2 text-[1.125rem] font-semibold tracking-[0.08em] text-teal-600 uppercase">
+            <p className="flex items-center gap-2 text-[1.125rem] font-semibold tracking-[0.08em] text-pink-600 uppercase">
               <CalendarDays aria-hidden className="size-5" />
               Book a consultation
             </p>
             <h2 id={`${ids}-heading`} className="mt-3">
-              Make An <span className="text-clay-600">Appointment</span>
+              Make An <span className="text-pink-600">Appointment</span>
             </h2>
           </Reveal>
 
@@ -474,7 +400,7 @@ export function AppointmentMapForm({ sourcePage }: { sourcePage: string }) {
                   <div className="mt-3 border-t border-line pt-3">
                     <label
                       htmlFor={`${ids}-time`}
-                      className="block text-[0.8125rem] font-medium text-teal-900"
+                      className="block text-[0.8125rem] font-medium text-plum-900"
                     >
                       Preferred time
                     </label>
@@ -519,12 +445,12 @@ export function AppointmentMapForm({ sourcePage }: { sourcePage: string }) {
                   checked={consent}
                   onChange={(e) => setConsent(e.target.checked)}
                   required
-                  className="mt-1 size-4 shrink-0 accent-clay-600"
+                  className="mt-1 size-4 shrink-0 accent-pink-600"
                   {...fieldProps("consent")}
                 />
                 <span>
                   I agree to be contacted by phone/WhatsApp about my enquiry and accept the{" "}
-                  <Link to={ROUTES.privacy} className="text-teal-700 underline underline-offset-2">
+                  <Link to={ROUTES.privacy} className="text-pink-700 underline underline-offset-2">
                     Privacy Policy
                   </Link>
                   .
@@ -537,7 +463,7 @@ export function AppointmentMapForm({ sourcePage }: { sourcePage: string }) {
               <button
                 type="submit"
                 disabled={pending || !consent}
-                className="group inline-flex min-h-[60px] items-center gap-2 rounded-full bg-clay-600 px-8 text-[0.9375rem] font-medium text-sand transition-colors hover:bg-clay-700 focus-visible:ring-2 focus-visible:ring-teal-700 focus-visible:ring-offset-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50"
+                className="group inline-flex min-h-[60px] items-center gap-2 rounded-full bg-pink-600 px-8 text-[0.9375rem] font-medium text-paper transition-colors hover:bg-pink-700 focus-visible:ring-2 focus-visible:ring-pink-700 focus-visible:ring-offset-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50"
               >
                 {pending ? (
                   <>
@@ -557,7 +483,7 @@ export function AppointmentMapForm({ sourcePage }: { sourcePage: string }) {
 
               <p aria-live="polite" className="mt-4 text-[0.9375rem]">
                 {done && (
-                  <span className="font-medium text-teal-700">
+                  <span className="font-medium text-pink-700">
                     Thanks — we&rsquo;ll call you back shortly.
                   </span>
                 )}
@@ -570,16 +496,16 @@ export function AppointmentMapForm({ sourcePage }: { sourcePage: string }) {
             </div>
           </form>
 
-          {/* Keyboard-reachable route to the map data, and the fallback when the
-              iframe is blocked by an ad blocker or consent gate. */}
+          {/* The section no longer embeds a map, so this card is now the only place it
+              gives the clinic's location — and the only route to directions. */}
           <div className="mt-8 inline-flex max-w-[34ch] flex-col gap-1 rounded-2xl border border-line bg-white/90 p-4 backdrop-blur lg:hidden">
-            <p className="font-medium text-teal-900">Neo Fertility Clinic</p>
+            <p className="font-medium text-plum-900">Neo Fertility Clinic</p>
             <p className="text-[0.875rem] text-ink-muted">{CLINIC.addressLine}</p>
             <a
               href={CLINIC.directionsUrl}
               target="_blank"
               rel="noopener"
-              className="mt-1 inline-flex items-center gap-1.5 text-[0.875rem] font-medium text-teal-700 hover:underline"
+              className="mt-1 inline-flex items-center gap-1.5 text-[0.875rem] font-medium text-pink-700 hover:underline"
             >
               Open in Google Maps
               <ExternalLink aria-hidden className="size-3.5" />
@@ -588,16 +514,16 @@ export function AppointmentMapForm({ sourcePage }: { sourcePage: string }) {
         </div>
       </div>
 
-      {/* Same card, positioned over the map on the trailing side from lg up */}
+      {/* Same card, over the backdrop image on the trailing side from lg up */}
       <div className="pointer-events-none absolute inset-y-0 z-10 hidden items-end lg:flex ltr:right-8 rtl:left-8">
         <div className="pointer-events-auto mb-10 flex max-w-[30ch] flex-col gap-1 rounded-2xl border border-line bg-white/90 p-4 shadow-rail backdrop-blur">
-          <p className="font-medium text-teal-900">Neo Fertility Clinic</p>
+          <p className="font-medium text-plum-900">Neo Fertility Clinic</p>
           <p className="text-[0.875rem] text-ink-muted">{CLINIC.addressLine}</p>
           <a
             href={CLINIC.directionsUrl}
             target="_blank"
             rel="noopener"
-            className="mt-1 inline-flex items-center gap-1.5 text-[0.875rem] font-medium text-teal-700 hover:underline"
+            className="mt-1 inline-flex items-center gap-1.5 text-[0.875rem] font-medium text-pink-700 hover:underline"
           >
             Open in Google Maps
             <ExternalLink aria-hidden className="size-3.5" />

@@ -129,7 +129,7 @@ function FaqPage() {
         trail={[{ name: "Home", to: ROUTES.home }, { name: "FAQ" }]}
       />
 
-      <section className="bg-clay-25 section-y">
+      <section className="bg-pink-25 section-y">
         <div className="container-page space-y-14">
           {CATEGORIES.map((category) => (
             <div key={category.heading}>
@@ -141,7 +141,7 @@ function FaqPage() {
                     value={`${category.heading}-${index}`}
                     className="border-line"
                   >
-                    <AccordionTrigger className="text-left text-[1.0625rem] font-medium text-teal-900 hover:no-underline">
+                    <AccordionTrigger className="text-left text-[1.0625rem] font-medium text-plum-900 hover:no-underline">
                       {item.q}
                     </AccordionTrigger>
                     <AccordionContent className="text-[1rem] text-ink-muted">

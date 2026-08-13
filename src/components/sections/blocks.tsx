@@ -21,11 +21,11 @@ export function Breadcrumbs({ trail }: { trail: { name: string; to?: string }[] 
         {trail.map((item, index) => (
           <li key={item.name} className="flex items-center gap-1.5">
             {item.to ? (
-              <Link to={item.to} className="hover:text-teal-600 hover:underline">
+              <Link to={item.to} className="hover:text-pink-600 hover:underline">
                 {item.name}
               </Link>
             ) : (
-              <span className="text-teal-900">{item.name}</span>
+              <span className="text-plum-900">{item.name}</span>
             )}
             {index < trail.length - 1 && <ChevronRight className="size-3.5 opacity-60" />}
           </li>
@@ -49,7 +49,7 @@ export function PageHero({
   children?: ReactNode;
 }) {
   return (
-    <section className="border-b border-line bg-teal-50/60 pt-8 pb-12 lg:pt-10 lg:pb-16">
+    <section className="border-b border-line bg-pink-50/60 pt-8 pb-12 lg:pt-10 lg:pb-16">
       <div className="container-page">
         {trail && <Breadcrumbs trail={trail} />}
         <p className="eyebrow mt-6">{eyebrow}</p>
@@ -78,14 +78,14 @@ export function SectionHeading({
     <Reveal className={cn(centered && "text-center")}>
       {/* The eyebrow's default Dusty Turquoise is only 2.6:1 on the Midnight Teal
           bands, so the light variant lifts it to the pale brand tint. */}
-      {eyebrow && <p className={cn("eyebrow", light && "text-teal-300")}>{eyebrow}</p>}
-      <h2 className={cn("mt-2", light && "text-sand")}>{title}</h2>
+      {eyebrow && <p className={cn("eyebrow", light && "text-pink-300")}>{eyebrow}</p>}
+      <h2 className={cn("mt-2", light && "text-paper")}>{title}</h2>
       {copy && (
         <p
           className={cn(
             "mt-4 max-w-[62ch] text-ink-muted",
             centered && "mx-auto",
-            light && "text-sand/80",
+            light && "text-paper/80",
           )}
         >
           {copy}
@@ -178,17 +178,17 @@ export function StatStrip({ light = false }: { light?: boolean }) {
   /* Colour-agnostic: the three tokens are all that change between grounds. --stat-bg
      MUST match the section behind the strip, because the label's band is what punches
      the gap through the numeral — a mismatch shows up as a visible stripe. `light`
-     renders on bg-teal-900, the default on bg-clay-25. */
+     renders on bg-navy-900, the default on bg-pink-25. */
   const palette = light
     ? {
-        "--stat-bg": "var(--teal-900)",
-        "--stat-number": "var(--clay-500)",
-        "--stat-label": "var(--sand)",
+        "--stat-bg": "var(--navy-900)",
+        "--stat-number": "var(--pink-500)",
+        "--stat-label": "var(--paper)",
       }
     : {
-        "--stat-bg": "var(--clay-25)",
-        "--stat-number": "var(--clay-600)",
-        "--stat-label": "var(--teal-900)",
+        "--stat-bg": "var(--pink-25)",
+        "--stat-number": "var(--pink-600)",
+        "--stat-label": "var(--plum-900)",
       };
 
   return (
@@ -198,17 +198,20 @@ export function StatStrip({ light = false }: { light?: boolean }) {
       className="grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-3"
     >
       {CLINICAL_VOLUME.map((stat) => (
-        <div key={stat.label} className="relative flex items-center justify-center">
+        <div
+          key={stat.label}
+          className="relative flex items-center justify-center [--stat-size:clamp(6rem,10vw,9.375rem)]"
+        >
           {/* tabular-nums keeps the figure from jittering in width as it counts */}
-          {/* Montserrat, not the Cormorant display face. Cormorant sets numerals as
-              old-style figures — 3, 7 and 9 drop below the baseline while 6 and 8 rise —
-              so a figure like "6,789+" reads as ragged rather than as a number. The sans
-              face has lining figures, all sitting on the baseline at a uniform height.
-              The clamp is tuned to the widest figure in the narrowest cell — now "6.7k"
-              at four characters rather than the old seven-character "80,000+", which is
-              why the ceiling is so much higher than it used to be. The 3-column cell
-              bottoms out near 294px around 1024px wide. */}
-          <p className="font-sans text-[clamp(4rem,9vw,6.5rem)] leading-none font-bold tabular-nums text-[var(--stat-number)]">
+          {/* Poppins 700 — the one place a second family appears. Big numerals in a
+              different face read as deliberate rather than as a mismatch, and Poppins
+              has lining figures so every digit sits on the baseline at a uniform height.
+              The clamp is tuned to the widest figure ("6.7k") in the narrowest cell,
+              which bottoms out near 265px at the 2-column breakpoint. Sized to the
+              reference's 96px-to-150px range, measured against Poppins Bold rather than
+              carried over from Montserrat. --stat-size drives the label too, so the
+              strike keeps its proportion at every breakpoint. */}
+          <p className="font-stat text-[length:var(--stat-size)] leading-none font-bold tabular-nums text-[var(--stat-number)]">
             <CountUpFigure figure={stat.figure} active={inView} />
           </p>
 
@@ -218,7 +221,7 @@ export function StatStrip({ light = false }: { light?: boolean }) {
               buries it. A band wider than its figure is fine and expected — the short
               figures ("18") simply get a longer strike than the long ones. */}
           <p className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center whitespace-nowrap">
-            <span className="bg-[var(--stat-bg)] px-2 py-0.5 text-[0.625rem] font-semibold tracking-[0.12em] uppercase text-[var(--stat-label)] sm:text-[0.6875rem]">
+            <span className="bg-[var(--stat-bg)] px-2 py-0.5 text-[length:calc(var(--stat-size)*0.12)] font-semibold tracking-[0.1em] uppercase text-[var(--stat-label)]">
               {stat.label}
             </span>
           </p>
@@ -244,9 +247,9 @@ export function CheckList({
       {items.map((item) => (
         <li key={item} className="flex gap-3">
           <Check
-            className={cn("mt-1 size-4 shrink-0", light ? "text-teal-300" : "text-teal-600")}
+            className={cn("mt-1 size-4 shrink-0", light ? "text-pink-300" : "text-pink-600")}
           />
-          <span className={cn("text-[1rem]", light ? "text-sand/85" : "text-ink")}>{item}</span>
+          <span className={cn("text-[1rem]", light ? "text-paper/85" : "text-ink")}>{item}</span>
         </li>
       ))}
     </ul>
@@ -258,7 +261,7 @@ export function StepList({ steps }: { steps: { title: string; copy: string }[] }
     <ol className="mt-8 space-y-6">
       {steps.map((step, index) => (
         <li key={step.title} className="flex gap-5">
-          <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-teal-900 font-semibold text-[0.9375rem] text-sand">
+          <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-plum-900 font-semibold text-[0.9375rem] text-paper">
             {index + 1}
           </span>
           <div>
@@ -287,7 +290,7 @@ export function InfoCard({
       <h3>{title}</h3>
       <p className="mt-2 text-[0.9375rem] text-ink-muted">{copy}</p>
       {to && (
-        <span className="mt-4 inline-flex items-center gap-1 text-[0.9375rem] font-medium text-teal-700">
+        <span className="mt-4 inline-flex items-center gap-1 text-[0.9375rem] font-medium text-pink-700">
           Read more <ChevronRight className="size-4" />
         </span>
       )}
@@ -328,7 +331,7 @@ export function FaqBlock({
     <Accordion type="single" collapsible className={cn("mt-8", !image && "max-w-[68ch]")}>
       {items.map((item, index) => (
         <AccordionItem key={item.q} value={`item-${index}`} className="border-line">
-          <AccordionTrigger className="text-left text-[1.0625rem] font-medium text-teal-900 hover:no-underline">
+          <AccordionTrigger className="text-left text-[1.0625rem] font-medium text-plum-900 hover:no-underline">
             {item.q}
           </AccordionTrigger>
           <AccordionContent className="text-[1rem] text-ink-muted">{item.a}</AccordionContent>
@@ -342,7 +345,7 @@ export function FaqBlock({
       <div className="container-page">
         {image ? (
           <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-16">
-            <Reveal className="overflow-hidden rounded-2xl border border-line bg-clay-50 lg:max-w-[30rem]">
+            <Reveal className="overflow-hidden rounded-2xl border border-line bg-pink-50 lg:max-w-[30rem]">
               <img
                 src={image.src}
                 alt={image.alt}
@@ -370,10 +373,8 @@ export function FaqBlock({
 
 export function DoctorNote({ quote }: { quote: string }) {
   return (
-    <figure className="rounded-xl border border-line border-l-4 border-l-clay-500 bg-white p-6">
-      <blockquote className="font-display text-[1.375rem] leading-snug text-teal-900">
-        “{quote}”
-      </blockquote>
+    <figure className="rounded-xl border border-line border-l-4 border-l-pink-500 bg-white p-6">
+      <blockquote className="text-[1.375rem] leading-snug text-plum-900">“{quote}”</blockquote>
       <figcaption className="mt-5 flex items-center gap-3">
         <img
           src={portrait}
@@ -384,7 +385,7 @@ export function DoctorNote({ quote }: { quote: string }) {
           className="size-12 rounded-full object-cover object-top"
         />
         <span className="text-[0.9375rem] text-ink-muted">
-          <Link to={ROUTES.about} className="font-medium text-teal-900 hover:underline">
+          <Link to={ROUTES.about} className="font-medium text-plum-900 hover:underline">
             {CLINIC.doctor}
           </Link>
           <br />
@@ -403,7 +404,7 @@ export function RelatedLinks({
   links: { label: string; to: string; hash?: string }[];
 }) {
   return (
-    <section className="border-t border-line bg-teal-50/50 py-12">
+    <section className="border-t border-line bg-pink-50/50 py-12">
       <div className="container-page">
         <p className="eyebrow">{title}</p>
         <ul className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
@@ -412,10 +413,10 @@ export function RelatedLinks({
               <Link
                 to={link.to}
                 {...(link.hash ? { hash: link.hash } : {})}
-                className="flex items-center justify-between gap-3 rounded-lg border border-line bg-white px-4 py-3 text-[0.9375rem] text-teal-900 hover:border-teal-600"
+                className="flex items-center justify-between gap-3 rounded-lg border border-line bg-white px-4 py-3 text-[0.9375rem] text-plum-900 hover:border-pink-600"
               >
                 {link.label}
-                <ChevronRight className="size-4 shrink-0 text-teal-600" />
+                <ChevronRight className="size-4 shrink-0 text-pink-600" />
               </Link>
             </li>
           ))}
@@ -427,7 +428,7 @@ export function RelatedLinks({
 
 export function SafetyNote({ children }: { children: ReactNode }) {
   return (
-    <div className="rounded-xl border-l-4 border-alert bg-clay-50 p-5">
+    <div className="rounded-xl border-l-4 border-alert bg-pink-50 p-5">
       <p className="text-[0.9375rem] text-ink">{children}</p>
     </div>
   );

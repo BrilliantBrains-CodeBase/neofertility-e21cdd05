@@ -44,21 +44,21 @@ function Page() {
           <div className="rounded-xl border border-line bg-white p-6">
             <h2 className="text-[1.375rem]">Clinic address</h2>
             <p className="mt-3 flex items-start gap-3 text-ink-muted">
-              <MapPin className="mt-0.5 size-5 shrink-0 text-teal-600" />
+              <MapPin className="mt-0.5 size-5 shrink-0 text-pink-600" />
               {CLINIC.addressLine}
             </p>
             <p className="mt-4 flex items-center gap-3 text-ink-muted">
-              <Clock className="size-5 shrink-0 text-teal-600" />
+              <Clock className="size-5 shrink-0 text-pink-600" />
               {CLINIC.hours}
             </p>
             <p className="mt-4 flex items-center gap-3 text-ink-muted">
-              <Phone className="size-5 shrink-0 text-teal-600" />
+              <Phone className="size-5 shrink-0 text-pink-600" />
               <a href={CLINIC.phoneHref} className="hover:underline">
                 {CLINIC.phoneDisplay}
               </a>
             </p>
             <p className="mt-4 flex items-center gap-3 text-ink-muted">
-              <WhatsAppIcon className="size-5 shrink-0 text-teal-600" />
+              <WhatsAppIcon className="size-5 shrink-0 text-pink-600" />
               <a
                 href={buildWhatsAppUrl()}
                 target="_blank"

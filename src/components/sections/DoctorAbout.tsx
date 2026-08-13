@@ -28,7 +28,7 @@ export function DoctorAbout() {
           {/* The clinic's own studio portrait, framed at its native 650×900 so the
               full figure is shown and nothing is cropped. The smaller circular
               avatars elsewhere keep the tighter head-and-shoulders crop. */}
-          <Reveal className="relative overflow-hidden rounded-[2rem] bg-clay-50 lg:max-w-[30rem]">
+          <Reveal className="relative overflow-hidden rounded-[2rem] bg-pink-50 lg:max-w-[30rem]">
             <img
               src={portrait}
               alt={`${CLINIC.doctor}, fertility specialist at Neo Fertility Clinic Marathahalli`}
@@ -49,7 +49,7 @@ export function DoctorAbout() {
               {CLINIC.doctor}
             </h2>
 
-            <p className="mt-3 text-[1rem] font-medium text-teal-700">
+            <p className="mt-3 text-[1rem] font-medium text-pink-700">
               {CLINIC.credentialsShort} · {CLINIC.experience}
             </p>
 
@@ -81,12 +81,12 @@ export function DoctorAbout() {
                 onClick={() => track("call_click", { source_page: "home_doctor" })}
                 className="flex min-h-11 items-center gap-3 hover:opacity-80"
               >
-                <span className="grid size-11 shrink-0 place-items-center rounded-full border border-line bg-white text-teal-700">
+                <span className="grid size-11 shrink-0 place-items-center rounded-full border border-line bg-white text-pink-700">
                   <Phone aria-hidden className="size-4" />
                 </span>
                 <span className="leading-tight">
                   <span className="block text-[0.8125rem] text-ink-muted">Contact us?</span>
-                  <span className="block font-semibold text-teal-900">{CLINIC.phoneDisplay}</span>
+                  <span className="block font-semibold text-plum-900">{CLINIC.phoneDisplay}</span>
                 </span>
               </a>
             </div>

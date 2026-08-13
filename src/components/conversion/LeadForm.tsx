@@ -62,12 +62,15 @@ export function LeadForm({
   const isRail = variant === "rail";
   const showFullFields = !isRail && !compact;
 
-  const labelClass = cn("text-[0.8125rem] font-medium", onLight ? "text-teal-900" : "text-sand/90");
+  const labelClass = cn(
+    "text-[0.8125rem] font-medium",
+    onLight ? "text-plum-900" : "text-paper/90",
+  );
   const fieldClass = cn(
     "mt-1.5 h-11 rounded-lg",
     onLight
       ? "border-input bg-white text-ink placeholder:text-ink-muted/70"
-      : "border-sand/25 bg-sand/10 text-sand placeholder:text-sand/50",
+      : "border-paper/25 bg-paper/10 text-paper placeholder:text-paper/50",
   );
 
   function setError(key: keyof Errors, value: string) {
@@ -125,12 +128,12 @@ export function LeadForm({
       <div
         className={cn(
           "rounded-xl border p-5",
-          onLight ? "border-teal-300/60 bg-teal-50" : "border-sand/25 bg-sand/10",
+          onLight ? "border-pink-300/60 bg-pink-50" : "border-paper/25 bg-paper/10",
         )}
         role="status"
       >
-        <p className={cn("font-medium", onLight ? "text-teal-900" : "text-sand")}>Thank you.</p>
-        <p className={cn("mt-1 text-[0.9375rem]", onLight ? "text-ink-muted" : "text-sand/80")}>
+        <p className={cn("font-medium", onLight ? "text-plum-900" : "text-paper")}>Thank you.</p>
+        <p className={cn("mt-1 text-[0.9375rem]", onLight ? "text-ink-muted" : "text-paper/80")}>
           We'll call you back. If it's urgent, call{" "}
           <a className="underline" href={CLINIC.phoneHref}>
             {CLINIC.phoneDisplay}
@@ -166,7 +169,7 @@ export function LeadForm({
           autoComplete="name"
           required
         />
-        {errors.name && <p className="mt-1 text-xs text-clay-600">{errors.name}</p>}
+        {errors.name && <p className="mt-1 text-xs text-pink-600">{errors.name}</p>}
       </div>
 
       <div>
@@ -183,7 +186,7 @@ export function LeadForm({
           autoComplete="tel"
           required
         />
-        {errors.mobile && <p className="mt-1 text-xs text-clay-600">{errors.mobile}</p>}
+        {errors.mobile && <p className="mt-1 text-xs text-pink-600">{errors.mobile}</p>}
       </div>
 
       {showFullFields && (
@@ -199,7 +202,7 @@ export function LeadForm({
             className={fieldClass}
             autoComplete="email"
           />
-          {errors.email && <p className="mt-1 text-xs text-clay-600">{errors.email}</p>}
+          {errors.email && <p className="mt-1 text-xs text-pink-600">{errors.email}</p>}
         </div>
       )}
 
@@ -222,7 +225,7 @@ export function LeadForm({
               </option>
             ))}
           </select>
-          {errors.topic && <p className="mt-1 text-xs text-clay-600">{errors.topic}</p>}
+          {errors.topic && <p className="mt-1 text-xs text-pink-600">{errors.topic}</p>}
         </div>
       )}
 
@@ -259,7 +262,7 @@ export function LeadForm({
               "mt-1.5 rounded-lg",
               onLight
                 ? "border-input bg-white text-ink"
-                : "border-sand/25 bg-sand/10 text-sand placeholder:text-sand/50",
+                : "border-paper/25 bg-paper/10 text-paper placeholder:text-paper/50",
             )}
           />
         </div>
@@ -273,13 +276,13 @@ export function LeadForm({
             setConsent(Boolean(v));
             if (v) setError("consent", "");
           }}
-          className={cn("mt-0.5", onLight ? "border-teal-600" : "border-sand/50")}
+          className={cn("mt-0.5", onLight ? "border-pink-600" : "border-paper/50")}
         />
         <Label
           htmlFor={`lf-consent-${variant}`}
           className={cn(
             "text-[0.8125rem] leading-snug font-normal",
-            onLight ? "text-ink-muted" : "text-sand/80",
+            onLight ? "text-ink-muted" : "text-paper/80",
           )}
         >
           I agree to be contacted about my enquiry. See our{" "}
@@ -289,7 +292,7 @@ export function LeadForm({
           .
         </Label>
       </div>
-      {errors.consent && <p className="text-xs text-clay-600">{errors.consent}</p>}
+      {errors.consent && <p className="text-xs text-pink-600">{errors.consent}</p>}
 
       <Button type="submit" variant="cta" size="lg" className="w-full" disabled={pending}>
         {pending && <Loader2 className="animate-spin" />}
@@ -300,7 +303,7 @@ export function LeadForm({
         <p
           className={cn(
             "flex items-center gap-2 text-[0.875rem]",
-            onLight ? "text-clay-600" : "text-sand",
+            onLight ? "text-pink-600" : "text-paper",
           )}
         >
           <PhoneCall className="size-4" />

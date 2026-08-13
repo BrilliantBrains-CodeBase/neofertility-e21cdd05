@@ -19,9 +19,7 @@ export function CircleInfographic({
   return (
     <section>
       {caption && (
-        <h3 className="text-center font-display text-[1.375rem] font-semibold text-teal-900">
-          {caption}
-        </h3>
+        <h3 className="text-center text-[1.375rem] font-semibold text-plum-900">{caption}</h3>
       )}
 
       <div className="relative mt-8">
@@ -30,7 +28,7 @@ export function CircleInfographic({
           aria-hidden
           viewBox="0 0 900 200"
           preserveAspectRatio="none"
-          className="pointer-events-none absolute inset-x-0 top-[42%] hidden h-24 w-full text-teal-300 lg:block"
+          className="pointer-events-none absolute inset-x-0 top-[42%] hidden h-24 w-full text-pink-300 lg:block"
         >
           <path
             d="M150 40 C 260 150, 340 150, 450 40"
@@ -58,7 +56,7 @@ export function CircleInfographic({
                   flipped ? "lg:mt-16 lg:flex-col-reverse" : ""
                 }`}
               >
-                <div className="rounded-full bg-clay-50 p-2 shadow-[0_18px_40px_-28px_rgba(1,49,55,0.45)]">
+                <div className="rounded-full bg-pink-50 p-2 shadow-[0_18px_40px_-28px_rgba(61,32,63,0.45)]">
                   <img
                     src={item.image}
                     alt={item.alt}
@@ -70,7 +68,7 @@ export function CircleInfographic({
                 </div>
 
                 <div className="w-full max-w-[30ch] rounded-2xl border border-line bg-white px-5 py-4 text-center">
-                  <h4 className="text-[0.9375rem] font-semibold uppercase tracking-[0.1em] text-teal-900">
+                  <h4 className="text-[0.9375rem] font-semibold uppercase tracking-[0.1em] text-plum-900">
                     {item.title}
                   </h4>
                   <p className="mt-2 text-[0.9375rem] leading-relaxed text-ink-muted">

@@ -13,7 +13,7 @@ export function MobileActionBar({
   /* Side actions. min-h-14 rather than a fixed height so the row can grow with the
      raised centre button without the labels drifting off their baseline. */
   const side =
-    "flex min-h-14 flex-col items-center justify-center gap-1 pb-1 text-[0.75rem] font-medium text-teal-900";
+    "flex min-h-14 flex-col items-center justify-center gap-1 pb-1 text-[0.75rem] font-medium text-plum-900";
 
   return (
     /* No overflow clipping here: the Book button deliberately breaks the top edge. */
@@ -31,11 +31,11 @@ export function MobileActionBar({
         <AppointmentSheet sourcePage={sourcePage}>
           <button
             type="button"
-            className="flex flex-col items-center justify-end gap-1 pb-1 text-[0.75rem] font-medium text-teal-900"
+            className="flex flex-col items-center justify-end gap-1 pb-1 text-[0.75rem] font-medium text-plum-900"
           >
             {/* -mt-7 lifts the disc through the bar's top edge; the ring cuts it
                 free of the page content it now overlaps. */}
-            <span className="-mt-7 grid size-14 place-items-center rounded-full bg-clay-600 text-sand shadow-rail ring-4 ring-white">
+            <span className="-mt-7 grid size-14 place-items-center rounded-full bg-pink-600 text-paper shadow-rail ring-4 ring-white">
               <CalendarCheck className="size-6" />
             </span>
             Book

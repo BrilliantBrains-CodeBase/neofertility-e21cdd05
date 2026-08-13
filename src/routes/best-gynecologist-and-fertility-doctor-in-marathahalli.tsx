@@ -102,7 +102,12 @@ export const Route = createFileRoute("/best-gynecologist-and-fertility-doctor-in
       scripts: [
         jsonLd(doctorSchema),
         jsonLd(faqSchema(FAQS)),
-        jsonLd(breadcrumbSchema([{ name: "Home", path: ROUTES.home }, { name: "About", path: ROUTES.about }])),
+        jsonLd(
+          breadcrumbSchema([
+            { name: "Home", path: ROUTES.home },
+            { name: "About", path: ROUTES.about },
+          ]),
+        ),
       ],
     };
   },
@@ -127,23 +132,26 @@ function AboutPage() {
         />
       </PageHero>
 
-      <section className="bg-clay-25 section-y">
+      <section className="bg-pink-25 section-y">
         <div className="container-page grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
           <div>
-            <SectionHeading eyebrow="Background" title="From gynecology into reproductive medicine" />
+            <SectionHeading
+              eyebrow="Background"
+              title="From gynecology into reproductive medicine"
+            />
             <p className="prose-measure mt-5 text-ink-muted">
-              Dr. Payal Mahapatra qualified in medicine in 2005 and specialised in obstetrics and gynecology
-              before moving into reproductive medicine. The Fellowship in Reproductive Medicine she completed
-              at IIRRH in 2017 is what separates a general gynecologist from a fertility specialist: it is
-              dedicated training in ovarian stimulation protocols, assisted reproduction, embryology liaison
-              and the management of failed cycles.
+              Dr. Payal Mahapatra qualified in medicine in 2005 and specialised in obstetrics and
+              gynecology before moving into reproductive medicine. The Fellowship in Reproductive
+              Medicine she completed at IIRRH in 2017 is what separates a general gynecologist from
+              a fertility specialist: it is dedicated training in ovarian stimulation protocols,
+              assisted reproduction, embryology liaison and the management of failed cycles.
             </p>
             <p className="prose-measure mt-4 text-ink-muted">
               She founded Neo Fertility Clinic to run fertility treatment and obstetric care as one
-              continuous service rather than two separate ones. Most fertility clinics hand a patient over
-              once the pregnancy is confirmed at around eight weeks. Here the same doctor who managed the
-              treatment manages the pregnancy, including high-risk pregnancies, which a substantial
-              proportion of IVF pregnancies are.
+              continuous service rather than two separate ones. Most fertility clinics hand a
+              patient over once the pregnancy is confirmed at around eight weeks. Here the same
+              doctor who managed the treatment manages the pregnancy, including high-risk
+              pregnancies, which a substantial proportion of IVF pregnancies are.
             </p>
           </div>
           <img
@@ -163,8 +171,8 @@ function AboutPage() {
           <ol className="mt-8 space-y-6 border-l border-line pl-6">
             {QUALIFICATIONS.map((q) => (
               <li key={q.title} className="relative">
-                <span className="absolute top-1.5 -left-[1.6rem] size-2.5 rounded-full bg-teal-600" />
-                <p className="font-medium text-[1.0625rem] text-teal-900">
+                <span className="absolute top-1.5 -left-[1.6rem] size-2.5 rounded-full bg-pink-600" />
+                <p className="font-medium text-[1.0625rem] text-plum-900">
                   {q.title} <span className="text-ink-muted">— {q.year}</span>
                 </p>
                 <p className="mt-1 text-[0.9375rem] text-ink-muted">{q.institution}</p>
@@ -182,7 +190,7 @@ function AboutPage() {
         </div>
       </section>
 
-      <section className="bg-clay-25 section-y">
+      <section className="bg-pink-25 section-y">
         <div className="container-page">
           <SectionHeading eyebrow="Clinical focus" title="What she treats" />
           <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
@@ -204,26 +212,33 @@ function AboutPage() {
         </div>
       </section>
 
-      <section className="bg-teal-900 section-y">
+      <section className="bg-navy-900 section-y">
         <div className="container-page">
-          <SectionHeading eyebrow="Clinical volume" title="Numbers we are willing to publish" light />
+          <SectionHeading
+            eyebrow="Clinical volume"
+            title="Numbers we are willing to publish"
+            light
+          />
           <div className="mt-10">
             <StatStrip light />
           </div>
-          <p className="mt-8 text-[0.8125rem] text-sand/60">{CLINIC.statsAsOf}</p>
+          <p className="mt-8 text-[0.8125rem] text-paper/60">{CLINIC.statsAsOf}</p>
         </div>
       </section>
 
-      <section className="bg-clay-25 section-y">
+      <section className="bg-pink-25 section-y">
         <div className="container-page">
-          <SectionHeading eyebrow="The clinic" title="Scorpio House, Marathahalli Bridge Service Road" />
+          <SectionHeading
+            eyebrow="The clinic"
+            title="Scorpio House, Marathahalli Bridge Service Road"
+          />
           <p className="prose-measure mt-5 text-ink-muted">
-            Neo Fertility Clinic occupies the first floor of Scorpio House on Marathahalli Bridge Service
-            Road, opposite Purva Apartments. Facilities include consultation rooms, an ultrasound room, a
-            procedure room and an equipped laboratory, and the clinic operates all seven days from 09:30 to
-            18:30.
+            Neo Fertility Clinic occupies the first floor of Scorpio House on Marathahalli Bridge
+            Service Road, opposite Purva Apartments. Facilities include consultation rooms, an
+            ultrasound room, a procedure room and an equipped laboratory, and the clinic operates
+            all seven days from 09:30 to 18:30.
           </p>
-          <div className="mt-6 flex flex-wrap gap-4 text-[0.9375rem] text-teal-700">
+          <div className="mt-6 flex flex-wrap gap-4 text-[0.9375rem] text-pink-700">
             <Link to={ROUTES.contact} className="hover:underline">
               Address and directions
             </Link>

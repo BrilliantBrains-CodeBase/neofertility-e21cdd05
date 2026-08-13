@@ -33,7 +33,8 @@ const COMPARE = [
   },
   {
     treatment: "Donor egg or sperm",
-    suited: "Very low ovarian reserve, premature ovarian insufficiency, azoospermia, heritable conditions",
+    suited:
+      "Very low ovarian reserve, premature ovarian insufficiency, azoospermia, heritable conditions",
     plan: "Per protocol",
   },
 ];
@@ -105,7 +106,7 @@ function FertilitySolutionsPage() {
         trail={[{ name: "Home", to: ROUTES.home }, { name: "Fertility Solutions" }]}
       />
 
-      <section className="bg-clay-25 section-y">
+      <section className="bg-pink-25 section-y">
         <div className="container-page">
           <SectionHeading
             eyebrow="Start with the diagnosis"
@@ -114,7 +115,7 @@ function FertilitySolutionsPage() {
           />
           <Link
             to={ROUTES.infertility}
-            className="mt-6 inline-flex items-center gap-2 font-medium text-teal-700 hover:underline"
+            className="mt-6 inline-flex items-center gap-2 font-medium text-pink-700 hover:underline"
           >
             Start here: fertility evaluation for both partners <ArrowRight className="size-4" />
           </Link>
@@ -126,7 +127,7 @@ function FertilitySolutionsPage() {
           <SectionHeading eyebrow="Compare" title="Compare the treatments" />
           <div className="mt-8 overflow-x-auto rounded-xl border border-line">
             <table className="w-full min-w-[640px] text-left text-[0.9375rem]">
-              <thead className="bg-teal-50/60 text-teal-900">
+              <thead className="bg-pink-50/60 text-plum-900">
                 <tr>
                   <th className="p-4 font-medium">Treatment</th>
                   <th className="p-4 font-medium">Best suited to</th>
@@ -136,7 +137,7 @@ function FertilitySolutionsPage() {
               <tbody>
                 {COMPARE.map((row) => (
                   <tr key={row.treatment} className="border-t border-line">
-                    <td className="p-4 font-medium text-teal-900">{row.treatment}</td>
+                    <td className="p-4 font-medium text-plum-900">{row.treatment}</td>
                     <td className="p-4 text-ink-muted">{row.suited}</td>
                     <td className="p-4 text-ink-muted">{row.plan}</td>
                   </tr>
@@ -148,7 +149,7 @@ function FertilitySolutionsPage() {
       </section>
 
       {FERTILITY_MENU.map((group) => (
-        <section key={group.heading} className="bg-clay-25 section-y border-t border-line">
+        <section key={group.heading} className="bg-pink-25 section-y border-t border-line">
           <div className="container-page">
             <SectionHeading eyebrow="Explore" title={group.heading} />
             <ul className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
@@ -156,10 +157,10 @@ function FertilitySolutionsPage() {
                 <li key={link.label}>
                   <Link
                     to={link.to}
-                    className="flex items-center justify-between gap-3 rounded-lg border border-line bg-white px-4 py-3 text-[0.9375rem] text-teal-900 hover:border-teal-600"
+                    className="flex items-center justify-between gap-3 rounded-lg border border-line bg-white px-4 py-3 text-[0.9375rem] text-plum-900 hover:border-pink-600"
                   >
                     {link.label}
-                    <ArrowRight className="size-4 shrink-0 text-teal-600" />
+                    <ArrowRight className="size-4 shrink-0 text-pink-600" />
                   </Link>
                 </li>
               ))}
@@ -177,26 +178,27 @@ function FertilitySolutionsPage() {
                 {COSTS.map((row) => (
                   <tr key={row.item} className="border-t border-line first:border-t-0">
                     <td className="p-4 text-ink">{row.item}</td>
-                    <td className="p-4 text-teal-900">{row.range}</td>
+                    <td className="p-4 text-plum-900">{row.range}</td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
           <p className="prose-measure mt-6 text-ink-muted">
-            Medication is the largest variable within any cycle and depends on ovarian reserve. A written
-            estimate is given at the first consultation. EMI and financing options are available.
+            Medication is the largest variable within any cycle and depends on ovarian reserve. A
+            written estimate is given at the first consultation. EMI and financing options are
+            available.
           </p>
           <Link
             to={ROUTES.ivfCost}
-            className="mt-4 inline-flex items-center gap-2 font-medium text-teal-700 hover:underline"
+            className="mt-4 inline-flex items-center gap-2 font-medium text-pink-700 hover:underline"
           >
             Full cost breakdown and financing <ArrowRight className="size-4" />
           </Link>
         </div>
       </section>
 
-      <section className="bg-clay-25 section-y">
+      <section className="bg-pink-25 section-y">
         <div className="container-page">
           <SectionHeading
             eyebrow="What determines outcomes"
@@ -214,9 +216,9 @@ function FertilitySolutionsPage() {
             />
           </div>
           <p className="prose-measure mt-6 text-ink-muted">
-            Lifestyle factors, weight, smoking, alcohol, diabetes control and vitamin D status, are the
-            modifiable ones. They will not open a blocked tube, and they meaningfully affect outcomes at the
-            margin.
+            Lifestyle factors, weight, smoking, alcohol, diabetes control and vitamin D status, are
+            the modifiable ones. They will not open a blocked tube, and they meaningfully affect
+            outcomes at the margin.
           </p>
         </div>
       </section>

@@ -41,9 +41,10 @@ function Page() {
         <div className="mx-auto max-w-[72ch] space-y-10">
           <Prose title="Information we collect">
             <p>
-              When you contact us through our website, phone, or WhatsApp, or visit the clinic, we may collect your
-              name, contact number, email address, and health-related information necessary for your consultation
-              and treatment, such as medical history, test results, and treatment records.
+              When you contact us through our website, phone, or WhatsApp, or visit the clinic, we
+              may collect your name, contact number, email address, and health-related information
+              necessary for your consultation and treatment, such as medical history, test results,
+              and treatment records.
             </p>
           </Prose>
 
@@ -59,25 +60,28 @@ function Page() {
 
           <Prose title="Confidentiality of medical information">
             <p>
-              Your medical information is treated with the same confidentiality as any patient record under
-              applicable Indian medical and data protection regulations. It is not shared with third parties except
-              where necessary for your treatment (for example, with a laboratory or referral specialist), where
-              required by law, or with your explicit consent.
+              Your medical information is treated with the same confidentiality as any patient
+              record under applicable Indian medical and data protection regulations. It is not
+              shared with third parties except where necessary for your treatment (for example, with
+              a laboratory or referral specialist), where required by law, or with your explicit
+              consent.
             </p>
           </Prose>
 
           <Prose title="Website data and cookies">
             <p>
-              Our website may use cookies and analytics tools to understand how visitors use the site and to improve
-              its performance. This data is used in aggregate and is not linked to your medical records.
+              Our website may use cookies and analytics tools to understand how visitors use the
+              site and to improve its performance. This data is used in aggregate and is not linked
+              to your medical records.
             </p>
           </Prose>
 
           <Prose title="Your rights">
             <p>
-              You may request access to, correction of, or deletion of your personal information held by us, subject
-              to our obligations to retain medical records as required by law. To make a request, contact us at{" "}
-              <a href={`mailto:${CLINIC.email}`} className="text-teal-700 underline">
+              You may request access to, correction of, or deletion of your personal information
+              held by us, subject to our obligations to retain medical records as required by law.
+              To make a request, contact us at{" "}
+              <a href={`mailto:${CLINIC.email}`} className="text-pink-700 underline">
                 {CLINIC.email}
               </a>{" "}
               or call {CLINIC.phoneDisplay}.
@@ -86,8 +90,8 @@ function Page() {
 
           <Prose title="Changes to this policy">
             <p>
-              We may update this policy from time to time to reflect changes in our practices or legal requirements.
-              The updated version will be posted on this page.
+              We may update this policy from time to time to reflect changes in our practices or
+              legal requirements. The updated version will be posted on this page.
             </p>
           </Prose>
         </div>

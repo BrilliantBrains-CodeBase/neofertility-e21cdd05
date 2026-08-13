@@ -67,7 +67,7 @@ function PatientStoriesPage() {
         trail={[{ name: "Home", to: ROUTES.home }, { name: "Patient Stories" }]}
       />
 
-      <section className="bg-clay-25 section-y">
+      <section className="bg-pink-25 section-y">
         <div className="container-page">
           <SectionHeading
             eyebrow="Accounts"
@@ -78,7 +78,7 @@ function PatientStoriesPage() {
             {STORIES.map((story) => (
               <article
                 key={story.name}
-                className="rounded-xl border border-line border-l-4 border-l-clay-500 bg-teal-50/40 p-6"
+                className="rounded-xl border border-line border-l-4 border-l-pink-500 bg-pink-50/40 p-6"
               >
                 <p className="eyebrow">{story.context}</p>
                 <h3 className="mt-2">{story.name}</h3>
@@ -87,7 +87,7 @@ function PatientStoriesPage() {
             ))}
           </div>
 
-          <div className="mt-10 rounded-xl border-l-4 border-alert bg-clay-50 p-5">
+          <div className="mt-10 rounded-xl border-l-4 border-alert bg-pink-50 p-5">
             <p className="text-[0.9375rem] text-ink">
               Names have been changed and details adjusted to protect patient privacy. These
               accounts describe individual experiences and results. They are not a guarantee that

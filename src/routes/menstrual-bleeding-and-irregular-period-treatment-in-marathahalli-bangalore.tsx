@@ -98,22 +98,22 @@ function MenstrualPage() {
           <p className="eyebrow">On this page</p>
           <ul className="mt-3 space-y-2 text-[0.9375rem]">
             <li>
-              <a href="#abnormal_bleeding" className="text-teal-700 hover:underline">
+              <a href="#abnormal_bleeding" className="text-pink-700 hover:underline">
                 Abnormal bleeding
               </a>
             </li>
             <li>
-              <a href="#constant_menstrual_pain" className="text-teal-700 hover:underline">
+              <a href="#constant_menstrual_pain" className="text-pink-700 hover:underline">
                 Constant menstrual pain
               </a>
             </li>
             <li>
-              <a href="#irregular_menstrual_cycles" className="text-teal-700 hover:underline">
+              <a href="#irregular_menstrual_cycles" className="text-pink-700 hover:underline">
                 Irregular menstrual cycles
               </a>
             </li>
             <li>
-              <a href="#menopausal_disorders" className="text-teal-700 hover:underline">
+              <a href="#menopausal_disorders" className="text-pink-700 hover:underline">
                 Menopausal disorders
               </a>
             </li>
@@ -123,13 +123,13 @@ function MenstrualPage() {
 
       <Prose id="abnormal_bleeding" title="Abnormal bleeding">
         <p>
-          Abnormal bleeding includes periods lasting more than seven days, soaking a pad every
-          hour, passing clots larger than a rupee coin, bleeding between periods, or bleeding
-          after intercourse or after menopause.
+          Abnormal bleeding includes periods lasting more than seven days, soaking a pad every hour,
+          passing clots larger than a rupee coin, bleeding between periods, or bleeding after
+          intercourse or after menopause.
         </p>
         <p>
-          <strong>Common causes</strong> include fibroids, endometrial polyps, adenomyosis,
-          hormonal imbalance, thyroid disorders, and, less commonly, endometrial pathology.
+          <strong>Common causes</strong> include fibroids, endometrial polyps, adenomyosis, hormonal
+          imbalance, thyroid disorders, and, less commonly, endometrial pathology.
         </p>
         <p>
           <strong>Evaluation</strong> starts with a pelvic ultrasound, blood counts, thyroid and
@@ -152,8 +152,8 @@ function MenstrualPage() {
           years, is not something to accept as routine.
         </p>
         <p>
-          <strong>Causes</strong> considered include endometriosis, adenomyosis, fibroids and
-          pelvic inflammatory disease.
+          <strong>Causes</strong> considered include endometriosis, adenomyosis, fibroids and pelvic
+          inflammatory disease.
         </p>
         <p>
           <strong>Evaluation</strong> is by pelvic examination and transvaginal or abdominal
@@ -167,8 +167,8 @@ function MenstrualPage() {
 
       <Prose id="irregular_menstrual_cycles" title="Irregular menstrual cycles">
         <p>
-          Cycles that have become unpredictable, unusually far apart, or absent for three months
-          or more, are assessed for an underlying hormonal cause.
+          Cycles that have become unpredictable, unusually far apart, or absent for three months or
+          more, are assessed for an underlying hormonal cause.
         </p>
         <p>
           <strong>Causes</strong> include PCOS/PMOS, thyroid dysfunction, raised prolactin, and
@@ -201,8 +201,8 @@ function MenstrualPage() {
           hormonal.
         </p>
         <p>
-          <strong>Treatment options</strong> include hormone therapy, weighed against your
-          personal and family history, and non-hormonal measures for symptom control.
+          <strong>Treatment options</strong> include hormone therapy, weighed against your personal
+          and family history, and non-hormonal measures for symptom control.
         </p>
         <ZigzagSteps
           steps={[

@@ -19,8 +19,11 @@ function AnnouncementBar({ onHero }: { onHero: boolean }) {
       className={cn(
         "border-b transition-colors duration-300 ease-out",
         onHero
-          ? "border-white/20 bg-transparent text-sand"
-          : "border-line/70 bg-secondary text-teal-700",
+          ? "border-white/20 bg-transparent text-paper"
+          : /* Solid plum bar. Its text and icons go light — plum-on-plum would be
+               invisible — and the border is dropped since a dark band against the
+               white nav below needs no extra line. */
+            "border-transparent bg-plum-900 text-paper",
       )}
     >
       <div className="flex h-12 items-center justify-between px-4 text-[0.8125rem] tracking-[0.02em] lg:h-11 lg:px-8">
@@ -108,7 +111,7 @@ function MobileGroup({ title, groups }: { title: string; groups: NavGroup[] }) {
         type="button"
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
-        className="flex w-full items-center justify-between text-[1.125rem] font-medium text-teal-900"
+        className="flex w-full items-center justify-between text-[1.125rem] font-medium text-plum-900"
       >
         {title}
         <ChevronDown className={cn("size-5 transition-transform", open && "rotate-180")} />
@@ -260,10 +263,10 @@ export function Header() {
   }, [mobileOpen]);
 
   const link = cn(
-    "relative py-2 text-[1rem] font-semibold tracking-[0.01em] transition-colors after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:transition-all after:duration-200 hover:after:w-full",
+    "relative py-2 text-[1rem] font-normal tracking-[0.01em] transition-colors after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:transition-all after:duration-200 hover:after:w-full",
     onHero
-      ? "text-sand hover:text-white after:bg-sand"
-      : "text-teal-700 hover:text-teal-600 after:bg-teal-600",
+      ? "text-paper hover:text-white after:bg-paper"
+      : "text-plum-900 hover:text-pink-600 after:bg-pink-600",
   );
 
   return (
@@ -369,8 +372,8 @@ export function Header() {
           className={cn(
             "flex size-11 items-center justify-center rounded-[10px] border transition-colors duration-300 ease-out",
             onHero
-              ? "border-white/40 bg-white/10 text-sand backdrop-blur-sm"
-              : "border-line bg-card text-teal-900",
+              ? "border-white/40 bg-white/10 text-paper backdrop-blur-sm"
+              : "border-line bg-card text-plum-900",
           )}
         >
           <Menu className="size-6" />
@@ -389,7 +392,7 @@ export function Header() {
             <div className="flex items-center justify-between px-5 py-4">
               <Logo compact />
               <button type="button" onClick={() => setMobileOpen(false)} aria-label="Close menu">
-                <X className="size-6 text-teal-900" />
+                <X className="size-6 text-plum-900" />
               </button>
             </div>
             <div className="flex-1 overflow-y-auto px-5 pb-4">
@@ -404,7 +407,7 @@ export function Header() {
                 <Link
                   key={item.label}
                   to={item.to}
-                  className="block border-b border-line py-4 text-[1.125rem] font-medium text-teal-900"
+                  className="block border-b border-line py-4 text-[1.125rem] font-medium text-plum-900"
                 >
                   {item.label}
                 </Link>
@@ -419,7 +422,7 @@ export function Header() {
               <a
                 href={CLINIC.phoneHref}
                 onClick={() => track("call_click", { source_page: "header_mobile" })}
-                className="mt-3 block text-center text-[0.9375rem] text-teal-700 underline"
+                className="mt-3 block text-center text-[0.9375rem] text-pink-700 underline"
               >
                 Call {CLINIC.phoneDisplay}
               </a>

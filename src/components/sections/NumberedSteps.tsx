@@ -17,11 +17,11 @@ export function NumberedSteps({ steps }: { steps: NumberedStep[] }) {
         >
           <span
             aria-hidden
-            className="font-display text-[4.5rem] font-semibold leading-none tracking-tight text-teal-300/70 sm:text-[5.5rem]"
+            className="text-[4.5rem] font-semibold leading-none tracking-tight text-pink-300/70 sm:text-[5.5rem]"
           >
             {String(i + 1).padStart(2, "0")}
           </span>
-          <h3 className="mt-3 text-[0.9375rem] font-semibold uppercase tracking-[0.12em] text-teal-900">
+          <h3 className="mt-3 text-[0.9375rem] font-semibold uppercase tracking-[0.12em] text-plum-900">
             {step.title}
           </h3>
           <p className="mt-3 max-w-[34ch] text-[0.9375rem] leading-relaxed text-ink-muted">

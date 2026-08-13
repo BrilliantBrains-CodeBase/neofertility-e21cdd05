@@ -65,7 +65,7 @@ export function ProcessTimeline({ steps }: { steps: readonly ProcessStep[] }) {
   const marker = (i: number) =>
     cn(
       "relative z-10 grid size-10 shrink-0 place-items-center rounded-full text-[0.9375rem] font-semibold transition-colors duration-300",
-      reached(i) ? "bg-teal-900 text-sand" : "border border-line bg-white text-ink-muted",
+      reached(i) ? "bg-plum-900 text-paper" : "border border-line bg-white text-ink-muted",
     );
 
   return (
@@ -76,14 +76,14 @@ export function ProcessTimeline({ steps }: { steps: readonly ProcessStep[] }) {
         <span aria-hidden className="absolute top-5 right-[10%] left-[10%] h-px bg-line" />
         <span
           aria-hidden
-          className="absolute top-5 left-[10%] h-px bg-teal-700 transition-none"
+          className="absolute top-5 left-[10%] h-px bg-pink-700 transition-none"
           style={{ width: `calc(80% * ${progress})` }}
         />
 
         {steps.map((step, i) => (
           <li key={step.title} className="flex flex-col items-center px-3 text-center">
             <span className={marker(i)}>{i + 1}</span>
-            <h3 className="mt-5 max-w-[20ch] text-[1rem] leading-snug font-medium text-teal-900">
+            <h3 className="mt-5 max-w-[20ch] text-[1rem] leading-snug font-medium text-plum-900">
               {step.title}
             </h3>
             <p className="mt-2 max-w-[24ch] text-[0.875rem] leading-relaxed text-ink-muted">
@@ -98,7 +98,7 @@ export function ProcessTimeline({ steps }: { steps: readonly ProcessStep[] }) {
         <span aria-hidden className="absolute top-5 bottom-5 left-5 w-px bg-line" />
         <span
           aria-hidden
-          className="absolute top-5 left-5 w-px bg-teal-700"
+          className="absolute top-5 left-5 w-px bg-pink-700"
           style={{ height: `calc((100% - 2.5rem) * ${progress})` }}
         />
 
@@ -106,7 +106,7 @@ export function ProcessTimeline({ steps }: { steps: readonly ProcessStep[] }) {
           <li key={step.title} className="relative flex gap-4 pb-8 last:pb-0">
             <span className={marker(i)}>{i + 1}</span>
             <div className="pt-1">
-              <h3 className="text-[1.0625rem] font-medium text-teal-900">{step.title}</h3>
+              <h3 className="text-[1.0625rem] font-medium text-plum-900">{step.title}</h3>
               <p className="mt-2 text-[0.9375rem] leading-relaxed text-ink-muted">{step.copy}</p>
             </div>
           </li>

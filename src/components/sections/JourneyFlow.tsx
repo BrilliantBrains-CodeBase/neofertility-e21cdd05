@@ -15,7 +15,7 @@ export function JourneyFlow({ steps }: { steps: JourneyStep[] }) {
       {/* winding connector, desktop only */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-y-6 left-1/2 hidden w-px -translate-x-1/2 bg-teal-300 lg:block"
+        className="pointer-events-none absolute inset-y-6 left-1/2 hidden w-px -translate-x-1/2 bg-pink-300 lg:block"
       />
       {steps.map((step, index) => {
         const flip = index % 2 === 1;
@@ -26,7 +26,7 @@ export function JourneyFlow({ steps }: { steps: JourneyStep[] }) {
           >
             <div className={flip ? "lg:order-2 lg:pl-8" : "lg:order-1 lg:pr-8"}>
               <div
-                className={`relative mx-auto aspect-square w-[220px] overflow-hidden rounded-full border-4 border-clay-50 shadow-rail sm:w-[260px] lg:mx-0 lg:w-[300px] ${flip ? "lg:mr-auto" : "lg:ml-auto"}`}
+                className={`relative mx-auto aspect-square w-[220px] overflow-hidden rounded-full border-4 border-pink-50 shadow-rail sm:w-[260px] lg:mx-0 lg:w-[300px] ${flip ? "lg:mr-auto" : "lg:ml-auto"}`}
               >
                 <img
                   src={step.image}
@@ -39,7 +39,7 @@ export function JourneyFlow({ steps }: { steps: JourneyStep[] }) {
 
             <div className={flip ? "lg:order-1 lg:pr-8 lg:text-right" : "lg:order-2 lg:pl-8"}>
               <div className={`flex items-center gap-3 ${flip ? "lg:justify-end" : ""}`}>
-                <span className="font-display text-[2rem] leading-none text-clay-600">
+                <span className="text-[2rem] leading-none text-pink-600">
                   {String(index + 1).padStart(2, "0")}
                 </span>
                 <h3 className="text-[1.25rem]">{step.title}</h3>

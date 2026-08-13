@@ -16,7 +16,7 @@ export function ClosingCta({
   whatsappMessage: string;
 }) {
   return (
-    <section className="bg-clay-50 section-y">
+    <section className="bg-pink-50 section-y">
       <div className="container-page text-center">
         <h2>{heading}</h2>
         <p className="mx-auto mt-3 max-w-[58ch] text-ink-muted">{copy}</p>

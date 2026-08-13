@@ -28,12 +28,12 @@ export function BookingRail({
           <div>
             <Link
               to={ROUTES.about}
-              className="font-medium text-teal-900 hover:text-teal-600 hover:underline"
+              className="font-medium text-plum-900 hover:text-pink-600 hover:underline"
             >
               {CLINIC.doctor}
             </Link>
             <p className="text-[0.8125rem] leading-snug text-ink-muted">{CLINIC.credentials}</p>
-            <p className="text-[0.8125rem] text-teal-600">18 years experience</p>
+            <p className="text-[0.8125rem] text-pink-600">18 years experience</p>
           </div>
         </div>
 
@@ -50,7 +50,7 @@ export function BookingRail({
           <a
             href={CLINIC.phoneHref}
             onClick={() => track("call_click", { source_page: sourcePage })}
-            className="flex h-11 items-center justify-center gap-2 rounded-md border border-teal-600 text-[0.9375rem] font-medium text-teal-700 hover:bg-teal-50"
+            className="flex h-11 items-center justify-center gap-2 rounded-md border border-pink-600 text-[0.9375rem] font-medium text-pink-700 hover:bg-pink-50"
           >
             <Phone className="size-4" /> Call {CLINIC.phoneDisplay}
           </a>
@@ -59,7 +59,7 @@ export function BookingRail({
             target="_blank"
             rel="noreferrer"
             onClick={() => track("whatsapp_click", { source_page: sourcePage })}
-            className="flex h-11 items-center justify-center gap-2 rounded-md border border-line text-[0.9375rem] font-medium text-teal-900 hover:bg-teal-50"
+            className="flex h-11 items-center justify-center gap-2 rounded-md border border-line text-[0.9375rem] font-medium text-plum-900 hover:bg-pink-50"
           >
             <WhatsAppIcon className="size-4 text-success" /> WhatsApp
           </a>

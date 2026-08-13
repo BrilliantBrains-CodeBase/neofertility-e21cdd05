@@ -72,7 +72,7 @@ export function ServicePage({
       </div>
 
       {showStats && (
-        <section className="border-y border-line bg-clay-25 py-12">
+        <section className="border-y border-line bg-pink-25 py-12">
           <div className="container-page">
             <SectionHeading
               eyebrow="Clinical volume"
@@ -113,7 +113,7 @@ export function Prose({
   return (
     <section {...(id ? { id } : {})}>
       {title && <h2 className="text-[1.625rem]">{title}</h2>}
-      <div className="prose-measure mt-4 space-y-4 text-ink-muted [&_strong]:text-teal-900">
+      <div className="prose-measure mt-4 space-y-4 text-ink-muted [&_strong]:text-plum-900">
         {children}
       </div>
     </section>
@@ -133,10 +133,10 @@ export function DataTable({
     <div className="overflow-x-auto rounded-xl border border-line bg-white">
       <table className="w-full text-left text-[0.9375rem]">
         {caption && <caption className="p-4 text-left text-ink-muted">{caption}</caption>}
-        <thead className="bg-teal-50">
+        <thead className="bg-pink-50">
           <tr>
             {head.map((cell) => (
-              <th key={cell} className="px-4 py-3 font-medium text-teal-900">
+              <th key={cell} className="px-4 py-3 font-medium text-plum-900">
                 {cell}
               </th>
             ))}
@@ -149,7 +149,7 @@ export function DataTable({
                 <td
                   key={index}
                   className={
-                    index === 0 ? "px-4 py-3 font-medium text-teal-900" : "px-4 py-3 text-ink-muted"
+                    index === 0 ? "px-4 py-3 font-medium text-plum-900" : "px-4 py-3 text-ink-muted"
                   }
                 >
                   {cell}

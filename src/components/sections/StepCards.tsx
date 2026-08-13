@@ -16,12 +16,12 @@ export function StepCards({ steps }: { steps: StepCard[] }) {
         <li key={step.title} className="relative flex h-full pl-10 sm:pl-11">
           <span
             aria-hidden
-            className="absolute left-0 top-1/2 z-0 grid h-24 w-24 -translate-y-1/2 place-items-center rounded-full bg-clay-50 pr-10 font-display text-[1.375rem] font-semibold text-teal-900 sm:pr-11"
+            className="absolute left-0 top-1/2 z-0 grid h-24 w-24 -translate-y-1/2 place-items-center rounded-full bg-pink-50 pr-10 text-[1.375rem] font-semibold text-plum-900 sm:pr-11"
           >
             {String(i + 1).padStart(2, "0")}
           </span>
 
-          <div className="relative z-10 w-full rounded-[1.75rem] bg-clay-50 p-2 shadow-[0_18px_40px_-28px_rgba(1,49,55,0.45)]">
+          <div className="relative z-10 w-full rounded-[1.75rem] bg-pink-50 p-2 shadow-[0_18px_40px_-28px_rgba(61,32,63,0.45)]">
             <div className="flex h-full flex-col overflow-hidden rounded-[1.375rem] bg-white">
               <img
                 src={step.image}
@@ -32,7 +32,7 @@ export function StepCards({ steps }: { steps: StepCard[] }) {
                 className="h-40 w-full object-cover sm:h-44"
               />
               <div className="flex flex-1 flex-col p-5">
-                <h3 className="text-[1rem] font-medium leading-snug text-teal-900">{step.title}</h3>
+                <h3 className="text-[1rem] font-medium leading-snug text-plum-900">{step.title}</h3>
                 <p className="mt-2 text-[0.875rem] leading-relaxed text-ink-muted">{step.copy}</p>
               </div>
             </div>

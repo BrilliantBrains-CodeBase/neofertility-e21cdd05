@@ -47,11 +47,12 @@ function Page() {
         <div className="mx-auto max-w-[72ch] space-y-10">
           <Prose title="What IVF involves">
             <p>
-              In-vitro fertilization (IVF) is a treatment where eggs are retrieved from the ovaries after hormonal
-              stimulation, fertilized with sperm in a laboratory, and the resulting embryo is transferred back into
-              the uterus. A typical IVF cycle runs over 4 to 6 weeks and includes ovarian stimulation with daily
-              injections, monitoring through ultrasounds and blood tests, egg retrieval under sedation, fertilization
-              in the lab (sometimes using ICSI), embryo culture, and embryo transfer.
+              In-vitro fertilization (IVF) is a treatment where eggs are retrieved from the ovaries
+              after hormonal stimulation, fertilized with sperm in a laboratory, and the resulting
+              embryo is transferred back into the uterus. A typical IVF cycle runs over 4 to 6 weeks
+              and includes ovarian stimulation with daily injections, monitoring through ultrasounds
+              and blood tests, egg retrieval under sedation, fertilization in the lab (sometimes
+              using ICSI), embryo culture, and embryo transfer.
             </p>
           </Prose>
 
@@ -70,9 +71,10 @@ function Page() {
           <section>
             <h2 className="text-[1.625rem]">Typical IVF cost ranges in Bangalore</h2>
             <p className="prose-measure mt-4 text-ink-muted">
-              Costs vary based on the protocol used, medication doses, and any additional procedures such as ICSI or
-              genetic testing. Approximate ranges seen in Bangalore are below; see our{" "}
-              <Link to={ROUTES.ivfCost} className="text-teal-700 underline">
+              Costs vary based on the protocol used, medication doses, and any additional procedures
+              such as ICSI or genetic testing. Approximate ranges seen in Bangalore are below; see
+              our{" "}
+              <Link to={ROUTES.ivfCost} className="text-pink-700 underline">
                 detailed IVF cost guide
               </Link>{" "}
               for a full breakdown.
@@ -92,20 +94,21 @@ function Page() {
 
           <Prose title="Success rates">
             <p>
-              IVF success depends heavily on the woman's age, ovarian reserve, and the underlying cause of
-              infertility. As a general guide, per-cycle success rates tend to be highest for women under 35 and
-              decline progressively after that. At Neo Fertility Clinic, we discuss realistic, individualised success
-              expectations at the first consultation, based on your specific test results rather than average
-              statistics alone.
+              IVF success depends heavily on the woman's age, ovarian reserve, and the underlying
+              cause of infertility. As a general guide, per-cycle success rates tend to be highest
+              for women under 35 and decline progressively after that. At Neo Fertility Clinic, we
+              discuss realistic, individualised success expectations at the first consultation,
+              based on your specific test results rather than average statistics alone.
             </p>
           </Prose>
 
           <Prose title="Choosing an IVF clinic in Bangalore">
             <p>
-              Look for a clinic with an on-site, accredited embryology lab, transparent published pricing, a doctor
-              who reviews your case personally rather than a purely protocol-driven approach, and clear communication
-              at every stage. Dr. Payal Mahapatra has personally overseen more than 2,000 IVF cycles from her clinic
-              in Marathahalli, serving patients across Whitefield, Bellandur and East Bangalore.
+              Look for a clinic with an on-site, accredited embryology lab, transparent published
+              pricing, a doctor who reviews your case personally rather than a purely
+              protocol-driven approach, and clear communication at every stage. Dr. Payal Mahapatra
+              has personally overseen more than 2,000 IVF cycles from her clinic in Marathahalli,
+              serving patients across Whitefield, Bellandur and East Bangalore.
             </p>
           </Prose>
         </div>

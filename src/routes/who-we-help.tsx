@@ -101,7 +101,7 @@ function WhoWeHelpPage() {
         trail={[{ name: "Home", to: ROUTES.home }, { name: "Who We Help" }]}
       />
 
-      <section className="bg-clay-25 section-y">
+      <section className="bg-pink-25 section-y">
         <div className="container-page space-y-10">
           {SEGMENTS.map((segment) => (
             <div key={segment.title} className="border-t border-line pt-8">
@@ -110,14 +110,14 @@ function WhoWeHelpPage() {
               <div className="mt-4 flex flex-wrap gap-4">
                 <Link
                   to={segment.link.to}
-                  className="inline-flex items-center gap-2 font-medium text-teal-700 hover:underline"
+                  className="inline-flex items-center gap-2 font-medium text-pink-700 hover:underline"
                 >
                   {segment.link.label} <ArrowRight className="size-4" />
                 </Link>
                 {segment.link2 && (
                   <Link
                     to={segment.link2.to}
-                    className="inline-flex items-center gap-2 font-medium text-teal-700 hover:underline"
+                    className="inline-flex items-center gap-2 font-medium text-pink-700 hover:underline"
                   >
                     {segment.link2.label} <ArrowRight className="size-4" />
                   </Link>

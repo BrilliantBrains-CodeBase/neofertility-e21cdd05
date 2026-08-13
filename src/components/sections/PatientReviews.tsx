@@ -114,7 +114,7 @@ export function PatientReviews() {
   return (
     <section
       aria-labelledby="patient-reviews"
-      className="overflow-hidden bg-clay-25 pt-10 pb-5 sm:pt-[50px] md:pt-[70px] md:pb-10 2xl:pt-[100px] 2xl:pb-[70px]"
+      className="overflow-hidden bg-pink-25 pt-10 pb-5 sm:pt-[50px] md:pt-[70px] md:pb-10 2xl:pt-[100px] 2xl:pb-[70px]"
     >
       {/* Header and carousel share container-page so their left edges stay aligned —
           widening only the carousel would push the cards outside the heading. This used
@@ -123,7 +123,7 @@ export function PatientReviews() {
       <div className="container-page mb-[30px]">
         <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
           <Reveal className="lg:w-1/2 xl:w-5/12">
-            <p className="flex items-center gap-2 text-[1.125rem] font-semibold tracking-[0.08em] text-teal-600 uppercase">
+            <p className="flex items-center gap-2 text-[1.125rem] font-semibold tracking-[0.08em] text-pink-600 uppercase">
               <Quote aria-hidden className="size-5" />
               Testimonials
             </p>
@@ -142,7 +142,7 @@ export function PatientReviews() {
                     key={review.name}
                     aria-hidden
                     className={cn(
-                      "grid size-8 shrink-0 place-items-center rounded-full bg-teal-50 text-[0.6875rem] font-semibold text-teal-700 ring-2 ring-white sm:size-[42px] sm:text-[0.8125rem] xl:size-12 xl:text-[0.9375rem]",
+                      "grid size-8 shrink-0 place-items-center rounded-full bg-pink-50 text-[0.6875rem] font-semibold text-pink-700 ring-2 ring-white sm:size-[42px] sm:text-[0.8125rem] xl:size-12 xl:text-[0.9375rem]",
                       i > 0 && "-ms-3",
                     )}
                   >
@@ -151,7 +151,7 @@ export function PatientReviews() {
                 ))}
                 <span
                   aria-hidden
-                  className="-ms-3 grid size-8 shrink-0 place-items-center rounded-full bg-teal-900 text-[0.6875rem] font-semibold text-sand ring-2 ring-white sm:size-[42px] sm:text-[0.8125rem] xl:size-12 xl:text-[0.9375rem]"
+                  className="-ms-3 grid size-8 shrink-0 place-items-center rounded-full bg-plum-900 text-[0.6875rem] font-semibold text-paper ring-2 ring-white sm:size-[42px] sm:text-[0.8125rem] xl:size-12 xl:text-[0.9375rem]"
                 >
                   +
                 </span>
@@ -159,7 +159,7 @@ export function PatientReviews() {
 
               <span aria-hidden className="mx-4 h-8 w-px bg-line xl:mx-[25px]" />
 
-              <span className="text-[0.75rem] leading-tight font-medium text-teal-900 sm:text-[1rem] xl:text-[1.25rem]">
+              <span className="text-[0.75rem] leading-tight font-medium text-plum-900 sm:text-[1rem] xl:text-[1.25rem]">
                 Talk to our fertility expert
               </span>
             </div>
@@ -169,7 +169,7 @@ export function PatientReviews() {
               <button
                 type="button"
                 aria-label="Book an appointment"
-                className="grid size-[55px] shrink-0 place-items-center rounded-full bg-clay-600 text-sand transition-colors hover:bg-clay-700 focus-visible:ring-2 focus-visible:ring-teal-700 focus-visible:ring-offset-2 focus-visible:outline-none md:size-[60px] lg:size-[70px]"
+                className="grid size-[55px] shrink-0 place-items-center rounded-full bg-pink-600 text-paper transition-colors hover:bg-pink-700 focus-visible:ring-2 focus-visible:ring-pink-700 focus-visible:ring-offset-2 focus-visible:outline-none md:size-[60px] lg:size-[70px]"
               >
                 <ArrowUpRight aria-hidden className="size-6 lg:size-7" />
               </button>
@@ -204,7 +204,7 @@ export function PatientReviews() {
                 >
                   <div className="relative flex h-full flex-col sm:flex-row">
                     {/* Media half */}
-                    <div className="h-[380px] w-full shrink-0 overflow-hidden rounded-t-[15px] shadow-[0_0_15px_rgba(1,49,55,0.05)] sm:w-[45%] sm:rounded-t-none sm:rounded-s-[15px] md:w-1/2 lg:h-[440px]">
+                    <div className="h-[380px] w-full shrink-0 overflow-hidden rounded-t-[15px] shadow-[0_0_15px_rgba(61,32,63,0.05)] sm:w-[45%] sm:rounded-t-none sm:rounded-s-[15px] md:w-1/2 lg:h-[440px]">
                       <img
                         src={review.image}
                         alt={review.alt}
@@ -216,10 +216,10 @@ export function PatientReviews() {
                     </div>
 
                     {/* Review half — together these read as one card split down the middle */}
-                    <div className="relative flex h-[380px] w-full flex-col overflow-hidden rounded-b-[15px] bg-white p-5 shadow-[0_0_15px_rgba(1,49,55,0.05)] sm:w-1/2 sm:rounded-b-none sm:rounded-e-[15px] md:p-[25px] lg:h-[440px] lg:px-[30px] lg:pt-[35px] lg:pb-[30px]">
+                    <div className="relative flex h-[380px] w-full flex-col overflow-hidden rounded-b-[15px] bg-white p-5 shadow-[0_0_15px_rgba(61,32,63,0.05)] sm:w-1/2 sm:rounded-b-none sm:rounded-e-[15px] md:p-[25px] lg:h-[440px] lg:px-[30px] lg:pt-[35px] lg:pb-[30px]">
                       <span
                         aria-hidden
-                        className="pointer-events-none absolute end-[25px] bottom-[30px] font-display text-[65px] leading-none text-clay-500/25 select-none"
+                        className="pointer-events-none absolute end-[25px] bottom-[30px] text-[65px] leading-none text-pink-500/25 select-none"
                       >
                         &rdquo;
                       </span>
@@ -236,7 +236,7 @@ export function PatientReviews() {
                       <button
                         type="button"
                         onClick={() => setOpenReview(review)}
-                        className="relative z-10 mt-2 self-start text-[0.9375rem] font-medium text-clay-600 underline-offset-4 hover:underline focus-visible:ring-2 focus-visible:ring-teal-700 focus-visible:ring-offset-2 focus-visible:outline-none"
+                        className="relative z-10 mt-2 self-start text-[0.9375rem] font-medium text-pink-600 underline-offset-4 hover:underline focus-visible:ring-2 focus-visible:ring-pink-700 focus-visible:ring-offset-2 focus-visible:outline-none"
                       >
                         Read more
                         <span className="sr-only"> of {review.name}&rsquo;s review</span>
@@ -245,12 +245,12 @@ export function PatientReviews() {
                       <div className="relative z-10 mt-auto flex items-center gap-4 pt-6">
                         <span
                           aria-hidden
-                          className="grid size-[52px] shrink-0 place-items-center rounded-full bg-teal-50 text-[1rem] font-semibold text-teal-700 lg:size-[60px]"
+                          className="grid size-[52px] shrink-0 place-items-center rounded-full bg-pink-50 text-[1rem] font-semibold text-pink-700 lg:size-[60px]"
                         >
                           {initials(review.name)}
                         </span>
                         <span>
-                          <span className="block text-[1rem] font-medium text-teal-900 lg:text-[1.125rem]">
+                          <span className="block text-[1rem] font-medium text-plum-900 lg:text-[1.125rem]">
                             {review.name}
                           </span>
                           <span className="block text-[0.6875rem] text-ink-muted lg:text-[0.875rem]">
@@ -264,8 +264,8 @@ export function PatientReviews() {
               ))}
             </CarouselContent>
 
-            <CarouselPrevious className="absolute top-1/2 left-2 z-10 size-11 -translate-y-1/2 border-line bg-white text-teal-900 shadow-rail hover:border-teal-600 hover:bg-white disabled:opacity-35 lg:left-3 xl:-left-12 2xl:-left-14" />
-            <CarouselNext className="absolute top-1/2 right-2 z-10 size-11 -translate-y-1/2 border-line bg-white text-teal-900 shadow-rail hover:border-teal-600 hover:bg-white disabled:opacity-35 lg:right-3 xl:-right-12 2xl:-right-14" />
+            <CarouselPrevious className="absolute top-1/2 left-2 z-10 size-11 -translate-y-1/2 border-line bg-white text-plum-900 shadow-rail hover:border-pink-600 hover:bg-white disabled:opacity-35 lg:left-3 xl:-left-12 2xl:-left-14" />
+            <CarouselNext className="absolute top-1/2 right-2 z-10 size-11 -translate-y-1/2 border-line bg-white text-plum-900 shadow-rail hover:border-pink-600 hover:bg-white disabled:opacity-35 lg:right-3 xl:-right-12 2xl:-right-14" />
           </Carousel>
         </div>
       </div>
@@ -287,12 +287,12 @@ export function PatientReviews() {
               <div className="mt-2 flex items-center gap-3 border-t border-line pt-4">
                 <span
                   aria-hidden
-                  className="grid size-11 shrink-0 place-items-center rounded-full bg-teal-50 text-[0.9375rem] font-semibold text-teal-700"
+                  className="grid size-11 shrink-0 place-items-center rounded-full bg-pink-50 text-[0.9375rem] font-semibold text-pink-700"
                 >
                   {initials(openReview.name)}
                 </span>
                 <span>
-                  <span className="block font-medium text-teal-900">{openReview.name}</span>
+                  <span className="block font-medium text-plum-900">{openReview.name}</span>
                   <span className="block text-[0.875rem] text-ink-muted">{openReview.role}</span>
                 </span>
               </div>
