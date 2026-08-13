@@ -195,12 +195,15 @@ export function StatStrip({ light = false }: { light?: boolean }) {
     <div
       ref={ref}
       style={palette as React.CSSProperties}
-      className="grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-3"
+      className="grid grid-cols-2 gap-x-6 gap-y-8 sm:gap-x-8 sm:gap-y-10 lg:grid-cols-3"
     >
       {CLINICAL_VOLUME.map((stat) => (
         <div
           key={stat.label}
-          className="relative flex items-center justify-center [--stat-size:clamp(6rem,10vw,9.375rem)]"
+          /* Below sm the label sits under the figure instead of through it, so the cell
+             is a column; from sm it goes back to a single centred row with the label
+             absolutely positioned over the numeral. */
+          className="relative flex flex-col items-center justify-center [--stat-size:clamp(3rem,12vw,4.5rem)] sm:flex-row sm:[--stat-size:clamp(6rem,10vw,9.375rem)]"
         >
           {/* tabular-nums keeps the figure from jittering in width as it counts */}
           {/* Poppins 700 — the one place a second family appears. Big numerals in a
@@ -215,13 +218,19 @@ export function StatStrip({ light = false }: { light?: boolean }) {
             <CountUpFigure figure={stat.figure} active={inView} />
           </p>
 
-          {/* The label sits across the middle of the numeral, carrying the section's own
-              background so it reads as a clean band cut through the figure. It must stay
-              on ONE line: a wrapped label stacks two or three bands over the numeral and
-              buries it. A band wider than its figure is fine and expected — the short
-              figures ("18") simply get a longer strike than the long ones. */}
-          <p className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center whitespace-nowrap">
-            <span className="bg-[var(--stat-bg)] px-2 py-0.5 text-[length:calc(var(--stat-size)*0.12)] font-semibold tracking-[0.1em] uppercase text-[var(--stat-label)]">
+          {/* From sm up: the label sits across the middle of the numeral, carrying the
+              section's own background so it reads as a clean band cut through the figure.
+              It must stay on ONE line there — a wrapped label stacks two or three bands
+              over the numeral and buries it. A band wider than its figure is fine and
+              expected: the short figures ("18") simply get a longer strike.
+
+              Below sm it cannot work at all. Two per row leaves ~160px a cell at 390px,
+              while the numeral alone needs 202px and "Fertility surgeries" needs 168px,
+              and scaling the label down with the figure would put it at 6px. So on phones
+              the label drops below the numeral, keeps a fixed legible size, loses the
+              band (it is no longer punching through anything) and is free to wrap. */}
+          <p className="pointer-events-none mt-1 text-center whitespace-normal sm:absolute sm:top-1/2 sm:left-1/2 sm:mt-0 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:whitespace-nowrap">
+            <span className="px-2 py-0.5 text-[0.6875rem] font-semibold tracking-[0.1em] uppercase text-[var(--stat-label)] sm:bg-[var(--stat-bg)] sm:text-[length:calc(var(--stat-size)*0.12)]">
               {stat.label}
             </span>
           </p>

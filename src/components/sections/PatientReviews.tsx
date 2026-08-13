@@ -12,9 +12,16 @@ import { AppointmentSheet } from "@/components/conversion/AppointmentSheet";
 import { useCarouselAutoplay } from "@/hooks/use-carousel-autoplay";
 import { Reveal } from "@/components/motion/Reveal";
 import { cn } from "@/lib/utils";
-import consultRoom from "@/assets/clinic-consult-room.jpg";
-import reception from "@/assets/clinic-reception.jpg";
-import ultrasound from "@/assets/clinic-ultrasound.jpg";
+/* Real clinic photographs from the patient gallery, standing in for the empty-room stock
+   shots that were here before.
+   CAUTION: a photo of an identifiable person sitting beside a named review reads as a
+   photo OF that reviewer, which is not something we can stand behind — it is the same
+   reason the name badges below use initials rather than faces. The alt text deliberately
+   does not attribute, but the visual implication remains. Replace these with per-reviewer
+   photographs (with consent) or revert once real ones exist. */
+import patient01 from "@/assets/patient-01.webp";
+import patient02 from "@/assets/patient-02.webp";
+import patient03 from "@/assets/patient-03.webp";
 
 type Review = {
   name: string;
@@ -24,6 +31,9 @@ type Review = {
   /** Paragraphs separated by a blank line; preserved verbatim in the expanded dialog. */
   body: string;
   image: string;
+  /** Intrinsic size of `image` — they differ per file, so they cannot be hard-coded. */
+  width: number;
+  height: number;
   alt: string;
   /** No video URLs supplied yet — when one is set, the play button renders. */
   videoUrl: string | null;
@@ -42,8 +52,10 @@ Under her expert guidance and care, I underwent pregnancy induction treatment. D
 Within just six months of starting treatment with Neo Clinic, I received the long-awaited positive result. It truly felt like a miracle after such a long journey.
 
 I am deeply grateful to Dr. Payal and the entire Neo Clinic team for their professionalism, expertise, and compassionate support throughout the process.`,
-    image: consultRoom,
-    alt: "Consultation room at Neo Fertility Clinic",
+    image: patient01,
+    width: 512,
+    height: 512,
+    alt: "A patient at Neo Fertility Clinic holding her baby",
     videoUrl: null,
   },
   {
@@ -58,8 +70,10 @@ From the very first consultation, she explained everything clearly, guided me th
 I'm so happy to share that I have conceived after a long wait. Dr. Payal is the best Fertility Expert and I would highly recommend Dr. Payal and Neo Fertility Clinic to anyone dealing with fertility related issues.
 
 The entire team at Neo Fertility Clinic is professional, caring, and supportive.`,
-    image: reception,
-    alt: "Reception area at Neo Fertility Clinic",
+    image: patient02,
+    width: 512,
+    height: 512,
+    alt: "A patient at Neo Fertility Clinic holding her newborn twins",
     videoUrl: null,
   },
   {
@@ -76,8 +90,10 @@ She personally did all my scans, even coming to the clinic on holidays when need
 I'm truly grateful to be going through this journey with her. The clinic is always very hygienic, and everyone there always treated us with respect and care.
 
 I would definitely recommend Dr. Payal to anyone struggling with infertility and looking for a specialist.`,
-    image: ultrasound,
-    alt: "Ultrasound room at Neo Fertility Clinic",
+    image: patient03,
+    width: 650,
+    height: 450,
+    alt: "A patient at Neo Fertility Clinic holding her baby",
     videoUrl: null,
   },
 ];
@@ -112,10 +128,7 @@ export function PatientReviews() {
   });
 
   return (
-    <section
-      aria-labelledby="patient-reviews"
-      className="overflow-hidden bg-pink-25 pt-10 pb-5 sm:pt-[50px] md:pt-[70px] md:pb-10 2xl:pt-[100px] 2xl:pb-[70px]"
-    >
+    <section aria-labelledby="patient-reviews" className="overflow-hidden bg-pink-25 section-y">
       {/* Header and carousel share container-page so their left edges stay aligned —
           widening only the carousel would push the cards outside the heading. This used
           to be a bespoke w-[90%]; container-page is now 90% itself, so it lines up with
@@ -205,13 +218,15 @@ export function PatientReviews() {
                   <div className="relative flex h-full flex-col sm:flex-row">
                     {/* Media half */}
                     <div className="h-[380px] w-full shrink-0 overflow-hidden rounded-t-[15px] shadow-[0_0_15px_rgba(61,32,63,0.05)] sm:w-[45%] sm:rounded-t-none sm:rounded-s-[15px] md:w-1/2 lg:h-[440px]">
+                      {/* object-top: the panel is far taller than it is wide, and a
+                          centred crop of a waist-up photo cuts the face off. */}
                       <img
                         src={review.image}
                         alt={review.alt}
-                        width={1280}
-                        height={854}
+                        width={review.width}
+                        height={review.height}
                         loading="lazy"
-                        className="size-full object-cover"
+                        className="size-full object-cover object-top"
                       />
                     </div>
 

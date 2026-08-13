@@ -11,15 +11,23 @@ const socials = [
 ];
 
 export function Footer() {
-  const fertilityLinks = FERTILITY_MENU.flatMap((g) => g.links).slice(0, 9);
+  /* Six each, not nine and eight. The full catalogue is now listed on the homepage's
+     Services section and on the two hub pages linked at the foot of each list, so the
+     footer no longer has to carry a near-complete index — it was 27 links deep, which is
+     what made it read as a wall. */
+  const fertilityLinks = FERTILITY_MENU.flatMap((g) => g.links).slice(0, 6);
   const gynecologyLinks = GYNECOLOGY_MENU.flatMap((g) => g.links)
     .filter((l) => !l.hash)
-    .slice(0, 8);
+    .slice(0, 6);
 
   return (
     <footer className="mt-0 bg-navy-900 pt-16 pb-28 text-paper lg:pb-16">
-      <div className="container-page grid gap-12 lg:grid-cols-[1.2fr_1fr_1fr_1fr]">
-        <div>
+      {/* Full width on phones, 2-up from sm, 4-up from lg. Two columns on a 390px screen
+          leaves 153px a column, and "Intracytoplasmic Sperm Injection (ICSI)" then wraps
+          to three lines — the columns have to be wide enough for the labels or the
+          density gets worse rather than better. */}
+      <div className="container-page grid gap-x-8 gap-y-12 sm:grid-cols-2 sm:gap-x-10 lg:grid-cols-[1.2fr_1fr_1fr_1fr]">
+        <div className="sm:col-span-2 lg:col-span-1">
           <p className="text-[1.375rem] font-semibold">Neo Fertility Clinic</p>
           <p className="mt-3 max-w-[36ch] text-[0.9375rem] text-paper/75">
             Fertility and gynecology care led by {CLINIC.doctor}, {CLINIC.credentialsShort}, in
@@ -65,7 +73,7 @@ export function Footer() {
 
         <nav aria-label="Fertility services">
           <p className="text-[0.75rem] tracking-[0.16em] text-paper/60 uppercase">Fertility</p>
-          <ul className="mt-3 space-y-2 text-[0.9375rem] text-paper/85">
+          <ul className="mt-4 space-y-3 text-[0.9375rem] leading-relaxed text-paper/85">
             {fertilityLinks.map((link) => (
               <li key={link.label}>
                 <Link to={link.to} className="hover:underline">
@@ -73,12 +81,20 @@ export function Footer() {
                 </Link>
               </li>
             ))}
+            <li>
+              <Link
+                to={ROUTES.fertilitySolutions}
+                className="font-medium text-paper hover:underline"
+              >
+                All fertility services
+              </Link>
+            </li>
           </ul>
         </nav>
 
         <nav aria-label="Gynecology services">
           <p className="text-[0.75rem] tracking-[0.16em] text-paper/60 uppercase">Gynecology</p>
-          <ul className="mt-3 space-y-2 text-[0.9375rem] text-paper/85">
+          <ul className="mt-4 space-y-3 text-[0.9375rem] leading-relaxed text-paper/85">
             {gynecologyLinks.map((link) => (
               <li key={link.label}>
                 <Link to={link.to} className="hover:underline">
@@ -86,12 +102,20 @@ export function Footer() {
                 </Link>
               </li>
             ))}
+            <li>
+              <Link
+                to={ROUTES.gynecologyTreatments}
+                className="font-medium text-paper hover:underline"
+              >
+                All gynecology treatments
+              </Link>
+            </li>
           </ul>
         </nav>
 
         <nav aria-label="Clinic">
           <p className="text-[0.75rem] tracking-[0.16em] text-paper/60 uppercase">Clinic</p>
-          <ul className="mt-3 space-y-2 text-[0.9375rem] text-paper/85">
+          <ul className="mt-4 space-y-3 text-[0.9375rem] leading-relaxed text-paper/85">
             <li>
               <Link to={ROUTES.about} className="hover:underline">
                 About Dr. Payal
@@ -146,7 +170,7 @@ export function Footer() {
         </nav>
       </div>
 
-      <div className="container-page mt-12 border-t border-paper/15 pt-6">
+      <div className="container-page mt-14 border-t border-paper/15 pt-8">
         {/* Capped: this is the longest paragraph on the site and had no measure, so
             once the container became a percentage it ran to ~216 characters a line. */}
         <p className="max-w-[80ch] text-[0.8125rem] text-paper/65">{CLINIC.catchment}</p>

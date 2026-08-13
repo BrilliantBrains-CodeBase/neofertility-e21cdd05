@@ -234,10 +234,13 @@
   margin-inline: auto;
 }
 
+/* Adjacent sections each carry this, so the gap a reader sees is DOUBLE the value below.
+   At 4rem/6rem that put 128px between sections on phones and 192px on desktop, which read
+   as dead space. 3rem/4.5rem lands at 96px/144px. */
 @utility section-y {
-  padding-block: 4rem;
+  padding-block: 3rem;
   @media (min-width: 1024px) {
-    padding-block: 6rem;
+    padding-block: 4.5rem;
   }
 }
 

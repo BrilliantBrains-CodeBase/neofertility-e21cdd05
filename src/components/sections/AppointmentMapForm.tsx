@@ -222,7 +222,9 @@ export function AppointmentMapForm({ sourcePage }: { sourcePage: string }) {
     <section
       ref={sectionRef}
       aria-labelledby={`${ids}-heading`}
-      className="relative z-[1] overflow-hidden bg-pink-25"
+      /* clip rather than hidden — see TreatmentGrid: `hidden` leaves the section a
+         scrollport a few pixels wider than its box, which lets it slide sideways. */
+      className="relative z-[1] overflow-clip bg-pink-25"
     >
       {/* ── Backdrop image ─────────────────────────────────────────
           Decorative, so aria-hidden with an empty alt: the form beside it carries all

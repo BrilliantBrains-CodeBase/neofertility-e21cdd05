@@ -166,7 +166,9 @@ export function TabbedFeatureSection({
     "[--tfs-accent:var(--color-pink-600)] [--tfs-accent-contrast:var(--color-paper)]",
     "[--tfs-heading:var(--color-plum-900)] [--tfs-body:var(--color-ink-muted)]",
     "[--tfs-divider:var(--color-line)] [--tfs-radius:1.75rem]",
-    "bg-[var(--tfs-section-bg)] py-[clamp(3rem,7vw,6.5rem)]",
+    /* Matches the section-y rhythm (3rem / 4.5rem at 1024) rather than running its own
+       larger scale — two sections' padding stack, so the extra read as dead space. */
+    "bg-[var(--tfs-section-bg)] py-[clamp(3rem,5vw,4.5rem)]",
     className,
   );
 

@@ -118,7 +118,7 @@ import trDonor from "@/assets/donor-selection.webp";
 import trPcod from "@/assets/meno-assessment.jpg";
 import trPcos from "@/assets/meno-plan.jpg";
 import pinkBannerAsset from "@/assets/hero-banner-pink.webp";
-import faqImage from "@/assets/faq-mother-baby.webp";
+import faqImage from "@/assets/faq-mother-newborn.webp";
 import pathwayTrying from "@/assets/pathway-trying.jpg";
 import pathwayIrregular from "@/assets/pathway-irregular.jpg";
 import pathwayEggFreezing from "@/assets/pathway-egg-freezing.jpg";
@@ -352,7 +352,7 @@ function Home() {
       {/* Experience — sits directly under the doctor section: these are her numbers, so
           they belong with her. No heading: each figure carries its own label, punched
           through the middle of the numeral. */}
-      <section aria-label="Experience and clinical volume" className="bg-pink-25 py-16 lg:py-20">
+      <section aria-label="Experience and clinical volume" className="bg-pink-25 section-y">
         <div className="container-page">
           <StatStrip />
         </div>
@@ -363,10 +363,7 @@ function Home() {
         eyebrow="Services We Offer"
         title="Advanced Fertility Treatments for Every Path to Parenthood"
         items={TREATMENTS}
-        closing={{
-          heading: "Not sure which fertility treatment is right for you?",
-          copy: "Book a consultation with Dr. Payal Mahapatra at Neo Fertility and IVF Clinic in Marathahalli, Whitefield. In a single visit, she will review your reports, explain your options clearly, and recommend the treatment path best suited to you.",
-        }}
+        closing={{ heading: "Not sure which fertility treatment is right for you?" }}
       />
 
       {/* Who we help */}
@@ -386,7 +383,9 @@ function Home() {
 
       {/* Continues the tabbed section's background — this link belongs to it, and a white
           strip here would read as a separate band. */}
-      <div className="bg-pink-25 pb-[clamp(3rem,7vw,6.5rem)]">
+      {/* pb only — the tabbed section above already carries the section-y top padding,
+          and this link is the tail of that section rather than a band of its own. */}
+      <div className="bg-pink-25 pb-12 lg:pb-18">
         <div className="container-page flex justify-center">
           <Link
             to={ROUTES.whoWeHelp}
@@ -438,9 +437,9 @@ function Home() {
         heading="Frequently asked questions"
         image={{
           src: faqImage,
-          alt: "A smiling mother in a pink shirt cradling her newborn baby at home",
-          width: 795,
-          height: 870,
+          alt: "A mother in profile looking down at her sleeping newborn held against her chest",
+          width: 784,
+          height: 1168,
         }}
       />
 

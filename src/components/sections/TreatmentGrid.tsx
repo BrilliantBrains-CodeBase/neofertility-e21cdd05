@@ -12,6 +12,7 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { AppointmentSheet } from "@/components/conversion/AppointmentSheet";
 import { useCarouselAutoplay } from "@/hooks/use-carousel-autoplay";
+import { ROUTES } from "@/data/navigation";
 import { CLINIC, track } from "@/lib/clinic";
 import { Reveal } from "@/components/motion/Reveal";
 import { cn } from "@/lib/utils";
@@ -146,6 +147,24 @@ function TreatmentCarousel({ items, label }: { items: TreatmentItem[]; label: st
   );
 }
 
+/**
+ * The way through to a tab's full catalogue. The services that have no card copy and no
+ * photograph are deliberately NOT listed here — they live on the hub page this links to.
+ */
+function AllServicesLink({ label, to }: { label: string; to: string }) {
+  return (
+    <div className="mt-10 flex justify-center">
+      <Link
+        to={to}
+        className="inline-flex min-h-11 items-center gap-2 rounded-full bg-pink-600 px-7 py-2 font-medium text-white transition-colors hover:bg-pink-700 focus-visible:ring-2 focus-visible:ring-pink-700 focus-visible:ring-offset-2 focus-visible:outline-none"
+      >
+        {label}
+        <ArrowRight className="size-4 shrink-0 rtl:rotate-180" />
+      </Link>
+    </div>
+  );
+}
+
 export function TreatmentGrid({
   eyebrow,
   title,
@@ -155,7 +174,8 @@ export function TreatmentGrid({
   eyebrow: string;
   title: string;
   items: TreatmentItem[];
-  closing: { heading: string; copy: string };
+  /* copy is optional: the home band shows the heading and the two buttons only. */
+  closing: { heading: string; copy?: string };
 }) {
   const fertility = items.filter((i) => i.group === "fertility");
   const gynecology = items.filter((i) => i.group === "gynecology");
@@ -165,8 +185,13 @@ export function TreatmentGrid({
   const trigger =
     "inline-flex min-h-11 flex-1 items-center justify-center rounded-full px-3 text-center text-[0.8125rem] font-medium text-plum-900 transition-colors hover:text-pink-700 data-[state=active]:bg-pink-600 data-[state=active]:text-white sm:flex-none sm:px-6 sm:text-[0.9375rem]";
 
+  /* overflow-clip, not overflow-hidden: the decorative blur below sits 96px past the
+     right edge, and `hidden` leaves the section a scroll container 96px wider than its
+     box. Anything that scrolls a descendant into view — the carousel, a focused tab —
+     then slides the whole section sideways by 96px, heading included. `clip` clips the
+     blur identically but creates no scrollport. */
   return (
-    <section className="relative overflow-hidden bg-white section-y">
+    <section className="relative overflow-clip bg-white section-y">
       <div
         aria-hidden
         className="pointer-events-none absolute -right-24 -top-24 size-[26rem] rounded-full bg-pink-50 blur-3xl"
@@ -203,9 +228,11 @@ export function TreatmentGrid({
 
           <TabsContent value="fertility">
             <TreatmentCarousel items={fertility} label="Fertility treatments" />
+            <AllServicesLink label="All fertility services" to={ROUTES.fertilitySolutions} />
           </TabsContent>
           <TabsContent value="gynecology">
             <TreatmentCarousel items={gynecology} label="Gynecology treatments" />
+            <AllServicesLink label="All gynecology treatments" to={ROUTES.gynecologyTreatments} />
           </TabsContent>
         </Tabs>
 
@@ -216,9 +243,11 @@ export function TreatmentGrid({
               <h3 className="text-[1.375rem] leading-snug text-white sm:text-[1.75rem]">
                 {closing.heading}
               </h3>
-              <p className="mt-3 max-w-[62ch] text-[0.9375rem] leading-relaxed text-white/80">
-                {closing.copy}
-              </p>
+              {closing.copy && (
+                <p className="mt-3 max-w-[62ch] text-[0.9375rem] leading-relaxed text-white/80">
+                  {closing.copy}
+                </p>
+              )}
             </div>
             <div className="flex flex-wrap gap-3 lg:justify-end">
               <AppointmentSheet sourcePage="home_treatments_band">
