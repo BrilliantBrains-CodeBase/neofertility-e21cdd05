@@ -20,11 +20,15 @@ export function DoctorAbout() {
   return (
     <section className="bg-white section-y" aria-labelledby="about-doctor">
       <div className="container-page">
-        <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
+        {/* 40/60 rather than an even split, and the portrait is capped. On a 50/50 grid
+            a 13:18 portrait grows taller faster than it grows wider, so once the
+            container became a percentage the image reached 1069px against 468px of
+            copy. The cap holds it near 1.3× the text height at any width. */}
+        <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-14">
           {/* The clinic's own studio portrait, framed at its native 650×900 so the
               full figure is shown and nothing is cropped. The smaller circular
               avatars elsewhere keep the tighter head-and-shoulders crop. */}
-          <Reveal className="relative overflow-hidden rounded-[2rem] bg-clay-50">
+          <Reveal className="relative overflow-hidden rounded-[2rem] bg-clay-50 lg:max-w-[30rem]">
             <img
               src={portrait}
               alt={`${CLINIC.doctor}, fertility specialist at Neo Fertility Clinic Marathahalli`}
@@ -55,7 +59,9 @@ export function DoctorAbout() {
               gets a plan built around them and the best possible chance of success.
             </p>
 
-            <div className="mt-7">
+            {/* Capped: the text column is ~926px at 1920, which pushed the two check
+                columns far enough apart to read as unrelated lists. */}
+            <div className="mt-7 max-w-2xl">
               <CheckList items={SPECIALISATIONS} columns={2} />
             </div>
 

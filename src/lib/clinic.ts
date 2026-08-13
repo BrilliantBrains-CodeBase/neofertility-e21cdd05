@@ -35,18 +35,23 @@ export const CLINIC = {
 } as const;
 
 export const CLINICAL_VOLUME = [
-  { figure: "18", label: "Years in clinical practice" },
-  { figure: "80,000+", label: "Obstetrics and gynecology patients" },
-  { figure: "6,789+", label: "IUI procedures" },
-  { figure: "3,764+", label: "Fertility surgeries" },
-  { figure: "2,046+", label: "IVF cycles" },
-  { figure: "728+", label: "Deliveries" },
+  { figure: "18", label: "Years Experience" },
+  { figure: "80k", label: "Patients Treated" },
+  { figure: "6.7k", label: "IUI procedures" },
+  { figure: "3.7k", label: "Fertility surgeries" },
+  { figure: "2k", label: "IVF cycles" },
+  // NOTE: the underlying count was 728. "1k" rounds that up by ~37%.
+  { figure: "1k", label: "Deliveries" },
 ] as const;
 
 export const QUALIFICATIONS = [
   { year: "2005", title: "MBBS", institution: "MGM Medical College, Jamshedpur" },
   { year: "2011", title: "DGO, Obstetrics and Gynecology", institution: "RIMS, Ranchi" },
-  { year: "2014", title: "DNB, Diplomate of National Board", institution: "Sagar Apollo, Bangalore" },
+  {
+    year: "2014",
+    title: "DNB, Diplomate of National Board",
+    institution: "Sagar Apollo, Bangalore",
+  },
   {
     year: "2017",
     title: "Fellowship in Reproductive Medicine",

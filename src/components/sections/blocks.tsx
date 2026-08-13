@@ -105,10 +105,20 @@ const COUNT_MS = 1800;
  * effect, by which point the strip is below the fold.
  */
 function CountUpFigure({ figure, active }: { figure: string; active: boolean }) {
-  const target = Number(figure.replace(/[^\d]/g, ""));
-  const suffix = figure.replace(/[\d,]/g, "");
+  /* Split the leading number off its suffix: "6.7k" → 6.7 + "k", "80,000+" → 80000 +
+     "+". The decimal point has to survive — stripping every non-digit turned "6.7k"
+     into 67 with a ".k" suffix, which rendered as "67.k". */
+  const [, numeric = "", suffix = ""] = /^([\d.,]*)(.*)$/.exec(figure) ?? [];
+  const decimals = (numeric.split(".")[1] ?? "").length;
+  const target = Number(numeric.replace(/,/g, ""));
   const reduced = usePrefersReducedMotion();
   const [display, setDisplay] = useState(target);
+
+  const format = (n: number) =>
+    n.toLocaleString("en-US", {
+      minimumFractionDigits: decimals,
+      maximumFractionDigits: decimals,
+    });
 
   useEffect(() => {
     if (!reduced) setDisplay(0);
@@ -124,19 +134,21 @@ function CountUpFigure({ figure, active }: { figure: string; active: boolean }) 
     const start = performance.now();
     const tick = (now: number) => {
       const t = Math.min(1, (now - start) / COUNT_MS);
-      setDisplay(Math.round(target * (1 - Math.pow(1 - t, 3)))); // ease-out cubic
+      /* Not rounded to an integer here — a figure like 6.7 needs its fraction to
+         survive the count, and `format` applies the right precision at render. */
+      setDisplay(target * (1 - Math.pow(1 - t, 3))); // ease-out cubic
       if (t < 1) frame = requestAnimationFrame(tick);
     };
     frame = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(frame);
   }, [active, reduced, target]);
 
-  // Non-numeric figures are left exactly as authored.
-  if (!Number.isFinite(target)) return <>{figure}</>;
+  // Figures with no leading number are left exactly as authored.
+  if (numeric === "" || !Number.isFinite(target)) return <>{figure}</>;
 
   return (
     <>
-      {display.toLocaleString("en-US")}
+      {format(display)}
       {suffix}
     </>
   );
@@ -192,12 +204,11 @@ export function StatStrip({ light = false }: { light?: boolean }) {
               old-style figures — 3, 7 and 9 drop below the baseline while 6 and 8 rise —
               so a figure like "6,789+" reads as ragged rather than as a number. The sans
               face has lining figures, all sitting on the baseline at a uniform height.
-              The clamp is tuned to the widest figure in the narrowest cell: Montserrat
-              Bold sets "80,000+" at roughly 4.36em, and the 3-column cell bottoms out
-              near 294px around 1024px wide. The floor matters as much as the ceiling —
-              at 390px the labels are as long as they are on desktop, so a small figure
-              gets buried under its own band. */}
-          <p className="font-sans text-[clamp(3.75rem,6.2vw,4.6rem)] leading-none font-bold tabular-nums text-[var(--stat-number)]">
+              The clamp is tuned to the widest figure in the narrowest cell — now "6.7k"
+              at four characters rather than the old seven-character "80,000+", which is
+              why the ceiling is so much higher than it used to be. The 3-column cell
+              bottoms out near 294px around 1024px wide. */}
+          <p className="font-sans text-[clamp(4rem,9vw,6.5rem)] leading-none font-bold tabular-nums text-[var(--stat-number)]">
             <CountUpFigure figure={stat.figure} active={inView} />
           </p>
 
@@ -330,8 +341,8 @@ export function FaqBlock({
     <section className="section-y">
       <div className="container-page">
         {image ? (
-          <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
-            <Reveal className="overflow-hidden rounded-2xl border border-line bg-clay-50">
+          <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-16">
+            <Reveal className="overflow-hidden rounded-2xl border border-line bg-clay-50 lg:max-w-[30rem]">
               <img
                 src={image.src}
                 alt={image.alt}
