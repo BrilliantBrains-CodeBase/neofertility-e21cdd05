@@ -15,7 +15,10 @@ export function BookingRail({
 }) {
   return (
     <aside className="hidden lg:block">
-      <div className="sticky top-24 w-[320px] rounded-xl border border-line bg-white p-5 shadow-rail">
+      {/* The card carries the full appointment form now, so on a short viewport it can
+          run taller than the screen. Without the cap a sticky card simply hangs past the
+          bottom and its submit button becomes unreachable. */}
+      <div className="sticky top-24 max-h-[calc(100vh-7rem)] w-[320px] overflow-y-auto rounded-xl border border-line bg-white p-5 shadow-rail">
         <div className="flex items-center gap-3">
           <img
             src={portrait}

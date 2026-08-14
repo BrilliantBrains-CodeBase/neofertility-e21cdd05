@@ -87,7 +87,7 @@ function StiPage() {
           <li>Pain or burning on passing urine</li>
           <li>Pain during intercourse</li>
           <li>Pelvic pain, with or without discharge</li>
-          <li>No symptoms at all — several STIs are commonly silent</li>
+          <li>No symptoms at all, as several STIs are commonly silent</li>
         </ul>
         <SafetyNote>
           Pelvic pain with discharge should be seen the same week. Untreated pelvic infection can

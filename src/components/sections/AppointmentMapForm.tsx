@@ -14,7 +14,7 @@ import {
 } from "lucide-react";
 import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { CLINIC, track } from "@/lib/clinic";
+import { CLINIC, ENQUIRY_TIMES, ENQUIRY_TREATMENTS, track } from "@/lib/clinic";
 import { ROUTES } from "@/data/navigation";
 import { Reveal } from "@/components/motion/Reveal";
 import { cn } from "@/lib/utils";
@@ -33,35 +33,6 @@ import backdrop from "@/assets/appointment-mother-baby.webp";
  *
  * ─────────────────────────────────────────────────────────────── */
 const ENDPOINT = "";
-
-const TREATMENTS = [
-  "IVF",
-  "IUI",
-  "ICSI",
-  "Fertility Consultation",
-  "PCOS / Irregular Cycles",
-  "Male Infertility",
-  "Other",
-];
-
-const TIMES = [
-  "09:30",
-  "10:00",
-  "10:30",
-  "11:00",
-  "11:30",
-  "12:00",
-  "12:30",
-  "14:00",
-  "14:30",
-  "15:00",
-  "15:30",
-  "16:00",
-  "16:30",
-  "17:00",
-  "17:30",
-  "18:00",
-];
 
 type Errors = Partial<Record<"name" | "mobile" | "email" | "treatment" | "consent", string>>;
 
@@ -363,7 +334,7 @@ export function AppointmentMapForm({ sourcePage }: { sourcePage: string }) {
                   {...fieldProps("treatment")}
                 >
                   <option value="">Treatment Interested In</option>
-                  {TREATMENTS.map((option) => (
+                  {ENQUIRY_TREATMENTS.map((option) => (
                     <option key={option} value={option}>
                       {option}
                     </option>
@@ -413,7 +384,7 @@ export function AppointmentMapForm({ sourcePage }: { sourcePage: string }) {
                       className="mt-1.5 w-full rounded-lg border border-input bg-white px-3 py-2 text-[0.9375rem] text-ink"
                     >
                       <option value="">Any time</option>
-                      {TIMES.map((t) => (
+                      {ENQUIRY_TIMES.map((t) => (
                         <option key={t} value={t}>
                           {t}
                         </option>
@@ -486,7 +457,7 @@ export function AppointmentMapForm({ sourcePage }: { sourcePage: string }) {
               <p aria-live="polite" className="mt-4 text-[0.9375rem]">
                 {done && (
                   <span className="font-medium text-pink-700">
-                    Thanks — we&rsquo;ll call you back shortly.
+                    Thanks, we&rsquo;ll call you back shortly.
                   </span>
                 )}
                 {failed && (

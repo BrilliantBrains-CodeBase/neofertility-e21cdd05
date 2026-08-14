@@ -175,10 +175,10 @@ function Page() {
 
       <Prose title="What affects success">
         <p>
-          Success depends on your age at the time of freezing (younger eggs mean higher success rates), the
-          number of eggs frozen (10 to 15 or more improves the chances of a future pregnancy), and
-          laboratory technology — the vitrification method used gives a 97 percent survival rate after
-          thawing.
+          Success depends on your age at the time of freezing (younger eggs mean higher success
+          rates), the number of eggs frozen (10 to 15 or more improves the chances of a future
+          pregnancy), and laboratory technology. The vitrification method used gives a 97 percent
+          survival rate after thawing.
         </p>
       </Prose>
 

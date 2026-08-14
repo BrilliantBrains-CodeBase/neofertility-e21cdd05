@@ -34,7 +34,7 @@ export const Route = createFileRoute("/best-pcod-treatment-in-marathahalli-white
     ...pageMeta({
       title: "Best PCOD Treatment in Marathahalli & Whitefield, Bangalore",
       description:
-        "Diagnosis and management of polycystic ovarian disease (PCOD) — irregular cycles, ovulation problems and fertility concerns — with Dr. Payal Mahapatra in Marathahalli and Whitefield, Bangalore.",
+        "Diagnosis and management of polycystic ovarian disease (PCOD) with Dr. Payal Mahapatra in Marathahalli and Whitefield, Bangalore. Irregular cycles, ovulation problems and fertility concerns.",
       path: PATH,
     }),
     scripts: [

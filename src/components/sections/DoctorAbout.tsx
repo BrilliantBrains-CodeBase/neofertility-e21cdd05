@@ -54,9 +54,9 @@ export function DoctorAbout() {
             </p>
 
             <p className="mt-5 max-w-[56ch] text-[1.0625rem] text-ink-muted">
-              Founder of Neo Fertility &amp; IVF Clinic in Marathahalli — Whitefield. A
-              compassionate approach combined with cutting-edge fertility treatment, so every couple
-              gets a plan built around them and the best possible chance of success.
+              Founder of Neo Fertility &amp; IVF Clinic in Marathahalli, Whitefield. A compassionate
+              approach combined with cutting-edge fertility treatment, so every couple gets a plan
+              built around them and the best possible chance of success.
             </p>
 
             {/* Capped: the text column is ~926px at 1920, which pushed the two check

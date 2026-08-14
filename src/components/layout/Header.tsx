@@ -287,7 +287,13 @@ export function Header() {
       {/* Desktop row */}
       <nav
         aria-label="Main"
-        className="relative hidden h-[4.5rem] items-center justify-between px-10 lg:flex"
+        /* 5.5rem, not 4.5rem: the expanded logo is 76px and the row was 72px, so it hung
+           11px past the bar's bottom edge. Invisible on the home route, where the bar is
+           transparent over the hero, but on every other route the bar is solid white and
+           the mark spilled out of it onto the page. Height is deliberately the same in
+           both scroll states — the bar is sticky on interior routes, so resizing it would
+           shove the page content on scroll. Only the logo inside it changes size. */
+        className="relative hidden h-[5.5rem] items-center justify-between px-10 lg:flex"
         onMouseLeave={() => setOpenMenu(null)}
       >
         <div className="flex items-center gap-8">
@@ -330,12 +336,9 @@ export function Header() {
           </div>
         </div>
 
-        <div
-          className={cn(
-            "pointer-events-none absolute inset-x-0 top-0 flex justify-center",
-            scrolled ? "items-center h-[4.5rem]" : "items-start pt-2",
-          )}
-        >
+        {/* Centred in both states now that the row is tall enough to hold the expanded
+            mark; the old `items-start pt-2` was what pushed it over the edge. */}
+        <div className="pointer-events-none absolute inset-x-0 top-0 flex h-[5.5rem] items-center justify-center">
           <div className="pointer-events-auto">
             <Logo compact={scrolled} onHero={onHero} />
           </div>

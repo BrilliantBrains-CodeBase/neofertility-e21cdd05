@@ -18,7 +18,7 @@ function Card({ item }: { item: ServiceCardItem }) {
   return (
     <Link
       to={item.to}
-      aria-label={`${item.title} — view all details`}
+      aria-label={`${item.title}, view all details`}
       className={cn(
         "group flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-white transition-all duration-300",
         "hover:-translate-y-1 hover:border-plum-900 hover:bg-plum-900 hover:shadow-rail",

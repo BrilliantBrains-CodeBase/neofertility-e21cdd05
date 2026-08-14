@@ -21,9 +21,13 @@ export type TreatmentItem = {
   tag: string;
   title: string;
   copy: string;
-  linkText: string;
   to: string;
+  /* Anchor on the destination route. Several gynecology concerns share the menstrual
+     page, and without this they would all land at the top of it. */
+  hash?: string;
   icon: LucideIcon;
+  /* Optional: a card with no image renders a branded placeholder rather than a hole,
+     so a service can go live before its photograph exists. */
   image?: string;
   /* Required, not optional: a new card must pick a tab rather than silently
      disappearing from both. */
@@ -107,7 +111,16 @@ function TreatmentCarousel({ items, label }: { items: TreatmentItem[]; label: st
                       className="h-44 w-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                   ) : (
-                    <div className="h-44 w-full bg-pink-50" />
+                    /* Placeholder, not an empty box: the service icon on the section's
+                       own tint reads as deliberate while the photograph is outstanding.
+                       aria-hidden because the card is already named by its heading, and
+                       a decorative stand-in should not be announced. */
+                    <div
+                      aria-hidden
+                      className="grid h-44 w-full place-items-center bg-linear-to-br from-pink-50 to-pink-25"
+                    >
+                      <Icon className="size-10 text-pink-300" strokeWidth={1.25} />
+                    </div>
                   )}
                   {/* The accessible name must start with the visible label or it fails
                       WCAG 2.5.3 (Label in Name): a voice-control user saying "click Book
@@ -116,7 +129,8 @@ function TreatmentCarousel({ items, label }: { items: TreatmentItem[]; label: st
                       links stay distinguishable in a screen reader's link list. */}
                   <Link
                     to={item.to}
-                    aria-label={`Book appointment — ${item.title}`}
+                    {...(item.hash ? { hash: item.hash } : {})}
+                    aria-label={`Book appointment: ${item.title}`}
                     className="absolute bottom-3 left-3 inline-flex min-h-11 items-center gap-2 rounded-full bg-plum-900/90 px-3.5 py-2 text-[0.75rem] font-medium text-white backdrop-blur transition-colors hover:bg-plum-900"
                   >
                     Book appointment

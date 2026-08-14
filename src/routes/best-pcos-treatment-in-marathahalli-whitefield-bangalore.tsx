@@ -34,7 +34,7 @@ export const Route = createFileRoute("/best-pcos-treatment-in-marathahalli-white
     ...pageMeta({
       title: "Best PCOS Treatment in Marathahalli & Whitefield, Bangalore",
       description:
-        "Diagnosis and treatment for polycystic ovary syndrome (PCOS) — irregular periods, acne, weight gain and fertility concerns — with Dr. Payal Mahapatra in Marathahalli and Whitefield, Bangalore.",
+        "Diagnosis and treatment for polycystic ovary syndrome (PCOS) with Dr. Payal Mahapatra in Marathahalli and Whitefield, Bangalore. Irregular periods, acne, weight gain and fertility concerns.",
       path: PATH,
     }),
     scripts: [

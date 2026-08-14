@@ -65,6 +65,39 @@ export const MEMBERSHIPS = [
   "Medical Council of India",
 ] as const;
 
+/* Every appointment form on the site asks the same questions from the same lists. Kept
+   here rather than in one form, because two copies drifted apart once already: the home
+   band offered treatments while the sidebar offered broad topics, so the same enquiry
+   arrived labelled differently depending on which form the patient happened to find. */
+export const ENQUIRY_TREATMENTS = [
+  "IVF",
+  "IUI",
+  "ICSI",
+  "Fertility Consultation",
+  "PCOS / Irregular Cycles",
+  "Male Infertility",
+  "Other",
+] as const;
+
+export const ENQUIRY_TIMES = [
+  "09:30",
+  "10:00",
+  "10:30",
+  "11:00",
+  "11:30",
+  "12:00",
+  "12:30",
+  "14:00",
+  "14:30",
+  "15:00",
+  "15:30",
+  "16:00",
+  "16:30",
+  "17:00",
+  "17:30",
+  "18:00",
+] as const;
+
 export const DEFAULT_WHATSAPP_MESSAGE =
   "Hi, I found Neo Fertility Clinic online and would like to book an appointment.";
 

@@ -173,7 +173,7 @@ function AboutPage() {
               <li key={q.title} className="relative">
                 <span className="absolute top-1.5 -left-[1.6rem] size-2.5 rounded-full bg-pink-600" />
                 <p className="font-medium text-[1.0625rem] text-plum-900">
-                  {q.title} <span className="text-ink-muted">— {q.year}</span>
+                  {q.title} <span className="text-ink-muted">({q.year})</span>
                 </p>
                 <p className="mt-1 text-[0.9375rem] text-ink-muted">{q.institution}</p>
               </li>

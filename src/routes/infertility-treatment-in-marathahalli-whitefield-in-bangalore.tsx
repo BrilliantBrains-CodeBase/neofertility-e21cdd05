@@ -85,7 +85,7 @@ function Page() {
       <Prose title="What causes infertility">
         <p>
           Infertility can affect both men and women, and knowing the cause is the first step toward
-          successful treatment. It is not always a single issue — it can be hormonal, structural, or
+          successful treatment. It is not always a single issue. It can be hormonal, structural, or
           lifestyle-related. We carry out comprehensive evaluations to identify the exact reason and build a
           personalised treatment plan.
         </p>

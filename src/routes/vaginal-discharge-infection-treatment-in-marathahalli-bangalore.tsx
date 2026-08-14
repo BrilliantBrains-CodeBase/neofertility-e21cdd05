@@ -87,7 +87,7 @@ function VaginalInfectionPage() {
           <li>Discomfort during intercourse or urination</li>
         </ul>
         <SafetyNote>
-          If discharge is accompanied by pelvic pain, be seen the same week — untreated pelvic
+          If discharge is accompanied by pelvic pain, be seen the same week. Untreated pelvic
           infection can scar the fallopian tubes within weeks.
         </SafetyNote>
       </Prose>

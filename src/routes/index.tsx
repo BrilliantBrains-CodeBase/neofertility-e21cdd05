@@ -16,107 +16,126 @@ import { TabbedFeatureSection } from "@/components/sections/TabbedFeatureSection
 import type { TabbedFeatureTab } from "@/components/sections/TabbedFeatureSection";
 import type { TreatmentItem } from "@/components/sections/TreatmentGrid";
 import {
-  Syringe,
-  FlaskConical,
-  Microscope,
-  Snowflake,
-  Users,
-  HeartHandshake,
   Activity,
+  CalendarHeart,
+  Droplet,
+  FlaskConical,
+  HeartHandshake,
+  Microscope,
+  Ribbon,
+  ShieldCheck,
+  Snowflake,
   Sparkles,
+  Stethoscope,
+  Thermometer,
 } from "lucide-react";
 
 const TREATMENTS: TreatmentItem[] = [
+  /* FERTILITY SOLUTIONS */
   {
-    tag: "Assisted Conception",
-    title: "Intrauterine Insemination (IUI) Treatment",
-    copy: "IUI is a simple, minimally invasive fertility treatment in which prepared, healthy sperm is placed directly into the uterus during ovulation. It is often the recommended first step for couples with unexplained infertility, mild male factor issues, or ovulation problems.",
-    linkText: "Explore IUI treatment in Marathahalli",
-    to: ROUTES.iui,
-    icon: Syringe,
-    image: trIui,
+    tag: "Reproductive Choice",
+    title: "Family Planning",
+    copy: "Personalised advice on contraception, birth spacing, and reproductive health so you plan parenthood on your own terms and timeline.",
+    to: ROUTES.familyPlanning,
+    icon: CalendarHeart,
+    image: trFamilyPlanning,
     group: "fertility",
   },
   {
-    tag: "Assisted Conception",
-    title: "In Vitro Fertilization (IVF) Treatment",
-    copy: "IVF is one of the most effective fertility treatments available today. Eggs are fertilised with sperm in our advanced laboratory, and the healthiest embryo is transferred to the uterus. IVF is recommended for blocked fallopian tubes, low ovarian reserve, failed IUI cycles, and unexplained infertility.",
-    linkText: "Explore IVF treatment in Marathahalli",
+    tag: "Fertility Diagnosis",
+    title: "Infertility Evaluation & Treatment",
+    copy: "A step-by-step evaluation for couples trying to conceive, finding the real cause and building a treatment plan that actually works for you.",
+    to: ROUTES.infertility,
+    icon: Stethoscope,
+    image: trFertilityDiagnosis,
+    group: "fertility",
+  },
+  {
+    tag: "Advanced IVF",
+    title: "In-Vitro Fertilization (IVF)",
+    copy: "One of the most effective fertility treatments. Eggs and sperm are combined in our lab, and a healthy embryo is placed back in the uterus.",
     to: ROUTES.ivf,
     icon: FlaskConical,
     image: trIvf,
     group: "fertility",
   },
   {
-    tag: "Assisted Conception",
-    title: "Intracytoplasmic Sperm Injection (ICSI)",
-    copy: "ICSI is an advanced form of IVF in which a single healthy sperm is injected directly into the egg to achieve fertilisation. It is the most effective option for severe male factor infertility, including low sperm count and poor sperm motility.",
-    linkText: "Explore ICSI treatment",
-    to: ROUTES.icsi,
-    icon: Microscope,
-    image: trIcsi,
-    group: "fertility",
-  },
-  {
     tag: "Fertility Preservation",
-    title: "Egg Freezing and Fertility Preservation",
-    copy: "Egg freezing allows women to preserve their fertility by storing healthy eggs for future use. It is ideal for women who want to delay pregnancy for career, health, or personal reasons, and before medical treatments that may affect fertility.",
-    linkText: "Explore egg freezing in Bangalore",
+    title: "Egg Freezing & Preservation",
+    copy: "Freeze your healthy eggs today to protect your fertility for tomorrow, ideal if you are planning pregnancy later in life.",
     to: ROUTES.eggFreezing,
     icon: Snowflake,
     image: trEf,
     group: "fertility",
   },
   {
-    tag: "Male Fertility",
-    title: "Male Infertility Treatment",
-    copy: "Male factors contribute to nearly half of all infertility cases. Our male fertility solutions include advanced semen analysis, hormonal evaluation, sperm retrieval techniques, and targeted treatment for low sperm count, motility, and morphology issues.",
-    linkText: "Explore male infertility treatment",
-    to: ROUTES.maleInfertility,
-    icon: Users,
-    image: trMale,
-    group: "fertility",
-  },
-  {
-    tag: "Donor Care",
-    title: "Donor Egg and Sperm Programs",
-    copy: "Donor programs help couples conceive when pregnancy is not possible with their own eggs or sperm. All donors are medically screened, and every case is handled with complete confidentiality and compassionate counselling support.",
-    linkText: "Explore donor egg and sperm programs",
-    to: ROUTES.donor,
-    icon: HeartHandshake,
-    image: trDonor,
-    group: "fertility",
-  },
-  {
-    tag: "Hormonal Health",
+    tag: "Hormonal Care",
     title: "PCOD Treatment",
-    copy: "PCOD (Polycystic Ovarian Disease) causes irregular periods, ovarian cysts, and difficulty conceiving. Our PCOD treatment combines medical management, cycle regulation, and lifestyle guidance to restore hormonal balance and improve fertility naturally.",
-    linkText: "Explore PCOD treatment in Marathahalli",
+    copy: "Expert care for ovarian cysts, irregular periods, and hormonal imbalance, combining lifestyle guidance and medical treatment to restore your cycle.",
     to: ROUTES.pcod,
     icon: Activity,
     image: trPcod,
-    group: "gynecology",
+    group: "fertility",
   },
   {
-    tag: "Hormonal Health",
+    tag: "Hormonal Disorder",
     title: "PCOS Treatment",
-    copy: "PCOS (Polycystic Ovary Syndrome) is a hormonal disorder that affects ovulation, weight, and fertility. We offer comprehensive PCOS care including hormonal therapy, ovulation induction, metabolic support, and long term fertility protection.",
-    linkText: "Explore PCOS treatment in Marathahalli",
+    copy: "Complete treatment for PCOS, tackling irregular periods, weight, acne, and fertility issues with a personalised hormonal reset plan.",
     to: ROUTES.pcos,
     icon: Sparkles,
     image: trPcos,
+    group: "fertility",
+  },
+
+  /* GYNECOLOGY TREATMENTS */
+  {
+    tag: "Period Pain",
+    title: "Painful Periods",
+    copy: "Severe period pain is not something you must live with. Expert diagnosis and treatment for lasting relief, cycle after cycle.",
+    to: ROUTES.menstrual,
+    hash: "constant_menstrual_pain",
+    icon: Droplet,
+    image: trPainfulPeriods,
+    group: "gynecology",
+  },
+  {
+    tag: "Menopause Support",
+    title: "Menopausal Care",
+    copy: "Hot flashes, mood swings, and hormonal shifts. Expert menopause care with hormone therapy and lifestyle support for comfort at every stage.",
+    to: ROUTES.menstrual,
+    hash: "menopausal_disorders",
+    icon: Thermometer,
+    image: trMenopause,
+    group: "gynecology",
+  },
+  {
+    tag: "Intimate Health",
+    title: "Vaginal Infection Care",
+    copy: "Fast, confidential diagnosis and treatment for vaginal itching, infections, or unusual odour, so you feel fresh, healthy, and confident again.",
+    to: ROUTES.vaginalInfection,
+    icon: ShieldCheck,
+    group: "gynecology",
+  },
+  {
+    tag: "Breast Health",
+    title: "Breast Lump Evaluation",
+    copy: "Early evaluation of breast lumps for peace of mind or timely action. Most lumps are harmless, but every one deserves expert attention.",
+    to: ROUTES.breastLumps,
+    icon: Ribbon,
+    image: trBreastLump,
     group: "gynecology",
   },
 ];
 
-import trIui from "@/assets/iui-iui_procedure.jpg";
-import trIvf from "@/assets/ivf-embryo-transfer.jpg";
-import trIcsi from "@/assets/icsi-sperm-injection.jpg";
-import trEf from "@/assets/ef-cryopreservation.webp";
-import trMale from "@/assets/ivf-fertilization.jpg";
-import trDonor from "@/assets/donor-selection.webp";
-import trPcod from "@/assets/meno-assessment.jpg";
-import trPcos from "@/assets/meno-plan.jpg";
+import trFamilyPlanning from "@/assets/treatment-family-planning.webp";
+import trFertilityDiagnosis from "@/assets/treatment-fertility-diagnosis.webp";
+import trIvf from "@/assets/treatment-ivf.webp";
+import trEf from "@/assets/treatment-egg-freezing.webp";
+import trPcod from "@/assets/treatment-pcod.webp";
+import trPcos from "@/assets/treatment-pcos.webp";
+import trPainfulPeriods from "@/assets/treatment-painful-periods.webp";
+import trMenopause from "@/assets/treatment-menopausal-care.webp";
+import trBreastLump from "@/assets/treatment-breast-lump.webp";
 import pinkBannerAsset from "@/assets/hero-banner-pink.webp";
 import faqImage from "@/assets/faq-mother-newborn.webp";
 import pathwayTrying from "@/assets/pathway-trying.jpg";
@@ -291,7 +310,7 @@ const STEPS = [
   },
   {
     title: "A named diagnosis",
-    short: "A cause, or an honest “unexplained” — in plain language.",
+    short: "A cause, or an honest “unexplained”, in plain language.",
     copy: "You are told what the cause is, or told honestly that it is unexplained. Results are explained in plain language, not handed over as a printout.",
   },
   {
@@ -370,6 +389,7 @@ function Home() {
       {/* No background override: the component already defaults --tfs-section-bg to
           pink-25, the same greyish tint the stat strip and patient reviews use. */}
       <TabbedFeatureSection
+        eyebrow="Personalised Conception Plans"
         sectionTitle={
           <>
             <span className="block font-semibold">Four ways people arrive here,</span>

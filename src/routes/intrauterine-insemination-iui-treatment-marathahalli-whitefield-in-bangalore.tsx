@@ -160,7 +160,7 @@ function Page() {
         </p>
         <p>
           IUI may not be suitable for those with severe male infertility, blocked fallopian tubes, or
-          certain other conditions — these are assessed at your evaluation.
+          certain other conditions. These are assessed at your evaluation.
         </p>
       </Prose>
 

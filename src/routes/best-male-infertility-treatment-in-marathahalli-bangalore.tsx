@@ -71,7 +71,7 @@ function Page() {
       related={COMMON_RELATED}
       closing={{
         heading: "Start with a semen analysis",
-        copy: "Male infertility usually has no symptoms. A semen analysis is fast, inexpensive and non-invasive — book a consultation to begin.",
+        copy: "Male infertility usually has no symptoms. A semen analysis is fast, inexpensive and non-invasive. Book a consultation to begin.",
       }}
     >
       <Prose title="What male infertility is">
@@ -143,10 +143,11 @@ function Page() {
       />
 
       <SafetyNote>
-        Male infertility usually has no symptoms. Most men feel entirely normal and discover a problem only
-        when a semen analysis is done — deferring that test is the single most common sequencing error in
-        fertility care. Where sperm production cannot be restored, ICSI means one usable sperm is enough,
-        and TESA or PESA can recover sperm even when none appears in the ejaculate.
+        Male infertility usually has no symptoms. Most men feel entirely normal and discover a
+        problem only when a semen analysis is done. Deferring that test is the single most common
+        sequencing error in fertility care. Where sperm production cannot be restored, ICSI means
+        one usable sperm is enough, and TESA or PESA can recover sperm even when none appears in the
+        ejaculate.
       </SafetyNote>
     </ServicePage>
   );

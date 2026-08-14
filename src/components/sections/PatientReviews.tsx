@@ -83,7 +83,7 @@ The entire team at Neo Fertility Clinic is professional, caring, and supportive.
     title: "Constant Support And Care",
     body: `Words can't express how thankful I am to Payal ma'am. Throughout my journey to become pregnant, she stood by me with constant support and care. My husband and I struggled for a long time, and our dream came true only because of Dr. Payal.
 
-I have deep trust in her. Whenever I felt scared or unsure, I would remind myself that Payal ma'am is an excellent doctor—and just that thought would bring me peace. She is truly dedicated, always listening patiently and answering every doubt with compassion.
+I have deep trust in her. Whenever I felt scared or unsure, I would remind myself that Payal ma'am is an excellent doctor, and just that thought would bring me peace. She is truly dedicated, always listening patiently and answering every doubt with compassion.
 
 She personally did all my scans, even coming to the clinic on holidays when needed. There were times when scans were required daily, and she was always there without fail. Her treatment is always accurate, and her deep knowledge gave me so much confidence.
 

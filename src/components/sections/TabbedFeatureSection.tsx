@@ -11,6 +11,7 @@ import { cn } from "@/lib/utils";
  *
  * PROPS
  *   tabs             TabbedFeatureTab[]  required. Any length; 0 renders the empty state.
+ *   eyebrow          string              optional kicker above the heading.
  *   sectionTitle     ReactNode           optional heading (ReactNode so callers can pass
  *                                        split/italic markup).
  *   sectionSubtitle  string              optional line under the heading.
@@ -62,6 +63,7 @@ const useIsomorphicLayoutEffect = typeof window === "undefined" ? useEffect : us
 
 export function TabbedFeatureSection({
   tabs,
+  eyebrow,
   sectionTitle,
   sectionSubtitle,
   defaultActiveId,
@@ -70,6 +72,7 @@ export function TabbedFeatureSection({
   className,
 }: {
   tabs: TabbedFeatureTab[];
+  eyebrow?: string;
   sectionTitle?: ReactNode;
   sectionSubtitle?: string;
   defaultActiveId?: string;
@@ -182,8 +185,12 @@ export function TabbedFeatureSection({
     );
   }
 
-  const heading = (sectionTitle || sectionSubtitle) && (
+  const heading = (eyebrow || sectionTitle || sectionSubtitle) && (
     <div className="text-center">
+      {/* The shared `eyebrow` utility rather than a local colour: it resolves to pink-700
+          because pink-600 clears 4.5:1 on white but only reaches 4.25 on the pink-25
+          band this section defaults to. */}
+      {eyebrow && <p className="eyebrow mb-3">{eyebrow}</p>}
       {sectionTitle && (
         <h2 className="text-[clamp(1.75rem,3.4vw,2.1875rem)] text-[var(--tfs-heading)]">
           {sectionTitle}
