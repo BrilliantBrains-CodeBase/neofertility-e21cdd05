@@ -521,7 +521,7 @@ function Home() {
         eyebrow="Services We Offer"
         title="Advanced Fertility Treatments for Every Path to Parenthood"
         items={TREATMENTS}
-        closing={{ heading: "Not sure which fertility treatment is right for you?" }}
+        closing={{ heading: "Confused? Consult us." }}
       />
 
       {/* Who we help */}

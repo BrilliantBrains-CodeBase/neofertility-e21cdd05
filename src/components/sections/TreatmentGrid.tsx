@@ -252,7 +252,7 @@ export function TreatmentGrid({
 
         {/* Closing band */}
         <div className="mt-14 rounded-[1.75rem] bg-navy-900 p-8 text-white lg:p-12">
-          <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr] lg:items-center lg:gap-12">
+          <div className="grid gap-6 lg:grid-cols-[1fr_auto] lg:items-center lg:gap-12">
             <div>
               <h3 className="text-[1.375rem] leading-snug text-white sm:text-[1.75rem]">
                 {closing.heading}
@@ -263,7 +263,7 @@ export function TreatmentGrid({
                 </p>
               )}
             </div>
-            <div className="flex flex-wrap gap-3 lg:justify-end">
+            <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap lg:flex-nowrap lg:justify-end">
               <AppointmentSheet sourcePage="home_treatments_band">
                 <Button variant="cta" size="lg" className="rounded-full">
                   Book a Consultation
