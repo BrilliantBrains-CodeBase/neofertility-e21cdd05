@@ -3,7 +3,7 @@ import { Dialog, DialogContent, DialogTitle, DialogTrigger } from "@/components/
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { LeadForm } from "./LeadForm";
 import { CLINIC, track } from "@/lib/clinic";
-import portrait from "@/assets/dr-payal-portrait.jpg";
+import portrait from "@/assets/dr-payal-avatar.webp";
 
 export function AppointmentSheet({
   children,

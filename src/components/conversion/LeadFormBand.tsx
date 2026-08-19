@@ -1,6 +1,6 @@
 import { LeadForm } from "./LeadForm";
 import { CLINIC } from "@/lib/clinic";
-import portrait from "@/assets/dr-payal-portrait.jpg";
+import portrait from "@/assets/dr-payal-avatar.webp";
 
 export function LeadFormBand({
   heading,

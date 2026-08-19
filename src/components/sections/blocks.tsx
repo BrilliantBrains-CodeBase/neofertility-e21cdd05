@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/accordion";
 import { CLINIC, CLINICAL_VOLUME } from "@/lib/clinic";
 import { ROUTES } from "@/data/navigation";
-import portrait from "@/assets/dr-payal-portrait.jpg";
+import portrait from "@/assets/dr-payal-avatar.webp";
 import { Reveal } from "@/components/motion/Reveal";
 import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
 import { cn } from "@/lib/utils";

@@ -4,7 +4,7 @@ import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
 import { LeadForm } from "./LeadForm";
 import { CLINIC, buildWhatsAppUrl, track } from "@/lib/clinic";
 import { ROUTES } from "@/data/navigation";
-import portrait from "@/assets/dr-payal-portrait.jpg";
+import portrait from "@/assets/dr-payal-avatar.webp";
 
 export function BookingRail({
   sourcePage,
