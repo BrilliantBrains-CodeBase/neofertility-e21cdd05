@@ -217,7 +217,7 @@ export function PatientReviews() {
                 >
                   <div className="relative flex h-full flex-col sm:flex-row">
                     {/* Media half */}
-                    <div className="h-[380px] w-full shrink-0 overflow-hidden rounded-t-[15px] shadow-[0_0_15px_rgba(61,32,63,0.05)] sm:w-[45%] sm:rounded-t-none sm:rounded-s-[15px] md:w-1/2 lg:h-[440px]">
+                    <div className="h-[380px] w-full shrink-0 overflow-hidden rounded-ss-[15px] rounded-se-[15px] shadow-[0_0_15px_rgba(61,32,63,0.05)] sm:w-[45%] sm:rounded-se-none sm:rounded-es-[15px] md:w-1/2 lg:h-[440px]">
                       {/* object-top: the panel is far taller than it is wide, and a
                           centred crop of a waist-up photo cuts the face off. */}
                       <img
@@ -231,7 +231,7 @@ export function PatientReviews() {
                     </div>
 
                     {/* Review half — together these read as one card split down the middle */}
-                    <div className="relative flex h-[380px] w-full flex-col overflow-hidden rounded-b-[15px] bg-white p-5 shadow-[0_0_15px_rgba(61,32,63,0.05)] sm:w-1/2 sm:rounded-b-none sm:rounded-e-[15px] md:p-[25px] lg:h-[440px] lg:px-[30px] lg:pt-[35px] lg:pb-[30px]">
+                    <div className="relative flex h-[380px] w-full flex-col overflow-hidden rounded-es-[15px] rounded-ee-[15px] bg-white p-5 shadow-[0_0_15px_rgba(61,32,63,0.05)] sm:w-1/2 sm:rounded-es-none sm:rounded-se-[15px] md:p-[25px] lg:h-[440px] lg:px-[30px] lg:pt-[35px] lg:pb-[30px]">
                       <span
                         aria-hidden
                         className="pointer-events-none absolute end-[25px] bottom-[30px] text-[65px] leading-none text-pink-500/25 select-none"
