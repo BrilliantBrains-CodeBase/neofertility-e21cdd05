@@ -31,6 +31,7 @@ import { Route as FertilityAssessmentRouteImport } from './routes/fertility-asse
 import { Route as FertilityClinicInBellandurBangaloreRouteImport } from './routes/fertility-clinic-in-bellandur-bangalore'
 import { Route as FertilitySolutionsRouteImport } from './routes/fertility-solutions'
 import { Route as FirstSexualRelationshipGuidanceBangaloreRouteImport } from './routes/first-sexual-relationship-guidance-bangalore'
+import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as GynecologyTreatmentsRouteImport } from './routes/gynecology-treatments'
 import { Route as IcsiTreatmentInMarathahalliWhitefieldBangaloreRouteImport } from './routes/icsi-treatment-in-marathahalli-whitefield-bangalore'
 import { Route as InfertilityTreatmentInMarathahalliWhitefieldInBangaloreRouteImport } from './routes/infertility-treatment-in-marathahalli-whitefield-in-bangalore'
@@ -181,6 +182,11 @@ const FirstSexualRelationshipGuidanceBangaloreRoute =
     path: '/first-sexual-relationship-guidance-bangalore',
     getParentRoute: () => rootRouteImport,
   } as any)
+const GalleryRoute = GalleryRouteImport.update({
+  id: '/gallery',
+  path: '/gallery',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const GynecologyTreatmentsRoute = GynecologyTreatmentsRouteImport.update({
   id: '/gynecology-treatments',
   path: '/gynecology-treatments',
@@ -339,6 +345,7 @@ export interface FileRoutesByFullPath {
   '/fertility-clinic-in-bellandur-bangalore': typeof FertilityClinicInBellandurBangaloreRoute
   '/fertility-solutions': typeof FertilitySolutionsRoute
   '/first-sexual-relationship-guidance-bangalore': typeof FirstSexualRelationshipGuidanceBangaloreRoute
+  '/gallery': typeof GalleryRoute
   '/gynecology-treatments': typeof GynecologyTreatmentsRoute
   '/icsi-treatment-in-marathahalli-whitefield-bangalore': typeof IcsiTreatmentInMarathahalliWhitefieldBangaloreRoute
   '/infertility-treatment-in-marathahalli-whitefield-in-bangalore': typeof InfertilityTreatmentInMarathahalliWhitefieldInBangaloreRoute
@@ -386,6 +393,7 @@ export interface FileRoutesByTo {
   '/fertility-clinic-in-bellandur-bangalore': typeof FertilityClinicInBellandurBangaloreRoute
   '/fertility-solutions': typeof FertilitySolutionsRoute
   '/first-sexual-relationship-guidance-bangalore': typeof FirstSexualRelationshipGuidanceBangaloreRoute
+  '/gallery': typeof GalleryRoute
   '/gynecology-treatments': typeof GynecologyTreatmentsRoute
   '/icsi-treatment-in-marathahalli-whitefield-bangalore': typeof IcsiTreatmentInMarathahalliWhitefieldBangaloreRoute
   '/infertility-treatment-in-marathahalli-whitefield-in-bangalore': typeof InfertilityTreatmentInMarathahalliWhitefieldInBangaloreRoute
@@ -434,6 +442,7 @@ export interface FileRoutesById {
   '/fertility-clinic-in-bellandur-bangalore': typeof FertilityClinicInBellandurBangaloreRoute
   '/fertility-solutions': typeof FertilitySolutionsRoute
   '/first-sexual-relationship-guidance-bangalore': typeof FirstSexualRelationshipGuidanceBangaloreRoute
+  '/gallery': typeof GalleryRoute
   '/gynecology-treatments': typeof GynecologyTreatmentsRoute
   '/icsi-treatment-in-marathahalli-whitefield-bangalore': typeof IcsiTreatmentInMarathahalliWhitefieldBangaloreRoute
   '/infertility-treatment-in-marathahalli-whitefield-in-bangalore': typeof InfertilityTreatmentInMarathahalliWhitefieldInBangaloreRoute
@@ -483,6 +492,7 @@ export interface FileRouteTypes {
     | '/fertility-clinic-in-bellandur-bangalore'
     | '/fertility-solutions'
     | '/first-sexual-relationship-guidance-bangalore'
+    | '/gallery'
     | '/gynecology-treatments'
     | '/icsi-treatment-in-marathahalli-whitefield-bangalore'
     | '/infertility-treatment-in-marathahalli-whitefield-in-bangalore'
@@ -530,6 +540,7 @@ export interface FileRouteTypes {
     | '/fertility-clinic-in-bellandur-bangalore'
     | '/fertility-solutions'
     | '/first-sexual-relationship-guidance-bangalore'
+    | '/gallery'
     | '/gynecology-treatments'
     | '/icsi-treatment-in-marathahalli-whitefield-bangalore'
     | '/infertility-treatment-in-marathahalli-whitefield-in-bangalore'
@@ -577,6 +588,7 @@ export interface FileRouteTypes {
     | '/fertility-clinic-in-bellandur-bangalore'
     | '/fertility-solutions'
     | '/first-sexual-relationship-guidance-bangalore'
+    | '/gallery'
     | '/gynecology-treatments'
     | '/icsi-treatment-in-marathahalli-whitefield-bangalore'
     | '/infertility-treatment-in-marathahalli-whitefield-in-bangalore'
@@ -625,6 +637,7 @@ export interface RootRouteChildren {
   FertilityClinicInBellandurBangaloreRoute: typeof FertilityClinicInBellandurBangaloreRoute
   FertilitySolutionsRoute: typeof FertilitySolutionsRoute
   FirstSexualRelationshipGuidanceBangaloreRoute: typeof FirstSexualRelationshipGuidanceBangaloreRoute
+  GalleryRoute: typeof GalleryRoute
   GynecologyTreatmentsRoute: typeof GynecologyTreatmentsRoute
   IcsiTreatmentInMarathahalliWhitefieldBangaloreRoute: typeof IcsiTreatmentInMarathahalliWhitefieldBangaloreRoute
   InfertilityTreatmentInMarathahalliWhitefieldInBangaloreRoute: typeof InfertilityTreatmentInMarathahalliWhitefieldInBangaloreRoute
@@ -804,6 +817,13 @@ declare module '@tanstack/react-router' {
       path: '/first-sexual-relationship-guidance-bangalore'
       fullPath: '/first-sexual-relationship-guidance-bangalore'
       preLoaderRoute: typeof FirstSexualRelationshipGuidanceBangaloreRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/gallery': {
+      id: '/gallery'
+      path: '/gallery'
+      fullPath: '/gallery'
+      preLoaderRoute: typeof GalleryRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/gynecology-treatments': {
@@ -1009,6 +1029,7 @@ const rootRouteChildren: RootRouteChildren = {
   FertilitySolutionsRoute: FertilitySolutionsRoute,
   FirstSexualRelationshipGuidanceBangaloreRoute:
     FirstSexualRelationshipGuidanceBangaloreRoute,
+  GalleryRoute: GalleryRoute,
   GynecologyTreatmentsRoute: GynecologyTreatmentsRoute,
   IcsiTreatmentInMarathahalliWhitefieldBangaloreRoute:
     IcsiTreatmentInMarathahalliWhitefieldBangaloreRoute,

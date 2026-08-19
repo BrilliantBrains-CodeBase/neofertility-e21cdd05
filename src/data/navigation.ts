@@ -38,6 +38,7 @@ export const ROUTES = {
   gynecologyTreatments: "/gynecology-treatments/",
   whoWeHelp: "/who-we-help/",
   patientStories: "/patient-stories/",
+  gallery: "/gallery/",
   faq: "/faq/",
   contact: "/contact/",
   ivfCost: "/ivf-cost-in-bangalore/",
