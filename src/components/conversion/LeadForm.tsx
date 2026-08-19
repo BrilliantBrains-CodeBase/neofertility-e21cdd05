@@ -9,7 +9,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { CalendarDays, Loader2, PhoneCall } from "lucide-react";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
+import { CalendarDays, ChevronDown, Loader2, PhoneCall } from "lucide-react";
 import { CLINIC, ENQUIRY_TIMES, ENQUIRY_TREATMENTS, track } from "@/lib/clinic";
 import { ROUTES } from "@/data/navigation";
 import { cn } from "@/lib/utils";
@@ -31,10 +32,14 @@ export function LeadForm({
   variant = "inline",
   sourcePage,
   onLight = true,
+  collapseExtras = false,
 }: {
   variant?: LeadFormVariant;
   sourcePage: string;
   onLight?: boolean;
+  /** Fold email, preferred day and message behind a disclosure. The rail sets this: it
+   *  is the one place the form has to fit a viewport alongside a sticky CTA. */
+  collapseExtras?: boolean;
 }) {
   const [name, setName] = useState("");
   const [mobile, setMobile] = useState("");
@@ -45,6 +50,7 @@ export function LeadForm({
   const [message, setMessage] = useState("");
   const [consent, setConsent] = useState(false);
   const [honeypot, setHoneypot] = useState("");
+  const [extrasOpen, setExtrasOpen] = useState(false);
   const [errors, setErrors] = useState<Errors>({});
   const [pending, setPending] = useState(false);
   const [done, setDone] = useState(false);
@@ -89,6 +95,9 @@ export function LeadForm({
     if (!topic) next.topic = "Choose what you would like to discuss.";
     if (!consent) next.consent = "Please confirm we may contact you.";
     setErrors(next);
+    /* Email is the only validated field that can be folded away. Surfacing the group
+       first means the message never points at something the patient cannot see. */
+    if (next.email) setExtrasOpen(true);
     if (Object.keys(next).length) return;
 
     setPending(true);
@@ -124,72 +133,11 @@ export function LeadForm({
     setDone(true);
   }
 
-  if (done) {
-    return (
-      <div
-        className={cn(
-          "rounded-xl border p-5",
-          onLight ? "border-pink-300/60 bg-pink-50" : "border-paper/25 bg-paper/10",
-        )}
-        role="status"
-      >
-        <p className={cn("font-medium", onLight ? "text-plum-900" : "text-paper")}>Thank you.</p>
-        <p className={cn("mt-1 text-[0.9375rem]", onLight ? "text-ink-muted" : "text-paper/80")}>
-          We'll call you back. If it's urgent, call{" "}
-          <a className="underline" href={CLINIC.phoneHref}>
-            {CLINIC.phoneDisplay}
-          </a>
-          .
-        </p>
-      </div>
-    );
-  }
-
-  return (
-    <form onSubmit={handleSubmit} noValidate className="space-y-4">
-      <input
-        type="text"
-        tabIndex={-1}
-        autoComplete="off"
-        aria-hidden="true"
-        value={honeypot}
-        onChange={(e) => setHoneypot(e.target.value)}
-        className="absolute left-[-9999px] h-0 w-0 opacity-0"
-      />
-
-      <div>
-        <Label htmlFor={`lf-name-${variant}`} className={labelClass}>
-          Your Name
-        </Label>
-        <Input
-          id={`lf-name-${variant}`}
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          onBlur={() => setError("name", name.trim() ? "" : "Please tell us your name.")}
-          className={fieldClass}
-          autoComplete="name"
-          required
-        />
-        {errors.name && <p className="mt-1 text-xs text-pink-600">{errors.name}</p>}
-      </div>
-
-      <div>
-        <Label htmlFor={`lf-mobile-${variant}`} className={labelClass}>
-          Phone Number
-        </Label>
-        <Input
-          id={`lf-mobile-${variant}`}
-          value={mobile}
-          inputMode="tel"
-          onChange={(e) => setMobile(e.target.value)}
-          onBlur={() => setError("mobile", validateMobile(mobile))}
-          className={fieldClass}
-          autoComplete="tel"
-          required
-        />
-        {errors.mobile && <p className="mt-1 text-xs text-pink-600">{errors.mobile}</p>}
-      </div>
-
+  /* Everything the clinic likes to have but does not need in order to call a patient
+     back. Kept in every variant so the enquiry record has the same shape wherever it
+     was filled in — the rail just folds them away until asked for. */
+  const extraFields = (
+    <>
       <div>
         <Label htmlFor={`lf-email-${variant}`} className={labelClass}>
           Your Email <span className="font-normal opacity-70">(optional)</span>
@@ -203,27 +151,6 @@ export function LeadForm({
           autoComplete="email"
         />
         {errors.email && <p className="mt-1 text-xs text-pink-600">{errors.email}</p>}
-      </div>
-
-      <div>
-        <Label htmlFor={`lf-topic-${variant}`} className={labelClass}>
-          Treatment Interested In
-        </Label>
-        <select
-          id={`lf-topic-${variant}`}
-          value={topic}
-          onChange={(e) => setTopic(e.target.value)}
-          className={cn(fieldClass, "w-full border px-3 text-[0.9375rem]")}
-          required
-        >
-          <option value="">Choose one</option>
-          {ENQUIRY_TREATMENTS.map((t) => (
-            <option key={t} value={t}>
-              {t}
-            </option>
-          ))}
-        </select>
-        {errors.topic && <p className="mt-1 text-xs text-pink-600">{errors.topic}</p>}
       </div>
 
       <div>
@@ -294,6 +221,122 @@ export function LeadForm({
           )}
         />
       </div>
+    </>
+  );
+
+  if (done) {
+    return (
+      <div
+        className={cn(
+          "rounded-xl border p-5",
+          onLight ? "border-pink-300/60 bg-pink-50" : "border-paper/25 bg-paper/10",
+        )}
+        role="status"
+      >
+        <p className={cn("font-medium", onLight ? "text-plum-900" : "text-paper")}>Thank you.</p>
+        <p className={cn("mt-1 text-[0.9375rem]", onLight ? "text-ink-muted" : "text-paper/80")}>
+          We'll call you back. If it's urgent, call{" "}
+          <a className="underline" href={CLINIC.phoneHref}>
+            {CLINIC.phoneDisplay}
+          </a>
+          .
+        </p>
+      </div>
+    );
+  }
+
+  return (
+    <form
+      onSubmit={handleSubmit}
+      noValidate
+      /* The rail is the one variant with a height budget; everywhere else keeps the
+         roomier rhythm. */
+      className={collapseExtras ? "space-y-3.5" : "space-y-4"}
+    >
+      <input
+        type="text"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+        value={honeypot}
+        onChange={(e) => setHoneypot(e.target.value)}
+        className="absolute left-[-9999px] h-0 w-0 opacity-0"
+      />
+
+      <div>
+        <Label htmlFor={`lf-name-${variant}`} className={labelClass}>
+          Your Name
+        </Label>
+        <Input
+          id={`lf-name-${variant}`}
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          onBlur={() => setError("name", name.trim() ? "" : "Please tell us your name.")}
+          className={fieldClass}
+          autoComplete="name"
+          required
+        />
+        {errors.name && <p className="mt-1 text-xs text-pink-600">{errors.name}</p>}
+      </div>
+
+      <div>
+        <Label htmlFor={`lf-mobile-${variant}`} className={labelClass}>
+          Phone Number
+        </Label>
+        <Input
+          id={`lf-mobile-${variant}`}
+          value={mobile}
+          inputMode="tel"
+          onChange={(e) => setMobile(e.target.value)}
+          onBlur={() => setError("mobile", validateMobile(mobile))}
+          className={fieldClass}
+          autoComplete="tel"
+          required
+        />
+        {errors.mobile && <p className="mt-1 text-xs text-pink-600">{errors.mobile}</p>}
+      </div>
+
+      <div>
+        <Label htmlFor={`lf-topic-${variant}`} className={labelClass}>
+          Treatment Interested In
+        </Label>
+        <select
+          id={`lf-topic-${variant}`}
+          value={topic}
+          onChange={(e) => setTopic(e.target.value)}
+          className={cn(fieldClass, "w-full border px-3 text-[0.9375rem]")}
+          required
+        >
+          <option value="">Choose one</option>
+          {ENQUIRY_TREATMENTS.map((t) => (
+            <option key={t} value={t}>
+              {t}
+            </option>
+          ))}
+        </select>
+        {errors.topic && <p className="mt-1 text-xs text-pink-600">{errors.topic}</p>}
+      </div>
+
+      {/* Required first, optional behind a disclosure. A sticky rail only works if its
+          submit button is on screen; at full length this card ran 1071px and the button
+          sat below the fold on every laptop. */}
+      {collapseExtras ? (
+        <Collapsible open={extrasOpen} onOpenChange={setExtrasOpen}>
+          <CollapsibleTrigger
+            type="button"
+            className="group flex w-full items-center justify-between gap-2 rounded-lg border border-dashed border-line px-3 py-2.5 text-[0.8125rem] font-medium text-pink-700 transition-colors hover:border-pink-600 hover:bg-pink-50"
+          >
+            Add email, a preferred day or a message
+            <ChevronDown
+              aria-hidden="true"
+              className="size-4 shrink-0 transition-transform duration-200 group-data-[state=open]:rotate-180"
+            />
+          </CollapsibleTrigger>
+          <CollapsibleContent className="space-y-4 pt-4">{extraFields}</CollapsibleContent>
+        </Collapsible>
+      ) : (
+        extraFields
+      )}
 
       <div className="flex items-start gap-2.5">
         <Checkbox
