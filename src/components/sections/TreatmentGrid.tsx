@@ -104,9 +104,13 @@ function TreatmentCarousel({ items, label }: { items: TreatmentItem[]; label: st
 
                 <div className="relative m-3 mt-0 overflow-hidden rounded-[1.375rem]">
                   {item.image ? (
+                    /* alt="" deliberately: the photograph illustrates the treatment named
+                       in the <h3> directly above it, so captioning it with the same string
+                       makes a screen reader announce every card's title twice. It carries
+                       no information the heading does not. */
                     <img
                       src={item.image}
-                      alt={item.title}
+                      alt=""
                       loading="lazy"
                       className="h-44 w-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />

@@ -52,6 +52,7 @@ const TREATMENTS: TreatmentItem[] = [
     copy: "A complete health check for both partners before you try to conceive, so your body is fully ready when the right time comes.",
     to: ROUTES.preconception,
     icon: ClipboardCheck,
+    image: trPreconception,
     group: "fertility",
   },
   {
@@ -60,6 +61,7 @@ const TREATMENTS: TreatmentItem[] = [
     copy: "Month-by-month expert care through every trimester: regular scans, personalised guidance, and a safe delivery plan for mother and baby.",
     to: ROUTES.pregnancyCare,
     icon: Baby,
+    image: trPregnancyCare,
     group: "fertility",
   },
   {
@@ -77,6 +79,7 @@ const TREATMENTS: TreatmentItem[] = [
     copy: "A quick, painless scan to check your uterus, ovaries, and reproductive health, so we detect and address any issue early.",
     to: ROUTES.pelvicUltrasound,
     icon: ScanLine,
+    image: trPelvicUltrasound,
     group: "fertility",
   },
   {
@@ -94,6 +97,7 @@ const TREATMENTS: TreatmentItem[] = [
     copy: "A simple, minimally invasive treatment that places healthy sperm directly in the uterus, boosting your chances of natural pregnancy.",
     to: ROUTES.iui,
     icon: Syringe,
+    image: trIui,
     group: "fertility",
   },
   {
@@ -111,6 +115,7 @@ const TREATMENTS: TreatmentItem[] = [
     copy: "An advanced form of IVF where a single healthy sperm is injected directly into the egg, ideal when male fertility is a factor.",
     to: ROUTES.icsi,
     icon: Microscope,
+    image: trIcsi,
     group: "fertility",
   },
   {
@@ -128,6 +133,7 @@ const TREATMENTS: TreatmentItem[] = [
     copy: "Male factors contribute to nearly half of all infertility cases. Our expert diagnosis and treatments improve sperm health and conception outcomes.",
     to: ROUTES.maleInfertility,
     icon: Mars,
+    image: trMaleInfertility,
     group: "fertility",
   },
   {
@@ -136,6 +142,7 @@ const TREATMENTS: TreatmentItem[] = [
     copy: "Donor programs help couples conceive when pregnancy is not possible with their own eggs or sperm, with complete privacy and compassionate support.",
     to: ROUTES.donor,
     icon: HandHeart,
+    image: trDonor,
     group: "fertility",
   },
   {
@@ -165,6 +172,7 @@ const TREATMENTS: TreatmentItem[] = [
     to: ROUTES.menstrual,
     hash: "abnormal_bleeding",
     icon: Droplets,
+    image: trAbnormalBleeding,
     group: "gynecology",
   },
   {
@@ -184,6 +192,7 @@ const TREATMENTS: TreatmentItem[] = [
     to: ROUTES.menstrual,
     hash: "irregular_menstrual_cycles",
     icon: CalendarClock,
+    image: trIrregularPeriods,
     group: "gynecology",
   },
   {
@@ -202,6 +211,7 @@ const TREATMENTS: TreatmentItem[] = [
     copy: "Confidential testing, accurate diagnosis, and expert treatment for all sexually transmitted infections, with judgement-free, completely private care.",
     to: ROUTES.sti,
     icon: TestTubes,
+    image: trSti,
     group: "gynecology",
   },
   {
@@ -210,6 +220,7 @@ const TREATMENTS: TreatmentItem[] = [
     copy: "Treatment for reproductive-tract infections that can affect fertility if ignored. Early care protects your long-term reproductive health.",
     to: ROUTES.pid,
     icon: ShieldPlus,
+    image: trPid,
     group: "gynecology",
   },
   {
@@ -218,6 +229,7 @@ const TREATMENTS: TreatmentItem[] = [
     copy: "Fast, confidential diagnosis and treatment for vaginal itching, infections, or unusual odour, so you feel fresh, healthy, and confident again.",
     to: ROUTES.vaginalInfection,
     icon: ShieldCheck,
+    image: trVaginalInfection,
     group: "gynecology",
   },
   {
@@ -235,6 +247,7 @@ const TREATMENTS: TreatmentItem[] = [
     copy: "Painful sex is common and treatable. We identify the cause with sensitivity and offer effective, lasting solutions. No judgement, only care.",
     to: ROUTES.painDuringSex,
     icon: HeartPulse,
+    image: trPainIntercourse,
     group: "gynecology",
   },
   {
@@ -243,6 +256,7 @@ const TREATMENTS: TreatmentItem[] = [
     copy: "Safe, legal, and completely confidential pregnancy termination, with medical expertise and emotional support at every step of your decision.",
     to: ROUTES.mtp,
     icon: FileHeart,
+    image: trMtp,
     group: "gynecology",
   },
   {
@@ -254,6 +268,7 @@ const TREATMENTS: TreatmentItem[] = [
     copy: "A no-incision procedure that lets doctors examine your uterus and treat fibroids, polyps, or bleeding, with same-day recovery.",
     to: ROUTES.hysteroscopy,
     icon: Scan,
+    image: trHysteroscopy,
     group: "gynecology",
   },
   {
@@ -262,19 +277,36 @@ const TREATMENTS: TreatmentItem[] = [
     copy: "Minimally invasive keyhole surgery for endometriosis, fibroids, and blocked tubes. Smaller cuts, faster healing, and better outcomes.",
     to: ROUTES.laparoscopy,
     icon: Scissors,
+    image: trLaparoscopy,
     group: "gynecology",
   },
 ];
 
+import trPreconception from "@/assets/treatment-preconception.webp";
+import trPregnancyCare from "@/assets/treatment-pregnancy-care.webp";
 import trFamilyPlanning from "@/assets/treatment-family-planning.webp";
+import trPelvicUltrasound from "@/assets/treatment-pelvic-ultrasound.webp";
 import trFertilityDiagnosis from "@/assets/treatment-fertility-diagnosis.webp";
+import trIui from "@/assets/treatment-iui.webp";
 import trIvf from "@/assets/treatment-ivf.webp";
+import trIcsi from "@/assets/treatment-icsi.webp";
 import trEf from "@/assets/treatment-egg-freezing.webp";
+import trMaleInfertility from "@/assets/treatment-male-infertility.webp";
+import trDonor from "@/assets/treatment-donor.webp";
 import trPcod from "@/assets/treatment-pcod.webp";
 import trPcos from "@/assets/treatment-pcos.webp";
+import trAbnormalBleeding from "@/assets/treatment-abnormal-bleeding.webp";
 import trPainfulPeriods from "@/assets/treatment-painful-periods.webp";
+import trIrregularPeriods from "@/assets/treatment-irregular-periods.webp";
 import trMenopause from "@/assets/treatment-menopausal-care.webp";
+import trSti from "@/assets/treatment-sti.webp";
+import trPid from "@/assets/treatment-pid.webp";
+import trVaginalInfection from "@/assets/treatment-vaginal-infection.webp";
 import trBreastLump from "@/assets/treatment-breast-lump.webp";
+import trPainIntercourse from "@/assets/treatment-pain-intercourse.webp";
+import trMtp from "@/assets/treatment-mtp.webp";
+import trHysteroscopy from "@/assets/treatment-hysteroscopy.webp";
+import trLaparoscopy from "@/assets/treatment-laparoscopy.webp";
 import pinkBannerAsset from "@/assets/hero-banner-pink.webp";
 import faqImage from "@/assets/faq-mother-newborn.webp";
 import pathwayTrying from "@/assets/pathway-trying.jpg";
