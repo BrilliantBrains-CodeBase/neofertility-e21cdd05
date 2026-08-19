@@ -16,9 +16,10 @@ import { cn } from "@/lib/utils";
    shots that were here before.
    CAUTION: a photo of an identifiable person sitting beside a named review reads as a
    photo OF that reviewer, which is not something we can stand behind — it is the same
-   reason the name badges below use initials rather than faces. The alt text deliberately
+   reason the name badges below use a generic user glyph rather than faces. The alt text deliberately
    does not attribute, but the visual implication remains. Replace these with per-reviewer
    photographs (with consent) or revert once real ones exist. */
+import reviewerAvatar from "@/assets/reviewer-avatar.svg";
 import patient01 from "@/assets/patient-01.webp";
 import patient02 from "@/assets/patient-02.webp";
 import patient03 from "@/assets/patient-03.webp";
@@ -98,13 +99,6 @@ I would definitely recommend Dr. Payal to anyone struggling with infertility and
   },
 ];
 
-const initials = (name: string) =>
-  name
-    .split(" ")
-    .map((part) => part[0])
-    .slice(0, 2)
-    .join("");
-
 function Stars({ rating, className }: { rating: number; className?: string }) {
   return (
     <ul className={cn("flex items-center gap-0.5", className)} aria-label={`${rating} out of 5`}>
@@ -147,20 +141,20 @@ export function PatientReviews() {
 
           <div className="flex items-center gap-4 lg:w-1/2 lg:justify-end">
             <div className="flex min-h-[55px] items-center rounded-full bg-white ps-[15px] pe-[25px] sm:min-h-[62px] xl:min-h-[70px] xl:pe-[50px]">
-              {/* Initials rather than faces — there are no photographs of these patients,
-                  and a stock face beside a real name would assert something untrue. */}
+              {/* A generic user glyph rather than faces — there are no photographs of these
+                  patients, and a stock face beside a real name would assert something untrue. */}
               <div className="flex items-center">
                 {REVIEWS.map((review, i) => (
-                  <span
+                  <img
                     key={review.name}
                     aria-hidden
                     className={cn(
-                      "grid size-8 shrink-0 place-items-center rounded-full bg-pink-50 text-[0.6875rem] font-semibold text-pink-700 ring-2 ring-white sm:size-[42px] sm:text-[0.8125rem] xl:size-12 xl:text-[0.9375rem]",
+                      "size-8 shrink-0 rounded-full ring-2 ring-white sm:size-[42px] xl:size-12",
                       i > 0 && "-ms-3",
                     )}
-                  >
-                    {initials(review.name)}
-                  </span>
+                    src={reviewerAvatar}
+                    alt=""
+                  />
                 ))}
                 <span
                   aria-hidden
@@ -258,12 +252,12 @@ export function PatientReviews() {
                       </button>
 
                       <div className="relative z-10 mt-auto flex items-center gap-4 pt-6">
-                        <span
+                        <img
                           aria-hidden
-                          className="grid size-[52px] shrink-0 place-items-center rounded-full bg-pink-50 text-[1rem] font-semibold text-pink-700 lg:size-[60px]"
-                        >
-                          {initials(review.name)}
-                        </span>
+                          src={reviewerAvatar}
+                          alt=""
+                          className="size-[52px] shrink-0 rounded-full lg:size-[60px]"
+                        />
                         <span>
                           <span className="block text-[1rem] font-medium text-plum-900 lg:text-[1.125rem]">
                             {review.name}
@@ -300,12 +294,12 @@ export function PatientReviews() {
                 ))}
               </div>
               <div className="mt-2 flex items-center gap-3 border-t border-line pt-4">
-                <span
+                <img
                   aria-hidden
-                  className="grid size-11 shrink-0 place-items-center rounded-full bg-pink-50 text-[0.9375rem] font-semibold text-pink-700"
-                >
-                  {initials(openReview.name)}
-                </span>
+                  src={reviewerAvatar}
+                  alt=""
+                  className="size-11 shrink-0 rounded-full"
+                />
                 <span>
                   <span className="block font-medium text-plum-900">{openReview.name}</span>
                   <span className="block text-[0.875rem] text-ink-muted">{openReview.role}</span>

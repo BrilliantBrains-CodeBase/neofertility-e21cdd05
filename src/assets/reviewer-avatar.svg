@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-53 -53 618 618" role="img">
+  <clipPath id="dial"><circle cx="256" cy="256" r="205"/></clipPath>
+  <circle cx="256" cy="256" r="233" fill="#d2d2d2" stroke="#262626" stroke-width="16"/>
+  <circle cx="256" cy="256" r="205" fill="#f2efe9" stroke="#262626" stroke-width="16"/>
+  <g clip-path="url(#dial)">
+    <ellipse cx="256" cy="478" rx="163" ry="222" fill="#fd8b9e" stroke="#262626" stroke-width="16"/>
+  </g>
+  <circle cx="256" cy="152" r="57" fill="#fd8b9e" stroke="#262626" stroke-width="16"/>
+  <circle cx="420" cy="420" r="63" fill="#ffcc70" stroke="#262626" stroke-width="16"/>
+  <path d="M392 421l20 20 38-41" fill="none" stroke="#262626" stroke-width="20"
+        stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
