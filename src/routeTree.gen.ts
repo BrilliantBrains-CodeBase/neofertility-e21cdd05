@@ -43,6 +43,7 @@ import { Route as LaparoscopicSurgeryForInfertilityInMarathahalliBangaloreRouteI
 import { Route as MaleInfertilityCausesDiagnosisAndTreatmentRouteImport } from './routes/male-infertility-causes-diagnosis-and-treatment'
 import { Route as MedicalTerminationOfPregnancyMtpMarathahalliWhitefieldRouteImport } from './routes/medical-termination-of-pregnancy-mtp-marathahalli-whitefield'
 import { Route as MenstrualBleedingAndIrregularPeriodTreatmentInMarathahalliBangaloreRouteImport } from './routes/menstrual-bleeding-and-irregular-period-treatment-in-marathahalli-bangalore'
+import { Route as NaturalDeliveryInMarathahalliWhitefieldBangaloreRouteImport } from './routes/natural-delivery-in-marathahalli-whitefield-bangalore'
 import { Route as OvarianHyperstimulationSyndromeOhssTreatmentBangaloreRouteImport } from './routes/ovarian-hyperstimulation-syndrome-ohss-treatment-bangalore'
 import { Route as OvulationCalculatorRouteImport } from './routes/ovulation-calculator'
 import { Route as PatientStoriesRouteImport } from './routes/patient-stories'
@@ -254,6 +255,12 @@ const MenstrualBleedingAndIrregularPeriodTreatmentInMarathahalliBangaloreRoute =
       getParentRoute: () => rootRouteImport,
     } as any,
   )
+const NaturalDeliveryInMarathahalliWhitefieldBangaloreRoute =
+  NaturalDeliveryInMarathahalliWhitefieldBangaloreRouteImport.update({
+    id: '/natural-delivery-in-marathahalli-whitefield-bangalore',
+    path: '/natural-delivery-in-marathahalli-whitefield-bangalore',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const OvarianHyperstimulationSyndromeOhssTreatmentBangaloreRoute =
   OvarianHyperstimulationSyndromeOhssTreatmentBangaloreRouteImport.update({
     id: '/ovarian-hyperstimulation-syndrome-ohss-treatment-bangalore',
@@ -357,6 +364,7 @@ export interface FileRoutesByFullPath {
   '/male-infertility-causes-diagnosis-and-treatment': typeof MaleInfertilityCausesDiagnosisAndTreatmentRoute
   '/medical-termination-of-pregnancy-mtp-marathahalli-whitefield': typeof MedicalTerminationOfPregnancyMtpMarathahalliWhitefieldRoute
   '/menstrual-bleeding-and-irregular-period-treatment-in-marathahalli-bangalore': typeof MenstrualBleedingAndIrregularPeriodTreatmentInMarathahalliBangaloreRoute
+  '/natural-delivery-in-marathahalli-whitefield-bangalore': typeof NaturalDeliveryInMarathahalliWhitefieldBangaloreRoute
   '/ovarian-hyperstimulation-syndrome-ohss-treatment-bangalore': typeof OvarianHyperstimulationSyndromeOhssTreatmentBangaloreRoute
   '/ovulation-calculator': typeof OvulationCalculatorRoute
   '/patient-stories': typeof PatientStoriesRoute
@@ -405,6 +413,7 @@ export interface FileRoutesByTo {
   '/male-infertility-causes-diagnosis-and-treatment': typeof MaleInfertilityCausesDiagnosisAndTreatmentRoute
   '/medical-termination-of-pregnancy-mtp-marathahalli-whitefield': typeof MedicalTerminationOfPregnancyMtpMarathahalliWhitefieldRoute
   '/menstrual-bleeding-and-irregular-period-treatment-in-marathahalli-bangalore': typeof MenstrualBleedingAndIrregularPeriodTreatmentInMarathahalliBangaloreRoute
+  '/natural-delivery-in-marathahalli-whitefield-bangalore': typeof NaturalDeliveryInMarathahalliWhitefieldBangaloreRoute
   '/ovarian-hyperstimulation-syndrome-ohss-treatment-bangalore': typeof OvarianHyperstimulationSyndromeOhssTreatmentBangaloreRoute
   '/ovulation-calculator': typeof OvulationCalculatorRoute
   '/patient-stories': typeof PatientStoriesRoute
@@ -454,6 +463,7 @@ export interface FileRoutesById {
   '/male-infertility-causes-diagnosis-and-treatment': typeof MaleInfertilityCausesDiagnosisAndTreatmentRoute
   '/medical-termination-of-pregnancy-mtp-marathahalli-whitefield': typeof MedicalTerminationOfPregnancyMtpMarathahalliWhitefieldRoute
   '/menstrual-bleeding-and-irregular-period-treatment-in-marathahalli-bangalore': typeof MenstrualBleedingAndIrregularPeriodTreatmentInMarathahalliBangaloreRoute
+  '/natural-delivery-in-marathahalli-whitefield-bangalore': typeof NaturalDeliveryInMarathahalliWhitefieldBangaloreRoute
   '/ovarian-hyperstimulation-syndrome-ohss-treatment-bangalore': typeof OvarianHyperstimulationSyndromeOhssTreatmentBangaloreRoute
   '/ovulation-calculator': typeof OvulationCalculatorRoute
   '/patient-stories': typeof PatientStoriesRoute
@@ -504,6 +514,7 @@ export interface FileRouteTypes {
     | '/male-infertility-causes-diagnosis-and-treatment'
     | '/medical-termination-of-pregnancy-mtp-marathahalli-whitefield'
     | '/menstrual-bleeding-and-irregular-period-treatment-in-marathahalli-bangalore'
+    | '/natural-delivery-in-marathahalli-whitefield-bangalore'
     | '/ovarian-hyperstimulation-syndrome-ohss-treatment-bangalore'
     | '/ovulation-calculator'
     | '/patient-stories'
@@ -552,6 +563,7 @@ export interface FileRouteTypes {
     | '/male-infertility-causes-diagnosis-and-treatment'
     | '/medical-termination-of-pregnancy-mtp-marathahalli-whitefield'
     | '/menstrual-bleeding-and-irregular-period-treatment-in-marathahalli-bangalore'
+    | '/natural-delivery-in-marathahalli-whitefield-bangalore'
     | '/ovarian-hyperstimulation-syndrome-ohss-treatment-bangalore'
     | '/ovulation-calculator'
     | '/patient-stories'
@@ -600,6 +612,7 @@ export interface FileRouteTypes {
     | '/male-infertility-causes-diagnosis-and-treatment'
     | '/medical-termination-of-pregnancy-mtp-marathahalli-whitefield'
     | '/menstrual-bleeding-and-irregular-period-treatment-in-marathahalli-bangalore'
+    | '/natural-delivery-in-marathahalli-whitefield-bangalore'
     | '/ovarian-hyperstimulation-syndrome-ohss-treatment-bangalore'
     | '/ovulation-calculator'
     | '/patient-stories'
@@ -649,6 +662,7 @@ export interface RootRouteChildren {
   MaleInfertilityCausesDiagnosisAndTreatmentRoute: typeof MaleInfertilityCausesDiagnosisAndTreatmentRoute
   MedicalTerminationOfPregnancyMtpMarathahalliWhitefieldRoute: typeof MedicalTerminationOfPregnancyMtpMarathahalliWhitefieldRoute
   MenstrualBleedingAndIrregularPeriodTreatmentInMarathahalliBangaloreRoute: typeof MenstrualBleedingAndIrregularPeriodTreatmentInMarathahalliBangaloreRoute
+  NaturalDeliveryInMarathahalliWhitefieldBangaloreRoute: typeof NaturalDeliveryInMarathahalliWhitefieldBangaloreRoute
   OvarianHyperstimulationSyndromeOhssTreatmentBangaloreRoute: typeof OvarianHyperstimulationSyndromeOhssTreatmentBangaloreRoute
   OvulationCalculatorRoute: typeof OvulationCalculatorRoute
   PatientStoriesRoute: typeof PatientStoriesRoute
@@ -903,6 +917,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MenstrualBleedingAndIrregularPeriodTreatmentInMarathahalliBangaloreRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/natural-delivery-in-marathahalli-whitefield-bangalore': {
+      id: '/natural-delivery-in-marathahalli-whitefield-bangalore'
+      path: '/natural-delivery-in-marathahalli-whitefield-bangalore'
+      fullPath: '/natural-delivery-in-marathahalli-whitefield-bangalore'
+      preLoaderRoute: typeof NaturalDeliveryInMarathahalliWhitefieldBangaloreRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/ovarian-hyperstimulation-syndrome-ohss-treatment-bangalore': {
       id: '/ovarian-hyperstimulation-syndrome-ohss-treatment-bangalore'
       path: '/ovarian-hyperstimulation-syndrome-ohss-treatment-bangalore'
@@ -1048,6 +1069,8 @@ const rootRouteChildren: RootRouteChildren = {
     MedicalTerminationOfPregnancyMtpMarathahalliWhitefieldRoute,
   MenstrualBleedingAndIrregularPeriodTreatmentInMarathahalliBangaloreRoute:
     MenstrualBleedingAndIrregularPeriodTreatmentInMarathahalliBangaloreRoute,
+  NaturalDeliveryInMarathahalliWhitefieldBangaloreRoute:
+    NaturalDeliveryInMarathahalliWhitefieldBangaloreRoute,
   OvarianHyperstimulationSyndromeOhssTreatmentBangaloreRoute:
     OvarianHyperstimulationSyndromeOhssTreatmentBangaloreRoute,
   OvulationCalculatorRoute: OvulationCalculatorRoute,

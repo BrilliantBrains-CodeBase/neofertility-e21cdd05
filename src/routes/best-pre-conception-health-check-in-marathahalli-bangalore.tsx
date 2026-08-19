@@ -43,27 +43,29 @@ const FAQS = [
   },
 ];
 
-export const Route = createFileRoute("/best-pre-conception-health-check-in-marathahalli-bangalore")({
-  head: () => ({
-    ...pageMeta({
-      title: "Pre-Conception Health Check in Marathahalli | Neo Fertility",
-      description:
-        "Preconception health screening in Marathahalli, Bengaluru: hormone profile, pelvic ultrasound, infection screening and semen analysis before you start trying to conceive.",
-      path: PATH,
+export const Route = createFileRoute("/best-pre-conception-health-check-in-marathahalli-bangalore")(
+  {
+    head: () => ({
+      ...pageMeta({
+        title: "Pre-Conception Health Check in Marathahalli | Neo Fertility",
+        description:
+          "Preconception health screening in Marathahalli, Bengaluru: hormone profile, pelvic ultrasound, infection screening and semen analysis before you start trying to conceive.",
+        path: PATH,
+      }),
+      scripts: [
+        jsonLd(faqSchema(FAQS)),
+        jsonLd(
+          breadcrumbSchema([
+            { name: "Home", path: ROUTES.home },
+            { name: "Fertility Solutions", path: ROUTES.fertilitySolutions },
+            { name: "Preconception Checkup", path: PATH },
+          ]),
+        ),
+      ],
     }),
-    scripts: [
-      jsonLd(faqSchema(FAQS)),
-      jsonLd(
-        breadcrumbSchema([
-          { name: "Home", path: ROUTES.home },
-          { name: "Fertility Solutions", path: ROUTES.fertilitySolutions },
-          { name: "Preconception Checkup", path: PATH },
-        ]),
-      ),
-    ],
-  }),
-  component: Page,
-});
+    component: Page,
+  },
+);
 
 function Page() {
   return (
@@ -79,6 +81,7 @@ function Page() {
       sourcePage="preconception"
       faqs={FAQS}
       related={[
+        { label: "Natural delivery care", to: ROUTES.naturalDelivery },
         { label: "Family planning services", to: ROUTES.familyPlanning },
         { label: "Pregnancy care", to: ROUTES.pregnancyCare },
         { label: "Pelvic ultrasound scan", to: ROUTES.pelvicUltrasound },
@@ -147,7 +150,6 @@ function Page() {
         />
       </section>
 
-
       <TimelineBand
         caption="Typical preconception timeline"
         items={[
@@ -165,7 +167,6 @@ function Page() {
           },
         ]}
       />
-
 
       <Prose title="Why this matters">
         <p>

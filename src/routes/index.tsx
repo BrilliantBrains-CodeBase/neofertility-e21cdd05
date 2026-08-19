@@ -65,6 +65,16 @@ const TREATMENTS: TreatmentItem[] = [
     group: "fertility",
   },
   {
+    tag: "Birth Care",
+    title: "Natural Delivery",
+    copy: "Nutrition, movement and close monitoring through pregnancy so a natural birth stays within reach, with a caesarean kept for when it genuinely protects you.",
+    to: ROUTES.naturalDelivery,
+    icon: HandHeart,
+    /* No `image` yet: the component renders its branded icon placeholder while the
+       photograph is outstanding. See the handover note. */
+    group: "fertility",
+  },
+  {
     tag: "Reproductive Choice",
     title: "Family Planning",
     copy: "Personalised advice on contraception, birth spacing, and reproductive health so you plan parenthood on your own terms and timeline.",

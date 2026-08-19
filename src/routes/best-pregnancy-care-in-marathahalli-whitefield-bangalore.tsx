@@ -78,6 +78,7 @@ function Page() {
       sourcePage="pregnancy-care"
       faqs={FAQS}
       related={[
+        { label: "Natural delivery care", to: ROUTES.naturalDelivery },
         { label: "Preconception health check", to: ROUTES.preconception },
         { label: "Family planning services", to: ROUTES.familyPlanning },
         { label: "Pelvic ultrasound scan", to: ROUTES.pelvicUltrasound },
@@ -150,10 +151,22 @@ function Page() {
         caption="Conditions managed as high-risk pregnancy care"
         head={["Condition", "What is involved"]}
         rows={[
-          ["Gestational diabetes", "Screening, dietary guidance and, where needed, medical management"],
-          ["Hypertension in pregnancy", "Regular monitoring and treatment to protect mother and baby"],
-          ["Recurrent miscarriage", "Investigation of possible causes and closer monitoring in a subsequent pregnancy"],
-          ["IVF pregnancy", "Closer first-trimester monitoring, managed by the treating fertility doctor"],
+          [
+            "Gestational diabetes",
+            "Screening, dietary guidance and, where needed, medical management",
+          ],
+          [
+            "Hypertension in pregnancy",
+            "Regular monitoring and treatment to protect mother and baby",
+          ],
+          [
+            "Recurrent miscarriage",
+            "Investigation of possible causes and closer monitoring in a subsequent pregnancy",
+          ],
+          [
+            "IVF pregnancy",
+            "Closer first-trimester monitoring, managed by the treating fertility doctor",
+          ],
         ]}
       />
 
