@@ -70,8 +70,7 @@ const TREATMENTS: TreatmentItem[] = [
     copy: "Nutrition, movement and close monitoring through pregnancy so a natural birth stays within reach, with a caesarean kept for when it genuinely protects you.",
     to: ROUTES.naturalDelivery,
     icon: HandHeart,
-    /* No `image` yet: the component renders its branded icon placeholder while the
-       photograph is outstanding. See the handover note. */
+    image: trNaturalDelivery,
     group: "fertility",
   },
   {
@@ -294,6 +293,7 @@ const TREATMENTS: TreatmentItem[] = [
 
 import trPreconception from "@/assets/treatment-preconception.webp";
 import trPregnancyCare from "@/assets/treatment-pregnancy-care.webp";
+import trNaturalDelivery from "@/assets/treatment-natural-delivery.webp";
 import trFamilyPlanning from "@/assets/treatment-family-planning.webp";
 import trPelvicUltrasound from "@/assets/treatment-pelvic-ultrasound.webp";
 import trFertilityDiagnosis from "@/assets/treatment-fertility-diagnosis.webp";
