@@ -153,8 +153,8 @@ function TreatmentCarousel({ items, label }: { items: TreatmentItem[]; label: st
           placed outside would land beyond the overflow-hidden section and be clipped. */}
       {scrolls && (
         <>
-          <CarouselPrevious className="absolute top-1/2 left-2 z-10 size-11 -translate-y-1/2 border-line bg-white text-plum-900 shadow-rail hover:border-pink-600 hover:bg-white disabled:opacity-35 lg:left-3 xl:-left-12 2xl:-left-14" />
-          <CarouselNext className="absolute top-1/2 right-2 z-10 size-11 -translate-y-1/2 border-line bg-white text-plum-900 shadow-rail hover:border-pink-600 hover:bg-white disabled:opacity-35 lg:right-3 xl:-right-12 2xl:-right-14" />
+          <CarouselPrevious className="absolute top-1/2 left-2 z-10 size-11 -translate-y-1/2 border-line bg-white text-plum-900 shadow-rail hover:border-pink-600 hover:bg-white hover:text-pink-700 disabled:opacity-35 lg:left-3 xl:-left-12 2xl:-left-14" />
+          <CarouselNext className="absolute top-1/2 right-2 z-10 size-11 -translate-y-1/2 border-line bg-white text-plum-900 shadow-rail hover:border-pink-600 hover:bg-white hover:text-pink-700 disabled:opacity-35 lg:right-3 xl:-right-12 2xl:-right-14" />
         </>
       )}
     </Carousel>
