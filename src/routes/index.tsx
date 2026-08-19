@@ -309,9 +309,9 @@ import trHysteroscopy from "@/assets/treatment-hysteroscopy.webp";
 import trLaparoscopy from "@/assets/treatment-laparoscopy.webp";
 import pinkBannerAsset from "@/assets/hero-banner-pink.webp";
 import faqImage from "@/assets/faq-mother-newborn.webp";
-import pathwayTrying from "@/assets/pathway-trying.jpg";
-import pathwayIrregular from "@/assets/pathway-irregular.jpg";
-import pathwayEggFreezing from "@/assets/pathway-egg-freezing.jpg";
+import pathwayTrying from "@/assets/pathway-trying.webp";
+import pathwayIrregular from "@/assets/pathway-irregular.webp";
+import pathwayEggFreezing from "@/assets/pathway-egg-freezing.webp";
 import pathwayFailedIvf from "@/assets/pathway-failed-ivf.jpg";
 import serviceFertility from "@/assets/ivf-consultation.jpg";
 import serviceHormonal from "@/assets/meno-consultation.jpg";
@@ -366,7 +366,7 @@ const SEGMENTS: TabbedFeatureTab[] = [
       cta: { label: "Fertility evaluation", href: ROUTES.infertility },
       image: {
         src: pathwayTrying,
-        alt: "Woman holding a pregnancy test after months of trying to conceive",
+        alt: "Parents holding their newborn, foreheads touching",
       },
     },
   },
@@ -387,7 +387,7 @@ const SEGMENTS: TabbedFeatureTab[] = [
       cta: { label: "PCOS and PCOD care", href: ROUTES.pcos },
       image: {
         src: pathwayIrregular,
-        alt: "Calendar with circled dates tracking irregular periods",
+        alt: "Woman holding a calendar with question marks over missed period dates",
       },
     },
   },
@@ -408,7 +408,7 @@ const SEGMENTS: TabbedFeatureTab[] = [
       cta: { label: "Egg freezing", href: ROUTES.eggFreezing },
       image: {
         src: pathwayEggFreezing,
-        alt: "Egg preserved inside a block of ice, representing egg freezing",
+        alt: "Two pairs of adult hands cupped around a newborn's feet",
       },
     },
   },

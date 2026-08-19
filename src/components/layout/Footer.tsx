@@ -3,7 +3,10 @@ import { Facebook, Instagram, Linkedin, Youtube, MapPin, Phone, Mail, Clock } fr
 import { CLINIC } from "@/lib/clinic";
 import { FERTILITY_MENU, GYNECOLOGY_MENU, ROUTES } from "@/data/navigation";
 import logoAsset from "@/assets/neo-logo-trimmed.png";
-import cardImage from "@/assets/appointment-mother-baby.webp";
+/* Its own asset, not the shared appointment-mother-baby.webp: that file is also the
+   backdrop of the home page's appointment form, so overwriting it would have changed a
+   section nobody asked about. */
+import cardImage from "@/assets/footer-mother-baby.webp";
 
 const socials = [
   { href: CLINIC.social.facebook, label: "Facebook", Icon: Facebook },
