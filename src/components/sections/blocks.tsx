@@ -175,64 +175,39 @@ export function StatStrip({ light = false }: { light?: boolean }) {
     return () => observer.disconnect();
   }, []);
 
-  /* Colour-agnostic: the three tokens are all that change between grounds. --stat-bg
-     MUST match the section behind the strip, because the label's band is what punches
-     the gap through the numeral — a mismatch shows up as a visible stripe. `light`
-     renders on bg-navy-900, the default on bg-pink-25. */
-  const palette = light
-    ? {
-        "--stat-bg": "var(--navy-900)",
-        "--stat-number": "var(--pink-500)",
-        "--stat-label": "var(--paper)",
-      }
-    : {
-        "--stat-bg": "var(--pink-25)",
-        "--stat-number": "var(--pink-600)",
-        "--stat-label": "var(--plum-900)",
-      };
-
   return (
-    <div
-      ref={ref}
-      style={palette as React.CSSProperties}
-      className="grid grid-cols-2 gap-x-6 gap-y-8 sm:gap-x-8 sm:gap-y-10 lg:grid-cols-3"
-    >
+    <div ref={ref} className="grid grid-cols-2 gap-y-10 sm:grid-cols-3 sm:gap-y-12">
       {CLINICAL_VOLUME.map((stat) => (
         <div
           key={stat.label}
-          /* Below sm the label sits under the figure instead of through it, so the cell
-             is a column; from sm it goes back to a single centred row with the label
-             absolutely positioned over the numeral. */
-          className="relative flex flex-col items-center justify-center [--stat-size:clamp(3rem,12vw,4.5rem)] sm:flex-row sm:[--stat-size:clamp(6rem,10vw,9.375rem)]"
+          className={cn(
+            "flex flex-col items-center gap-2.5 px-4 text-center sm:border-l sm:first:border-l-0 sm:[&:nth-child(3n+1)]:border-l-0",
+            light ? "sm:border-paper/15" : "sm:border-line",
+          )}
         >
-          {/* tabular-nums keeps the figure from jittering in width as it counts */}
-          {/* Poppins 700 — the one place a second family appears. Big numerals in a
-              different face read as deliberate rather than as a mismatch, and Poppins
-              has lining figures so every digit sits on the baseline at a uniform height.
-              The clamp is tuned to the widest figure ("6.7k") in the narrowest cell,
-              which bottoms out near 265px at the 2-column breakpoint. Sized to the
-              reference's 96px-to-150px range, measured against Poppins Bold rather than
-              carried over from Montserrat. --stat-size drives the label too, so the
-              strike keeps its proportion at every breakpoint. */}
-          <p className="font-stat text-[length:var(--stat-size)] leading-none font-bold tabular-nums text-[var(--stat-number)]">
+          {/* tabular-nums keeps the figure from jittering in width as it counts. Poppins
+              700 is the one place a second family appears — big numerals in a different
+              face read as deliberate, and Poppins has lining figures so every digit sits
+              on the baseline at a uniform height. */}
+          <p
+            className={cn(
+              "font-stat text-[length:clamp(2.75rem,6vw,4rem)] leading-none font-bold tabular-nums",
+              light ? "text-pink-300" : "text-pink-600",
+            )}
+          >
             <CountUpFigure figure={stat.figure} active={inView} />
           </p>
-
-          {/* From sm up: the label sits across the middle of the numeral, carrying the
-              section's own background so it reads as a clean band cut through the figure.
-              It must stay on ONE line there — a wrapped label stacks two or three bands
-              over the numeral and buries it. A band wider than its figure is fine and
-              expected: the short figures ("18") simply get a longer strike.
-
-              Below sm it cannot work at all. Two per row leaves ~160px a cell at 390px,
-              while the numeral alone needs 202px and "Fertility surgeries" needs 168px,
-              and scaling the label down with the figure would put it at 6px. So on phones
-              the label drops below the numeral, keeps a fixed legible size, loses the
-              band (it is no longer punching through anything) and is free to wrap. */}
-          <p className="pointer-events-none mt-1 text-center whitespace-normal sm:absolute sm:top-1/2 sm:left-1/2 sm:mt-0 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:whitespace-nowrap">
-            <span className="px-2 py-0.5 text-[0.6875rem] font-semibold tracking-[0.1em] uppercase text-[var(--stat-label)] sm:bg-[var(--stat-bg)] sm:text-[length:calc(var(--stat-size)*0.12)]">
-              {stat.label}
-            </span>
+          <span
+            aria-hidden
+            className={cn("h-0.5 w-8 rounded-full", light ? "bg-pink-300" : "bg-pink-600")}
+          />
+          <p
+            className={cn(
+              "text-[0.8125rem] font-semibold tracking-[0.12em] uppercase",
+              light ? "text-paper/85" : "text-plum-900",
+            )}
+          >
+            {stat.label}
           </p>
         </div>
       ))}

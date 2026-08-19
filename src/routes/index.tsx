@@ -369,8 +369,8 @@ function Home() {
       <DoctorAbout />
 
       {/* Experience — sits directly under the doctor section: these are her numbers, so
-          they belong with her. No heading: each figure carries its own label, punched
-          through the middle of the numeral. */}
+          they belong with her. No heading: each figure carries its own label directly
+          beneath it. */}
       <section aria-label="Experience and clinical volume" className="bg-pink-25 section-y">
         <div className="container-page">
           <StatStrip />
