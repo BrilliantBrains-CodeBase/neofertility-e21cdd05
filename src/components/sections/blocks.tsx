@@ -391,19 +391,37 @@ export function RelatedLinks({
   links: { label: string; to: string; hash?: string }[];
 }) {
   return (
-    <section className="border-t border-line bg-pink-50/50 py-12">
+    /* pink-25, not pink-50. The closing CTA that follows now carries the visual weight,
+       and two saturated pink bands in a row read as one undifferentiated tint — which is
+       what made this block and the CTA look like a single 600px pink slab. */
+    <section className="border-t border-line bg-pink-25 section-y">
       <div className="container-page">
-        <p className="eyebrow">{title}</p>
-        <ul className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {/* Eyebrow plus a rule running to the gutter. Gives the block a top edge to sit
+            against without inventing a heading sentence for all 36 pages that use it. */}
+        <div className="flex items-center gap-5">
+          <p className="eyebrow shrink-0">{title}</p>
+          <span aria-hidden="true" className="h-px flex-1 bg-line" />
+        </div>
+        {/* One object with hairline cells, not nine floating pills. Each cell carries its
+            own top/left rule pulled a pixel onto its neighbour, so a short last row leaves
+            plain white rather than the stray divider a gap-px ground would show through. */}
+        <ul className="mt-7 grid overflow-hidden rounded-2xl border border-line bg-white sm:grid-cols-2 lg:grid-cols-3">
           {links.map((link) => (
-            <li key={link.label}>
+            <li key={link.label} className="-mt-px -ml-px flex border-t border-l border-line">
               <Link
                 to={link.to}
                 {...(link.hash ? { hash: link.hash } : {})}
-                className="flex items-center justify-between gap-3 rounded-lg border border-line bg-white px-4 py-3 text-[0.9375rem] text-plum-900 hover:border-pink-600"
+                /* Negative outline offset: the container clips overflow, so the default
+                   +2px focus ring would be cut off on the edge cells. */
+                className="group flex w-full items-center justify-between gap-4 bg-white px-5 py-4 text-[1rem] leading-snug font-medium text-plum-900 transition-colors duration-200 hover:bg-pink-50 focus-visible:[outline-offset:-3px]"
               >
                 {link.label}
-                <ChevronRight className="size-4 shrink-0 text-pink-600" />
+                <span
+                  aria-hidden="true"
+                  className="grid size-8 shrink-0 place-items-center rounded-full bg-pink-50 text-pink-700 transition duration-200 ease-out group-hover:translate-x-0.5 group-hover:bg-pink-600 group-hover:text-paper"
+                >
+                  <ChevronRight className="size-4" />
+                </span>
               </Link>
             </li>
           ))}
