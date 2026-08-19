@@ -212,7 +212,7 @@ function AboutPage() {
         </div>
       </section>
 
-      <section className="bg-navy-900 section-y">
+      <section className="bg-plum-900 section-y">
         <div className="container-page">
           <SectionHeading
             eyebrow="Clinical volume"

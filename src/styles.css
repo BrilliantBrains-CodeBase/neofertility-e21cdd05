@@ -42,7 +42,7 @@
 
 /*
  * Neo Fertility Clinic design system.
- * Magenta is the brand and the action; plum carries text, navy the dark bands.
+ * Magenta is the brand and the action; plum carries text and every dark band.
  * All colour values are oklch tokens. Never hardcode colours in components.
  *
  * Type: Montserrat carries everything — body, nav, buttons, forms, every heading.
@@ -115,17 +115,21 @@
      graphics but not the 4.5:1 bar for text. pink-500 therefore stays the fill and
      graphic colour, while 600/700 — about 4% darker, and read by eye as the same pink
      — carry button labels and link text. */
-  --pink-700: oklch(0.552 0.2017 348.63); /* Links, small text  #BF2A85  5.41 white / 5.08 pink-25 / 4.60 pink-50 */
+  --pink-700: oklch(
+    0.552 0.2017 348.63
+  ); /* Links, small text  #BF2A85  5.41 white / 5.08 pink-25 / 4.60 pink-50 */
   --pink-600: oklch(0.594 0.2017 348.63); /* Button fills       #CE3A92  white label 4.52 */
   --pink-500: oklch(0.6303 0.2017 348.63); /* BRAND              #DB479D  3.89, non-text only */
-  --pink-300: oklch(0.78 0.1 348.63); /* Accent on dark     #E89DC2  8.33 on navy */
+  --pink-300: oklch(0.78 0.1 348.63); /* Accent on dark     #E89DC2  6.79 on plum */
   --pink-50: oklch(0.95 0.03 348.63); /* Tint surface       #FFE7F2 */
   /* Section banding. Sits just off white (1.06:1) so the page reads as predominantly
      white while adjacent sections stay distinguishable. */
   --pink-25: oklch(0.9787 0.0034 354.69); /* Page band          #FAF7F8 */
   --plum-900: oklch(0.2959 0.0664 324.74); /* Headings           #3D203F  14.22 on white */
-  --navy-900: oklch(0.2214 0.0862 261.75); /* Dark sections      #031742  white on it 17.43 */
-  --gold-400: oklch(0.8711 0.1603 88.94); /* Star ratings       #FFCE3E  11.74 on navy */
+  /* Unused. Every dark band is plum-900 — this blue read as a stray next to the plum
+     announcement bar and footer. Kept as a token only so the ramp stays documented. */
+  --navy-900: oklch(0.2214 0.0862 261.75); /* #031742  white on it 17.43 */
+  --gold-400: oklch(0.8711 0.1603 88.94); /* Star ratings       #FFCE3E  9.58 on plum */
   --ink: var(--plum-900);
   --ink-muted: oklch(0.5103 0 89.88); /* Body copy          #666666  5.74 on white */
   --paper: oklch(1 0 0); /* Light ink on dark bands */
@@ -297,7 +301,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-
   *,
   *::before,
   *::after {

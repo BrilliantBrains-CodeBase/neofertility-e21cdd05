@@ -251,7 +251,7 @@ export function TreatmentGrid({
         </Tabs>
 
         {/* Closing band */}
-        <div className="mt-14 rounded-[1.75rem] bg-navy-900 p-8 text-white lg:p-12">
+        <div className="mt-14 rounded-[1.75rem] bg-plum-900 p-8 text-white lg:p-12">
           <div className="grid gap-6 lg:grid-cols-[1fr_auto] lg:items-center lg:gap-12">
             <div>
               <h3 className="text-[1.375rem] leading-snug text-white sm:text-[1.75rem]">

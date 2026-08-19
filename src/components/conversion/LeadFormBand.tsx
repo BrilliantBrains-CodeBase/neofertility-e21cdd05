@@ -12,7 +12,7 @@ export function LeadFormBand({
   sourcePage: string;
 }) {
   return (
-    <section className="bg-navy-900 section-y">
+    <section className="bg-plum-900 section-y">
       <div className="container-page grid gap-10 lg:grid-cols-2 lg:gap-16">
         <div>
           <h2 className="text-paper">{heading}</h2>

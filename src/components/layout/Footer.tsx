@@ -2,6 +2,8 @@ import { Link } from "@tanstack/react-router";
 import { Facebook, Instagram, Linkedin, Youtube, MapPin, Phone, Mail, Clock } from "lucide-react";
 import { CLINIC } from "@/lib/clinic";
 import { FERTILITY_MENU, GYNECOLOGY_MENU, ROUTES } from "@/data/navigation";
+import logoAsset from "@/assets/neo-logo-trimmed.png";
+import cardImage from "@/assets/appointment-mother-baby.webp";
 
 const socials = [
   { href: CLINIC.social.facebook, label: "Facebook", Icon: Facebook },
@@ -9,6 +11,32 @@ const socials = [
   { href: CLINIC.social.linkedin, label: "LinkedIn", Icon: Linkedin },
   { href: CLINIC.social.youtube, label: "YouTube", Icon: Youtube },
 ];
+
+const clinicLinks = [
+  { label: "About Dr. Payal", to: ROUTES.about },
+  { label: "Who we help", to: ROUTES.whoWeHelp },
+  { label: "Patient stories", to: ROUTES.patientStories },
+  { label: "IVF cost in Bangalore", to: ROUTES.ivfCost },
+  { label: "Fertility assessment", to: ROUTES.fertilityAssessment },
+  { label: "Gallery", to: ROUTES.gallery },
+  { label: "Blogs", to: ROUTES.blogs },
+  { label: "Contact", to: ROUTES.contact },
+];
+
+/* Catchment-SEO links. They live beside the catchment paragraph rather than in the
+   Clinic column — that paragraph names the same neighbourhoods, so the two belong
+   together, and the column was ten items deep with them in it. */
+const areaLinks = [
+  { label: "IVF clinic in Whitefield", to: ROUTES.whitefield },
+  { label: "Fertility clinic in Bellandur", to: ROUTES.bellandur },
+];
+
+const linkClass = "text-ink-muted transition-colors hover:text-pink-700";
+
+/* The `eyebrow` utility is pink-700, which is a text colour for white grounds and
+   goes near-invisible on plum. Same metrics, pink-300 instead — the ramp's on-dark
+   accent, ~6.8:1 here. */
+const darkEyebrow = "text-[0.75rem] font-medium tracking-[0.16em] text-pink-300 uppercase";
 
 export function Footer() {
   /* Six each, not nine and eight. The full catalogue is now listed on the homepage's
@@ -21,171 +49,198 @@ export function Footer() {
     .slice(0, 6);
 
   return (
-    <footer className="mt-0 bg-navy-900 pt-16 pb-28 text-paper lg:pb-16">
-      {/* Full width on phones, 2-up from sm, 4-up from lg. Two columns on a 390px screen
-          leaves 153px a column, and "Intracytoplasmic Sperm Injection (ICSI)" then wraps
-          to three lines — the columns have to be wide enough for the labels or the
-          density gets worse rather than better. */}
-      <div className="container-page grid gap-x-8 gap-y-12 sm:grid-cols-2 sm:gap-x-10 lg:grid-cols-[1.2fr_1fr_1fr_1fr]">
-        <div className="sm:col-span-2 lg:col-span-1">
-          <p className="text-[1.375rem] font-semibold">Neo Fertility Clinic</p>
-          <p className="mt-3 max-w-[36ch] text-[0.9375rem] text-paper/75">
-            Fertility and gynecology care led by {CLINIC.doctor}, {CLINIC.credentialsShort}, in
-            Marathahalli, Bengaluru.
-          </p>
-          <div className="mt-5 space-y-2 text-[0.9375rem] text-paper/80">
-            <p className="flex gap-2">
-              <MapPin className="mt-0.5 size-4 shrink-0" />
+    /* Plum, not navy: this is the announcement bar's colour, so the page opens and
+       closes on the same band. pb-28 clears the MobileActionBar, which is fixed to the
+       bottom of the viewport below lg. */
+    <footer className="bg-plum-900 pt-14 pb-28 lg:pb-14">
+      <div className="container-page">
+        {/* White card floating on the band. Everything inside it is dark-on-light, so
+            none of the paper/xx opacities used on the old navy slab apply here. */}
+        <div className="rounded-3xl bg-background p-6 sm:p-10 lg:p-12">
+          {/* Full width on phones, 2-up from sm, 4-up from lg. Two columns on a 390px
+              screen leaves 153px a column, and "Intracytoplasmic Sperm Injection (ICSI)"
+              then wraps to three lines — the columns have to be wide enough for the
+              labels or the density gets worse rather than better. */}
+          <div className="grid gap-x-8 gap-y-12 sm:grid-cols-2 sm:gap-x-10 lg:grid-cols-[1.2fr_1fr_1fr_1fr]">
+            {/* Flex column so the photo can absorb whatever height the link columns set.
+                Fixed at 4/3 it ran the brand column ~220px past the tallest list, which
+                left the right half of the card empty below the links. */}
+            <div className="flex flex-col sm:col-span-2 lg:col-span-1">
+              <Link to={ROUTES.home} className="inline-flex self-start">
+                <img
+                  src={logoAsset}
+                  alt="Neo Fertility Clinic"
+                  width={413}
+                  height={240}
+                  className="h-14 w-auto object-contain"
+                />
+              </Link>
+              <p className="mt-4 max-w-[36ch] text-[0.9375rem] text-ink-muted">
+                Fertility and gynecology care led by {CLINIC.doctor}, {CLINIC.credentialsShort}, in
+                Marathahalli, Bengaluru.
+              </p>
+              {/* flex-1 with a floor: it stretches to the row height on lg, and holds
+                  13rem on the stacked breakpoints where there is no row to match. */}
+              <img
+                src={cardImage}
+                alt=""
+                width={1366}
+                height={768}
+                loading="lazy"
+                className="mt-6 min-h-[13rem] w-full flex-1 rounded-2xl object-cover"
+              />
+            </div>
+
+            <nav aria-label="Fertility services">
+              <p className="eyebrow">Fertility</p>
+              <ul className="mt-4 space-y-3 text-[0.9375rem] leading-relaxed">
+                {fertilityLinks.map((link) => (
+                  <li key={link.label}>
+                    <Link to={link.to} className={linkClass}>
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+                <li>
+                  <Link
+                    to={ROUTES.fertilitySolutions}
+                    className="font-medium text-plum-900 hover:text-pink-700"
+                  >
+                    All fertility services
+                  </Link>
+                </li>
+              </ul>
+            </nav>
+
+            <nav aria-label="Gynecology services">
+              <p className="eyebrow">Gynecology</p>
+              <ul className="mt-4 space-y-3 text-[0.9375rem] leading-relaxed">
+                {gynecologyLinks.map((link) => (
+                  <li key={link.label}>
+                    <Link to={link.to} className={linkClass}>
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+                <li>
+                  <Link
+                    to={ROUTES.gynecologyTreatments}
+                    className="font-medium text-plum-900 hover:text-pink-700"
+                  >
+                    All gynecology treatments
+                  </Link>
+                </li>
+              </ul>
+            </nav>
+
+            <nav aria-label="Clinic">
+              <p className="eyebrow">Clinic</p>
+              <ul className="mt-4 space-y-3 text-[0.9375rem] leading-relaxed">
+                {clinicLinks.map((link) => (
+                  <li key={link.label}>
+                    <Link to={link.to} className={linkClass}>
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </div>
+
+          {/* Contact strip. Four across the full card rather than stacked in the brand
+              column — that is what fills the width the link lists leave behind, and it
+              keeps the address on one line instead of wrapping to three in a quarter
+              column. */}
+          <div className="mt-12 grid gap-x-8 gap-y-6 border-t border-line pt-8 sm:grid-cols-2 lg:grid-cols-[1.2fr_1fr_1fr_1fr] lg:gap-x-8">
+            <p className="flex gap-3 text-[0.9375rem] text-ink-muted">
+              <MapPin className="mt-0.5 size-4 shrink-0 text-pink-700" aria-hidden />
               <span>{CLINIC.addressLine}</span>
             </p>
-            <p className="flex gap-2">
-              <Phone className="mt-0.5 size-4 shrink-0" />
-              <a className="hover:underline" href={CLINIC.phoneHref}>
+            <p className="flex gap-3 text-[0.9375rem] text-ink-muted">
+              <Phone className="mt-0.5 size-4 shrink-0 text-pink-700" aria-hidden />
+              <a className="hover:text-pink-700" href={CLINIC.phoneHref}>
                 {CLINIC.phoneDisplay}
               </a>
             </p>
-            <p className="flex gap-2">
-              <Mail className="mt-0.5 size-4 shrink-0" />
-              <a className="hover:underline" href={`mailto:${CLINIC.email}`}>
+            <p className="flex gap-3 text-[0.9375rem] text-ink-muted">
+              <Mail className="mt-0.5 size-4 shrink-0 text-pink-700" aria-hidden />
+              <a className="break-all hover:text-pink-700" href={`mailto:${CLINIC.email}`}>
                 {CLINIC.email}
               </a>
             </p>
-            <p className="flex gap-2">
-              <Clock className="mt-0.5 size-4 shrink-0" />
+            <p className="flex gap-3 text-[0.9375rem] text-ink-muted">
+              <Clock className="mt-0.5 size-4 shrink-0 text-pink-700" aria-hidden />
               <span>{CLINIC.hours}</span>
             </p>
           </div>
-          <div className="mt-5 flex gap-3">
-            {socials.map(({ href, label, Icon }) => (
-              <a
-                key={label}
-                href={href}
-                target="_blank"
-                rel="noreferrer"
-                aria-label={label}
-                className="flex size-9 items-center justify-center rounded-full border border-paper/25 hover:bg-paper/10"
-              >
-                <Icon className="size-4" />
-              </a>
-            ))}
+
+          {/* Socials left, copyright right — the reference's bottom rule. Moving them out
+              of the brand column is half of what evened the columns up. */}
+          <div className="mt-8 flex flex-col gap-6 border-t border-line pt-6 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex gap-3">
+              {socials.map(({ href, label, Icon }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={label}
+                  className="flex size-11 items-center justify-center rounded-full bg-pink-50 text-plum-900 transition-colors hover:bg-pink-500 hover:text-paper"
+                >
+                  <Icon className="size-4" />
+                </a>
+              ))}
+            </div>
+            <p className="text-[0.8125rem] text-ink-muted">
+              © {new Date().getFullYear()} Neo Fertility Clinic. All rights reserved.
+            </p>
           </div>
         </div>
 
-        <nav aria-label="Fertility services">
-          <p className="text-[0.75rem] tracking-[0.16em] text-paper/60 uppercase">Fertility</p>
-          <ul className="mt-4 space-y-3 text-[0.9375rem] leading-relaxed text-paper/85">
-            {fertilityLinks.map((link) => (
-              <li key={link.label}>
-                <Link to={link.to} className="hover:underline">
-                  {link.label}
-                </Link>
-              </li>
-            ))}
-            <li>
-              <Link
-                to={ROUTES.fertilitySolutions}
-                className="font-medium text-paper hover:underline"
-              >
-                All fertility services
-              </Link>
-            </li>
-          </ul>
-        </nav>
-
-        <nav aria-label="Gynecology services">
-          <p className="text-[0.75rem] tracking-[0.16em] text-paper/60 uppercase">Gynecology</p>
-          <ul className="mt-4 space-y-3 text-[0.9375rem] leading-relaxed text-paper/85">
-            {gynecologyLinks.map((link) => (
-              <li key={link.label}>
-                <Link to={link.to} className="hover:underline">
-                  {link.label}
-                </Link>
-              </li>
-            ))}
-            <li>
-              <Link
-                to={ROUTES.gynecologyTreatments}
-                className="font-medium text-paper hover:underline"
-              >
-                All gynecology treatments
-              </Link>
-            </li>
-          </ul>
-        </nav>
-
-        <nav aria-label="Clinic">
-          <p className="text-[0.75rem] tracking-[0.16em] text-paper/60 uppercase">Clinic</p>
-          <ul className="mt-4 space-y-3 text-[0.9375rem] leading-relaxed text-paper/85">
-            <li>
-              <Link to={ROUTES.about} className="hover:underline">
-                About Dr. Payal
-              </Link>
-            </li>
-            <li>
-              <Link to={ROUTES.whoWeHelp} className="hover:underline">
-                Who we help
-              </Link>
-            </li>
-            <li>
-              <Link to={ROUTES.patientStories} className="hover:underline">
-                Patient stories
-              </Link>
-            </li>
-            <li>
-              <Link to={ROUTES.ivfCost} className="hover:underline">
-                IVF cost in Bangalore
-              </Link>
-            </li>
-            <li>
-              <Link to={ROUTES.fertilityAssessment} className="hover:underline">
-                Fertility assessment
-              </Link>
-            </li>
-            <li>
-              <Link to={ROUTES.ovulationCalculator} className="hover:underline">
-                Ovulation calculator
-              </Link>
-            </li>
-            <li>
-              <Link to={ROUTES.faq} className="hover:underline">
-                FAQ
-              </Link>
-            </li>
-            <li>
-              <Link to={ROUTES.blogs} className="hover:underline">
-                Blogs
-              </Link>
-            </li>
-            <li>
-              <Link to={ROUTES.whitefield} className="hover:underline">
-                IVF clinic in Whitefield
-              </Link>
-            </li>
-            <li>
-              <Link to={ROUTES.bellandur} className="hover:underline">
-                Fertility clinic in Bellandur
-              </Link>
-            </li>
-          </ul>
-        </nav>
-      </div>
-
-      <div className="container-page mt-14 border-t border-paper/15 pt-8">
-        {/* Capped: this is the longest paragraph on the site and had no measure, so
-            once the container became a percentage it ran to ~216 characters a line. */}
-        <p className="max-w-[80ch] text-[0.8125rem] text-paper/65">{CLINIC.catchment}</p>
-        <div className="mt-4 flex flex-wrap items-center justify-between gap-3 text-[0.8125rem] text-paper/65">
-          <p>© {new Date().getFullYear()} Neo Fertility Clinic. All rights reserved.</p>
-          <div className="flex gap-4">
-            <Link to={ROUTES.privacy} className="hover:underline">
-              Privacy Policy
-            </Link>
-            <Link to={ROUTES.terms} className="hover:underline">
-              Terms of Use
-            </Link>
+        {/* On the plum, below the card. Laid out on the same four-column track as the
+            card so the fine print spreads across the page instead of stacking in one
+            left-hand column — at 90% container width an 80ch measure only reached the
+            halfway mark, which left the whole right side empty. White at 70% measures
+            ~8.3:1 here, and the pink-300 eyebrows ~6.8:1. */}
+        <div className="mt-10 grid gap-x-8 gap-y-10 text-[0.8125rem] text-paper/70 sm:grid-cols-2 sm:gap-x-10 lg:grid-cols-[1.2fr_1fr_1fr_1fr]">
+          <div className="sm:col-span-2">
+            <p className={darkEyebrow}>Areas we serve</p>
+            {/* Capped: this is the longest paragraph on the site and had no measure, so
+                once the container became a percentage it ran to ~216 characters a line. */}
+            <p className="mt-4 max-w-[80ch] leading-relaxed">{CLINIC.catchment}</p>
           </div>
+
+          <nav aria-label="Nearby clinics">
+            <p className={darkEyebrow}>Nearby clinics</p>
+            <ul className="mt-4 space-y-3">
+              {areaLinks.map((link) => (
+                <li key={link.label}>
+                  <Link to={link.to} className="text-paper/85 hover:underline">
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          <nav aria-label="Legal">
+            <p className={darkEyebrow}>Legal</p>
+            <ul className="mt-4 space-y-3">
+              <li>
+                <Link to={ROUTES.privacy} className="text-paper/85 hover:underline">
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link to={ROUTES.terms} className="text-paper/85 hover:underline">
+                  Terms of Use
+                </Link>
+              </li>
+            </ul>
+          </nav>
         </div>
-        <p className="mt-4 max-w-[80ch] text-[0.8125rem] text-paper/55">
+
+        <p className="mt-10 max-w-[100ch] border-t border-paper/15 pt-6 text-[0.8125rem] leading-relaxed text-paper/60">
           Information on this website is for general education and is not a substitute for a
           consultation. Treatment outcomes vary between individuals. {CLINIC.statsAsOf}
         </p>
