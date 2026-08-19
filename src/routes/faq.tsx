@@ -134,7 +134,13 @@ function FaqPage() {
           {CATEGORIES.map((category) => (
             <div key={category.heading}>
               <SectionHeading eyebrow="Category" title={category.heading} />
-              <Accordion type="single" collapsible className="mt-6 max-w-[68ch]">
+              {/* One answer stays open per category — see FaqBlock for why this is
+                  not `collapsible`. */}
+              <Accordion
+                type="single"
+                defaultValue={`${category.heading}-0`}
+                className="mt-6 max-w-[68ch]"
+              >
                 {category.items.map((item, index) => (
                   <AccordionItem
                     key={item.q}

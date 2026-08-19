@@ -312,7 +312,10 @@ export function FaqBlock({
   image?: { src: string; alt: string; width: number; height: number };
 }) {
   const questions = (
-    <Accordion type="single" collapsible className={cn("mt-8", !image && "max-w-[68ch]")}>
+    /* Not `collapsible`: with a defaultValue and collapsing disabled, exactly one
+       answer is open at all times — clicking the open question does nothing rather
+       than leaving the block as a wall of headings with no visible answer. */
+    <Accordion type="single" defaultValue="item-0" className={cn("mt-8", !image && "max-w-[68ch]")}>
       {items.map((item, index) => (
         <AccordionItem key={item.q} value={`item-${index}`} className="border-line">
           <AccordionTrigger className="text-left text-[1.0625rem] font-medium text-plum-900 hover:no-underline">
