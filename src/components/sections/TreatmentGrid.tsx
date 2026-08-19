@@ -162,8 +162,8 @@ function TreatmentCarousel({ items, label }: { items: TreatmentItem[]; label: st
 }
 
 /**
- * The way through to a tab's full catalogue. The services that have no card copy and no
- * photograph are deliberately NOT listed here — they live on the hub page this links to.
+ * The way through to a tab's full catalogue. Every service now has a card, so this is a
+ * route to the hub page's longer write-ups rather than to anything missing from the tab.
  */
 function AllServicesLink({ label, to }: { label: string; to: string }) {
   return (

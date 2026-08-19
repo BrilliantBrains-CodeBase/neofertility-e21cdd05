@@ -17,21 +17,51 @@ import type { TabbedFeatureTab } from "@/components/sections/TabbedFeatureSectio
 import type { TreatmentItem } from "@/components/sections/TreatmentGrid";
 import {
   Activity,
+  Baby,
+  CalendarClock,
   CalendarHeart,
+  ClipboardCheck,
   Droplet,
+  Droplets,
+  FileHeart,
   FlaskConical,
+  HandHeart,
   HeartHandshake,
+  HeartPulse,
+  Mars,
   Microscope,
   Ribbon,
+  Scan,
+  ScanLine,
+  Scissors,
   ShieldCheck,
+  ShieldPlus,
   Snowflake,
   Sparkles,
   Stethoscope,
+  Syringe,
+  TestTubes,
   Thermometer,
 } from "lucide-react";
 
 const TREATMENTS: TreatmentItem[] = [
   /* FERTILITY SOLUTIONS */
+  {
+    tag: "Before Pregnancy",
+    title: "Preconception Checkup",
+    copy: "A complete health check for both partners before you try to conceive, so your body is fully ready when the right time comes.",
+    to: ROUTES.preconception,
+    icon: ClipboardCheck,
+    group: "fertility",
+  },
+  {
+    tag: "Prenatal Care",
+    title: "Pregnancy Care",
+    copy: "Month-by-month expert care through every trimester: regular scans, personalised guidance, and a safe delivery plan for mother and baby.",
+    to: ROUTES.pregnancyCare,
+    icon: Baby,
+    group: "fertility",
+  },
   {
     tag: "Reproductive Choice",
     title: "Family Planning",
@@ -39,6 +69,14 @@ const TREATMENTS: TreatmentItem[] = [
     to: ROUTES.familyPlanning,
     icon: CalendarHeart,
     image: trFamilyPlanning,
+    group: "fertility",
+  },
+  {
+    tag: "Diagnostic Imaging",
+    title: "Pelvic Ultrasound Scan",
+    copy: "A quick, painless scan to check your uterus, ovaries, and reproductive health, so we detect and address any issue early.",
+    to: ROUTES.pelvicUltrasound,
+    icon: ScanLine,
     group: "fertility",
   },
   {
@@ -51,6 +89,14 @@ const TREATMENTS: TreatmentItem[] = [
     group: "fertility",
   },
   {
+    tag: "Assisted Conception",
+    title: "Intrauterine Insemination (IUI)",
+    copy: "A simple, minimally invasive treatment that places healthy sperm directly in the uterus, boosting your chances of natural pregnancy.",
+    to: ROUTES.iui,
+    icon: Syringe,
+    group: "fertility",
+  },
+  {
     tag: "Advanced IVF",
     title: "In-Vitro Fertilization (IVF)",
     copy: "One of the most effective fertility treatments. Eggs and sperm are combined in our lab, and a healthy embryo is placed back in the uterus.",
@@ -60,12 +106,36 @@ const TREATMENTS: TreatmentItem[] = [
     group: "fertility",
   },
   {
+    tag: "Advanced Fertilisation",
+    title: "Intracytoplasmic Sperm Injection (ICSI)",
+    copy: "An advanced form of IVF where a single healthy sperm is injected directly into the egg, ideal when male fertility is a factor.",
+    to: ROUTES.icsi,
+    icon: Microscope,
+    group: "fertility",
+  },
+  {
     tag: "Fertility Preservation",
     title: "Egg Freezing & Preservation",
     copy: "Freeze your healthy eggs today to protect your fertility for tomorrow, ideal if you are planning pregnancy later in life.",
     to: ROUTES.eggFreezing,
     icon: Snowflake,
     image: trEf,
+    group: "fertility",
+  },
+  {
+    tag: "Male Fertility",
+    title: "Male Infertility Treatment",
+    copy: "Male factors contribute to nearly half of all infertility cases. Our expert diagnosis and treatments improve sperm health and conception outcomes.",
+    to: ROUTES.maleInfertility,
+    icon: Mars,
+    group: "fertility",
+  },
+  {
+    tag: "Donor Care",
+    title: "Donor Egg & Sperm Programs",
+    copy: "Donor programs help couples conceive when pregnancy is not possible with their own eggs or sperm, with complete privacy and compassionate support.",
+    to: ROUTES.donor,
+    icon: HandHeart,
     group: "fertility",
   },
   {
@@ -89,6 +159,15 @@ const TREATMENTS: TreatmentItem[] = [
 
   /* GYNECOLOGY TREATMENTS */
   {
+    tag: "Menstrual Health",
+    title: "Abnormal Bleeding",
+    copy: "Heavy, prolonged, or unusual bleeding is never normal. We find the cause and treat it, so you feel in control of your cycle again.",
+    to: ROUTES.menstrual,
+    hash: "abnormal_bleeding",
+    icon: Droplets,
+    group: "gynecology",
+  },
+  {
     tag: "Period Pain",
     title: "Painful Periods",
     copy: "Severe period pain is not something you must live with. Expert diagnosis and treatment for lasting relief, cycle after cycle.",
@@ -99,6 +178,15 @@ const TREATMENTS: TreatmentItem[] = [
     group: "gynecology",
   },
   {
+    tag: "Cycle Disorders",
+    title: "Irregular or Abnormal Periods",
+    copy: "Missed, delayed, or unpredictable periods often signal deeper issues. We diagnose the root cause and help restore your natural rhythm.",
+    to: ROUTES.menstrual,
+    hash: "irregular_menstrual_cycles",
+    icon: CalendarClock,
+    group: "gynecology",
+  },
+  {
     tag: "Menopause Support",
     title: "Menopausal Care",
     copy: "Hot flashes, mood swings, and hormonal shifts. Expert menopause care with hormone therapy and lifestyle support for comfort at every stage.",
@@ -106,6 +194,22 @@ const TREATMENTS: TreatmentItem[] = [
     hash: "menopausal_disorders",
     icon: Thermometer,
     image: trMenopause,
+    group: "gynecology",
+  },
+  {
+    tag: "Sexual Health",
+    title: "STI Diagnosis & Treatment",
+    copy: "Confidential testing, accurate diagnosis, and expert treatment for all sexually transmitted infections, with judgement-free, completely private care.",
+    to: ROUTES.sti,
+    icon: TestTubes,
+    group: "gynecology",
+  },
+  {
+    tag: "Pelvic Infections",
+    title: "PID Treatment",
+    copy: "Treatment for reproductive-tract infections that can affect fertility if ignored. Early care protects your long-term reproductive health.",
+    to: ROUTES.pid,
+    icon: ShieldPlus,
     group: "gynecology",
   },
   {
@@ -123,6 +227,41 @@ const TREATMENTS: TreatmentItem[] = [
     to: ROUTES.breastLumps,
     icon: Ribbon,
     image: trBreastLump,
+    group: "gynecology",
+  },
+  {
+    tag: "Sexual Wellness",
+    title: "Pain During Intercourse",
+    copy: "Painful sex is common and treatable. We identify the cause with sensitivity and offer effective, lasting solutions. No judgement, only care.",
+    to: ROUTES.painDuringSex,
+    icon: HeartPulse,
+    group: "gynecology",
+  },
+  {
+    tag: "Pregnancy Termination",
+    title: "Medical Termination of Pregnancy (MTP)",
+    copy: "Safe, legal, and completely confidential pregnancy termination, with medical expertise and emotional support at every step of your decision.",
+    to: ROUTES.mtp,
+    icon: FileHeart,
+    group: "gynecology",
+  },
+  {
+    /* Shortened from "Minimally Invasive Surgery": the tag pill is a single line of
+       11px uppercase with wide tracking, and past ~22 characters it wraps inside the
+       rounded chip at the narrowest card width. */
+    tag: "Minimally Invasive",
+    title: "Hysteroscopy",
+    copy: "A no-incision procedure that lets doctors examine your uterus and treat fibroids, polyps, or bleeding, with same-day recovery.",
+    to: ROUTES.hysteroscopy,
+    icon: Scan,
+    group: "gynecology",
+  },
+  {
+    tag: "Keyhole Surgery",
+    title: "Laparoscopy",
+    copy: "Minimally invasive keyhole surgery for endometriosis, fibroids, and blocked tubes. Smaller cuts, faster healing, and better outcomes.",
+    to: ROUTES.laparoscopy,
+    icon: Scissors,
     group: "gynecology",
   },
 ];
