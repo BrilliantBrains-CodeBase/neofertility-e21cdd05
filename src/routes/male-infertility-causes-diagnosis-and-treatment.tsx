@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { PageHero } from "@/components/sections/blocks";
+import { PageHero, RelatedLinks } from "@/components/sections/blocks";
 import { Prose } from "@/components/sections/ServicePage";
 import { ClosingCta } from "@/components/conversion/ClosingCta";
 import { ROUTES } from "@/data/navigation";
@@ -108,6 +108,17 @@ function Page() {
           </Prose>
         </div>
       </div>
+
+      <RelatedLinks
+        links={[
+          { label: "Male infertility treatment", to: ROUTES.maleInfertility },
+          { label: "Infertility evaluation and treatment", to: ROUTES.infertility },
+          { label: "ICSI treatment", to: ROUTES.icsi },
+          { label: "IVF treatment", to: ROUTES.ivf },
+          { label: "About Dr. Payal Mahapatra", to: ROUTES.about },
+          { label: "Contact and directions", to: ROUTES.contact },
+        ]}
+      />
 
       <ClosingCta
         heading="Get both partners evaluated, together."

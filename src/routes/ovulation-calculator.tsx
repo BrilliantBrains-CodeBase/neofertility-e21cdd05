@@ -4,8 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { ClosingCta } from "@/components/conversion/ClosingCta";
-import { PageHero, SectionHeading } from "@/components/sections/blocks";
-import { Prose } from "@/components/sections/ServicePage";
+import { PageHero, SectionHeading, RelatedLinks } from "@/components/sections/blocks";
+import { Prose, COMMON_RELATED } from "@/components/sections/ServicePage";
 import { DEFAULT_WHATSAPP_MESSAGE } from "@/lib/clinic";
 import { ROUTES } from "@/data/navigation";
 import { pageMeta, jsonLd, breadcrumbSchema } from "@/lib/seo";
@@ -169,6 +169,8 @@ function Page() {
           </div>
         </section>
       </div>
+
+      <RelatedLinks links={COMMON_RELATED} />
 
       <ClosingCta
         heading="Cycles that do not fit a calendar deserve a proper look"

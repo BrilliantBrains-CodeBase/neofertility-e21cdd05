@@ -383,12 +383,70 @@ export function DoctorNote({ quote }: { quote: string }) {
   );
 }
 
+/**
+ * The clinical-volume band. Extracted from `ServicePage` so the pages that hand-roll the
+ * service shell can render the identical band instead of omitting it — without it their
+ * white body runs straight into the white FAQ with no rhythm break.
+ */
+export function ClinicalVolumeBand() {
+  return (
+    <section className="border-y border-line bg-pink-25 py-12">
+      <div className="container-page">
+        <SectionHeading
+          eyebrow="Clinical volume"
+          title={`Treated by ${CLINIC.doctor}`}
+          copy={`${CLINIC.credentials}. ${CLINIC.statsAsOf}`}
+        />
+        <div className="mt-8">
+          <StatStrip />
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export type TileLink = { label: string; to: string; hash?: string };
+
+/**
+ * One object with hairline cells, not N floating pills.
+ *
+ * Each cell carries its own top/left rule pulled a pixel onto its neighbour, so a short
+ * last row leaves plain white rather than the stray divider a `gap-px` coloured ground
+ * would show through. That is what makes it safe at any item count — the two hub pages
+ * pass groups of 2, 4 and 5.
+ */
+export function LinkTileGrid({ links }: { links: TileLink[] }) {
+  return (
+    <ul className="grid overflow-hidden rounded-2xl border border-line bg-white sm:grid-cols-2 lg:grid-cols-3">
+      {links.map((link) => (
+        <li key={link.label} className="-mt-px -ml-px flex border-t border-l border-line">
+          <Link
+            to={link.to}
+            {...(link.hash ? { hash: link.hash } : {})}
+            /* Negative outline offset: the container clips overflow, so the default
+               +2px focus ring would be cut off on the edge cells. */
+            className="group flex w-full items-center justify-between gap-4 bg-white px-5 py-4 text-[1rem] leading-snug font-medium text-plum-900 transition-colors duration-200 hover:bg-pink-50 focus-visible:[outline-offset:-3px]"
+          >
+            {link.label}
+            <span
+              aria-hidden="true"
+              className="grid size-8 shrink-0 place-items-center rounded-full bg-pink-50 text-pink-700 transition duration-200 ease-out group-hover:translate-x-0.5 group-hover:bg-pink-600 group-hover:text-paper"
+            >
+              <ChevronRight className="size-4" />
+            </span>
+          </Link>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
 export function RelatedLinks({
   title = "Related reading",
   links,
 }: {
   title?: string;
-  links: { label: string; to: string; hash?: string }[];
+  links: TileLink[];
 }) {
   return (
     /* pink-25, not pink-50. The closing CTA that follows now carries the visual weight,
@@ -402,30 +460,56 @@ export function RelatedLinks({
           <p className="eyebrow shrink-0">{title}</p>
           <span aria-hidden="true" className="h-px flex-1 bg-line" />
         </div>
-        {/* One object with hairline cells, not nine floating pills. Each cell carries its
-            own top/left rule pulled a pixel onto its neighbour, so a short last row leaves
-            plain white rather than the stray divider a gap-px ground would show through. */}
-        <ul className="mt-7 grid overflow-hidden rounded-2xl border border-line bg-white sm:grid-cols-2 lg:grid-cols-3">
-          {links.map((link) => (
-            <li key={link.label} className="-mt-px -ml-px flex border-t border-l border-line">
-              <Link
-                to={link.to}
-                {...(link.hash ? { hash: link.hash } : {})}
-                /* Negative outline offset: the container clips overflow, so the default
-                   +2px focus ring would be cut off on the edge cells. */
-                className="group flex w-full items-center justify-between gap-4 bg-white px-5 py-4 text-[1rem] leading-snug font-medium text-plum-900 transition-colors duration-200 hover:bg-pink-50 focus-visible:[outline-offset:-3px]"
-              >
-                {link.label}
-                <span
-                  aria-hidden="true"
-                  className="grid size-8 shrink-0 place-items-center rounded-full bg-pink-50 text-pink-700 transition duration-200 ease-out group-hover:translate-x-0.5 group-hover:bg-pink-600 group-hover:text-paper"
-                >
-                  <ChevronRight className="size-4" />
-                </span>
-              </Link>
-            </li>
+        <div className="mt-7">
+          <LinkTileGrid links={links} />
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/**
+ * The treatment index on the two hub pages.
+ *
+ * Previously each group rendered its own full `section-y` band in the same `pink-25`, so
+ * gynecology emitted four consecutive identical bands — 1316px of page carrying 608px of
+ * content, reading as one dead pink field with the eyebrow repeated four times. One band,
+ * groups separated by a rule, eyebrow once.
+ */
+export function TreatmentMenuSection({
+  groups,
+  eyebrow = "Explore",
+  title,
+}: {
+  groups: { heading: string; links: TileLink[] }[];
+  eyebrow?: string;
+  title?: string;
+}) {
+  return (
+    <section className="border-t border-line bg-pink-25 section-y">
+      <div className="container-page">
+        <div className="flex items-center gap-5">
+          <p className="eyebrow shrink-0">{eyebrow}</p>
+          <span aria-hidden="true" className="h-px flex-1 bg-line" />
+        </div>
+        {title && <h2 className="mt-3">{title}</h2>}
+
+        {/* No `space-y` on the container: the per-group `pt` alone carries the gap. Having
+            both made adjacent groups pay it twice, which is how four separate `section-y`
+            bands got their bulk back in through the side door. */}
+        <div className="mt-8">
+          {groups.map((group, index) => (
+            <Reveal key={group.heading} delay={index * 60}>
+              {/* The rule replaces what used to be a whole section boundary. */}
+              <div className={cn(index > 0 && "mt-8 border-t border-line pt-8")}>
+                <h3 className="mb-4 text-[1.125rem] font-semibold text-plum-900">
+                  {group.heading}
+                </h3>
+                <LinkTileGrid links={group.links} />
+              </div>
+            </Reveal>
           ))}
-        </ul>
+        </div>
       </div>
     </section>
   );

@@ -4,13 +4,7 @@ import { Button } from "@/components/ui/button";
 import { AppointmentSheet } from "@/components/conversion/AppointmentSheet";
 import { BookingRail } from "@/components/conversion/BookingRail";
 import { ClosingCta } from "@/components/conversion/ClosingCta";
-import {
-  PageHero,
-  FaqBlock,
-  RelatedLinks,
-  StatStrip,
-  SectionHeading,
-} from "@/components/sections/blocks";
+import { PageHero, FaqBlock, RelatedLinks, ClinicalVolumeBand } from "@/components/sections/blocks";
 import { CLINIC, DEFAULT_WHATSAPP_MESSAGE, track } from "@/lib/clinic";
 import { ROUTES } from "@/data/navigation";
 
@@ -71,20 +65,7 @@ export function ServicePage({
         <BookingRail sourcePage={sourcePage} whatsappMessage={whatsappMessage} />
       </div>
 
-      {showStats && (
-        <section className="border-y border-line bg-pink-25 py-12">
-          <div className="container-page">
-            <SectionHeading
-              eyebrow="Clinical volume"
-              title={`Treated by ${CLINIC.doctor}`}
-              copy={`${CLINIC.credentials}. ${CLINIC.statsAsOf}`}
-            />
-            <div className="mt-8">
-              <StatStrip />
-            </div>
-          </div>
-        </section>
-      )}
+      {showStats && <ClinicalVolumeBand />}
 
       <FaqBlock items={faqs} />
 

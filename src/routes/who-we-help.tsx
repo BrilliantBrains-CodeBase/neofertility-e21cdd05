@@ -1,7 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import { ClosingCta } from "@/components/conversion/ClosingCta";
-import { PageHero, SectionHeading, FaqBlock } from "@/components/sections/blocks";
+import { PageHero, SectionHeading, FaqBlock, RelatedLinks } from "@/components/sections/blocks";
+import { COMMON_RELATED } from "@/components/sections/ServicePage";
+import { Reveal } from "@/components/motion/Reveal";
 import { ROUTES } from "@/data/navigation";
 import { pageMeta, jsonLd, faqSchema, breadcrumbSchema } from "@/lib/seo";
 
@@ -91,20 +93,19 @@ export const Route = createFileRoute("/who-we-help")({
   component: WhoWeHelpPage,
 });
 
-function WhoWeHelpPage() {
+function SegmentBand({
+  segments,
+  className,
+}: {
+  segments: (typeof SEGMENTS)[number][];
+  className?: string;
+}) {
   return (
-    <>
-      <PageHero
-        eyebrow="Who We Help"
-        title="Who We Help"
-        intro="Neo Fertility Clinic treats seven distinct patient groups: couples trying to conceive for the first time, couples with secondary infertility, women with PCOS or PMOS and hormonal disorders, women over 35 facing age-related fertility decline, men with sperm-related fertility problems, single women and same-sex couples, and patients seeking a second opinion after failed treatment elsewhere."
-        trail={[{ name: "Home", to: ROUTES.home }, { name: "Who We Help" }]}
-      />
-
-      <section className="bg-pink-25 section-y">
-        <div className="container-page space-y-10">
-          {SEGMENTS.map((segment) => (
-            <div key={segment.title} className="border-t border-line pt-8">
+    <section className={`section-y ${className ?? ""}`}>
+      <div className="container-page space-y-10">
+        {segments.map((segment, index) => (
+          <Reveal key={segment.title} delay={index * 60}>
+            <div className="border-t border-line pt-8">
               <h2>{segment.title}</h2>
               <p className="prose-measure mt-3 text-ink-muted">{segment.copy}</p>
               <div className="mt-4 flex flex-wrap gap-4">
@@ -124,11 +125,31 @@ function WhoWeHelpPage() {
                 )}
               </div>
             </div>
-          ))}
-        </div>
-      </section>
+          </Reveal>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function WhoWeHelpPage() {
+  return (
+    <>
+      <PageHero
+        eyebrow="Who We Help"
+        title="Who We Help"
+        intro="Neo Fertility Clinic treats seven distinct patient groups: couples trying to conceive for the first time, couples with secondary infertility, women with PCOS or PMOS and hormonal disorders, women over 35 facing age-related fertility decline, men with sperm-related fertility problems, single women and same-sex couples, and patients seeking a second opinion after failed treatment elsewhere."
+        trail={[{ name: "Home", to: ROUTES.home }, { name: "Who We Help" }]}
+      />
+
+      {/* Split 4 / 3 across two bands. All seven segments in one pink-25 run made the
+          whole body read as a single undifferentiated tint before the FAQ. */}
+      <SegmentBand segments={SEGMENTS.slice(0, 4)} />
+      <SegmentBand segments={SEGMENTS.slice(4)} className="border-t border-line bg-pink-25" />
 
       <FaqBlock items={FAQS} />
+
+      <RelatedLinks links={COMMON_RELATED} />
 
       <ClosingCta
         heading="Wherever you are starting from, the first step is the same"

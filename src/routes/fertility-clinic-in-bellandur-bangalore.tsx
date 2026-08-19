@@ -4,7 +4,14 @@ import { Button } from "@/components/ui/button";
 import { AppointmentSheet } from "@/components/conversion/AppointmentSheet";
 import { BookingRail } from "@/components/conversion/BookingRail";
 import { ClosingCta } from "@/components/conversion/ClosingCta";
-import { PageHero, FaqBlock, RelatedLinks, SectionHeading, CheckList } from "@/components/sections/blocks";
+import {
+  PageHero,
+  FaqBlock,
+  RelatedLinks,
+  SectionHeading,
+  CheckList,
+  ClinicalVolumeBand,
+} from "@/components/sections/blocks";
 import { Prose, DataTable } from "@/components/sections/ServicePage";
 import { CLINIC, DEFAULT_WHATSAPP_MESSAGE, track } from "@/lib/clinic";
 import { ROUTES } from "@/data/navigation";
@@ -69,7 +76,10 @@ function Page() {
             </Button>
           </AppointmentSheet>
           <Button variant="outlineTeal" size="lg" asChild>
-            <a href={CLINIC.phoneHref} onClick={() => track("call_click", { source_page: SOURCE_PAGE })}>
+            <a
+              href={CLINIC.phoneHref}
+              onClick={() => track("call_click", { source_page: SOURCE_PAGE })}
+            >
               <Phone /> Call {CLINIC.phoneDisplay}
             </a>
           </Button>
@@ -80,14 +90,16 @@ function Page() {
         <div className="min-w-0 flex-1 space-y-12">
           <Prose title="Why Bellandur patients choose Marathahalli">
             <p>
-              Bellandur has grown quickly as a residential and office hub, but a stimulated IVF or IUI cycle needs
-              scans every two to three days, timed to your follicles rather than a convenient slot. Bellandur itself
-              does not have a comparable dedicated fertility set-up, and the short run up the Outer Ring Road to
-              Marathahalli is a journey most patients are already used to making for work.
+              Bellandur has grown quickly as a residential and office hub, but a stimulated IVF or
+              IUI cycle needs scans every two to three days, timed to your follicles rather than a
+              convenient slot. Bellandur itself does not have a comparable dedicated fertility
+              set-up, and the short run up the Outer Ring Road to Marathahalli is a journey most
+              patients are already used to making for work.
             </p>
             <p>
-              Neo Fertility Clinic is on the Marathahalli Bridge service road and is open all seven days including
-              Sundays, which matters when a scan falls due on a day you would rather not be at the office.
+              Neo Fertility Clinic is on the Marathahalli Bridge service road and is open all seven
+              days including Sundays, which matters when a scan falls due on a day you would rather
+              not be at the office.
             </p>
           </Prose>
 
@@ -117,8 +129,14 @@ function Page() {
                 head={["Detail", "Information"]}
                 rows={[
                   ["Distance", "Approximately 6 km from Bellandur"],
-                  ["Travel time", "15 to 20 minutes off peak; longer during Outer Ring Road office hours"],
-                  ["Route", "Outer Ring Road toward Marathahalli, then Marathahalli Bridge Service Road, before the bridge, opposite Purva Apartments"],
+                  [
+                    "Travel time",
+                    "15 to 20 minutes off peak; longer during Outer Ring Road office hours",
+                  ],
+                  [
+                    "Route",
+                    "Outer Ring Road toward Marathahalli, then Marathahalli Bridge Service Road, before the bridge, opposite Purva Apartments",
+                  ],
                   ["Nearest landmark", "Marathahalli Bridge, opposite Purva Apartments"],
                   ["Hours", "All seven days, 09:30 to 18:30"],
                   ["Booking", `${CLINIC.phoneDisplay}, WhatsApp or online`],
@@ -129,6 +147,10 @@ function Page() {
         </div>
         <BookingRail sourcePage={SOURCE_PAGE} whatsappMessage={DEFAULT_WHATSAPP_MESSAGE} />
       </div>
+
+      {/* The band ServicePage gives its 26 siblings. Without it this page's white
+          body ran straight into the white FAQ with no rhythm break. */}
+      <ClinicalVolumeBand />
 
       <FaqBlock items={FAQS} heading="Questions from Bellandur patients" />
       <RelatedLinks

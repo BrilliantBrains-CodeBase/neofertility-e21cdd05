@@ -4,7 +4,14 @@ import { Button } from "@/components/ui/button";
 import { AppointmentSheet } from "@/components/conversion/AppointmentSheet";
 import { BookingRail } from "@/components/conversion/BookingRail";
 import { ClosingCta } from "@/components/conversion/ClosingCta";
-import { PageHero, FaqBlock, RelatedLinks, SectionHeading, CheckList } from "@/components/sections/blocks";
+import {
+  PageHero,
+  FaqBlock,
+  RelatedLinks,
+  SectionHeading,
+  CheckList,
+  ClinicalVolumeBand,
+} from "@/components/sections/blocks";
 import { Prose, DataTable } from "@/components/sections/ServicePage";
 import { CLINIC, DEFAULT_WHATSAPP_MESSAGE, track } from "@/lib/clinic";
 import { ROUTES } from "@/data/navigation";
@@ -69,7 +76,10 @@ function Page() {
             </Button>
           </AppointmentSheet>
           <Button variant="outlineTeal" size="lg" asChild>
-            <a href={CLINIC.phoneHref} onClick={() => track("call_click", { source_page: SOURCE_PAGE })}>
+            <a
+              href={CLINIC.phoneHref}
+              onClick={() => track("call_click", { source_page: SOURCE_PAGE })}
+            >
               <Phone /> Call {CLINIC.phoneDisplay}
             </a>
           </Button>
@@ -80,17 +90,17 @@ function Page() {
         <div className="min-w-0 flex-1 space-y-12">
           <Prose title="Why Whitefield patients travel to Marathahalli">
             <p>
-              Fertility treatment is not a single appointment. A stimulated cycle involves scans every two to three
-              days for around two weeks, and the timing of those scans is set by your follicles rather than your
-              calendar. That makes two things matter more than they would for any other specialty: how long the
-              journey takes at the times you will actually be travelling, and whether the clinic is open on the day
-              your scan falls due.
+              Fertility treatment is not a single appointment. A stimulated cycle involves scans
+              every two to three days for around two weeks, and the timing of those scans is set by
+              your follicles rather than your calendar. That makes two things matter more than they
+              would for any other specialty: how long the journey takes at the times you will
+              actually be travelling, and whether the clinic is open on the day your scan falls due.
             </p>
             <p>
-              Neo Fertility Clinic is on the Marathahalli Bridge service road, before the bridge coming from
-              Whitefield, and is open all seven days including Sundays. For patients in Whitefield, Brookefield, ITPL,
-              Kundalahalli, Varthur, Hope Farm and Hagadur, that is a 15 to 25 minute journey against the flow of the
-              worst morning traffic.
+              Neo Fertility Clinic is on the Marathahalli Bridge service road, before the bridge
+              coming from Whitefield, and is open all seven days including Sundays. For patients in
+              Whitefield, Brookefield, ITPL, Kundalahalli, Varthur, Hope Farm and Hagadur, that is a
+              15 to 25 minute journey against the flow of the worst morning traffic.
             </p>
           </Prose>
 
@@ -121,7 +131,10 @@ function Page() {
                 rows={[
                   ["Distance", "Approximately 9 km from Whitefield Main Road"],
                   ["Travel time", "15 to 25 minutes, depending on time of day"],
-                  ["Route", "Whitefield Main Road to Varthur Road or ITPL Main Road, then Marathahalli Bridge Service Road. The clinic is before the bridge, opposite Purva Apartments"],
+                  [
+                    "Route",
+                    "Whitefield Main Road to Varthur Road or ITPL Main Road, then Marathahalli Bridge Service Road. The clinic is before the bridge, opposite Purva Apartments",
+                  ],
                   ["Nearest landmark", "Marathahalli Bridge, opposite Purva Apartments"],
                   ["Hours", "All seven days, 09:30 to 18:30"],
                   ["Booking", `${CLINIC.phoneDisplay}, WhatsApp or online`],
@@ -132,6 +145,10 @@ function Page() {
         </div>
         <BookingRail sourcePage={SOURCE_PAGE} whatsappMessage={DEFAULT_WHATSAPP_MESSAGE} />
       </div>
+
+      {/* The band ServicePage gives its 26 siblings. Without it this page's white
+          body ran straight into the white FAQ with no rhythm break. */}
+      <ClinicalVolumeBand />
 
       <FaqBlock items={FAQS} heading="Questions from Whitefield patients" />
       <RelatedLinks

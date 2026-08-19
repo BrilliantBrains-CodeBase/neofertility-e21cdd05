@@ -1,7 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ClosingCta } from "@/components/conversion/ClosingCta";
 import { Reveal } from "@/components/motion/Reveal";
-import { PageHero, SectionHeading } from "@/components/sections/blocks";
+import { PageHero, SectionHeading, RelatedLinks } from "@/components/sections/blocks";
+import { COMMON_RELATED } from "@/components/sections/ServicePage";
 import { GALLERY_IMAGES } from "@/data/gallery";
 import { ROUTES } from "@/data/navigation";
 import { pageMeta, jsonLd, breadcrumbSchema } from "@/lib/seo";
@@ -64,6 +65,8 @@ function GalleryPage() {
           </ul>
         </div>
       </section>
+
+      <RelatedLinks links={COMMON_RELATED} />
 
       <ClosingCta
         heading="Start your own story"

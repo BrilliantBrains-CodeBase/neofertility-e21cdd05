@@ -4,7 +4,13 @@ import { Button } from "@/components/ui/button";
 import { AppointmentSheet } from "@/components/conversion/AppointmentSheet";
 import { BookingRail } from "@/components/conversion/BookingRail";
 import { ClosingCta } from "@/components/conversion/ClosingCta";
-import { PageHero, FaqBlock, RelatedLinks, SectionHeading } from "@/components/sections/blocks";
+import {
+  PageHero,
+  FaqBlock,
+  RelatedLinks,
+  SectionHeading,
+  ClinicalVolumeBand,
+} from "@/components/sections/blocks";
 import { Prose, DataTable, COMMON_RELATED } from "@/components/sections/ServicePage";
 import { CLINIC, DEFAULT_WHATSAPP_MESSAGE, track } from "@/lib/clinic";
 import { ROUTES } from "@/data/navigation";
@@ -73,7 +79,10 @@ function Page() {
             </Button>
           </AppointmentSheet>
           <Button variant="outlineTeal" size="lg" asChild>
-            <a href={CLINIC.phoneHref} onClick={() => track("call_click", { source_page: SOURCE_PAGE })}>
+            <a
+              href={CLINIC.phoneHref}
+              onClick={() => track("call_click", { source_page: SOURCE_PAGE })}
+            >
               <Phone /> Call {CLINIC.phoneDisplay}
             </a>
           </Button>
@@ -88,13 +97,29 @@ function Page() {
               <DataTable
                 head={["Item", "Range", "What drives the variation"]}
                 rows={[
-                  ["Initial consultation and tests", "₹3,000 to ₹5,000", "Which tests are indicated by your history"],
-                  ["IVF cycle", "₹1,00,000 to ₹2,00,000", "Medication dose, which depends on ovarian reserve"],
+                  [
+                    "Initial consultation and tests",
+                    "₹3,000 to ₹5,000",
+                    "Which tests are indicated by your history",
+                  ],
+                  [
+                    "IVF cycle",
+                    "₹1,00,000 to ₹2,00,000",
+                    "Medication dose, which depends on ovarian reserve",
+                  ],
                   ["ICSI added to IVF", "₹30,000 to ₹50,000", "Fixed laboratory procedure"],
                   ["Full IVF with ICSI", "₹1,80,000 to ₹2,50,000", "As above, combined"],
-                  ["Surgical sperm retrieval, TESA or PESA", "₹20,000 to ₹40,000", "Which procedure is required"],
+                  [
+                    "Surgical sperm retrieval, TESA or PESA",
+                    "₹20,000 to ₹40,000",
+                    "Which procedure is required",
+                  ],
                   ["Frozen embryo transfer", "₹50,000 to ₹80,000", "Lining preparation protocol"],
-                  ["Preimplantation genetic testing", "₹1,00,000 and above", "Number of embryos tested"],
+                  [
+                    "Preimplantation genetic testing",
+                    "₹1,00,000 and above",
+                    "Number of embryos tested",
+                  ],
                 ]}
               />
             </div>
@@ -102,43 +127,54 @@ function Page() {
 
           <Prose title="Why the range is wide, explained honestly">
             <p>
-              Medication is the reason. A woman with a good ovarian reserve may need a fraction of the injectable dose
-              that a woman with a diminished reserve requires, and injectable gonadotropins are the single largest line
-              item in an IVF cycle. That is why no clinic can quote one figure honestly before an AMH result and an
-              antral follicle count.
+              Medication is the reason. A woman with a good ovarian reserve may need a fraction of
+              the injectable dose that a woman with a diminished reserve requires, and injectable
+              gonadotropins are the single largest line item in an IVF cycle. That is why no clinic
+              can quote one figure honestly before an AMH result and an antral follicle count.
             </p>
             <p>
-              What you should expect is a written estimate at your first consultation, after those two results, with
-              the medication component identified separately. Ask for it. Any clinic that will not provide one is
-              telling you something.
+              What you should expect is a written estimate at your first consultation, after those
+              two results, with the medication component identified separately. Ask for it. Any
+              clinic that will not provide one is telling you something.
             </p>
           </Prose>
 
           <Prose title="What is not included">
             <ul className="list-disc space-y-2 pl-5">
-              <li>Medication, in some quoted packages. Confirm whether your estimate includes it, because it is the largest variable</li>
+              <li>
+                Medication, in some quoted packages. Confirm whether your estimate includes it,
+                because it is the largest variable
+              </li>
               <li>Preimplantation genetic testing, which is optional and priced separately</li>
               <li>Freezing and annual storage of surplus embryos</li>
               <li>Surgical sperm retrieval, where required</li>
-              <li>Treatment of a condition found before the cycle, such as hysteroscopic removal of a polyp</li>
+              <li>
+                Treatment of a condition found before the cycle, such as hysteroscopic removal of a
+                polyp
+              </li>
             </ul>
           </Prose>
 
           <Prose title="Insurance and financing">
             <p>
-              Most Indian health insurance policies have historically excluded infertility treatment, though some
-              products now offer limited cover and IRDAI has moved toward broader inclusion. Check your specific
-              policy wording rather than assuming either way, and check whether associated procedures such as
-              hysteroscopy or laparoscopy are covered even where IVF is not, because they frequently are.
+              Most Indian health insurance policies have historically excluded infertility
+              treatment, though some products now offer limited cover and IRDAI has moved toward
+              broader inclusion. Check your specific policy wording rather than assuming either way,
+              and check whether associated procedures such as hysteroscopy or laparoscopy are
+              covered even where IVF is not, because they frequently are.
             </p>
             <p>
-              EMI and financing options are available at the clinic. Ask for the total cost including interest rather
-              than the monthly figure alone.
+              EMI and financing options are available at the clinic. Ask for the total cost
+              including interest rather than the monthly figure alone.
             </p>
           </Prose>
         </div>
         <BookingRail sourcePage={SOURCE_PAGE} whatsappMessage={DEFAULT_WHATSAPP_MESSAGE} />
       </div>
+
+      {/* The band ServicePage gives its 26 siblings. Without it this page's white
+          body ran straight into the white FAQ with no rhythm break. */}
+      <ClinicalVolumeBand />
 
       <FaqBlock items={FAQS} />
       <RelatedLinks

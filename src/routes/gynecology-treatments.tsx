@@ -1,7 +1,11 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight } from "lucide-react";
+import { createFileRoute } from "@tanstack/react-router";
 import { ClosingCta } from "@/components/conversion/ClosingCta";
-import { PageHero, SectionHeading, FaqBlock } from "@/components/sections/blocks";
+import {
+  PageHero,
+  SectionHeading,
+  FaqBlock,
+  TreatmentMenuSection,
+} from "@/components/sections/blocks";
 import { GYNECOLOGY_MENU, ROUTES } from "@/data/navigation";
 import { pageMeta, jsonLd, faqSchema, breadcrumbSchema } from "@/lib/seo";
 
@@ -151,27 +155,7 @@ function GynecologyTreatmentsPage() {
         </div>
       </section>
 
-      {GYNECOLOGY_MENU.map((group) => (
-        <section key={group.heading} className="bg-pink-25 section-y border-t border-line">
-          <div className="container-page">
-            <SectionHeading eyebrow="Explore" title={group.heading} />
-            <ul className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-              {group.links.map((link) => (
-                <li key={link.label}>
-                  <Link
-                    to={link.to}
-                    {...(link.hash ? { hash: link.hash } : {})}
-                    className="flex items-center justify-between gap-3 rounded-lg border border-line bg-white px-4 py-3 text-[0.9375rem] text-plum-900 hover:border-pink-600"
-                  >
-                    {link.label}
-                    <ArrowRight className="size-4 shrink-0 text-pink-600" />
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </section>
-      ))}
+      <TreatmentMenuSection groups={GYNECOLOGY_MENU} title="Every gynecology treatment we offer" />
 
       <FaqBlock items={FAQS} />
 

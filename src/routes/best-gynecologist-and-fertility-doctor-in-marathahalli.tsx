@@ -7,7 +7,9 @@ import {
   StepList,
   InfoCard,
   FaqBlock,
+  RelatedLinks,
 } from "@/components/sections/blocks";
+import { COMMON_RELATED } from "@/components/sections/ServicePage";
 import { CLINIC, QUALIFICATIONS, MEMBERSHIPS } from "@/lib/clinic";
 import { ROUTES } from "@/data/navigation";
 import { pageMeta, jsonLd, doctorSchema, faqSchema, breadcrumbSchema } from "@/lib/seo";
@@ -250,6 +252,8 @@ function AboutPage() {
       </section>
 
       <FaqBlock items={FAQS} />
+
+      <RelatedLinks links={COMMON_RELATED.filter((l) => l.to !== ROUTES.about)} />
 
       <ClosingCta
         heading="Meet Dr. Payal Mahapatra at your first consultation"

@@ -105,6 +105,13 @@
 
   --shadow-bar: 0 -4px 20px -6px oklch(0.2959 0.0664 324.74 / 0.22);
   --shadow-rail: 0 12px 34px -18px oklch(0.2959 0.0664 324.74 / 0.28);
+  /* The step/timeline sections wrote these as literal rgba(61,32,63,…) — plum-900 spelled
+     out by hand, which is exactly what the note at the top of this file forbids. Same
+     colour, expressed once. `-lift` is the hover state of `-card`. */
+  --shadow-card: 0 18px 40px -28px oklch(0.2959 0.0664 324.74 / 0.45);
+  --shadow-card-lift: 0 26px 52px -28px oklch(0.2959 0.0664 324.74 / 0.5);
+  --shadow-pill: 0 22px 45px -30px oklch(0.2959 0.0664 324.74 / 0.6);
+  --shadow-pill-lift: 0 30px 58px -30px oklch(0.2959 0.0664 324.74 / 0.66);
 }
 
 :root {

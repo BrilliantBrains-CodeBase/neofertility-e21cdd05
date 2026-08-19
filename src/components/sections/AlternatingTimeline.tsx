@@ -1,3 +1,5 @@
+import { Reveal } from "@/components/motion/Reveal";
+
 export type AlternatingTimelineItem = { when: string; what: string };
 
 /**
@@ -15,11 +17,11 @@ export function AlternatingTimeline({
   const last = items.length - 1;
 
   return (
-    <section className="rounded-xl border border-line bg-white p-5 sm:p-7">
+    <section className="rounded-xl border border-line bg-paper p-5 sm:p-7">
       {caption && <p className="eyebrow mb-8">{caption}</p>}
 
       {/* Desktop / tablet */}
-      <div className="relative hidden md:block">
+      <Reveal className="relative hidden md:block">
         <div className="absolute top-1/2 right-0 left-0 h-px -translate-y-1/2 bg-pink-300" />
         <div
           className="relative grid items-center gap-4"
@@ -32,9 +34,9 @@ export function AlternatingTimeline({
             if (isLast) {
               return (
                 <div key={item.when} className="flex justify-center">
-                  <div className="flex size-[9.5rem] flex-col items-center justify-center rounded-full bg-plum-900 px-4 text-center ring-8 ring-white">
-                    <p className="font-medium text-[0.9375rem] text-white">{item.when}</p>
-                    <p className="mt-1 text-[0.75rem] leading-snug text-pink-50/80">{item.what}</p>
+                  <div className="flex size-[9.5rem] flex-col items-center justify-center rounded-full bg-plum-900 px-4 text-center ring-8 ring-paper">
+                    <p className="font-medium text-[0.9375rem] text-paper">{item.when}</p>
+                    <p className="mt-1 text-[0.75rem] leading-snug text-paper/80">{item.what}</p>
                   </div>
                 </div>
               );
@@ -51,7 +53,7 @@ export function AlternatingTimeline({
                       </p>
                     </div>
                     <span aria-hidden className="h-5 w-px bg-pink-300" />
-                    <span className="flex size-9 items-center justify-center rounded-full bg-pink-600 font-semibold text-[0.8125rem] text-white ring-4 ring-white">
+                    <span className="flex size-9 items-center justify-center rounded-full bg-pink-600 font-semibold text-[0.8125rem] text-paper ring-4 ring-paper">
                       {String(index + 1).padStart(2, "0")}
                     </span>
                     <span className="flex-1" />
@@ -59,7 +61,7 @@ export function AlternatingTimeline({
                 ) : (
                   <>
                     <span className="flex-1" />
-                    <span className="flex size-9 items-center justify-center rounded-full bg-pink-600 font-semibold text-[0.8125rem] text-white ring-4 ring-white">
+                    <span className="flex size-9 items-center justify-center rounded-full bg-pink-600 font-semibold text-[0.8125rem] text-paper ring-4 ring-paper">
                       {String(index + 1).padStart(2, "0")}
                     </span>
                     <span aria-hidden className="h-5 w-px bg-pink-300" />
@@ -75,29 +77,31 @@ export function AlternatingTimeline({
             );
           })}
         </div>
-      </div>
+      </Reveal>
 
       {/* Mobile */}
       <ol className="md:hidden">
         {items.map((item, index) => (
-          <li key={item.when} className="relative flex gap-4 pb-6 last:pb-0">
+          <li key={item.when} className="relative pb-6 last:pb-0">
             {index < last && (
               <span
                 aria-hidden
                 className="absolute top-10 left-[1.125rem] h-[calc(100%-2.5rem)] w-px bg-pink-300"
               />
             )}
-            <span
-              className={`flex size-9 shrink-0 items-center justify-center rounded-full font-semibold text-[0.8125rem] text-white ${
-                index === last ? "bg-plum-900" : "bg-pink-600"
-              }`}
-            >
-              {String(index + 1).padStart(2, "0")}
-            </span>
-            <div>
-              <p className="text-[0.9375rem] font-medium text-plum-900">{item.when}</p>
-              <p className="mt-1 text-[0.9375rem] text-ink-muted">{item.what}</p>
-            </div>
+            <Reveal delay={index * 60} className="flex gap-4">
+              <span
+                className={`flex size-9 shrink-0 items-center justify-center rounded-full text-[0.8125rem] font-semibold text-paper ${
+                  index === last ? "bg-plum-900" : "bg-pink-600"
+                }`}
+              >
+                {String(index + 1).padStart(2, "0")}
+              </span>
+              <div>
+                <p className="text-[0.9375rem] font-medium text-plum-900">{item.when}</p>
+                <p className="mt-1 text-[0.9375rem] text-ink-muted">{item.what}</p>
+              </div>
+            </Reveal>
           </li>
         ))}
       </ol>

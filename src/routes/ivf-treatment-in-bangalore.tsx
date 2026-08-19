@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { PageHero } from "@/components/sections/blocks";
+import { PageHero, RelatedLinks } from "@/components/sections/blocks";
 import { Prose, DataTable } from "@/components/sections/ServicePage";
 import { ClosingCta } from "@/components/conversion/ClosingCta";
 import { ROUTES } from "@/data/navigation";
@@ -113,6 +113,17 @@ function Page() {
           </Prose>
         </div>
       </div>
+
+      <RelatedLinks
+        links={[
+          { label: "IVF treatment", to: ROUTES.ivf },
+          { label: "ICSI treatment", to: ROUTES.icsi },
+          { label: "IUI treatment", to: ROUTES.iui },
+          { label: "IVF cost in Bangalore", to: ROUTES.ivfCost },
+          { label: "Infertility evaluation and treatment", to: ROUTES.infertility },
+          { label: "Contact and directions", to: ROUTES.contact },
+        ]}
+      />
 
       <ClosingCta
         heading="Considering IVF? Start with a personalised consultation."
