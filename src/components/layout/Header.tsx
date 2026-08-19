@@ -30,7 +30,7 @@ function AnnouncementBar({ onHero }: { onHero: boolean }) {
         <span className="flex min-w-0 items-center gap-2">
           <MapPin className="size-4 shrink-0" aria-hidden />
           <span className="hidden truncate lg:inline">
-            Scorpio House, Marathahalli Bridge Service Road, opposite Purva Apartments, Bengaluru
+            Scorpio House, Marathahalli Bridge Service Road, Bengaluru
             560037
           </span>
           <span className="truncate lg:hidden">Marathahalli, Bengaluru</span>
