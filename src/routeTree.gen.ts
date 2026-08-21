@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as SlugRouteImport } from './routes/$slug'
 import { Route as BestDoctorForPainDuringSexTreatmentInBangaloreRouteImport } from './routes/best-doctor-for-pain-during-sex-treatment-in-bangalore'
 import { Route as BestEggFreezingClinicInMarathahalliBangaloreRouteImport } from './routes/best-egg-freezing-clinic-in-marathahalli-bangalore'
 import { Route as BestGynecologistAndFertilityDoctorInMarathahalliRouteImport } from './routes/best-gynecologist-and-fertility-doctor-in-marathahalli'
@@ -38,9 +39,7 @@ import { Route as InfertilityTreatmentInMarathahalliWhitefieldInBangaloreRouteIm
 import { Route as IntrauterineInseminationIuiTreatmentMarathahalliWhitefieldInBangaloreRouteImport } from './routes/intrauterine-insemination-iui-treatment-marathahalli-whitefield-in-bangalore'
 import { Route as IvfClinicInWhitefieldBangaloreRouteImport } from './routes/ivf-clinic-in-whitefield-bangalore'
 import { Route as IvfCostInBangaloreRouteImport } from './routes/ivf-cost-in-bangalore'
-import { Route as IvfTreatmentInBangaloreRouteImport } from './routes/ivf-treatment-in-bangalore'
 import { Route as LaparoscopicSurgeryForInfertilityInMarathahalliBangaloreRouteImport } from './routes/laparoscopic-surgery-for-infertility-in-marathahalli-bangalore'
-import { Route as MaleInfertilityCausesDiagnosisAndTreatmentRouteImport } from './routes/male-infertility-causes-diagnosis-and-treatment'
 import { Route as MedicalTerminationOfPregnancyMtpMarathahalliWhitefieldRouteImport } from './routes/medical-termination-of-pregnancy-mtp-marathahalli-whitefield'
 import { Route as MenstrualBleedingAndIrregularPeriodTreatmentInMarathahalliBangaloreRouteImport } from './routes/menstrual-bleeding-and-irregular-period-treatment-in-marathahalli-bangalore'
 import { Route as NaturalDeliveryInMarathahalliWhitefieldBangaloreRouteImport } from './routes/natural-delivery-in-marathahalli-whitefield-bangalore'
@@ -54,12 +53,16 @@ import { Route as SexuallyTransmittedInfectionsStisTreatmentInBangaloreRouteImpo
 import { Route as TermsOfUseRouteImport } from './routes/terms-of-use'
 import { Route as VaginalDischargeInfectionTreatmentInMarathahalliBangaloreRouteImport } from './routes/vaginal-discharge-infection-treatment-in-marathahalli-bangalore'
 import { Route as VaginalTighteningTreatmentBangaloreRouteImport } from './routes/vaginal-tightening-treatment-bangalore'
-import { Route as WhenShouldACoupleSeekFertilityTreatmentRouteImport } from './routes/when-should-a-couple-seek-fertility-treatment'
 import { Route as WhoWeHelpRouteImport } from './routes/who-we-help'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SlugRoute = SlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BestDoctorForPainDuringSexTreatmentInBangaloreRoute =
@@ -224,21 +227,10 @@ const IvfCostInBangaloreRoute = IvfCostInBangaloreRouteImport.update({
   path: '/ivf-cost-in-bangalore',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IvfTreatmentInBangaloreRoute = IvfTreatmentInBangaloreRouteImport.update({
-  id: '/ivf-treatment-in-bangalore',
-  path: '/ivf-treatment-in-bangalore',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const LaparoscopicSurgeryForInfertilityInMarathahalliBangaloreRoute =
   LaparoscopicSurgeryForInfertilityInMarathahalliBangaloreRouteImport.update({
     id: '/laparoscopic-surgery-for-infertility-in-marathahalli-bangalore',
     path: '/laparoscopic-surgery-for-infertility-in-marathahalli-bangalore',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const MaleInfertilityCausesDiagnosisAndTreatmentRoute =
-  MaleInfertilityCausesDiagnosisAndTreatmentRouteImport.update({
-    id: '/male-infertility-causes-diagnosis-and-treatment',
-    path: '/male-infertility-causes-diagnosis-and-treatment',
     getParentRoute: () => rootRouteImport,
   } as any)
 const MedicalTerminationOfPregnancyMtpMarathahalliWhitefieldRoute =
@@ -317,12 +309,6 @@ const VaginalTighteningTreatmentBangaloreRoute =
     path: '/vaginal-tightening-treatment-bangalore',
     getParentRoute: () => rootRouteImport,
   } as any)
-const WhenShouldACoupleSeekFertilityTreatmentRoute =
-  WhenShouldACoupleSeekFertilityTreatmentRouteImport.update({
-    id: '/when-should-a-couple-seek-fertility-treatment',
-    path: '/when-should-a-couple-seek-fertility-treatment',
-    getParentRoute: () => rootRouteImport,
-  } as any)
 const WhoWeHelpRoute = WhoWeHelpRouteImport.update({
   id: '/who-we-help',
   path: '/who-we-help',
@@ -331,6 +317,7 @@ const WhoWeHelpRoute = WhoWeHelpRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/$slug': typeof SlugRoute
   '/best-doctor-for-pain-during-sex-treatment-in-bangalore': typeof BestDoctorForPainDuringSexTreatmentInBangaloreRoute
   '/best-egg-freezing-clinic-in-marathahalli-bangalore': typeof BestEggFreezingClinicInMarathahalliBangaloreRoute
   '/best-gynecologist-and-fertility-doctor-in-marathahalli': typeof BestGynecologistAndFertilityDoctorInMarathahalliRoute
@@ -359,9 +346,7 @@ export interface FileRoutesByFullPath {
   '/intrauterine-insemination-iui-treatment-marathahalli-whitefield-in-bangalore': typeof IntrauterineInseminationIuiTreatmentMarathahalliWhitefieldInBangaloreRoute
   '/ivf-clinic-in-whitefield-bangalore': typeof IvfClinicInWhitefieldBangaloreRoute
   '/ivf-cost-in-bangalore': typeof IvfCostInBangaloreRoute
-  '/ivf-treatment-in-bangalore': typeof IvfTreatmentInBangaloreRoute
   '/laparoscopic-surgery-for-infertility-in-marathahalli-bangalore': typeof LaparoscopicSurgeryForInfertilityInMarathahalliBangaloreRoute
-  '/male-infertility-causes-diagnosis-and-treatment': typeof MaleInfertilityCausesDiagnosisAndTreatmentRoute
   '/medical-termination-of-pregnancy-mtp-marathahalli-whitefield': typeof MedicalTerminationOfPregnancyMtpMarathahalliWhitefieldRoute
   '/menstrual-bleeding-and-irregular-period-treatment-in-marathahalli-bangalore': typeof MenstrualBleedingAndIrregularPeriodTreatmentInMarathahalliBangaloreRoute
   '/natural-delivery-in-marathahalli-whitefield-bangalore': typeof NaturalDeliveryInMarathahalliWhitefieldBangaloreRoute
@@ -375,11 +360,11 @@ export interface FileRoutesByFullPath {
   '/terms-of-use': typeof TermsOfUseRoute
   '/vaginal-discharge-infection-treatment-in-marathahalli-bangalore': typeof VaginalDischargeInfectionTreatmentInMarathahalliBangaloreRoute
   '/vaginal-tightening-treatment-bangalore': typeof VaginalTighteningTreatmentBangaloreRoute
-  '/when-should-a-couple-seek-fertility-treatment': typeof WhenShouldACoupleSeekFertilityTreatmentRoute
   '/who-we-help': typeof WhoWeHelpRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/$slug': typeof SlugRoute
   '/best-doctor-for-pain-during-sex-treatment-in-bangalore': typeof BestDoctorForPainDuringSexTreatmentInBangaloreRoute
   '/best-egg-freezing-clinic-in-marathahalli-bangalore': typeof BestEggFreezingClinicInMarathahalliBangaloreRoute
   '/best-gynecologist-and-fertility-doctor-in-marathahalli': typeof BestGynecologistAndFertilityDoctorInMarathahalliRoute
@@ -408,9 +393,7 @@ export interface FileRoutesByTo {
   '/intrauterine-insemination-iui-treatment-marathahalli-whitefield-in-bangalore': typeof IntrauterineInseminationIuiTreatmentMarathahalliWhitefieldInBangaloreRoute
   '/ivf-clinic-in-whitefield-bangalore': typeof IvfClinicInWhitefieldBangaloreRoute
   '/ivf-cost-in-bangalore': typeof IvfCostInBangaloreRoute
-  '/ivf-treatment-in-bangalore': typeof IvfTreatmentInBangaloreRoute
   '/laparoscopic-surgery-for-infertility-in-marathahalli-bangalore': typeof LaparoscopicSurgeryForInfertilityInMarathahalliBangaloreRoute
-  '/male-infertility-causes-diagnosis-and-treatment': typeof MaleInfertilityCausesDiagnosisAndTreatmentRoute
   '/medical-termination-of-pregnancy-mtp-marathahalli-whitefield': typeof MedicalTerminationOfPregnancyMtpMarathahalliWhitefieldRoute
   '/menstrual-bleeding-and-irregular-period-treatment-in-marathahalli-bangalore': typeof MenstrualBleedingAndIrregularPeriodTreatmentInMarathahalliBangaloreRoute
   '/natural-delivery-in-marathahalli-whitefield-bangalore': typeof NaturalDeliveryInMarathahalliWhitefieldBangaloreRoute
@@ -424,12 +407,12 @@ export interface FileRoutesByTo {
   '/terms-of-use': typeof TermsOfUseRoute
   '/vaginal-discharge-infection-treatment-in-marathahalli-bangalore': typeof VaginalDischargeInfectionTreatmentInMarathahalliBangaloreRoute
   '/vaginal-tightening-treatment-bangalore': typeof VaginalTighteningTreatmentBangaloreRoute
-  '/when-should-a-couple-seek-fertility-treatment': typeof WhenShouldACoupleSeekFertilityTreatmentRoute
   '/who-we-help': typeof WhoWeHelpRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/$slug': typeof SlugRoute
   '/best-doctor-for-pain-during-sex-treatment-in-bangalore': typeof BestDoctorForPainDuringSexTreatmentInBangaloreRoute
   '/best-egg-freezing-clinic-in-marathahalli-bangalore': typeof BestEggFreezingClinicInMarathahalliBangaloreRoute
   '/best-gynecologist-and-fertility-doctor-in-marathahalli': typeof BestGynecologistAndFertilityDoctorInMarathahalliRoute
@@ -458,9 +441,7 @@ export interface FileRoutesById {
   '/intrauterine-insemination-iui-treatment-marathahalli-whitefield-in-bangalore': typeof IntrauterineInseminationIuiTreatmentMarathahalliWhitefieldInBangaloreRoute
   '/ivf-clinic-in-whitefield-bangalore': typeof IvfClinicInWhitefieldBangaloreRoute
   '/ivf-cost-in-bangalore': typeof IvfCostInBangaloreRoute
-  '/ivf-treatment-in-bangalore': typeof IvfTreatmentInBangaloreRoute
   '/laparoscopic-surgery-for-infertility-in-marathahalli-bangalore': typeof LaparoscopicSurgeryForInfertilityInMarathahalliBangaloreRoute
-  '/male-infertility-causes-diagnosis-and-treatment': typeof MaleInfertilityCausesDiagnosisAndTreatmentRoute
   '/medical-termination-of-pregnancy-mtp-marathahalli-whitefield': typeof MedicalTerminationOfPregnancyMtpMarathahalliWhitefieldRoute
   '/menstrual-bleeding-and-irregular-period-treatment-in-marathahalli-bangalore': typeof MenstrualBleedingAndIrregularPeriodTreatmentInMarathahalliBangaloreRoute
   '/natural-delivery-in-marathahalli-whitefield-bangalore': typeof NaturalDeliveryInMarathahalliWhitefieldBangaloreRoute
@@ -474,13 +455,13 @@ export interface FileRoutesById {
   '/terms-of-use': typeof TermsOfUseRoute
   '/vaginal-discharge-infection-treatment-in-marathahalli-bangalore': typeof VaginalDischargeInfectionTreatmentInMarathahalliBangaloreRoute
   '/vaginal-tightening-treatment-bangalore': typeof VaginalTighteningTreatmentBangaloreRoute
-  '/when-should-a-couple-seek-fertility-treatment': typeof WhenShouldACoupleSeekFertilityTreatmentRoute
   '/who-we-help': typeof WhoWeHelpRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/$slug'
     | '/best-doctor-for-pain-during-sex-treatment-in-bangalore'
     | '/best-egg-freezing-clinic-in-marathahalli-bangalore'
     | '/best-gynecologist-and-fertility-doctor-in-marathahalli'
@@ -509,9 +490,7 @@ export interface FileRouteTypes {
     | '/intrauterine-insemination-iui-treatment-marathahalli-whitefield-in-bangalore'
     | '/ivf-clinic-in-whitefield-bangalore'
     | '/ivf-cost-in-bangalore'
-    | '/ivf-treatment-in-bangalore'
     | '/laparoscopic-surgery-for-infertility-in-marathahalli-bangalore'
-    | '/male-infertility-causes-diagnosis-and-treatment'
     | '/medical-termination-of-pregnancy-mtp-marathahalli-whitefield'
     | '/menstrual-bleeding-and-irregular-period-treatment-in-marathahalli-bangalore'
     | '/natural-delivery-in-marathahalli-whitefield-bangalore'
@@ -525,11 +504,11 @@ export interface FileRouteTypes {
     | '/terms-of-use'
     | '/vaginal-discharge-infection-treatment-in-marathahalli-bangalore'
     | '/vaginal-tightening-treatment-bangalore'
-    | '/when-should-a-couple-seek-fertility-treatment'
     | '/who-we-help'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/$slug'
     | '/best-doctor-for-pain-during-sex-treatment-in-bangalore'
     | '/best-egg-freezing-clinic-in-marathahalli-bangalore'
     | '/best-gynecologist-and-fertility-doctor-in-marathahalli'
@@ -558,9 +537,7 @@ export interface FileRouteTypes {
     | '/intrauterine-insemination-iui-treatment-marathahalli-whitefield-in-bangalore'
     | '/ivf-clinic-in-whitefield-bangalore'
     | '/ivf-cost-in-bangalore'
-    | '/ivf-treatment-in-bangalore'
     | '/laparoscopic-surgery-for-infertility-in-marathahalli-bangalore'
-    | '/male-infertility-causes-diagnosis-and-treatment'
     | '/medical-termination-of-pregnancy-mtp-marathahalli-whitefield'
     | '/menstrual-bleeding-and-irregular-period-treatment-in-marathahalli-bangalore'
     | '/natural-delivery-in-marathahalli-whitefield-bangalore'
@@ -574,11 +551,11 @@ export interface FileRouteTypes {
     | '/terms-of-use'
     | '/vaginal-discharge-infection-treatment-in-marathahalli-bangalore'
     | '/vaginal-tightening-treatment-bangalore'
-    | '/when-should-a-couple-seek-fertility-treatment'
     | '/who-we-help'
   id:
     | '__root__'
     | '/'
+    | '/$slug'
     | '/best-doctor-for-pain-during-sex-treatment-in-bangalore'
     | '/best-egg-freezing-clinic-in-marathahalli-bangalore'
     | '/best-gynecologist-and-fertility-doctor-in-marathahalli'
@@ -607,9 +584,7 @@ export interface FileRouteTypes {
     | '/intrauterine-insemination-iui-treatment-marathahalli-whitefield-in-bangalore'
     | '/ivf-clinic-in-whitefield-bangalore'
     | '/ivf-cost-in-bangalore'
-    | '/ivf-treatment-in-bangalore'
     | '/laparoscopic-surgery-for-infertility-in-marathahalli-bangalore'
-    | '/male-infertility-causes-diagnosis-and-treatment'
     | '/medical-termination-of-pregnancy-mtp-marathahalli-whitefield'
     | '/menstrual-bleeding-and-irregular-period-treatment-in-marathahalli-bangalore'
     | '/natural-delivery-in-marathahalli-whitefield-bangalore'
@@ -623,12 +598,12 @@ export interface FileRouteTypes {
     | '/terms-of-use'
     | '/vaginal-discharge-infection-treatment-in-marathahalli-bangalore'
     | '/vaginal-tightening-treatment-bangalore'
-    | '/when-should-a-couple-seek-fertility-treatment'
     | '/who-we-help'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  SlugRoute: typeof SlugRoute
   BestDoctorForPainDuringSexTreatmentInBangaloreRoute: typeof BestDoctorForPainDuringSexTreatmentInBangaloreRoute
   BestEggFreezingClinicInMarathahalliBangaloreRoute: typeof BestEggFreezingClinicInMarathahalliBangaloreRoute
   BestGynecologistAndFertilityDoctorInMarathahalliRoute: typeof BestGynecologistAndFertilityDoctorInMarathahalliRoute
@@ -657,9 +632,7 @@ export interface RootRouteChildren {
   IntrauterineInseminationIuiTreatmentMarathahalliWhitefieldInBangaloreRoute: typeof IntrauterineInseminationIuiTreatmentMarathahalliWhitefieldInBangaloreRoute
   IvfClinicInWhitefieldBangaloreRoute: typeof IvfClinicInWhitefieldBangaloreRoute
   IvfCostInBangaloreRoute: typeof IvfCostInBangaloreRoute
-  IvfTreatmentInBangaloreRoute: typeof IvfTreatmentInBangaloreRoute
   LaparoscopicSurgeryForInfertilityInMarathahalliBangaloreRoute: typeof LaparoscopicSurgeryForInfertilityInMarathahalliBangaloreRoute
-  MaleInfertilityCausesDiagnosisAndTreatmentRoute: typeof MaleInfertilityCausesDiagnosisAndTreatmentRoute
   MedicalTerminationOfPregnancyMtpMarathahalliWhitefieldRoute: typeof MedicalTerminationOfPregnancyMtpMarathahalliWhitefieldRoute
   MenstrualBleedingAndIrregularPeriodTreatmentInMarathahalliBangaloreRoute: typeof MenstrualBleedingAndIrregularPeriodTreatmentInMarathahalliBangaloreRoute
   NaturalDeliveryInMarathahalliWhitefieldBangaloreRoute: typeof NaturalDeliveryInMarathahalliWhitefieldBangaloreRoute
@@ -673,7 +646,6 @@ export interface RootRouteChildren {
   TermsOfUseRoute: typeof TermsOfUseRoute
   VaginalDischargeInfectionTreatmentInMarathahalliBangaloreRoute: typeof VaginalDischargeInfectionTreatmentInMarathahalliBangaloreRoute
   VaginalTighteningTreatmentBangaloreRoute: typeof VaginalTighteningTreatmentBangaloreRoute
-  WhenShouldACoupleSeekFertilityTreatmentRoute: typeof WhenShouldACoupleSeekFertilityTreatmentRoute
   WhoWeHelpRoute: typeof WhoWeHelpRoute
 }
 
@@ -684,6 +656,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/$slug': {
+      id: '/$slug'
+      path: '/$slug'
+      fullPath: '/$slug'
+      preLoaderRoute: typeof SlugRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/best-doctor-for-pain-during-sex-treatment-in-bangalore': {
@@ -882,25 +861,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IvfCostInBangaloreRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/ivf-treatment-in-bangalore': {
-      id: '/ivf-treatment-in-bangalore'
-      path: '/ivf-treatment-in-bangalore'
-      fullPath: '/ivf-treatment-in-bangalore'
-      preLoaderRoute: typeof IvfTreatmentInBangaloreRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/laparoscopic-surgery-for-infertility-in-marathahalli-bangalore': {
       id: '/laparoscopic-surgery-for-infertility-in-marathahalli-bangalore'
       path: '/laparoscopic-surgery-for-infertility-in-marathahalli-bangalore'
       fullPath: '/laparoscopic-surgery-for-infertility-in-marathahalli-bangalore'
       preLoaderRoute: typeof LaparoscopicSurgeryForInfertilityInMarathahalliBangaloreRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/male-infertility-causes-diagnosis-and-treatment': {
-      id: '/male-infertility-causes-diagnosis-and-treatment'
-      path: '/male-infertility-causes-diagnosis-and-treatment'
-      fullPath: '/male-infertility-causes-diagnosis-and-treatment'
-      preLoaderRoute: typeof MaleInfertilityCausesDiagnosisAndTreatmentRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/medical-termination-of-pregnancy-mtp-marathahalli-whitefield': {
@@ -994,13 +959,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof VaginalTighteningTreatmentBangaloreRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/when-should-a-couple-seek-fertility-treatment': {
-      id: '/when-should-a-couple-seek-fertility-treatment'
-      path: '/when-should-a-couple-seek-fertility-treatment'
-      fullPath: '/when-should-a-couple-seek-fertility-treatment'
-      preLoaderRoute: typeof WhenShouldACoupleSeekFertilityTreatmentRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/who-we-help': {
       id: '/who-we-help'
       path: '/who-we-help'
@@ -1013,6 +971,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  SlugRoute: SlugRoute,
   BestDoctorForPainDuringSexTreatmentInBangaloreRoute:
     BestDoctorForPainDuringSexTreatmentInBangaloreRoute,
   BestEggFreezingClinicInMarathahalliBangaloreRoute:
@@ -1060,11 +1019,8 @@ const rootRouteChildren: RootRouteChildren = {
     IntrauterineInseminationIuiTreatmentMarathahalliWhitefieldInBangaloreRoute,
   IvfClinicInWhitefieldBangaloreRoute: IvfClinicInWhitefieldBangaloreRoute,
   IvfCostInBangaloreRoute: IvfCostInBangaloreRoute,
-  IvfTreatmentInBangaloreRoute: IvfTreatmentInBangaloreRoute,
   LaparoscopicSurgeryForInfertilityInMarathahalliBangaloreRoute:
     LaparoscopicSurgeryForInfertilityInMarathahalliBangaloreRoute,
-  MaleInfertilityCausesDiagnosisAndTreatmentRoute:
-    MaleInfertilityCausesDiagnosisAndTreatmentRoute,
   MedicalTerminationOfPregnancyMtpMarathahalliWhitefieldRoute:
     MedicalTerminationOfPregnancyMtpMarathahalliWhitefieldRoute,
   MenstrualBleedingAndIrregularPeriodTreatmentInMarathahalliBangaloreRoute:
@@ -1087,8 +1043,6 @@ const rootRouteChildren: RootRouteChildren = {
     VaginalDischargeInfectionTreatmentInMarathahalliBangaloreRoute,
   VaginalTighteningTreatmentBangaloreRoute:
     VaginalTighteningTreatmentBangaloreRoute,
-  WhenShouldACoupleSeekFertilityTreatmentRoute:
-    WhenShouldACoupleSeekFertilityTreatmentRoute,
   WhoWeHelpRoute: WhoWeHelpRoute,
 }
 export const routeTree = rootRouteImport

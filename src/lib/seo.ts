@@ -3,25 +3,39 @@ import { SITE_URL } from "@/data/navigation";
 
 type Meta = Record<string, string>;
 
+/**
+ * Absolute URL for a ROUTES path.
+ *
+ * Every value in ROUTES already carries its trailing slash, so the old
+ * `${SITE_URL}${path}/` here appended a second one and emitted `/blogs//` as the
+ * canonical and og:url of every page. Normalise instead of assuming either shape.
+ */
+export function absoluteUrl(path: string): string {
+  return `${SITE_URL}${path.endsWith("/") ? path : `${path}/`}`;
+}
+
 /** Build head() meta tags for a content route. */
 export function pageMeta({
   title,
   description,
   path,
   image,
+  type = "website",
 }: {
   title: string;
   description: string;
   path: string;
   image?: string;
+  /** Blog posts pass "article"; everything else takes the default. */
+  type?: "website" | "article";
 }) {
-  const url = `${SITE_URL}${path === "/" ? "/" : `${path}/`}`;
+  const url = absoluteUrl(path);
   const meta: Meta[] = [
     { title },
     { name: "description", content: description },
     { property: "og:title", content: title },
     { property: "og:description", content: description },
-    { property: "og:type", content: "website" },
+    { property: "og:type", content: type },
     { property: "og:url", content: url },
     { name: "twitter:card", content: "summary_large_image" },
   ];
@@ -145,7 +159,42 @@ export function breadcrumbSchema(trail: { name: string; path: string }[]) {
       "@type": "ListItem",
       position: index + 1,
       name: item.name,
-      item: `${SITE_URL}${item.path === "/" ? "/" : `${item.path}/`}`,
+      item: absoluteUrl(item.path),
     })),
+  };
+}
+
+/**
+ * BlogPosting for the article template.
+ *
+ * No datePublished/dateModified: this site has never carried publish dates for its
+ * articles, and a fabricated date in structured data is worse than an absent one. Add
+ * both here once real dates exist on BlogPostMeta.
+ */
+export function articleSchema({
+  title,
+  description,
+  path,
+  image,
+  author,
+}: {
+  title: string;
+  description: string;
+  path: string;
+  image?: string;
+  author: string;
+}) {
+  const url = absoluteUrl(path);
+  return {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: title,
+    description,
+    url,
+    mainEntityOfPage: { "@type": "WebPage", "@id": url },
+    ...(image ? { image } : {}),
+    author: { "@type": "Person", name: author },
+    publisher: { "@id": `${SITE_URL}/#clinic` },
+    inLanguage: "en-IN",
   };
 }

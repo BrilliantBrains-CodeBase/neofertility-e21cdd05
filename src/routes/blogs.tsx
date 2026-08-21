@@ -1,29 +1,19 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { PageHero, InfoCard } from "@/components/sections/blocks";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { PageHero } from "@/components/sections/blocks";
+import { PostCard } from "@/components/blog/PostCard";
+import { BlogSidebar } from "@/components/blog/BlogSidebar";
+import { CategoryChips } from "@/components/blog/CategoryChips";
+import { parseBlogSearch } from "@/components/blog/search";
+import { POSTS, CATEGORIES, categorySlug, matchesQuery } from "@/content/blog";
 import { ROUTES } from "@/data/navigation";
 import { pageMeta, jsonLd, breadcrumbSchema } from "@/lib/seo";
 
 const PATH = ROUTES.blogs;
 
-const POSTS = [
-  {
-    title: "When Should a Couple Seek Fertility Treatment?",
-    copy: "How long to try naturally, red flags to watch for, and when a fertility evaluation is worth booking.",
-    to: ROUTES.blogWhenToSeek,
-  },
-  {
-    title: "IVF Treatment in Bangalore: A Complete Guide",
-    copy: "What IVF involves, success rates, costs and how to choose the right clinic in Bangalore.",
-    to: ROUTES.blogIvfBangalore,
-  },
-  {
-    title: "Male Infertility: Causes, Diagnosis and Treatment",
-    copy: "Why male fertility factors matter, common causes, and the tests and treatments available.",
-    to: ROUTES.blogMaleInfertility,
-  },
-];
-
 export const Route = createFileRoute("/blogs")({
+  /* Filters live in the URL, not component state, so a filtered view is shareable and
+     back/forward moves through it. */
+  validateSearch: parseBlogSearch,
   head: () => ({
     ...pageMeta({
       title: "Fertility & Gynecology Blog | Neo Fertility Clinic",
@@ -44,6 +34,15 @@ export const Route = createFileRoute("/blogs")({
 });
 
 function Page() {
+  const { category, q } = Route.useSearch();
+
+  /* matchesQuery is shared with the search dropdown so the suggestions and the list
+     below can never disagree about what a term matches. */
+  const posts = POSTS.filter(
+    (post) =>
+      (!category || categorySlug(post.category) === category) && matchesQuery(post, q ?? ""),
+  );
+
   return (
     <>
       <PageHero
@@ -54,10 +53,45 @@ function Page() {
       />
 
       <div className="container-page py-14 lg:py-16">
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {POSTS.map((post) => (
-            <InfoCard key={post.to} title={post.title} copy={post.copy} to={post.to} />
-          ))}
+        {/* Sidebar drops below the list under lg rather than squeezing into a second column. */}
+        <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_360px] lg:gap-12">
+          <div>
+            <CategoryChips categories={CATEGORIES} active={category} />
+
+            {posts.length > 0 ? (
+              /* One card per row, matching the reference — the cards are image-led and a
+                 two-up grid would halve the covers. */
+              <div className="mt-8 space-y-8">
+                {posts.map((post, index) => (
+                  <PostCard key={post.slug} post={post} eager={index === 0} />
+                ))}
+              </div>
+            ) : (
+              <div className="mt-8 rounded-2xl border border-line bg-white p-10 text-center">
+                <p className="text-[1.0625rem] font-medium text-plum-900">
+                  No articles match your filters.
+                </p>
+                <p className="mt-2 text-[0.9375rem] text-ink-muted">
+                  Try a different category, or clear what you have selected.
+                </p>
+                <Link
+                  to="/blogs/"
+                  search={{}}
+                  className="mt-5 inline-flex items-center rounded-full bg-pink-600 px-5 py-2.5 text-[0.875rem] font-medium text-paper transition-colors hover:bg-pink-700"
+                >
+                  Show all articles
+                </Link>
+              </div>
+            )}
+          </div>
+
+          <BlogSidebar
+            categories={CATEGORIES}
+            recent={POSTS.slice(0, 3)}
+            activeCategory={category}
+            query={q ?? ""}
+            filtersList
+          />
         </div>
       </div>
     </>
