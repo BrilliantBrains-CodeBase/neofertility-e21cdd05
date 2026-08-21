@@ -26,4 +26,4 @@ npm i
 npm run dev
 ```
 
-v6
+v7
