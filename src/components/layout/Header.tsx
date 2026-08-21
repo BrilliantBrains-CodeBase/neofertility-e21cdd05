@@ -13,6 +13,10 @@ import { cn } from "@/lib/utils";
 
 type MenuKey = "fertility" | "gynecology" | null;
 
+/* Pages whose first section is a full-bleed hero the bar overlays. Router is configured
+   with trailingSlash: "always", so these match `location.pathname` verbatim. */
+const HERO_ROUTES = new Set<string>([ROUTES.home, ROUTES.about]);
+
 function AnnouncementBar({ onHero }: { onHero: boolean }) {
   return (
     <div
@@ -30,8 +34,7 @@ function AnnouncementBar({ onHero }: { onHero: boolean }) {
         <span className="flex min-w-0 items-center gap-2">
           <MapPin className="size-4 shrink-0" aria-hidden />
           <span className="hidden truncate lg:inline">
-            Scorpio House, Marathahalli Bridge Service Road, Bengaluru
-            560037
+            Scorpio House, Marathahalli Bridge Service Road, Bengaluru 560037
           </span>
           <span className="truncate lg:hidden">Marathahalli, Bengaluru</span>
         </span>
@@ -176,10 +179,11 @@ export function Header() {
   const headerRef = useRef<HTMLElement>(null);
   const pathname = useRouterState({ select: (s) => s.location.pathname });
 
-  /* Only the home route renders a hero for the bar to sit on. Deriving this from the
-     route (rather than probing the DOM) keeps the server and first client render
-     identical, so the bar never flashes solid before turning transparent. */
-  const hasHero = pathname === ROUTES.home;
+  /* The routes that render a full-bleed hero for the bar to sit on. Deriving this from
+     the route (rather than probing the DOM) keeps the server and first client render
+     identical, so the bar never flashes solid before turning transparent. A page listed
+     here must mark its hero `data-hero` and clear the overlaying bar itself. */
+  const hasHero = HERO_ROUTES.has(pathname);
 
   /* Transparent, light-on-dark bar while the hero is still under it. */
   const onHero = hasHero && !heroBehind;
@@ -217,10 +221,34 @@ export function Header() {
       return;
     }
 
-    let intersection: IntersectionObserver | undefined;
-    let mutation: MutationObserver | undefined;
+    /* Entering a hero route always starts transparent: such a page opens at the top with
+       the hero behind the bar, and the observer's first callback corrects a restored
+       mid-page scroll. Without this reset, arriving from *another* hero route carried
+       that page's scrolled-past state across and the bar opened opaque. */
+    setHeroBehind(false);
 
-    const watch = (hero: HTMLElement) => {
+    let intersection: IntersectionObserver | undefined;
+    let watched: Element | null = null;
+
+    /* Re-points the observer whenever the hero element itself changes.
+    
+       A single query at effect time is not enough. `location.pathname` flips a frame or
+       two before the outgoing route unmounts, so navigating between two hero routes runs
+       this effect while the *previous* page's hero is still the only [data-hero] in the
+       DOM. Observing that node latched the bar opaque for the rest of the visit: it
+       detached moments later, and a detached node never intersects, so nothing ever
+       corrected it. querySelector only returns connected elements, so comparing against
+       `watched` catches both the swap and the not-yet-mounted case. */
+    const sync = () => {
+      const hero = document.querySelector<HTMLElement>("[data-hero]");
+      if (hero === watched) return;
+      intersection?.disconnect();
+      intersection = undefined;
+      watched = hero;
+      if (!hero) {
+        setHeroBehind(false);
+        return;
+      }
       intersection = new IntersectionObserver(([entry]) => setHeroBehind(!entry?.isIntersecting), {
         rootMargin: `-${Math.max(1, Math.round(headerHeight))}px 0px 0px 0px`,
         threshold: 0,
@@ -228,30 +256,13 @@ export function Header() {
       intersection.observe(hero);
     };
 
-    const hero = document.querySelector<HTMLElement>("[data-hero]");
-    if (hero) {
-      watch(hero);
-    } else {
-      /* Navigating back to the home route runs this effect before the lazily split
-         route component has mounted its hero, so the element is not there yet.
-         Treating that as "hero is gone" used to latch the bar opaque for the rest of
-         the visit, with no observer left to correct it. Wait for the hero instead.
-         Transparent is the right interim state — a hero route opens at the top of the
-         page with the hero behind the bar — and the IntersectionObserver fires on
-         observe(), so a restored mid-page scroll corrects itself in the same frame. */
-      setHeroBehind(false);
-      mutation = new MutationObserver(() => {
-        const mounted = document.querySelector<HTMLElement>("[data-hero]");
-        if (!mounted) return;
-        mutation?.disconnect();
-        watch(mounted);
-      });
-      mutation.observe(document.body, { childList: true, subtree: true });
-    }
+    sync();
+    const mutation = new MutationObserver(sync);
+    mutation.observe(document.body, { childList: true, subtree: true });
 
     return () => {
+      mutation.disconnect();
       intersection?.disconnect();
-      mutation?.disconnect();
     };
   }, [hasHero, headerHeight, pathname]);
 

@@ -14,18 +14,35 @@ import { Reveal } from "@/components/motion/Reveal";
 import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
 import { cn } from "@/lib/utils";
 
-export function Breadcrumbs({ trail }: { trail: { name: string; to?: string }[] }) {
+export function Breadcrumbs({
+  trail,
+  light = false,
+}: {
+  trail: { name: string; to?: string }[];
+  /* The default ink-muted/plum pair disappears on the plum hero bands. Same swap the
+     other blocks make for their light variant. */
+  light?: boolean;
+}) {
   return (
-    <nav aria-label="Breadcrumb" className="text-[0.8125rem] text-ink-muted">
+    <nav
+      aria-label="Breadcrumb"
+      className={cn("text-[0.8125rem]", light ? "text-paper/70" : "text-ink-muted")}
+    >
       <ol className="flex flex-wrap items-center gap-1.5">
         {trail.map((item, index) => (
           <li key={item.name} className="flex items-center gap-1.5">
             {item.to ? (
-              <Link to={item.to} className="hover:text-pink-600 hover:underline">
+              <Link
+                to={item.to}
+                className={cn(
+                  "hover:underline",
+                  light ? "hover:text-paper" : "hover:text-pink-600",
+                )}
+              >
                 {item.name}
               </Link>
             ) : (
-              <span className="text-plum-900">{item.name}</span>
+              <span className={light ? "text-paper" : "text-plum-900"}>{item.name}</span>
             )}
             {index < trail.length - 1 && <ChevronRight className="size-3.5 opacity-60" />}
           </li>

@@ -1,5 +1,4 @@
-import { useEffect, useRef, useState } from "react";
-import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
+import { useTimelineProgress } from "@/hooks/use-timeline-progress";
 import { cn } from "@/lib/utils";
 
 export type ProcessStep = {
@@ -8,8 +7,6 @@ export type ProcessStep = {
   copy: string;
 };
 
-const DURATION_MS = 2000;
-
 /**
  * Numbered process timeline: one row from `lg`, vertical below it.
  *
@@ -17,47 +14,11 @@ const DURATION_MS = 2000;
  * scrolled into view, and each marker lights up as the fill passes it. The animation
  * plays once and stays complete — it does not reverse on scroll-up.
  *
- * `progress` starts at 1 so the server renders a finished timeline; it is reset to 0
- * on mount, while the section is still below the fold. Starting at 0 would leave
- * crawlers and any no-JS visitor looking at a permanently greyed-out timeline.
+ * The fill itself lives in `useTimelineProgress`, which the qualifications timeline on
+ * the doctor page shares, so the two behave identically rather than by coincidence.
  */
 export function ProcessTimeline({ steps }: { steps: readonly ProcessStep[] }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [progress, setProgress] = useState(1);
-  const reduced = usePrefersReducedMotion();
-
-  useEffect(() => {
-    if (!reduced) setProgress(0);
-  }, [reduced]);
-
-  useEffect(() => {
-    if (reduced) {
-      setProgress(1);
-      return;
-    }
-    const el = ref.current;
-    if (!el) return;
-    let frame = 0;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (!entry?.isIntersecting) return;
-        observer.disconnect();
-        const start = performance.now();
-        const tick = (now: number) => {
-          const t = Math.min(1, (now - start) / DURATION_MS);
-          setProgress(1 - Math.pow(1 - t, 3)); // ease-out cubic
-          if (t < 1) frame = requestAnimationFrame(tick);
-        };
-        frame = requestAnimationFrame(tick);
-      },
-      { threshold: 0.3 },
-    );
-    observer.observe(el);
-    return () => {
-      observer.disconnect();
-      cancelAnimationFrame(frame);
-    };
-  }, [reduced]);
+  const { ref, progress } = useTimelineProgress();
 
   const lastIndex = Math.max(1, steps.length - 1);
   const reached = (i: number) => progress >= i / lastIndex - 0.001;
