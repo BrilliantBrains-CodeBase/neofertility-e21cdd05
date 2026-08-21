@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Facebook, Instagram, Linkedin, Share2, Youtube } from "lucide-react";
+import { Facebook, Instagram, Linkedin, Users, Youtube } from "lucide-react";
 import { CLINIC, track } from "@/lib/clinic";
 
 /* Same four entries, same icons and same disc styling as the footer's social row. The
@@ -57,11 +57,11 @@ export function SocialRail({ sourcePage }: { sourcePage: string }) {
       <button
         type="button"
         aria-expanded={open}
-        aria-label="Share Neo Fertility Clinic"
+        aria-label="Follow Neo Fertility Clinic on social media"
         onClick={() => setOpen((v) => !v)}
         className="flex size-14 items-center justify-center rounded-full bg-pink-600 text-paper shadow-rail transition-transform hover:scale-105"
       >
-        <Share2 className="size-6" />
+        <Users className="size-6" />
       </button>
     </div>
   );
