@@ -16,6 +16,8 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { MobileActionBar } from "@/components/conversion/MobileActionBar";
 import { WhatsAppFloat } from "@/components/conversion/WhatsAppFloat";
+import { SocialRail } from "@/components/conversion/SocialRail";
+import { BookNowTab } from "@/components/conversion/BookNowTab";
 import { DEFAULT_WHATSAPP_MESSAGE } from "@/lib/clinic";
 
 function NotFoundComponent() {
@@ -139,6 +141,8 @@ function RootComponent() {
       <Footer />
       <MobileActionBar sourcePage={pathname} whatsappMessage={DEFAULT_WHATSAPP_MESSAGE} />
       <WhatsAppFloat sourcePage={pathname} whatsappMessage={DEFAULT_WHATSAPP_MESSAGE} />
+      <SocialRail sourcePage={pathname} />
+      <BookNowTab sourcePage={pathname} />
     </QueryClientProvider>
   );
 }
