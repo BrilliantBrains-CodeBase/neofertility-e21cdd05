@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ServicePage, Prose, DataTable, COMMON_RELATED } from "@/components/sections/ServicePage";
 import { SectionHeading, CheckList, StepList } from "@/components/sections/blocks";
 import { ROUTES } from "@/data/navigation";
-import { pageMeta, jsonLd, faqSchema, breadcrumbSchema } from "@/lib/seo";
+import { breadcrumbSchema, faqSchema, jsonLd, medicalWebPageSchema, pageMeta } from "@/lib/seo";
 
 const PATH = ROUTES.pcod;
 
@@ -38,6 +38,15 @@ export const Route = createFileRoute("/best-pcod-treatment-in-marathahalli-white
       path: PATH,
     }),
     scripts: [
+      jsonLd(
+        medicalWebPageSchema({
+          title: "Best PCOD Treatment in Marathahalli & Whitefield, Bangalore",
+          description:
+            "Diagnosis and management of polycystic ovarian disease (PCOD) with Dr. Payal Mahapatra in Marathahalli and Whitefield, Bangalore. Irregular cycles, ovulation problems and fertility concerns.",
+          path: PATH,
+          about: "Polycystic ovarian disease (PCOD)",
+        }),
+      ),
       jsonLd(faqSchema(FAQS)),
       jsonLd(
         breadcrumbSchema([
@@ -77,9 +86,9 @@ function Page() {
       <Prose title="What PCOD is">
         <p>
           Polycystic ovarian disease (PCOD) describes ovaries that release multiple immature or
-          partially developed eggs each cycle, instead of one mature egg, resulting in irregular
-          or absent ovulation. Many women with PCOD have relatively mild symptoms compared to
-          PCOS, but the effect on periods and fertility can still be significant.
+          partially developed eggs each cycle, instead of one mature egg, resulting in irregular or
+          absent ovulation. Many women with PCOD have relatively mild symptoms compared to PCOS, but
+          the effect on periods and fertility can still be significant.
         </p>
       </Prose>
 
@@ -102,10 +111,10 @@ function Page() {
 
       <Prose title="Diagnosis">
         <p>
-          A transvaginal or pelvic ultrasound looks for the characteristic pattern of multiple
-          small follicles in the ovaries. Basic hormone tests, including thyroid, prolactin and
-          an androgen panel, rule out other causes of irregular cycles and help distinguish PCOD
-          from PCOS or thyroid-related irregularity.
+          A transvaginal or pelvic ultrasound looks for the characteristic pattern of multiple small
+          follicles in the ovaries. Basic hormone tests, including thyroid, prolactin and an
+          androgen panel, rule out other causes of irregular cycles and help distinguish PCOD from
+          PCOS or thyroid-related irregularity.
         </p>
         <DataTable
           caption="Typical diagnostic work-up"

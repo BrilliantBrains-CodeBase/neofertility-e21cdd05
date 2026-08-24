@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ServicePage, Prose, COMMON_RELATED } from "@/components/sections/ServicePage";
 import { SectionHeading, CheckList, StepList, SafetyNote } from "@/components/sections/blocks";
 import { ROUTES } from "@/data/navigation";
-import { pageMeta, jsonLd, faqSchema, breadcrumbSchema } from "@/lib/seo";
+import { breadcrumbSchema, faqSchema, jsonLd, medicalWebPageSchema, pageMeta } from "@/lib/seo";
 
 const PATH = ROUTES.sexualDysfunction;
 
@@ -38,6 +38,15 @@ export const Route = createFileRoute("/female-sexual-dysfunction-treatment-banga
       path: PATH,
     }),
     scripts: [
+      jsonLd(
+        medicalWebPageSchema({
+          title: "Female Sexual Dysfunction Treatment in Bangalore | Neo Fertility",
+          description:
+            "Assessment and treatment for low desire, arousal difficulty, pain during intercourse and orgasm difficulty, with Dr. Payal Mahapatra in Marathahalli, Bangalore.",
+          path: PATH,
+          about: "Female sexual dysfunction",
+        }),
+      ),
       jsonLd(faqSchema(FAQS)),
       jsonLd(
         breadcrumbSchema([
@@ -56,10 +65,7 @@ function Page() {
       eyebrow="Sexual and Reproductive Health"
       title="Female Sexual Dysfunction Treatment in Bangalore"
       intro="Low desire, arousal difficulty, pain during intercourse and difficulty reaching orgasm are common and treatable concerns. Assessment considers hormonal, physical and psychological causes together."
-      trail={[
-        { name: "Home", to: ROUTES.home },
-        { name: "Female Sexual Dysfunction Treatment" },
-      ]}
+      trail={[{ name: "Home", to: ROUTES.home }, { name: "Female Sexual Dysfunction Treatment" }]}
       sourcePage="female-sexual-dysfunction"
       faqs={FAQS}
       related={[
@@ -74,10 +80,10 @@ function Page() {
     >
       <Prose title="What female sexual dysfunction covers">
         <p>
-          Female sexual dysfunction is a broad term for persistent difficulty with desire,
-          arousal, orgasm, or pain during intercourse that causes distress or affects quality of
-          life. It is common, under-discussed, and in most cases identifiable and treatable once
-          properly assessed.
+          Female sexual dysfunction is a broad term for persistent difficulty with desire, arousal,
+          orgasm, or pain during intercourse that causes distress or affects quality of life. It is
+          common, under-discussed, and in most cases identifiable and treatable once properly
+          assessed.
         </p>
       </Prose>
 
@@ -100,11 +106,11 @@ function Page() {
 
       <Prose title="What contributes to it">
         <p>
-          Causes are often more than one factor acting together: hormonal changes around
-          childbirth, breastfeeding or menopause; pelvic floor tightness or weakness; medical
-          conditions such as diabetes or thyroid disorders; certain medications, including some
-          antidepressants; and psychological or relationship factors. Assessment aims to identify
-          which of these are contributing in your case, rather than assuming a single cause.
+          Causes are often more than one factor acting together: hormonal changes around childbirth,
+          breastfeeding or menopause; pelvic floor tightness or weakness; medical conditions such as
+          diabetes or thyroid disorders; certain medications, including some antidepressants; and
+          psychological or relationship factors. Assessment aims to identify which of these are
+          contributing in your case, rather than assuming a single cause.
         </p>
       </Prose>
 
@@ -133,9 +139,9 @@ function Page() {
       </section>
 
       <SafetyNote>
-        New or worsening pain during intercourse, unexplained bleeding after intercourse, or
-        pelvic pain outside of intercourse should be assessed promptly rather than managed as a
-        purely sexual concern.
+        New or worsening pain during intercourse, unexplained bleeding after intercourse, or pelvic
+        pain outside of intercourse should be assessed promptly rather than managed as a purely
+        sexual concern.
       </SafetyNote>
     </ServicePage>
   );

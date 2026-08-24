@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import { SectionHeading, StatStrip, FaqBlock } from "@/components/sections/blocks";
-import { ROUTES, SITE_URL } from "@/data/navigation";
+import { ROUTES } from "@/data/navigation";
 import { pageMeta, jsonLd, clinicSchema, websiteSchema, doctorSchema, faqSchema } from "@/lib/seo";
 import { HeroVideo } from "@/components/sections/HeroVideo";
 import { DoctorAbout } from "@/components/sections/DoctorAbout";
@@ -317,7 +317,6 @@ import trPainIntercourse from "@/assets/treatment-pain-intercourse.webp";
 import trMtp from "@/assets/treatment-mtp.webp";
 import trHysteroscopy from "@/assets/treatment-hysteroscopy.webp";
 import trLaparoscopy from "@/assets/treatment-laparoscopy.webp";
-import pinkBannerAsset from "@/assets/hero-banner-pink.webp";
 import faqImage from "@/assets/faq-mother-newborn.webp";
 import pathwayTrying from "@/assets/pathway-trying.webp";
 import pathwayIrregular from "@/assets/pathway-irregular.webp";
@@ -512,31 +511,22 @@ const STEPS = [
 ];
 
 export const Route = createFileRoute("/")({
-  head: () => {
-    const base = pageMeta({
+  /* robots, og:locale and the geo.* pair used to be appended here by hand. pageMeta now
+     emits them on every route, so repeating them locally would render each tag twice. */
+  head: () => ({
+    ...pageMeta({
       title: "IVF & Fertility Clinic in Marathahalli, Bangalore | Neo Fertility",
       description:
         "Fertility and IVF care in Marathahalli and Whitefield, Bangalore. IVF, IUI, ICSI, egg freezing and PCOS care with Dr. Payal Mahapatra, 18 years in reproductive medicine. Open all seven days.",
-      path: "/",
-      image: `${SITE_URL}${pinkBannerAsset}`,
-    });
-    return {
-      ...base,
-      meta: [
-        ...base.meta,
-        { name: "robots", content: "index, follow, max-image-preview:large" },
-        { property: "og:locale", content: "en_IN" },
-        { name: "geo.region", content: "IN-KA" },
-        { name: "geo.placename", content: "Marathahalli, Bengaluru" },
-      ],
-      scripts: [
-        jsonLd(clinicSchema),
-        jsonLd(websiteSchema),
-        jsonLd(doctorSchema),
-        jsonLd(faqSchema(FAQS)),
-      ],
-    };
-  },
+      path: ROUTES.home,
+    }),
+    scripts: [
+      jsonLd(clinicSchema),
+      jsonLd(websiteSchema),
+      jsonLd(doctorSchema),
+      jsonLd(faqSchema(FAQS)),
+    ],
+  }),
 
   component: Home,
 });

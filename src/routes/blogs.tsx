@@ -4,9 +4,9 @@ import { PostCard } from "@/components/blog/PostCard";
 import { BlogSidebar } from "@/components/blog/BlogSidebar";
 import { CategoryChips } from "@/components/blog/CategoryChips";
 import { parseBlogSearch } from "@/components/blog/search";
-import { POSTS, CATEGORIES, categorySlug, matchesQuery } from "@/content/blog";
+import { POSTS, CATEGORIES, categorySlug, matchesQuery, postPath } from "@/content/blog";
 import { ROUTES } from "@/data/navigation";
-import { pageMeta, jsonLd, breadcrumbSchema } from "@/lib/seo";
+import { breadcrumbSchema, itemListSchema, jsonLd, pageMeta } from "@/lib/seo";
 
 const PATH = ROUTES.blogs;
 
@@ -22,6 +22,13 @@ export const Route = createFileRoute("/blogs")({
       path: PATH,
     }),
     scripts: [
+      jsonLd(
+        itemListSchema({
+          path: PATH,
+          title: "Fertility & Gynecology Blog",
+          items: POSTS.map((post) => ({ name: post.title, path: postPath(post.slug) })),
+        }),
+      ),
       jsonLd(
         breadcrumbSchema([
           { name: "Home", path: ROUTES.home },

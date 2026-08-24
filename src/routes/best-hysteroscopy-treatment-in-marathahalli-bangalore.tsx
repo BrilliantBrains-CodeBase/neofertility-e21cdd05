@@ -2,7 +2,14 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ServicePage, Prose, DataTable, COMMON_RELATED } from "@/components/sections/ServicePage";
 import { SafetyNote, StepList } from "@/components/sections/blocks";
 import { ROUTES } from "@/data/navigation";
-import { pageMeta, jsonLd, faqSchema, breadcrumbSchema } from "@/lib/seo";
+import {
+  breadcrumbSchema,
+  faqSchema,
+  jsonLd,
+  medicalWebPageSchema,
+  pageMeta,
+  serviceSchema,
+} from "@/lib/seo";
 
 const FAQS = [
   {
@@ -37,15 +44,33 @@ export const Route = createFileRoute("/best-hysteroscopy-treatment-in-marathahal
       title: "Hysteroscopy Treatment in Marathahalli, Bangalore",
       description:
         "Diagnostic and operative hysteroscopy for polyps, fibroids, adhesions and uterine septum in Marathahalli, Bengaluru.",
-      path: "/best-hysteroscopy-treatment-in-marathahalli-bangalore",
+      path: ROUTES.hysteroscopy,
     }),
     scripts: [
+      jsonLd(
+        medicalWebPageSchema({
+          title: "Hysteroscopy Treatment in Marathahalli, Bangalore",
+          description:
+            "Diagnostic and operative hysteroscopy for polyps, fibroids, adhesions and uterine septum in Marathahalli, Bengaluru.",
+          path: ROUTES.hysteroscopy,
+          about: "Hysteroscopy",
+        }),
+      ),
+      jsonLd(
+        serviceSchema({
+          name: "Hysteroscopy",
+          description:
+            "Diagnostic and operative hysteroscopy for polyps, fibroids, adhesions and uterine septum in Marathahalli, Bengaluru.",
+          path: ROUTES.hysteroscopy,
+          procedureType: "SurgicalProcedure",
+        }),
+      ),
       jsonLd(faqSchema(FAQS)),
       jsonLd(
         breadcrumbSchema([
           { name: "Home", path: ROUTES.home },
           { name: "Gynecology Treatments", path: ROUTES.gynecologyTreatments },
-          { name: "Hysteroscopy", path: "/best-hysteroscopy-treatment-in-marathahalli-bangalore" },
+          { name: "Hysteroscopy", path: ROUTES.hysteroscopy },
         ]),
       ),
     ],
@@ -125,8 +150,8 @@ function HysteroscopyPage() {
       <Prose title="Recovery and aftercare">
         <p>
           Most women resume normal activity within one to two days. Intercourse and strenuous
-          exercise are usually avoided for a short period as advised at your follow-up visit,
-          which also reviews the findings and results of any tissue sent for testing.
+          exercise are usually avoided for a short period as advised at your follow-up visit, which
+          also reviews the findings and results of any tissue sent for testing.
         </p>
       </Prose>
     </ServicePage>

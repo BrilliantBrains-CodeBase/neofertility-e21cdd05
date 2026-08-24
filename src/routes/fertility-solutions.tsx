@@ -9,7 +9,8 @@ import {
   TreatmentMenuSection,
 } from "@/components/sections/blocks";
 import { FERTILITY_MENU, ROUTES } from "@/data/navigation";
-import { pageMeta, jsonLd, faqSchema, breadcrumbSchema } from "@/lib/seo";
+import { breadcrumbSchema, faqSchema, itemListSchema, jsonLd, pageMeta } from "@/lib/seo";
+import { pagesInSection } from "@/data/site-pages";
 
 const COMPARE = [
   {
@@ -89,6 +90,13 @@ export const Route = createFileRoute("/fertility-solutions")({
     return {
       ...base,
       scripts: [
+        jsonLd(
+          itemListSchema({
+            path: ROUTES.fertilitySolutions,
+            title: "Fertility Treatments",
+            items: pagesInSection("fertility", ROUTES.fertilitySolutions),
+          }),
+        ),
         jsonLd(faqSchema(FAQS)),
         jsonLd(
           breadcrumbSchema([

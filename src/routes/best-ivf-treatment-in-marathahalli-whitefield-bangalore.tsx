@@ -11,7 +11,14 @@ import embryo from "@/assets/ivf-embryo.jpg";
 import embryoTransfer from "@/assets/ivf-embryo-transfer.jpg";
 import pregnancyTest from "@/assets/ivf-pregnancy-test.jpg";
 import { ROUTES } from "@/data/navigation";
-import { pageMeta, jsonLd, faqSchema, breadcrumbSchema } from "@/lib/seo";
+import {
+  breadcrumbSchema,
+  faqSchema,
+  jsonLd,
+  medicalWebPageSchema,
+  pageMeta,
+  serviceSchema,
+} from "@/lib/seo";
 
 const PATH = ROUTES.ivf;
 
@@ -59,6 +66,23 @@ export const Route = createFileRoute("/best-ivf-treatment-in-marathahalli-whitef
       path: PATH,
     }),
     scripts: [
+      jsonLd(
+        medicalWebPageSchema({
+          title: "IVF Treatment in Marathahalli, Whitefield | Neo Fertility",
+          description:
+            "Expert IVF in Marathahalli and Whitefield, Bengaluru: how the cycle works, success rates by age, costs and risks.",
+          path: PATH,
+          about: "In-vitro fertilisation",
+        }),
+      ),
+      jsonLd(
+        serviceSchema({
+          name: "In-Vitro Fertilization (IVF)",
+          description:
+            "Expert IVF in Marathahalli and Whitefield, Bengaluru: how the cycle works, success rates by age, costs and risks.",
+          path: PATH,
+        }),
+      ),
       jsonLd(faqSchema(FAQS)),
       jsonLd(
         breadcrumbSchema([
@@ -93,9 +117,10 @@ function Page() {
     >
       <Prose title="What IVF is">
         <p>
-          IVF bypasses many reproductive issues such as blocked fallopian tubes, ovulation disorders, and
-          male fertility concerns. During IVF, an egg is fertilised with sperm in a specialised lab, and the
-          resulting embryo is carefully placed inside the uterus to establish pregnancy.
+          IVF bypasses many reproductive issues such as blocked fallopian tubes, ovulation
+          disorders, and male fertility concerns. During IVF, an egg is fertilised with sperm in a
+          specialised lab, and the resulting embryo is carefully placed inside the uterus to
+          establish pregnancy.
         </p>
       </Prose>
 
@@ -160,7 +185,6 @@ function Page() {
         ]}
       />
 
-
       <section>
         <SectionHeading eyebrow="Who it helps" title="Who can benefit from IVF" />
         <div className="mt-6">
@@ -188,9 +212,9 @@ function Page() {
       />
       <Prose>
         <p>
-          Success rates vary based on age, ovarian reserve, sperm quality, uterine health and lifestyle.
-          Rates improve when advanced techniques such as ICSI, frozen embryo transfer, blastocyst culture and
-          preimplantation genetic testing are used.
+          Success rates vary based on age, ovarian reserve, sperm quality, uterine health and
+          lifestyle. Rates improve when advanced techniques such as ICSI, frozen embryo transfer,
+          blastocyst culture and preimplantation genetic testing are used.
         </p>
       </Prose>
 
@@ -209,8 +233,8 @@ function Page() {
       <SafetyNote>
         Risks include mild bloating and cramps from hormone medications, a rare risk of Ovarian
         Hyperstimulation Syndrome, and a chance of multiple pregnancy if more than one embryo is
-        transferred. We use individualised treatment plans to minimise these risks and provide medical and
-        emotional support throughout.
+        transferred. We use individualised treatment plans to minimise these risks and provide
+        medical and emotional support throughout.
       </SafetyNote>
     </ServicePage>
   );

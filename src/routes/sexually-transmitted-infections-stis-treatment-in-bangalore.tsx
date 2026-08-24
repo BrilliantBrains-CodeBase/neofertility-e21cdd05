@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ServicePage, Prose, DataTable, COMMON_RELATED } from "@/components/sections/ServicePage";
 import { SafetyNote } from "@/components/sections/blocks";
 import { ROUTES } from "@/data/navigation";
-import { pageMeta, jsonLd, faqSchema, breadcrumbSchema } from "@/lib/seo";
+import { breadcrumbSchema, faqSchema, jsonLd, medicalWebPageSchema, pageMeta } from "@/lib/seo";
 
 const FAQS = [
   {
@@ -31,21 +31,32 @@ const FAQS = [
   },
 ];
 
-export const Route = createFileRoute("/sexually-transmitted-infections-stis-treatment-in-bangalore")({
+export const Route = createFileRoute(
+  "/sexually-transmitted-infections-stis-treatment-in-bangalore",
+)({
   head: () => ({
     ...pageMeta({
       title: "STI Testing & Treatment in Bangalore | Confidential Care",
       description:
         "Confidential testing and treatment for sexually transmitted infections in Bengaluru with Dr. Payal Mahapatra at Neo Fertility Clinic.",
-      path: "/sexually-transmitted-infections-stis-treatment-in-bangalore",
+      path: ROUTES.sti,
     }),
     scripts: [
+      jsonLd(
+        medicalWebPageSchema({
+          title: "STI Testing & Treatment in Bangalore | Confidential Care",
+          description:
+            "Confidential testing and treatment for sexually transmitted infections in Bengaluru with Dr. Payal Mahapatra at Neo Fertility Clinic.",
+          path: ROUTES.sti,
+          about: "Sexually transmitted infections",
+        }),
+      ),
       jsonLd(faqSchema(FAQS)),
       jsonLd(
         breadcrumbSchema([
           { name: "Home", path: ROUTES.home },
           { name: "Gynecology Treatments", path: ROUTES.gynecologyTreatments },
-          { name: "STI Testing & Treatment", path: "/sexually-transmitted-infections-stis-treatment-in-bangalore" },
+          { name: "STI Testing & Treatment", path: ROUTES.sti },
         ]),
       ),
     ],
@@ -74,9 +85,9 @@ function StiPage() {
     >
       <Prose title="Who this is for">
         <p>
-          Anyone with symptoms suggestive of a sexually transmitted infection, anyone whose
-          partner has been diagnosed with one, or anyone who wants a routine screen. Testing is
-          offered confidentially.
+          Anyone with symptoms suggestive of a sexually transmitted infection, anyone whose partner
+          has been diagnosed with one, or anyone who wants a routine screen. Testing is offered
+          confidentially.
         </p>
       </Prose>
 
@@ -107,9 +118,15 @@ function StiPage() {
           caption="Treatment approach by infection type"
           head={["Infection type", "Approach"]}
           rows={[
-            ["Bacterial (e.g. chlamydia, gonorrhoea)", "A full antibiotic course for both partners"],
+            [
+              "Bacterial (e.g. chlamydia, gonorrhoea)",
+              "A full antibiotic course for both partners",
+            ],
             ["Parasitic (e.g. trichomoniasis)", "Antiparasitic medication for both partners"],
-            ["Viral (e.g. herpes, HPV)", "Symptom management, suppressive therapy where indicated, and monitoring"],
+            [
+              "Viral (e.g. herpes, HPV)",
+              "Symptom management, suppressive therapy where indicated, and monitoring",
+            ],
           ]}
         />
         <p>

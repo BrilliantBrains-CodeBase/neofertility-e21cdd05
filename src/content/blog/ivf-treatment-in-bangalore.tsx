@@ -3,6 +3,7 @@ import { Prose, DataTable } from "@/components/sections/ServicePage";
 import { ROUTES } from "@/data/navigation";
 import { CLINIC } from "@/lib/clinic";
 import cover from "@/assets/treatment-ivf.webp";
+import ogCover from "@/assets/og/og-treatment-ivf.jpg";
 import avatar from "@/assets/dr-payal-avatar.webp";
 import type { BlogPostMeta } from "./types";
 
@@ -24,6 +25,7 @@ export const meta: BlogPostMeta = {
     alt: "A newborn baby resting in a parent's cupped hands",
     width: 720,
     height: 360,
+    ogSrc: ogCover,
   },
   metaTitle: "IVF Treatment in Bangalore: A Complete Guide | Neo Fertility",
   metaDescription:

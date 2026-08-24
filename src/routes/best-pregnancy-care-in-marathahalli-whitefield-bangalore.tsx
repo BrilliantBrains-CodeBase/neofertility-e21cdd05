@@ -3,7 +3,7 @@ import { ServicePage, Prose, DataTable, COMMON_RELATED } from "@/components/sect
 import { SectionHeading, CheckList, SafetyNote } from "@/components/sections/blocks";
 import { StepCards } from "@/components/sections/StepCards";
 import { ROUTES } from "@/data/navigation";
-import { pageMeta, jsonLd, faqSchema, breadcrumbSchema } from "@/lib/seo";
+import { breadcrumbSchema, faqSchema, jsonLd, medicalWebPageSchema, pageMeta } from "@/lib/seo";
 import visitFirst from "@/assets/visit-first-antenatal-visit.jpg";
 import visitFirstTrimester from "@/assets/visit-1st-trimester.webp";
 import visitLaterTrimesters from "@/assets/visit-2nd-and-3rd-trimester.jpg";
@@ -51,6 +51,15 @@ export const Route = createFileRoute("/best-pregnancy-care-in-marathahalli-white
       path: PATH,
     }),
     scripts: [
+      jsonLd(
+        medicalWebPageSchema({
+          title: "Pregnancy Care in Marathahalli & Whitefield | Neo Fertility",
+          description:
+            "Complete antenatal care and high-risk pregnancy management in Marathahalli and Whitefield, Bengaluru, including pregnancies conceived through IVF.",
+          path: PATH,
+          about: "Antenatal care",
+        }),
+      ),
       jsonLd(faqSchema(FAQS)),
       jsonLd(
         breadcrumbSchema([

@@ -27,7 +27,7 @@ import { Breadcrumbs, StatStrip, FaqBlock, RelatedLinks } from "@/components/sec
 import { COMMON_RELATED } from "@/components/sections/ServicePage";
 import { CLINIC, QUALIFICATIONS, MEMBERSHIPS, track } from "@/lib/clinic";
 import { ROUTES } from "@/data/navigation";
-import { pageMeta, jsonLd, doctorSchema, faqSchema, breadcrumbSchema } from "@/lib/seo";
+import { OG_DOCTOR, breadcrumbSchema, doctorSchema, faqSchema, jsonLd, pageMeta } from "@/lib/seo";
 import portraitAsset from "@/assets/dr-payal-hero.webp";
 /* The same portrait the home page's FAQ carries, so the two blocks read as one design.
    Deliberately not dr-payal-portrait.jpg: that asset shows a different woman from the
@@ -186,6 +186,7 @@ export const Route = createFileRoute("/best-gynecologist-and-fertility-doctor-in
       description:
         "Dr. Payal Mahapatra, MBBS, DGO, DNB, Fellowship in Reproductive Medicine. 18 years in fertility and gynecology in Marathahalli and Whitefield, Bangalore. ISAR and FOGSI member.",
       path: ROUTES.about,
+      image: OG_DOCTOR,
     });
     return {
       ...base,

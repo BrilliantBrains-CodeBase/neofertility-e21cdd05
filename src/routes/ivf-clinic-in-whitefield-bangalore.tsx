@@ -15,7 +15,14 @@ import {
 import { Prose, DataTable } from "@/components/sections/ServicePage";
 import { CLINIC, DEFAULT_WHATSAPP_MESSAGE, track } from "@/lib/clinic";
 import { ROUTES } from "@/data/navigation";
-import { pageMeta, jsonLd, faqSchema, breadcrumbSchema } from "@/lib/seo";
+import {
+  OG_CLINIC,
+  breadcrumbSchema,
+  faqSchema,
+  jsonLd,
+  locationSchema,
+  pageMeta,
+} from "@/lib/seo";
 
 const PATH = ROUTES.whitefield;
 const SOURCE_PAGE = "whitefield";
@@ -46,8 +53,18 @@ export const Route = createFileRoute("/ivf-clinic-in-whitefield-bangalore")({
       description:
         "Fertility and IVF treatment for patients from Whitefield, Bangalore. IVF, IUI, ICSI, egg freezing and PCOS care with Dr. Payal Mahapatra, 15 minutes from Whitefield on Marathahalli Bridge Road.",
       path: PATH,
+      image: OG_CLINIC,
     }),
     scripts: [
+      jsonLd(
+        locationSchema({
+          area: "Whitefield",
+          title: "IVF & Fertility Clinic Near Whitefield, Bangalore | Neo Fertility",
+          description:
+            "Fertility and IVF treatment for patients from Whitefield, Bangalore. IVF, IUI, ICSI, egg freezing and PCOS care with Dr. Payal Mahapatra, 15 minutes from Whitefield on Marathahalli Bridge Road.",
+          path: PATH,
+        }),
+      ),
       jsonLd(faqSchema(FAQS)),
       jsonLd(
         breadcrumbSchema([

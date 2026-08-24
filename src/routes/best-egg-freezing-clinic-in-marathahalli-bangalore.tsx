@@ -8,7 +8,14 @@ import stepRetrieval from "@/assets/ef-retrieval.jpg";
 import stepCryo from "@/assets/ef-cryopreservation.webp";
 import stepStorage from "@/assets/ef-storage.webp";
 import { ROUTES } from "@/data/navigation";
-import { pageMeta, jsonLd, faqSchema, breadcrumbSchema } from "@/lib/seo";
+import {
+  breadcrumbSchema,
+  faqSchema,
+  jsonLd,
+  medicalWebPageSchema,
+  pageMeta,
+  serviceSchema,
+} from "@/lib/seo";
 
 const PATH = ROUTES.eggFreezing;
 
@@ -56,6 +63,23 @@ export const Route = createFileRoute("/best-egg-freezing-clinic-in-marathahalli-
       path: PATH,
     }),
     scripts: [
+      jsonLd(
+        medicalWebPageSchema({
+          title: "Egg Freezing Clinic in Marathahalli | Neo Fertility",
+          description:
+            "Egg freezing and preservation in Marathahalli, Bengaluru: who it suits, the process, storage, and what affects success.",
+          path: PATH,
+          about: "Oocyte cryopreservation",
+        }),
+      ),
+      jsonLd(
+        serviceSchema({
+          name: "Egg Freezing and Preservation",
+          description:
+            "Egg freezing and preservation in Marathahalli, Bengaluru: who it suits, the process, storage, and what affects success.",
+          path: PATH,
+        }),
+      ),
       jsonLd(faqSchema(FAQS)),
       jsonLd(
         breadcrumbSchema([
@@ -90,9 +114,10 @@ function Page() {
     >
       <Prose title="What egg freezing is">
         <p>
-          Egg freezing, or oocyte cryopreservation, is a fertility preservation technique that allows women
-          to freeze their eggs at a younger age and use them later when they are ready to conceive. It
-          suits women who want to delay motherhood for career reasons, medical reasons, or personal choice.
+          Egg freezing, or oocyte cryopreservation, is a fertility preservation technique that
+          allows women to freeze their eggs at a younger age and use them later when they are ready
+          to conceive. It suits women who want to delay motherhood for career reasons, medical
+          reasons, or personal choice.
         </p>
       </Prose>
 
@@ -183,9 +208,9 @@ function Page() {
       </Prose>
 
       <SafetyNote>
-        The process is minimally invasive. Ovarian stimulation may cause mild bloating similar to PMS, and
-        egg retrieval under light anesthesia takes 10 to 15 minutes, with mild cramping or bloating
-        afterwards that usually resolves within a day or two.
+        The process is minimally invasive. Ovarian stimulation may cause mild bloating similar to
+        PMS, and egg retrieval under light anesthesia takes 10 to 15 minutes, with mild cramping or
+        bloating afterwards that usually resolves within a day or two.
       </SafetyNote>
     </ServicePage>
   );

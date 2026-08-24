@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ServicePage, Prose, DataTable, COMMON_RELATED } from "@/components/sections/ServicePage";
 import { SafetyNote, StepList } from "@/components/sections/blocks";
 import { ROUTES } from "@/data/navigation";
-import { pageMeta, jsonLd, faqSchema, breadcrumbSchema } from "@/lib/seo";
+import { breadcrumbSchema, faqSchema, jsonLd, medicalWebPageSchema, pageMeta } from "@/lib/seo";
 
 const FAQS = [
   {
@@ -31,21 +31,32 @@ const FAQS = [
   },
 ];
 
-export const Route = createFileRoute("/breast-lumps-treatment-in-marathahalli-whitefield-bangalore")({
+export const Route = createFileRoute(
+  "/breast-lumps-treatment-in-marathahalli-whitefield-bangalore",
+)({
   head: () => ({
     ...pageMeta({
       title: "Breast Lump Assessment & Treatment | Marathahalli, Whitefield",
       description:
         "Examination, triple assessment and treatment of breast lumps in Marathahalli and Whitefield, Bengaluru, with referral pathways where needed.",
-      path: "/breast-lumps-treatment-in-marathahalli-whitefield-bangalore",
+      path: ROUTES.breastLumps,
     }),
     scripts: [
+      jsonLd(
+        medicalWebPageSchema({
+          title: "Breast Lump Assessment & Treatment | Marathahalli, Whitefield",
+          description:
+            "Examination, triple assessment and treatment of breast lumps in Marathahalli and Whitefield, Bengaluru, with referral pathways where needed.",
+          path: ROUTES.breastLumps,
+          about: "Breast lumps",
+        }),
+      ),
       jsonLd(faqSchema(FAQS)),
       jsonLd(
         breadcrumbSchema([
           { name: "Home", path: ROUTES.home },
           { name: "Gynecology Treatments", path: ROUTES.gynecologyTreatments },
-          { name: "Breast Lumps", path: "/breast-lumps-treatment-in-marathahalli-whitefield-bangalore" },
+          { name: "Breast Lumps", path: ROUTES.breastLumps },
         ]),
       ),
     ],
@@ -118,7 +129,10 @@ function BreastLumpsPage() {
           rows={[
             ["Simple cyst", "Observation, or aspiration if symptomatic"],
             ["Fibroadenoma", "Observation with follow-up scan, or removal if large or changing"],
-            ["Malignancy confirmed or suspected", "Referral to breast surgical oncology with assessment findings"],
+            [
+              "Malignancy confirmed or suspected",
+              "Referral to breast surgical oncology with assessment findings",
+            ],
           ]}
         />
       </Prose>

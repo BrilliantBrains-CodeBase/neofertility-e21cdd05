@@ -24,7 +24,21 @@ export type BlogPostMeta = {
    */
   readMinutes: number;
   author: { name: string; avatar: string };
-  cover: { src: string; alt: string; width: number; height: number };
+  cover: {
+    src: string;
+    alt: string;
+    width: number;
+    height: number;
+    /**
+     * JPEG twin of `src`, used only as the og:image.
+     *
+     * The covers are WebP, which is right for the page but unreliable in link previews —
+     * WhatsApp in particular often renders no card at all for a WebP og:image, and
+     * WhatsApp is how most of this clinic's traffic shares a page. Same picture, same
+     * dimensions, different container.
+     */
+    ogSrc?: string;
+  };
   /** <title> and meta description — these differ from the on-page H1 and excerpt. */
   metaTitle: string;
   metaDescription: string;

@@ -7,7 +7,8 @@ import {
   TreatmentMenuSection,
 } from "@/components/sections/blocks";
 import { GYNECOLOGY_MENU, ROUTES } from "@/data/navigation";
-import { pageMeta, jsonLd, faqSchema, breadcrumbSchema } from "@/lib/seo";
+import { breadcrumbSchema, faqSchema, itemListSchema, jsonLd, pageMeta } from "@/lib/seo";
+import { pagesInSection } from "@/data/site-pages";
 
 const WHAT_WE_TREAT = [
   {
@@ -97,6 +98,13 @@ export const Route = createFileRoute("/gynecology-treatments")({
     return {
       ...base,
       scripts: [
+        jsonLd(
+          itemListSchema({
+            path: ROUTES.gynecologyTreatments,
+            title: "Gynecology Treatments",
+            items: pagesInSection("gynecology", ROUTES.gynecologyTreatments),
+          }),
+        ),
         jsonLd(faqSchema(FAQS)),
         jsonLd(
           breadcrumbSchema([

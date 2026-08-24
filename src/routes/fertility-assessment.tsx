@@ -10,7 +10,7 @@ import { PageHero, SectionHeading } from "@/components/sections/blocks";
 import { Prose } from "@/components/sections/ServicePage";
 import { CLINIC, DEFAULT_WHATSAPP_MESSAGE, track } from "@/lib/clinic";
 import { ROUTES } from "@/data/navigation";
-import { pageMeta, jsonLd, breadcrumbSchema } from "@/lib/seo";
+import { breadcrumbSchema, jsonLd, medicalWebPageSchema, pageMeta } from "@/lib/seo";
 
 const PATH = ROUTES.fertilityAssessment;
 const SOURCE_PAGE = "fertility-assessment";
@@ -24,6 +24,15 @@ export const Route = createFileRoute("/fertility-assessment")({
       path: PATH,
     }),
     scripts: [
+      jsonLd(
+        medicalWebPageSchema({
+          title: "Fertility Self-Assessment | Neo Fertility Clinic, Bangalore",
+          description:
+            "A short self-assessment to help you decide which fertility evaluation to start with. Not a diagnosis. Both partners tested from the start.",
+          path: PATH,
+          about: "Fertility assessment",
+        }),
+      ),
       jsonLd(
         breadcrumbSchema([
           { name: "Home", path: ROUTES.home },

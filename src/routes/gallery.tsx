@@ -5,7 +5,7 @@ import { PageHero, SectionHeading, RelatedLinks } from "@/components/sections/bl
 import { COMMON_RELATED } from "@/components/sections/ServicePage";
 import { GALLERY_IMAGES } from "@/data/gallery";
 import { ROUTES } from "@/data/navigation";
-import { pageMeta, jsonLd, breadcrumbSchema } from "@/lib/seo";
+import { breadcrumbSchema, imageGallerySchema, jsonLd, pageMeta } from "@/lib/seo";
 
 export const Route = createFileRoute("/gallery")({
   head: () => ({
@@ -16,6 +16,15 @@ export const Route = createFileRoute("/gallery")({
       path: ROUTES.gallery,
     }),
     scripts: [
+      jsonLd(
+        imageGallerySchema({
+          path: ROUTES.gallery,
+          title: "Gallery | Neo Fertility Clinic, Bangalore",
+          description:
+            "Photographs from Neo Fertility Clinic, Marathahalli and Whitefield, Bangalore — the people we have cared for and the moments they chose to share.",
+          images: GALLERY_IMAGES,
+        }),
+      ),
       jsonLd(
         breadcrumbSchema([
           { name: "Home", path: ROUTES.home },

@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
 
+# Generated from the route map at /sitemap.xml (see src/lib/seo-files.ts).
 Sitemap: https://neofertility.co.in/sitemap.xml
+
+# Site summary for AI assistants: https://neofertility.co.in/llms.txt

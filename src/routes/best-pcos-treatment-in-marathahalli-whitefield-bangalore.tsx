@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ServicePage, Prose, DataTable, COMMON_RELATED } from "@/components/sections/ServicePage";
 import { SectionHeading, CheckList, StepList, SafetyNote } from "@/components/sections/blocks";
 import { ROUTES } from "@/data/navigation";
-import { pageMeta, jsonLd, faqSchema, breadcrumbSchema } from "@/lib/seo";
+import { breadcrumbSchema, faqSchema, jsonLd, medicalWebPageSchema, pageMeta } from "@/lib/seo";
 
 const PATH = ROUTES.pcos;
 
@@ -38,6 +38,15 @@ export const Route = createFileRoute("/best-pcos-treatment-in-marathahalli-white
       path: PATH,
     }),
     scripts: [
+      jsonLd(
+        medicalWebPageSchema({
+          title: "Best PCOS Treatment in Marathahalli & Whitefield, Bangalore",
+          description:
+            "Diagnosis and treatment for polycystic ovary syndrome (PCOS) with Dr. Payal Mahapatra in Marathahalli and Whitefield, Bangalore. Irregular periods, acne, weight gain and fertility concerns.",
+          path: PATH,
+          about: "Polycystic ovary syndrome (PCOS)",
+        }),
+      ),
       jsonLd(faqSchema(FAQS)),
       jsonLd(
         breadcrumbSchema([
@@ -77,9 +86,9 @@ function Page() {
       <Prose title="What PCOS is">
         <p>
           Polycystic ovary syndrome (PCOS) is a common hormonal condition in which the ovaries
-          produce higher-than-usual levels of androgens and often do not release an egg every
-          month. It is closely linked with insulin resistance, which is why weight, skin and
-          metabolic symptoms often appear alongside irregular periods.
+          produce higher-than-usual levels of androgens and often do not release an egg every month.
+          It is closely linked with insulin resistance, which is why weight, skin and metabolic
+          symptoms often appear alongside irregular periods.
         </p>
       </Prose>
 
@@ -103,11 +112,11 @@ function Page() {
 
       <Prose title="Diagnosis">
         <p>
-          Diagnosis is based on a combination of findings rather than any single test: your
-          cycle pattern, clinical or blood evidence of excess androgens, and ovarian appearance
-          on a transvaginal ultrasound. Thyroid function and prolactin are checked to rule out
-          other causes of irregular cycles, and a fasting insulin and glucose profile is used to
-          assess metabolic risk.
+          Diagnosis is based on a combination of findings rather than any single test: your cycle
+          pattern, clinical or blood evidence of excess androgens, and ovarian appearance on a
+          transvaginal ultrasound. Thyroid function and prolactin are checked to rule out other
+          causes of irregular cycles, and a fasting insulin and glucose profile is used to assess
+          metabolic risk.
         </p>
         <DataTable
           caption="Typical initial work-up"
@@ -147,9 +156,9 @@ function Page() {
       </section>
 
       <SafetyNote>
-        PCOS increases long-term risk of type 2 diabetes and cardiovascular disease. Periodic
-        review of weight, blood pressure and metabolic markers is part of ongoing care, not only
-        symptom management.
+        PCOS increases long-term risk of type 2 diabetes and cardiovascular disease. Periodic review
+        of weight, blood pressure and metabolic markers is part of ongoing care, not only symptom
+        management.
       </SafetyNote>
     </ServicePage>
   );

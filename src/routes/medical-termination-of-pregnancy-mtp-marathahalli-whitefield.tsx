@@ -2,7 +2,14 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ServicePage, Prose, DataTable, COMMON_RELATED } from "@/components/sections/ServicePage";
 import { SafetyNote } from "@/components/sections/blocks";
 import { ROUTES } from "@/data/navigation";
-import { pageMeta, jsonLd, faqSchema, breadcrumbSchema } from "@/lib/seo";
+import {
+  breadcrumbSchema,
+  faqSchema,
+  jsonLd,
+  medicalWebPageSchema,
+  pageMeta,
+  serviceSchema,
+} from "@/lib/seo";
 
 const FAQS = [
   {
@@ -31,21 +38,40 @@ const FAQS = [
   },
 ];
 
-export const Route = createFileRoute("/medical-termination-of-pregnancy-mtp-marathahalli-whitefield")({
+export const Route = createFileRoute(
+  "/medical-termination-of-pregnancy-mtp-marathahalli-whitefield",
+)({
   head: () => ({
     ...pageMeta({
       title: "Medical Termination of Pregnancy (MTP) | Marathahalli",
       description:
         "Confidential medical termination of pregnancy under the MTP Act, in Marathahalli and Whitefield, Bengaluru, with Dr. Payal Mahapatra.",
-      path: "/medical-termination-of-pregnancy-mtp-marathahalli-whitefield",
+      path: ROUTES.mtp,
     }),
     scripts: [
+      jsonLd(
+        medicalWebPageSchema({
+          title: "Medical Termination of Pregnancy (MTP) | Marathahalli",
+          description:
+            "Confidential medical termination of pregnancy under the MTP Act, in Marathahalli and Whitefield, Bengaluru, with Dr. Payal Mahapatra.",
+          path: ROUTES.mtp,
+          about: "Medical termination of pregnancy",
+        }),
+      ),
+      jsonLd(
+        serviceSchema({
+          name: "Medical Termination of Pregnancy (MTP)",
+          description:
+            "Confidential medical termination of pregnancy under the MTP Act, in Marathahalli and Whitefield, Bengaluru, with Dr. Payal Mahapatra.",
+          path: ROUTES.mtp,
+        }),
+      ),
       jsonLd(faqSchema(FAQS)),
       jsonLd(
         breadcrumbSchema([
           { name: "Home", path: ROUTES.home },
           { name: "Gynecology Treatments", path: ROUTES.gynecologyTreatments },
-          { name: "Medical Termination of Pregnancy", path: "/medical-termination-of-pregnancy-mtp-marathahalli-whitefield" },
+          { name: "Medical Termination of Pregnancy", path: ROUTES.mtp },
         ]),
       ),
     ],
@@ -74,8 +100,8 @@ function MtpPage() {
     >
       <Prose title="Who this is for">
         <p>
-          Women who wish to discuss ending a pregnancy, within the framework set out by Indian
-          law. Every consultation is confidential.
+          Women who wish to discuss ending a pregnancy, within the framework set out by Indian law.
+          Every consultation is confidential.
         </p>
       </Prose>
 
@@ -104,8 +130,16 @@ function MtpPage() {
           caption="Comparing the two approaches"
           head={["Method", "How it works", "When used"]}
           rows={[
-            ["Medical termination", "Medication taken to end the pregnancy", "Within an early gestational window"],
-            ["Surgical termination", "A procedure performed to end the pregnancy", "Where medical termination is unsuitable or incomplete"],
+            [
+              "Medical termination",
+              "Medication taken to end the pregnancy",
+              "Within an early gestational window",
+            ],
+            [
+              "Surgical termination",
+              "A procedure performed to end the pregnancy",
+              "Where medical termination is unsuitable or incomplete",
+            ],
           ]}
         />
       </Prose>
@@ -113,12 +147,12 @@ function MtpPage() {
       <Prose title="Evaluation and aftercare">
         <p>
           Assessment includes confirming gestational age by ultrasound, reviewing your medical
-          history, and discussing the appropriate method. A follow-up visit confirms the
-          termination is complete and addresses contraception if wanted.
+          history, and discussing the appropriate method. A follow-up visit confirms the termination
+          is complete and addresses contraception if wanted.
         </p>
         <SafetyNote>
-          Heavy bleeding soaking more than one pad an hour, fever, or severe pain after
-          termination should be seen the same day.
+          Heavy bleeding soaking more than one pad an hour, fever, or severe pain after termination
+          should be seen the same day.
         </SafetyNote>
       </Prose>
     </ServicePage>

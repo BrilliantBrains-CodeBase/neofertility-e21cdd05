@@ -7,7 +7,14 @@ import transvaginalImg from "@/assets/scan-transvaginal.jpg";
 import abdominalImg from "@/assets/scan-abdominal.jpg";
 import follicularImg from "@/assets/scan-follicular.jpg";
 import { ROUTES } from "@/data/navigation";
-import { pageMeta, jsonLd, faqSchema, breadcrumbSchema } from "@/lib/seo";
+import {
+  breadcrumbSchema,
+  faqSchema,
+  jsonLd,
+  medicalWebPageSchema,
+  pageMeta,
+  serviceSchema,
+} from "@/lib/seo";
 
 const PATH = ROUTES.pelvicUltrasound;
 
@@ -51,6 +58,24 @@ export const Route = createFileRoute("/pelvic-ultrasound-scan-in-marathahalli")(
       path: PATH,
     }),
     scripts: [
+      jsonLd(
+        medicalWebPageSchema({
+          title: "Pelvic Ultrasound Scan in Marathahalli | Neo Fertility",
+          description:
+            "Pelvic ultrasound and follicular study scans in Marathahalli, Bengaluru, for gynecological assessment and fertility evaluation with Dr. Payal Mahapatra.",
+          path: PATH,
+          about: "Pelvic ultrasound",
+        }),
+      ),
+      jsonLd(
+        serviceSchema({
+          name: "Pelvic Ultrasound Scan",
+          description:
+            "Pelvic ultrasound and follicular study scans in Marathahalli, Bengaluru, for gynecological assessment and fertility evaluation with Dr. Payal Mahapatra.",
+          path: PATH,
+          procedureType: "DiagnosticProcedure",
+        }),
+      ),
       jsonLd(faqSchema(FAQS)),
       jsonLd(
         breadcrumbSchema([
@@ -113,11 +138,7 @@ function Page() {
       </section>
 
       <section>
-        <SectionHeading
-          eyebrow="What to expect"
-          title="What happens at the appointment"
-          centered
-        />
+        <SectionHeading eyebrow="What to expect" title="What happens at the appointment" centered />
         <NumberedSteps
           steps={[
             {

@@ -7,7 +7,14 @@ import retrievalImg from "@/assets/donor-retrieval.jpg";
 import fertilisationImg from "@/assets/donor-fertilisation.jpg";
 import transferImg from "@/assets/donor-transfer.webp";
 import { ROUTES } from "@/data/navigation";
-import { pageMeta, jsonLd, faqSchema, breadcrumbSchema } from "@/lib/seo";
+import {
+  breadcrumbSchema,
+  faqSchema,
+  jsonLd,
+  medicalWebPageSchema,
+  pageMeta,
+  serviceSchema,
+} from "@/lib/seo";
 
 const PATH = ROUTES.donor;
 
@@ -47,6 +54,23 @@ export const Route = createFileRoute("/donor-eggs-and-sperm-program-in-marathaha
       path: PATH,
     }),
     scripts: [
+      jsonLd(
+        medicalWebPageSchema({
+          title: "Donor Egg and Sperm Programme | Neo Fertility",
+          description:
+            "Donor egg and sperm programme in Marathahalli, Bengaluru: who it helps, donor screening, the process, and eligibility.",
+          path: PATH,
+          about: "Donor egg and sperm programme",
+        }),
+      ),
+      jsonLd(
+        serviceSchema({
+          name: "Donor Egg and Sperm Programme",
+          description:
+            "Donor egg and sperm programme in Marathahalli, Bengaluru: who it helps, donor screening, the process, and eligibility.",
+          path: PATH,
+        }),
+      ),
       jsonLd(faqSchema(FAQS)),
       jsonLd(
         breadcrumbSchema([
@@ -81,11 +105,12 @@ function Page() {
     >
       <Prose title="What the programme involves">
         <p>
-          Whether the cause is a medical condition, a genetic disorder, or age-related fertility decline,
-          donor eggs and sperm offer a chance to experience the joy of having a baby. The programme involves
-          carefully screening and selecting healthy donors based on strict medical criteria, retrieving eggs
-          or sperm from a suitable donor, and using donor eggs or sperm in IVF or IUI to achieve pregnancy.
-          It is conducted under strict confidentiality and the highest ethical standards.
+          Whether the cause is a medical condition, a genetic disorder, or age-related fertility
+          decline, donor eggs and sperm offer a chance to experience the joy of having a baby. The
+          programme involves carefully screening and selecting healthy donors based on strict
+          medical criteria, retrieving eggs or sperm from a suitable donor, and using donor eggs or
+          sperm in IVF or IUI to achieve pregnancy. It is conducted under strict confidentiality and
+          the highest ethical standards.
         </p>
       </Prose>
 
@@ -152,10 +177,10 @@ function Page() {
       />
 
       <SafetyNote>
-        Donor sperm with IUI or IVF is a recognised route to pregnancy in India, governed by the Assisted
-        Reproductive Technology (Regulation) Act 2021 and the Surrogacy (Regulation) Act 2021. Specific
-        eligibility criteria under these Acts are confirmed with you directly at consultation, before
-        treatment planning begins.
+        Donor sperm with IUI or IVF is a recognised route to pregnancy in India, governed by the
+        Assisted Reproductive Technology (Regulation) Act 2021 and the Surrogacy (Regulation) Act
+        2021. Specific eligibility criteria under these Acts are confirmed with you directly at
+        consultation, before treatment planning begins.
       </SafetyNote>
     </ServicePage>
   );

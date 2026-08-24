@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ServicePage, Prose, DataTable, COMMON_RELATED } from "@/components/sections/ServicePage";
 import { SectionHeading, CheckList } from "@/components/sections/blocks";
 import { ROUTES } from "@/data/navigation";
-import { pageMeta, jsonLd, faqSchema, breadcrumbSchema } from "@/lib/seo";
+import { breadcrumbSchema, faqSchema, jsonLd, medicalWebPageSchema, pageMeta } from "@/lib/seo";
 
 const PATH = ROUTES.familyPlanning;
 
@@ -46,6 +46,15 @@ export const Route = createFileRoute("/family-planning-services-in-bangalore")({
       path: PATH,
     }),
     scripts: [
+      jsonLd(
+        medicalWebPageSchema({
+          title: "Family Planning Services in Bangalore | Neo Fertility",
+          description:
+            "Contraceptive counselling, IUD and implant fitting, and family planning advice in Marathahalli, Bengaluru, with Dr. Payal Mahapatra.",
+          path: PATH,
+          about: "Contraception and family planning",
+        }),
+      ),
       jsonLd(faqSchema(FAQS)),
       jsonLd(
         breadcrumbSchema([
@@ -112,8 +121,14 @@ function Page() {
         head={["Consideration", "Why it matters"]}
         rows={[
           ["Future pregnancy plans", "Some methods are more easily reversed than others"],
-          ["Health history", "Certain hormonal methods are unsuitable with some medical conditions"],
-          ["Tolerance of hormonal methods", "Non-hormonal options such as a copper IUD are available"],
+          [
+            "Health history",
+            "Certain hormonal methods are unsuitable with some medical conditions",
+          ],
+          [
+            "Tolerance of hormonal methods",
+            "Non-hormonal options such as a copper IUD are available",
+          ],
           ["How long protection is needed", "Options range from short-term to several years"],
         ]}
       />

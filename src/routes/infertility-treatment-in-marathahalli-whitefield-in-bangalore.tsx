@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ServicePage, Prose, DataTable, COMMON_RELATED } from "@/components/sections/ServicePage";
 import { SectionHeading, CheckList, SafetyNote } from "@/components/sections/blocks";
 import { ROUTES } from "@/data/navigation";
-import { pageMeta, jsonLd, faqSchema, breadcrumbSchema } from "@/lib/seo";
+import { breadcrumbSchema, faqSchema, jsonLd, medicalWebPageSchema, pageMeta } from "@/lib/seo";
 
 const PATH = ROUTES.infertility;
 
@@ -41,7 +41,9 @@ const FAQS = [
   },
 ];
 
-export const Route = createFileRoute("/infertility-treatment-in-marathahalli-whitefield-in-bangalore")({
+export const Route = createFileRoute(
+  "/infertility-treatment-in-marathahalli-whitefield-in-bangalore",
+)({
   head: () => ({
     ...pageMeta({
       title: "Infertility Treatment in Marathahalli, Whitefield | Neo Fertility",
@@ -50,6 +52,15 @@ export const Route = createFileRoute("/infertility-treatment-in-marathahalli-whi
       path: PATH,
     }),
     scripts: [
+      jsonLd(
+        medicalWebPageSchema({
+          title: "Infertility Treatment in Marathahalli, Whitefield | Neo Fertility",
+          description:
+            "Comprehensive infertility evaluation and treatment in Marathahalli, Bengaluru: causes, tests, and personalised treatment for both partners.",
+          path: PATH,
+          about: "Infertility",
+        }),
+      ),
       jsonLd(faqSchema(FAQS)),
       jsonLd(
         breadcrumbSchema([
@@ -86,8 +97,8 @@ function Page() {
         <p>
           Infertility can affect both men and women, and knowing the cause is the first step toward
           successful treatment. It is not always a single issue. It can be hormonal, structural, or
-          lifestyle-related. We carry out comprehensive evaluations to identify the exact reason and build a
-          personalised treatment plan.
+          lifestyle-related. We carry out comprehensive evaluations to identify the exact reason and
+          build a personalised treatment plan.
         </p>
       </Prose>
 
@@ -122,15 +133,16 @@ function Page() {
           />
         </div>
         <SafetyNote>
-          Did you know? In nearly 30 to 40 percent of infertility cases, both partners have contributing
-          factors. That is why a complete fertility evaluation for both men and women is essential.
+          Did you know? In nearly 30 to 40 percent of infertility cases, both partners have
+          contributing factors. That is why a complete fertility evaluation for both men and women
+          is essential.
         </SafetyNote>
       </section>
 
       <Prose title="Comprehensive fertility evaluation">
         <p>
-          Before starting any treatment, it is important to understand the root cause. We use a set of
-          advanced tests to build a personalised plan for each partner.
+          Before starting any treatment, it is important to understand the root cause. We use a set
+          of advanced tests to build a personalised plan for each partner.
         </p>
       </Prose>
 
@@ -152,16 +164,19 @@ function Page() {
         rows={[
           ["Semen analysis", "Sperm count, motility and morphology"],
           ["Hormonal testing", "Testosterone and other hormones affecting fertility"],
-          ["Physical examination", "Identifying structural or medical issues affecting sperm health"],
+          [
+            "Physical examination",
+            "Identifying structural or medical issues affecting sperm health",
+          ],
         ]}
       />
 
       <Prose title="What happens after the evaluation">
         <p>
-          We sit down with you to explain results in simple terms and discuss the best treatment options.
-          Unnecessary treatments are never pushed. You leave with a clear understanding of your fertility
-          status, a personalised treatment plan based on test results, and Dr. Payal Mahapatra's guidance
-          on next steps.
+          We sit down with you to explain results in simple terms and discuss the best treatment
+          options. Unnecessary treatments are never pushed. You leave with a clear understanding of
+          your fertility status, a personalised treatment plan based on test results, and Dr. Payal
+          Mahapatra's guidance on next steps.
         </p>
       </Prose>
 
@@ -169,13 +184,31 @@ function Page() {
         caption="Treatment options for women"
         head={["Treatment", "What it involves"]}
         rows={[
-          ["Ovulation induction therapy", "Medications to stimulate egg release for better chances of conception"],
-          ["Intrauterine insemination (IUI)", "A simple, non-invasive treatment that places healthy sperm directly into the uterus"],
-          ["In-vitro fertilization (IVF)", "A highly effective assisted reproductive technique to help women conceive"],
-          ["Intracytoplasmic sperm injection (ICSI)", "Best for severe male infertility; a single healthy sperm is injected directly into an egg"],
+          [
+            "Ovulation induction therapy",
+            "Medications to stimulate egg release for better chances of conception",
+          ],
+          [
+            "Intrauterine insemination (IUI)",
+            "A simple, non-invasive treatment that places healthy sperm directly into the uterus",
+          ],
+          [
+            "In-vitro fertilization (IVF)",
+            "A highly effective assisted reproductive technique to help women conceive",
+          ],
+          [
+            "Intracytoplasmic sperm injection (ICSI)",
+            "Best for severe male infertility; a single healthy sperm is injected directly into an egg",
+          ],
           ["Egg freezing and preservation", "Preserving eggs for future pregnancy planning"],
-          ["Endometriosis and PCOS management", "Tailored treatment for women facing ovulation issues due to hormonal disorders"],
-          ["Hysteroscopy and laparoscopy", "Minimally invasive procedures to diagnose and treat uterine or tubal issues"],
+          [
+            "Endometriosis and PCOS management",
+            "Tailored treatment for women facing ovulation issues due to hormonal disorders",
+          ],
+          [
+            "Hysteroscopy and laparoscopy",
+            "Minimally invasive procedures to diagnose and treat uterine or tubal issues",
+          ],
         ]}
       />
 
@@ -183,12 +216,24 @@ function Page() {
         caption="Treatment options for men"
         head={["Treatment", "What it involves"]}
         rows={[
-          ["Semen analysis and diagnosis", "Comprehensive sperm health evaluation covering count, motility and morphology"],
+          [
+            "Semen analysis and diagnosis",
+            "Comprehensive sperm health evaluation covering count, motility and morphology",
+          ],
           ["Hormonal therapy", "Treating imbalances affecting sperm production"],
-          ["Lifestyle and nutritional guidance", "Improving fertility through diet, exercise and stress management"],
+          [
+            "Lifestyle and nutritional guidance",
+            "Improving fertility through diet, exercise and stress management",
+          ],
           ["Medications and supplements", "Enhancing sperm quality for better conception chances"],
-          ["Surgical sperm retrieval (TESA/PESA)", "Extracting sperm directly in cases of low sperm count or blockages"],
-          ["ICSI", "Best for severe male infertility, injecting a single healthy sperm directly into the egg"],
+          [
+            "Surgical sperm retrieval (TESA/PESA)",
+            "Extracting sperm directly in cases of low sperm count or blockages",
+          ],
+          [
+            "ICSI",
+            "Best for severe male infertility, injecting a single healthy sperm directly into the egg",
+          ],
           ["Donor sperm programmes", "Providing solutions when natural conception is not possible"],
         ]}
       />

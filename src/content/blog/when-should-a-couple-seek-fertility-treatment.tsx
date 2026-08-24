@@ -2,6 +2,7 @@ import { Prose } from "@/components/sections/ServicePage";
 import { ROUTES } from "@/data/navigation";
 import { CLINIC } from "@/lib/clinic";
 import cover from "@/assets/treatment-fertility-diagnosis.webp";
+import ogCover from "@/assets/og/og-treatment-fertility-diagnosis.jpg";
 import avatar from "@/assets/dr-payal-avatar.webp";
 import type { BlogPostMeta } from "./types";
 
@@ -23,6 +24,7 @@ export const meta: BlogPostMeta = {
     alt: "A doctor holding an anatomical model of the uterus while consulting with a couple",
     width: 720,
     height: 360,
+    ogSrc: ogCover,
   },
   metaTitle: "When Should a Couple Seek Fertility Treatment? | Neo Fertility",
   metaDescription:

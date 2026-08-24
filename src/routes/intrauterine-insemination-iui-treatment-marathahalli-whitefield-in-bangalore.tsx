@@ -8,7 +8,14 @@ import stepProcedure from "@/assets/iui-iui_procedure.jpg";
 import stepCare from "@/assets/iui-post_procedure_care.jpg";
 import stepTest from "@/assets/iui-Pregnancy_test.jpg";
 import { ROUTES } from "@/data/navigation";
-import { pageMeta, jsonLd, faqSchema, breadcrumbSchema } from "@/lib/seo";
+import {
+  breadcrumbSchema,
+  faqSchema,
+  jsonLd,
+  medicalWebPageSchema,
+  pageMeta,
+  serviceSchema,
+} from "@/lib/seo";
 
 const PATH = ROUTES.iui;
 
@@ -47,7 +54,9 @@ const FAQS = [
   },
 ];
 
-export const Route = createFileRoute("/intrauterine-insemination-iui-treatment-marathahalli-whitefield-in-bangalore")({
+export const Route = createFileRoute(
+  "/intrauterine-insemination-iui-treatment-marathahalli-whitefield-in-bangalore",
+)({
   head: () => ({
     ...pageMeta({
       title: "IUI Treatment in Marathahalli, Whitefield | Neo Fertility",
@@ -56,6 +65,23 @@ export const Route = createFileRoute("/intrauterine-insemination-iui-treatment-m
       path: PATH,
     }),
     scripts: [
+      jsonLd(
+        medicalWebPageSchema({
+          title: "IUI Treatment in Marathahalli, Whitefield | Neo Fertility",
+          description:
+            "IUI in Marathahalli and Whitefield, Bengaluru: how it works, who it suits, success rates and how it compares with IVF.",
+          path: PATH,
+          about: "Intrauterine insemination",
+        }),
+      ),
+      jsonLd(
+        serviceSchema({
+          name: "Intrauterine Insemination (IUI)",
+          description:
+            "IUI in Marathahalli and Whitefield, Bengaluru: how it works, who it suits, success rates and how it compares with IVF.",
+          path: PATH,
+        }),
+      ),
       jsonLd(faqSchema(FAQS)),
       jsonLd(
         breadcrumbSchema([
@@ -90,11 +116,12 @@ function Page() {
     >
       <Prose title="Understanding IUI">
         <p>
-          IUI is one of the most commonly recommended fertility treatments for couples trying to conceive
-          naturally but facing challenges. It is a quick, minimally invasive procedure that enhances the
-          chances of pregnancy. Specially prepared sperm is placed directly into the uterus during ovulation
-          to improve the chances of fertilisation. The procedure is painless, takes just a few minutes, and
-          improves the chances of conception for many couples.
+          IUI is one of the most commonly recommended fertility treatments for couples trying to
+          conceive naturally but facing challenges. It is a quick, minimally invasive procedure that
+          enhances the chances of pregnancy. Specially prepared sperm is placed directly into the
+          uterus during ovulation to improve the chances of fertilisation. The procedure is
+          painless, takes just a few minutes, and improves the chances of conception for many
+          couples.
         </p>
       </Prose>
 
@@ -151,16 +178,16 @@ function Page() {
         />
       </section>
 
-
       <Prose title="Is IUI right for you">
         <p>
-          IUI is an excellent option for those who have mild male infertility issues such as low sperm
-          motility or count, women with ovulation problems that make it harder for sperm to reach the egg,
-          those using donor sperm, or couples with unexplained infertility where no obvious cause is found.
+          IUI is an excellent option for those who have mild male infertility issues such as low
+          sperm motility or count, women with ovulation problems that make it harder for sperm to
+          reach the egg, those using donor sperm, or couples with unexplained infertility where no
+          obvious cause is found.
         </p>
         <p>
-          IUI may not be suitable for those with severe male infertility, blocked fallopian tubes, or
-          certain other conditions. These are assessed at your evaluation.
+          IUI may not be suitable for those with severe male infertility, blocked fallopian tubes,
+          or certain other conditions. These are assessed at your evaluation.
         </p>
       </Prose>
 
@@ -184,9 +211,9 @@ function Page() {
       />
 
       <SafetyNote>
-        IUI is often the first step before IVF and works well for many couples, particularly with mild
-        male-factor or unexplained infertility. Most doctors recommend 3 to 6 cycles of IUI before
-        considering IVF.
+        IUI is often the first step before IVF and works well for many couples, particularly with
+        mild male-factor or unexplained infertility. Most doctors recommend 3 to 6 cycles of IUI
+        before considering IVF.
       </SafetyNote>
     </ServicePage>
   );

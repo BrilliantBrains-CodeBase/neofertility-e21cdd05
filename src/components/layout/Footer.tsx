@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Facebook, Instagram, Linkedin, Youtube, MapPin, Phone, Mail, Clock } from "lucide-react";
-import { CLINIC } from "@/lib/clinic";
+import { CLINIC, isConfigured } from "@/lib/clinic";
 import { FERTILITY_MENU, GYNECOLOGY_MENU, ROUTES } from "@/data/navigation";
 import logoAsset from "@/assets/neo-logo-trimmed.png";
 /* Its own asset, not the shared appointment-mother-baby.webp: that file is also the
@@ -157,7 +157,17 @@ export function Footer() {
           <div className="mt-12 grid gap-x-8 gap-y-6 border-t border-line pt-8 sm:grid-cols-2 lg:grid-cols-[1.2fr_1fr_1fr_1fr] lg:gap-x-8">
             <p className="flex gap-3 text-[0.9375rem] text-ink-muted">
               <MapPin className="mt-0.5 size-4 shrink-0 text-pink-700" aria-hidden />
-              <span>{CLINIC.addressLine}</span>
+              {/* The address text is unchanged — it has to match the Google Business
+                  Profile listing character for character — but it now carries the
+                  directions link rather than sitting inert. */}
+              <a
+                className="hover:text-pink-700"
+                href={CLINIC.directionsUrl}
+                target="_blank"
+                rel="noreferrer"
+              >
+                {CLINIC.addressLine}
+              </a>
             </p>
             <p className="flex gap-3 text-[0.9375rem] text-ink-muted">
               <Phone className="mt-0.5 size-4 shrink-0 text-pink-700" aria-hidden />
@@ -194,9 +204,22 @@ export function Footer() {
                 </a>
               ))}
             </div>
-            <p className="text-[0.8125rem] text-ink-muted">
-              © {new Date().getFullYear()} Neo Fertility Clinic. All rights reserved.
-            </p>
+            <div className="flex flex-col gap-2 sm:items-end">
+              {/* Hidden until CLINIC.google.reviewUrl is filled in — see isConfigured. */}
+              {isConfigured(CLINIC.google.reviewUrl) && (
+                <a
+                  className="text-[0.8125rem] text-ink-muted underline underline-offset-4 hover:text-pink-700"
+                  href={CLINIC.google.reviewUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Review us on Google
+                </a>
+              )}
+              <p className="text-[0.8125rem] text-ink-muted">
+                © {new Date().getFullYear()} Neo Fertility Clinic. All rights reserved.
+              </p>
+            </div>
           </div>
         </div>
 

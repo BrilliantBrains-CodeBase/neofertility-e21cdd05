@@ -15,7 +15,14 @@ import {
 import { Prose, DataTable } from "@/components/sections/ServicePage";
 import { CLINIC, DEFAULT_WHATSAPP_MESSAGE, track } from "@/lib/clinic";
 import { ROUTES } from "@/data/navigation";
-import { pageMeta, jsonLd, faqSchema, breadcrumbSchema } from "@/lib/seo";
+import {
+  OG_CLINIC,
+  breadcrumbSchema,
+  faqSchema,
+  jsonLd,
+  locationSchema,
+  pageMeta,
+} from "@/lib/seo";
 
 const PATH = ROUTES.bellandur;
 const SOURCE_PAGE = "bellandur";
@@ -46,8 +53,18 @@ export const Route = createFileRoute("/fertility-clinic-in-bellandur-bangalore")
       description:
         "Fertility and IVF treatment for patients from Bellandur, Bangalore. IVF, IUI, ICSI, egg freezing and PCOS care with Dr. Payal Mahapatra, on Marathahalli Bridge Road.",
       path: PATH,
+      image: OG_CLINIC,
     }),
     scripts: [
+      jsonLd(
+        locationSchema({
+          area: "Bellandur",
+          title: "Fertility Clinic Near Bellandur, Bangalore | Neo Fertility",
+          description:
+            "Fertility and IVF treatment for patients from Bellandur, Bangalore. IVF, IUI, ICSI, egg freezing and PCOS care with Dr. Payal Mahapatra, on Marathahalli Bridge Road.",
+          path: PATH,
+        }),
+      ),
       jsonLd(faqSchema(FAQS)),
       jsonLd(
         breadcrumbSchema([

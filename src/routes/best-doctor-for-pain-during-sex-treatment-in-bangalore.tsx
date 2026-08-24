@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ServicePage, Prose, DataTable, COMMON_RELATED } from "@/components/sections/ServicePage";
 import { SectionHeading, CheckList, SafetyNote } from "@/components/sections/blocks";
 import { ROUTES } from "@/data/navigation";
-import { pageMeta, jsonLd, faqSchema, breadcrumbSchema } from "@/lib/seo";
+import { breadcrumbSchema, faqSchema, jsonLd, medicalWebPageSchema, pageMeta } from "@/lib/seo";
 
 const PATH = ROUTES.painDuringSex;
 
@@ -46,6 +46,15 @@ export const Route = createFileRoute("/best-doctor-for-pain-during-sex-treatment
       path: PATH,
     }),
     scripts: [
+      jsonLd(
+        medicalWebPageSchema({
+          title: "Pain During Sex Treatment in Marathahalli | Neo Fertility",
+          description:
+            "Confidential evaluation and treatment for pain during intercourse in Marathahalli, Bengaluru, with Dr. Payal Mahapatra, female gynecologist.",
+          path: PATH,
+          about: "Dyspareunia",
+        }),
+      ),
       jsonLd(faqSchema(FAQS)),
       jsonLd(
         breadcrumbSchema([
@@ -123,16 +132,22 @@ function Page() {
         head={["Cause", "Typical treatment"]}
         rows={[
           ["Vaginal infection", "Targeted medication once the specific infection is identified"],
-          ["Vaginismus", "Targeted physiotherapy and, where needed, graded desensitisation support"],
+          [
+            "Vaginismus",
+            "Targeted physiotherapy and, where needed, graded desensitisation support",
+          ],
           ["Endometriosis", "Hormonal therapy or laparoscopic surgery, depending on severity"],
           ["Hormonal dryness", "Topical or hormonal treatment matched to your history"],
-          ["Pelvic inflammatory disease", "Prompt antibiotic treatment to limit damage to the fallopian tubes"],
+          [
+            "Pelvic inflammatory disease",
+            "Prompt antibiotic treatment to limit damage to the fallopian tubes",
+          ],
         ]}
       />
 
       <SafetyNote>
-        Pelvic pain together with discharge should be seen the same week. Untreated pelvic
-        infection can scar the fallopian tubes within weeks and affect future fertility.
+        Pelvic pain together with discharge should be seen the same week. Untreated pelvic infection
+        can scar the fallopian tubes within weeks and affect future fertility.
       </SafetyNote>
 
       <Prose title="What to expect at the visit">

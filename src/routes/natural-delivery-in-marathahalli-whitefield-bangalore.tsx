@@ -5,13 +5,20 @@ import { AppointmentSheet } from "@/components/conversion/AppointmentSheet";
 import { ServicePage, Prose, COMMON_RELATED } from "@/components/sections/ServicePage";
 import { SectionHeading, StepList, CheckList } from "@/components/sections/blocks";
 import { ROUTES } from "@/data/navigation";
-import { pageMeta, jsonLd, faqSchema, breadcrumbSchema } from "@/lib/seo";
+import {
+  breadcrumbSchema,
+  faqSchema,
+  jsonLd,
+  medicalWebPageSchema,
+  pageMeta,
+  serviceSchema,
+} from "@/lib/seo";
 
 /* Passed to pageMeta without the trailing slash. pageMeta appends one itself, so handing
    it the ROUTES value (which already ends in "/") renders a canonical with a double
    slash — see the note in the handover. ROUTES.naturalDelivery stays the source of truth
    for every href; this constant only feeds the meta helpers. */
-const PATH = "/natural-delivery-in-marathahalli-whitefield-bangalore";
+const PATH = ROUTES.naturalDelivery;
 const SOURCE_PAGE = "natural-delivery";
 
 const STEPS = [
@@ -81,6 +88,23 @@ export const Route = createFileRoute("/natural-delivery-in-marathahalli-whitefie
       path: PATH,
     }),
     scripts: [
+      jsonLd(
+        medicalWebPageSchema({
+          title: "Natural Delivery in Marathahalli, Whitefield | Neo Fertility",
+          description:
+            "Prepare for a safe, natural delivery in Marathahalli & Whitefield, Bangalore. Nutrition, movement and expert labour support with Dr. Payal Mahapatra at Neo Fertility.",
+          path: PATH,
+          about: "Vaginal delivery",
+        }),
+      ),
+      jsonLd(
+        serviceSchema({
+          name: "Natural Delivery",
+          description:
+            "Prepare for a safe, natural delivery in Marathahalli & Whitefield, Bangalore. Nutrition, movement and expert labour support with Dr. Payal Mahapatra at Neo Fertility.",
+          path: PATH,
+        }),
+      ),
       jsonLd(faqSchema(FAQS)),
       jsonLd(
         breadcrumbSchema([

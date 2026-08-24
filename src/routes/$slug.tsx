@@ -5,8 +5,8 @@ import { BlogSidebar } from "@/components/blog/BlogSidebar";
 import { ShareArticle } from "@/components/blog/ShareArticle";
 import { NextPost } from "@/components/blog/NextPost";
 import { CATEGORIES, getPost, getNextPost, getOtherPosts, postPath } from "@/content/blog";
-import { ROUTES, SITE_URL } from "@/data/navigation";
-import { pageMeta, jsonLd, breadcrumbSchema, articleSchema } from "@/lib/seo";
+import { ROUTES } from "@/data/navigation";
+import { pageMeta, jsonLd, breadcrumbSchema, articleSchema, absoluteAsset } from "@/lib/seo";
 
 /**
  * Blog article template.
@@ -27,7 +27,14 @@ export const Route = createFileRoute("/$slug")({
     if (!post) return {};
 
     const path = postPath(post.slug);
-    const image = `${SITE_URL}${post.cover.src}`;
+    /* The cover doubles as the share card. Its real intrinsic size travels with it so
+       og:image:width/height describe the file rather than guessing 1200x630. */
+    const image = {
+      src: post.cover.ogSrc ?? post.cover.src,
+      width: post.cover.width,
+      height: post.cover.height,
+      alt: post.cover.alt,
+    };
 
     return {
       ...pageMeta({
@@ -50,7 +57,7 @@ export const Route = createFileRoute("/$slug")({
             title: post.title,
             description: post.metaDescription,
             path,
-            image,
+            image: absoluteAsset(post.cover.ogSrc ?? post.cover.src),
             author: post.author.name,
           }),
         ),

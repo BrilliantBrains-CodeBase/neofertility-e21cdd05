@@ -2,7 +2,14 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ServicePage, Prose, DataTable, COMMON_RELATED } from "@/components/sections/ServicePage";
 import { SafetyNote, StepList } from "@/components/sections/blocks";
 import { ROUTES } from "@/data/navigation";
-import { pageMeta, jsonLd, faqSchema, breadcrumbSchema } from "@/lib/seo";
+import {
+  breadcrumbSchema,
+  faqSchema,
+  jsonLd,
+  medicalWebPageSchema,
+  pageMeta,
+  serviceSchema,
+} from "@/lib/seo";
 
 const FAQS = [
   {
@@ -31,21 +38,41 @@ const FAQS = [
   },
 ];
 
-export const Route = createFileRoute("/laparoscopic-surgery-for-infertility-in-marathahalli-bangalore")({
+export const Route = createFileRoute(
+  "/laparoscopic-surgery-for-infertility-in-marathahalli-bangalore",
+)({
   head: () => ({
     ...pageMeta({
       title: "Laparoscopic Surgery for Infertility | Marathahalli",
       description:
         "Minimally invasive laparoscopic surgery for endometriosis, adhesions, ovarian cysts and tubal disease in Marathahalli, Bengaluru.",
-      path: "/laparoscopic-surgery-for-infertility-in-marathahalli-bangalore",
+      path: ROUTES.laparoscopy,
     }),
     scripts: [
+      jsonLd(
+        medicalWebPageSchema({
+          title: "Laparoscopic Surgery for Infertility | Marathahalli",
+          description:
+            "Minimally invasive laparoscopic surgery for endometriosis, adhesions, ovarian cysts and tubal disease in Marathahalli, Bengaluru.",
+          path: ROUTES.laparoscopy,
+          about: "Laparoscopic surgery",
+        }),
+      ),
+      jsonLd(
+        serviceSchema({
+          name: "Laparoscopic Surgery for Infertility",
+          description:
+            "Minimally invasive laparoscopic surgery for endometriosis, adhesions, ovarian cysts and tubal disease in Marathahalli, Bengaluru.",
+          path: ROUTES.laparoscopy,
+          procedureType: "SurgicalProcedure",
+        }),
+      ),
       jsonLd(faqSchema(FAQS)),
       jsonLd(
         breadcrumbSchema([
           { name: "Home", path: ROUTES.home },
           { name: "Gynecology Treatments", path: ROUTES.gynecologyTreatments },
-          { name: "Laparoscopic Surgery", path: "/laparoscopic-surgery-for-infertility-in-marathahalli-bangalore" },
+          { name: "Laparoscopic Surgery", path: ROUTES.laparoscopy },
         ]),
       ),
     ],
@@ -85,10 +112,19 @@ function LaparoscopyPage() {
           caption="What laparoscopy addresses"
           head={["Condition", "How laparoscopy helps"]}
           rows={[
-            ["Endometriosis", "Removal or ablation of endometriotic deposits and associated adhesions"],
+            [
+              "Endometriosis",
+              "Removal or ablation of endometriotic deposits and associated adhesions",
+            ],
             ["Pelvic adhesions", "Division of scar tissue restoring normal pelvic anatomy"],
-            ["Ovarian cysts", "Removal of the cyst while preserving healthy ovarian tissue where possible"],
-            ["Tubal disease", "Assessment of tubal patency, and repair or removal where a tube is damaged"],
+            [
+              "Ovarian cysts",
+              "Removal of the cyst while preserving healthy ovarian tissue where possible",
+            ],
+            [
+              "Tubal disease",
+              "Assessment of tubal patency, and repair or removal where a tube is damaged",
+            ],
             ["PCOS/PMOS, drug-resistant", "Ovarian drilling to help restore ovulation"],
           ]}
         />

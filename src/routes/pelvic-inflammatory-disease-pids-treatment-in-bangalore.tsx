@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ServicePage, Prose, DataTable, COMMON_RELATED } from "@/components/sections/ServicePage";
 import { SafetyNote } from "@/components/sections/blocks";
 import { ROUTES } from "@/data/navigation";
-import { pageMeta, jsonLd, faqSchema, breadcrumbSchema } from "@/lib/seo";
+import { breadcrumbSchema, faqSchema, jsonLd, medicalWebPageSchema, pageMeta } from "@/lib/seo";
 
 const FAQS = [
   {
@@ -37,15 +37,24 @@ export const Route = createFileRoute("/pelvic-inflammatory-disease-pids-treatmen
       title: "Pelvic Inflammatory Disease (PID) Treatment | Bangalore",
       description:
         "Prompt diagnosis and treatment of pelvic inflammatory disease in Bengaluru to prevent tubal damage and protect fertility.",
-      path: "/pelvic-inflammatory-disease-pids-treatment-in-bangalore",
+      path: ROUTES.pid,
     }),
     scripts: [
+      jsonLd(
+        medicalWebPageSchema({
+          title: "Pelvic Inflammatory Disease (PID) Treatment | Bangalore",
+          description:
+            "Prompt diagnosis and treatment of pelvic inflammatory disease in Bengaluru to prevent tubal damage and protect fertility.",
+          path: ROUTES.pid,
+          about: "Pelvic inflammatory disease",
+        }),
+      ),
       jsonLd(faqSchema(FAQS)),
       jsonLd(
         breadcrumbSchema([
           { name: "Home", path: ROUTES.home },
           { name: "Gynecology Treatments", path: ROUTES.gynecologyTreatments },
-          { name: "Pelvic Inflammatory Disease", path: "/pelvic-inflammatory-disease-pids-treatment-in-bangalore" },
+          { name: "Pelvic Inflammatory Disease", path: ROUTES.pid },
         ]),
       ),
     ],
@@ -97,8 +106,8 @@ function PidPage() {
       <Prose title="Causes">
         <p>
           Most commonly an ascending sexually transmitted infection reaching the uterus and
-          fallopian tubes. Less commonly, infection following a procedure that breaches the
-          cervical barrier.
+          fallopian tubes. Less commonly, infection following a procedure that breaches the cervical
+          barrier.
         </p>
       </Prose>
 
@@ -116,7 +125,10 @@ function PidPage() {
           rows={[
             ["Mild to moderate", "Full oral antibiotic course, with review to confirm resolution"],
             ["Moderate with poor response", "Injectable antibiotics, closer monitoring"],
-            ["Severe or abscess present", "Hospital admission, intravenous antibiotics, drainage if required"],
+            [
+              "Severe or abscess present",
+              "Hospital admission, intravenous antibiotics, drainage if required",
+            ],
           ]}
         />
         <p>

@@ -14,7 +14,7 @@ import {
 import { Prose, DataTable, COMMON_RELATED } from "@/components/sections/ServicePage";
 import { CLINIC, DEFAULT_WHATSAPP_MESSAGE, track } from "@/lib/clinic";
 import { ROUTES } from "@/data/navigation";
-import { pageMeta, jsonLd, faqSchema, breadcrumbSchema } from "@/lib/seo";
+import { breadcrumbSchema, faqSchema, jsonLd, medicalWebPageSchema, pageMeta } from "@/lib/seo";
 
 const PATH = ROUTES.ivfCost;
 const SOURCE_PAGE = "ivf-cost-in-bangalore";
@@ -51,6 +51,15 @@ export const Route = createFileRoute("/ivf-cost-in-bangalore")({
       path: PATH,
     }),
     scripts: [
+      jsonLd(
+        medicalWebPageSchema({
+          title: "IVF Cost in Bangalore 2026 | Transparent Pricing | Neo Fertility",
+          description:
+            "IVF, ICSI, sperm retrieval and frozen embryo transfer costs at Neo Fertility Clinic, Marathahalli, Bangalore. What is included, what varies, and EMI options.",
+          path: PATH,
+          about: "Cost of IVF treatment",
+        }),
+      ),
       jsonLd(faqSchema(FAQS)),
       jsonLd(
         breadcrumbSchema([

@@ -8,7 +8,7 @@ import { PageHero, SectionHeading, RelatedLinks } from "@/components/sections/bl
 import { Prose, COMMON_RELATED } from "@/components/sections/ServicePage";
 import { DEFAULT_WHATSAPP_MESSAGE } from "@/lib/clinic";
 import { ROUTES } from "@/data/navigation";
-import { pageMeta, jsonLd, breadcrumbSchema } from "@/lib/seo";
+import { breadcrumbSchema, jsonLd, medicalWebPageSchema, pageMeta } from "@/lib/seo";
 
 const PATH = ROUTES.ovulationCalculator;
 const SOURCE_PAGE = "ovulation-calculator";
@@ -22,6 +22,15 @@ export const Route = createFileRoute("/ovulation-calculator")({
       path: PATH,
     }),
     scripts: [
+      jsonLd(
+        medicalWebPageSchema({
+          title: "Ovulation Calculator | Neo Fertility Clinic, Bangalore",
+          description:
+            "Estimate your ovulation day and fertile window from your last period date and cycle length. An estimate only, less reliable with irregular cycles.",
+          path: PATH,
+          about: "Ovulation and fertile window",
+        }),
+      ),
       jsonLd(
         breadcrumbSchema([
           { name: "Home", path: ROUTES.home },

@@ -22,6 +22,27 @@ export const CLINIC = {
     "https://www.google.com/maps?q=Scorpio+House+Marathahalli+Bridge+Service+Road+Munnekolala+Bengaluru+560037&output=embed",
   directionsUrl:
     "https://www.google.com/maps/dir/?api=1&destination=Scorpio+House+Marathahalli+Bridge+Service+Road+Munnekolala+Bengaluru+560037",
+  /* Coordinates of the Marathahalli clinic. Single source of truth: `clinicSchema`
+     read a hardcoded pair before this existed, so the geo meta tags and the JSON-LD
+     could disagree without anything failing. */
+  geo: { latitude: 12.9569, longitude: 77.7011 },
+  /* Google Business Profile. These tie the domain to the GBP listing: `businessProfile`
+     goes into schema `sameAs`, `reviewUrl` is the footer "Review us on Google" link.
+     Anything still holding an `[ADD ...]` placeholder is dropped by `isConfigured`
+     below, so a placeholder never reaches the page or the structured data.
+     TODO: add reviewUrl from the GBP dashboard ("Ask for reviews" -> copy link). */
+  google: {
+    /* Canonical form of the listing, resolved from the share.google link the clinic
+       supplied (CID 1851221529633718164). Preferred over the share URL because that one
+       carries session parameters (lsig, shem, shndl) and can rot; the CID identifies the
+       listing permanently. */
+    businessProfile: "https://www.google.com/maps?cid=1851221529633718164",
+    /* Derived from the same CID. The `writereview` endpoint needs a Place ID rather than
+       a CID, so this uses the Maps form instead. It responds 200, but Maps decides what
+       to show client-side — click it once to confirm it opens the review dialog, and
+       replace it with the "Ask for reviews" link from the GBP dashboard if it does not. */
+    reviewUrl: "https://www.google.com/maps?cid=1851221529633718164&action=write_review",
+  },
   social: {
     facebook: "https://facebook.com/NeoFertilityClinic",
     instagram: "https://instagram.com/neofertilityclinic",
@@ -33,6 +54,17 @@ export const CLINIC = {
   catchment:
     "Patients travel to us from Marathahalli, Whitefield, Bellandur, Brookefield, Kundalahalli, Varthur, Hoodi, Mahadevpura, HSR Layout, Koramangala, BTM Layout, CV Raman Nagar, KR Puram, Banaswadi, Kalyan Nagar, Kammanahalli, Horamavu, Ramamurthy Nagar, HBR Layout and Lingarajpuram.",
 } as const;
+
+/**
+ * Whether a CLINIC field has had its `[ADD ...]` placeholder replaced.
+ *
+ * Guards both the JSON-LD (a placeholder string in `sameAs` reads to Google as a broken
+ * link on the entity) and the UI (a link to "[ADD GOOGLE REVIEW LINK]" is a dead link on
+ * a live page). Filling the value in above switches every consumer on at once.
+ */
+export function isConfigured(value: string): boolean {
+  return Boolean(value) && !value.startsWith("[ADD");
+}
 
 export const CLINICAL_VOLUME = [
   { figure: "18", label: "Years Experience" },

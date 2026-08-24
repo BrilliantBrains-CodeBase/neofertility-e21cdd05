@@ -3,6 +3,7 @@ import { Prose } from "@/components/sections/ServicePage";
 import { ROUTES } from "@/data/navigation";
 import { CLINIC } from "@/lib/clinic";
 import cover from "@/assets/treatment-male-infertility.webp";
+import ogCover from "@/assets/og/og-treatment-male-infertility.jpg";
 import avatar from "@/assets/dr-payal-avatar.webp";
 import type { BlogPostMeta } from "./types";
 
@@ -24,6 +25,7 @@ export const meta: BlogPostMeta = {
     alt: "A man sitting on a bed with his head in his hands, beside an illustration of a sperm cell under a magnifying glass",
     width: 720,
     height: 360,
+    ogSrc: ogCover,
   },
   metaTitle: "Male Infertility: Causes, Diagnosis and Treatment | Neo Fertility",
   metaDescription:

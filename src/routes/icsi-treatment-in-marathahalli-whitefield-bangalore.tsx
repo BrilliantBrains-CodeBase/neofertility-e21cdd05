@@ -9,7 +9,14 @@ import injection from "@/assets/icsi-sperm-injection.jpg";
 import embryo from "@/assets/icsi-embryo-development.jpg";
 import pregnancyTest from "@/assets/icsi-transfer-test.jpg";
 import { ROUTES } from "@/data/navigation";
-import { pageMeta, jsonLd, faqSchema, breadcrumbSchema } from "@/lib/seo";
+import {
+  breadcrumbSchema,
+  faqSchema,
+  jsonLd,
+  medicalWebPageSchema,
+  pageMeta,
+  serviceSchema,
+} from "@/lib/seo";
 
 const PATH = ROUTES.icsi;
 
@@ -49,6 +56,23 @@ export const Route = createFileRoute("/icsi-treatment-in-marathahalli-whitefield
       path: PATH,
     }),
     scripts: [
+      jsonLd(
+        medicalWebPageSchema({
+          title: "ICSI Treatment in Marathahalli, Whitefield | Neo Fertility",
+          description:
+            "ICSI for male infertility in Marathahalli and Whitefield, Bengaluru: how it works, costs, and success factors.",
+          path: PATH,
+          about: "Intracytoplasmic sperm injection",
+        }),
+      ),
+      jsonLd(
+        serviceSchema({
+          name: "Intracytoplasmic Sperm Injection (ICSI)",
+          description:
+            "ICSI for male infertility in Marathahalli and Whitefield, Bengaluru: how it works, costs, and success factors.",
+          path: PATH,
+        }),
+      ),
       jsonLd(faqSchema(FAQS)),
       jsonLd(
         breadcrumbSchema([
@@ -84,10 +108,10 @@ function Page() {
       <Prose title="What ICSI is">
         <p>
           ICSI is an advanced form of assisted reproductive technology used alongside IVF to improve
-          fertilisation rates where sperm quality, quantity, or motility is an issue. Unlike conventional
-          IVF, where sperm fertilises the egg naturally in a petri dish, ICSI ensures that a single selected
-          sperm is precisely injected into the egg using a microneedle. This high-precision technique
-          bypasses sperm-related fertility issues.
+          fertilisation rates where sperm quality, quantity, or motility is an issue. Unlike
+          conventional IVF, where sperm fertilises the egg naturally in a petri dish, ICSI ensures
+          that a single selected sperm is precisely injected into the egg using a microneedle. This
+          high-precision technique bypasses sperm-related fertility issues.
         </p>
       </Prose>
 
@@ -139,7 +163,6 @@ function Page() {
           { when: "Week 6", what: "Pregnancy test to confirm success" },
         ]}
       />
-
 
       <section>
         <SectionHeading eyebrow="Who benefits" title="ICSI is best suited to" />

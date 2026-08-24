@@ -6,7 +6,7 @@ import menoConsultation from "@/assets/meno-consultation.jpg";
 import menoAssessment from "@/assets/meno-assessment.jpg";
 import menoPlan from "@/assets/meno-plan.jpg";
 import { ROUTES } from "@/data/navigation";
-import { pageMeta, jsonLd, faqSchema, breadcrumbSchema } from "@/lib/seo";
+import { breadcrumbSchema, faqSchema, jsonLd, medicalWebPageSchema, pageMeta } from "@/lib/seo";
 
 const FAQS = [
   {
@@ -47,9 +47,18 @@ export const Route = createFileRoute(
       title: "Period Problems & Menstrual Disorder Treatment | Marathahalli",
       description:
         "Treatment for heavy bleeding, painful periods, irregular cycles and menopausal symptoms in Marathahalli, Bengaluru, with Dr. Payal Mahapatra.",
-      path: "/menstrual-bleeding-and-irregular-period-treatment-in-marathahalli-bangalore",
+      path: ROUTES.menstrual,
     }),
     scripts: [
+      jsonLd(
+        medicalWebPageSchema({
+          title: "Period Problems & Menstrual Disorder Treatment | Marathahalli",
+          description:
+            "Treatment for heavy bleeding, painful periods, irregular cycles and menopausal symptoms in Marathahalli, Bengaluru, with Dr. Payal Mahapatra.",
+          path: ROUTES.menstrual,
+          about: "Menstrual disorders",
+        }),
+      ),
       jsonLd(faqSchema(FAQS)),
       jsonLd(
         breadcrumbSchema([
@@ -57,7 +66,7 @@ export const Route = createFileRoute(
           { name: "Gynecology Treatments", path: ROUTES.gynecologyTreatments },
           {
             name: "Menstrual & Period Disorders",
-            path: "/menstrual-bleeding-and-irregular-period-treatment-in-marathahalli-bangalore",
+            path: ROUTES.menstrual,
           },
         ]),
       ),

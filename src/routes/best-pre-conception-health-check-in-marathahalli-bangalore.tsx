@@ -8,7 +8,14 @@ import testingImg from "@/assets/visit-testing.jpg";
 import reviewImg from "@/assets/visit-review.jpg";
 import supplementsImg from "@/assets/visit-supplements.jpg";
 import { ROUTES } from "@/data/navigation";
-import { pageMeta, jsonLd, faqSchema, breadcrumbSchema } from "@/lib/seo";
+import {
+  breadcrumbSchema,
+  faqSchema,
+  jsonLd,
+  medicalWebPageSchema,
+  pageMeta,
+  serviceSchema,
+} from "@/lib/seo";
 
 const PATH = ROUTES.preconception;
 
@@ -53,6 +60,24 @@ export const Route = createFileRoute("/best-pre-conception-health-check-in-marat
         path: PATH,
       }),
       scripts: [
+        jsonLd(
+          medicalWebPageSchema({
+            title: "Pre-Conception Health Check in Marathahalli | Neo Fertility",
+            description:
+              "Preconception health screening in Marathahalli, Bengaluru: hormone profile, pelvic ultrasound, infection screening and semen analysis before you start trying to conceive.",
+            path: PATH,
+            about: "Preconception care",
+          }),
+        ),
+        jsonLd(
+          serviceSchema({
+            name: "Pre-Conception Health Check",
+            description:
+              "Preconception health screening in Marathahalli, Bengaluru: hormone profile, pelvic ultrasound, infection screening and semen analysis before you start trying to conceive.",
+            path: PATH,
+            procedureType: "DiagnosticProcedure",
+          }),
+        ),
         jsonLd(faqSchema(FAQS)),
         jsonLd(
           breadcrumbSchema([

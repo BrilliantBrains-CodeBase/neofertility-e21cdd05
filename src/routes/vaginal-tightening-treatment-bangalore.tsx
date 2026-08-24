@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ServicePage, Prose, COMMON_RELATED } from "@/components/sections/ServicePage";
 import { SectionHeading, CheckList, StepList, SafetyNote } from "@/components/sections/blocks";
 import { ROUTES } from "@/data/navigation";
-import { pageMeta, jsonLd, faqSchema, breadcrumbSchema } from "@/lib/seo";
+import { breadcrumbSchema, faqSchema, jsonLd, medicalWebPageSchema, pageMeta } from "@/lib/seo";
 
 const PATH = ROUTES.vaginalTightening;
 
@@ -38,6 +38,15 @@ export const Route = createFileRoute("/vaginal-tightening-treatment-bangalore")(
       path: PATH,
     }),
     scripts: [
+      jsonLd(
+        medicalWebPageSchema({
+          title: "Vaginal Tightening Treatment in Bangalore | Neo Fertility",
+          description:
+            "Assessment and options for vaginal laxity after childbirth or with age, including pelvic floor therapy and procedural options, with Dr. Payal Mahapatra in Marathahalli, Bangalore.",
+          path: PATH,
+          about: "Vaginal rejuvenation",
+        }),
+      ),
       jsonLd(faqSchema(FAQS)),
       jsonLd(
         breadcrumbSchema([
@@ -56,10 +65,7 @@ function Page() {
       eyebrow="Sexual and Reproductive Health"
       title="Vaginal Tightening Treatment in Bangalore"
       intro="Vaginal laxity after childbirth or with age can be addressed with pelvic floor therapy, energy-based devices, or surgical options, chosen after a proper assessment of your specific concern."
-      trail={[
-        { name: "Home", to: ROUTES.home },
-        { name: "Vaginal Tightening Treatment" },
-      ]}
+      trail={[{ name: "Home", to: ROUTES.home }, { name: "Vaginal Tightening Treatment" }]}
       sourcePage="vaginal-tightening"
       faqs={FAQS}
       related={[
@@ -101,8 +107,8 @@ function Page() {
         <p>
           A pelvic examination distinguishes straightforward laxity from pelvic organ prolapse,
           which is a distinct condition with different treatment and, occasionally, more urgent
-          management needs. Getting this distinction right before choosing a treatment matters
-          more than the treatment choice itself.
+          management needs. Getting this distinction right before choosing a treatment matters more
+          than the treatment choice itself.
         </p>
       </Prose>
 
@@ -127,9 +133,9 @@ function Page() {
       </section>
 
       <SafetyNote>
-        A sensation of a bulge, heaviness, or something coming down into the vagina is more
-        likely to be pelvic organ prolapse and should be assessed on its own terms rather than
-        treated as cosmetic laxity.
+        A sensation of a bulge, heaviness, or something coming down into the vagina is more likely
+        to be pelvic organ prolapse and should be assessed on its own terms rather than treated as
+        cosmetic laxity.
       </SafetyNote>
     </ServicePage>
   );

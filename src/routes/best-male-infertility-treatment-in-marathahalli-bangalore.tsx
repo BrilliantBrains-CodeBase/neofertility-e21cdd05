@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ServicePage, Prose, DataTable, COMMON_RELATED } from "@/components/sections/ServicePage";
 import { SectionHeading, CheckList, SafetyNote } from "@/components/sections/blocks";
 import { ROUTES } from "@/data/navigation";
-import { pageMeta, jsonLd, faqSchema, breadcrumbSchema } from "@/lib/seo";
+import { breadcrumbSchema, faqSchema, jsonLd, medicalWebPageSchema, pageMeta } from "@/lib/seo";
 
 const PATH = ROUTES.maleInfertility;
 
@@ -42,6 +42,15 @@ export const Route = createFileRoute("/best-male-infertility-treatment-in-marath
       path: PATH,
     }),
     scripts: [
+      jsonLd(
+        medicalWebPageSchema({
+          title: "Male Infertility Treatment in Marathahalli | Neo Fertility",
+          description:
+            "Male infertility diagnosis and treatment in Marathahalli, Bengaluru: causes, tests, timelines and treatment options.",
+          path: PATH,
+          about: "Male infertility",
+        }),
+      ),
       jsonLd(faqSchema(FAQS)),
       jsonLd(
         breadcrumbSchema([
@@ -76,9 +85,9 @@ function Page() {
     >
       <Prose title="What male infertility is">
         <p>
-          Male infertility is more common than people think. It occurs when a man has difficulty getting his
-          partner pregnant due to issues with sperm production, function, or delivery. Identifying the cause
-          early can significantly improve treatment success.
+          Male infertility is more common than people think. It occurs when a man has difficulty
+          getting his partner pregnant due to issues with sperm production, function, or delivery.
+          Identifying the cause early can significantly improve treatment success.
         </p>
       </Prose>
 
@@ -136,8 +145,14 @@ function Page() {
         caption="How long improvement typically takes"
         head={["Treatment type", "Time to see improvement"]}
         rows={[
-          ["Lifestyle and medication-based treatments", "3 to 6 months for improvement in sperm quality"],
-          ["Surgical procedures", "Recovery takes 1 to 2 weeks, with sperm improvement seen in 3 months"],
+          [
+            "Lifestyle and medication-based treatments",
+            "3 to 6 months for improvement in sperm quality",
+          ],
+          [
+            "Surgical procedures",
+            "Recovery takes 1 to 2 weeks, with sperm improvement seen in 3 months",
+          ],
           ["ICSI or IVF", "Results can be seen within one fertility cycle, about 4 to 6 weeks"],
         ]}
       />

@@ -3,9 +3,9 @@ import { Phone, MapPin, Clock } from "lucide-react";
 import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
 import { PageHero } from "@/components/sections/blocks";
 import { LeadForm } from "@/components/conversion/LeadForm";
-import { CLINIC, buildWhatsAppUrl } from "@/lib/clinic";
+import { CLINIC, buildWhatsAppUrl, isConfigured } from "@/lib/clinic";
 import { ROUTES } from "@/data/navigation";
-import { pageMeta, jsonLd, breadcrumbSchema } from "@/lib/seo";
+import { OG_CLINIC, breadcrumbSchema, contactPageSchema, jsonLd, pageMeta } from "@/lib/seo";
 
 const PATH = ROUTES.contact;
 
@@ -16,8 +16,10 @@ export const Route = createFileRoute("/contact")({
       description:
         "Get in touch with Neo Fertility Clinic in Marathahalli, Bangalore. Address, phone, WhatsApp, clinic hours, map and an online appointment request form.",
       path: PATH,
+      image: OG_CLINIC,
     }),
     scripts: [
+      jsonLd(contactPageSchema({ path: PATH })),
       jsonLd(
         breadcrumbSchema([
           { name: "Home", path: ROUTES.home },
@@ -86,6 +88,38 @@ function Page() {
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
             />
+            {/* Outbound links to the map and the Business Profile, under the embed. An
+                iframe is not a link, so on its own it gives crawlers nothing to follow. */}
+            <div className="flex flex-wrap gap-x-5 gap-y-2 border-t border-line px-4 py-3 text-[0.875rem]">
+              <a
+                className="text-pink-700 hover:underline"
+                href={CLINIC.directionsUrl}
+                target="_blank"
+                rel="noreferrer"
+              >
+                Get directions
+              </a>
+              {isConfigured(CLINIC.google.businessProfile) && (
+                <a
+                  className="text-pink-700 hover:underline"
+                  href={CLINIC.google.businessProfile}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  View us on Google
+                </a>
+              )}
+              {isConfigured(CLINIC.google.reviewUrl) && (
+                <a
+                  className="text-pink-700 hover:underline"
+                  href={CLINIC.google.reviewUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Leave a Google review
+                </a>
+              )}
+            </div>
           </div>
         </div>
 

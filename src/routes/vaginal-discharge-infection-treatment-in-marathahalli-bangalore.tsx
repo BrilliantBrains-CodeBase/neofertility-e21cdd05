@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ServicePage, Prose, DataTable, COMMON_RELATED } from "@/components/sections/ServicePage";
 import { SafetyNote } from "@/components/sections/blocks";
 import { ROUTES } from "@/data/navigation";
-import { pageMeta, jsonLd, faqSchema, breadcrumbSchema } from "@/lib/seo";
+import { breadcrumbSchema, faqSchema, jsonLd, medicalWebPageSchema, pageMeta } from "@/lib/seo";
 
 const FAQS = [
   {
@@ -31,21 +31,32 @@ const FAQS = [
   },
 ];
 
-export const Route = createFileRoute("/vaginal-discharge-infection-treatment-in-marathahalli-bangalore")({
+export const Route = createFileRoute(
+  "/vaginal-discharge-infection-treatment-in-marathahalli-bangalore",
+)({
   head: () => ({
     ...pageMeta({
       title: "Vaginal Discharge & Infection Treatment | Marathahalli",
       description:
         "Diagnosis and treatment of vaginal discharge, itching and odour, including bacterial vaginosis, yeast infection and trichomoniasis, in Marathahalli, Bengaluru.",
-      path: "/vaginal-discharge-infection-treatment-in-marathahalli-bangalore",
+      path: ROUTES.vaginalInfection,
     }),
     scripts: [
+      jsonLd(
+        medicalWebPageSchema({
+          title: "Vaginal Discharge & Infection Treatment | Marathahalli",
+          description:
+            "Diagnosis and treatment of vaginal discharge, itching and odour, including bacterial vaginosis, yeast infection and trichomoniasis, in Marathahalli, Bengaluru.",
+          path: ROUTES.vaginalInfection,
+          about: "Vaginal infection and discharge",
+        }),
+      ),
       jsonLd(faqSchema(FAQS)),
       jsonLd(
         breadcrumbSchema([
           { name: "Home", path: ROUTES.home },
           { name: "Gynecology Treatments", path: ROUTES.gynecologyTreatments },
-          { name: "Vaginal Discharge & Infection", path: "/vaginal-discharge-infection-treatment-in-marathahalli-bangalore" },
+          { name: "Vaginal Discharge & Infection", path: ROUTES.vaginalInfection },
         ]),
       ),
     ],
@@ -97,9 +108,18 @@ function VaginalInfectionPage() {
           caption="Typical presentation by cause"
           head={["Cause", "Typical presentation"]}
           rows={[
-            ["Bacterial vaginosis", "Thin, greyish discharge with a fishy odour, often without significant itching"],
-            ["Yeast infection (candidiasis)", "Thick, white discharge with marked itching and irritation"],
-            ["Trichomoniasis", "Frothy, yellow-green discharge, odour, and discomfort; sexually transmitted"],
+            [
+              "Bacterial vaginosis",
+              "Thin, greyish discharge with a fishy odour, often without significant itching",
+            ],
+            [
+              "Yeast infection (candidiasis)",
+              "Thick, white discharge with marked itching and irritation",
+            ],
+            [
+              "Trichomoniasis",
+              "Frothy, yellow-green discharge, odour, and discomfort; sexually transmitted",
+            ],
           ]}
         />
       </Prose>
