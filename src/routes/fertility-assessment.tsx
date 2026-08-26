@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { AppointmentSheet } from "@/components/conversion/AppointmentSheet";
+import { ResultOptIn } from "@/components/conversion/ResultOptIn";
 import { ClosingCta } from "@/components/conversion/ClosingCta";
 import { PageHero, SectionHeading } from "@/components/sections/blocks";
 import { Prose } from "@/components/sections/ServicePage";
@@ -229,6 +230,23 @@ function Page() {
                 >
                   Read about {result.label}
                 </Link>
+
+                {/* Nothing above this point leaves the browser. Only a tick here
+                    sends the answers, and the consent line says so. */}
+                <ResultOptIn
+                  form="assessment"
+                  sourcePage={SOURCE_PAGE}
+                  heading="Want the clinic to look at this?"
+                  copy="We'll send your answers to Dr. Payal's team so your first consultation starts from what you've already told us, rather than from the beginning."
+                  data={{
+                    age: answers.age,
+                    months: answers.months,
+                    cycle: answers.cycle,
+                    diagnosis: answers.diagnosis,
+                    maleTested: answers.maleTested,
+                    recommendation: result.heading,
+                  }}
+                />
               </div>
             )}
           </div>

@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { format } from "date-fns";
 import { supabase } from "@/integrations/supabase/client";
+import { submitToSheet } from "@/lib/leads";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -53,6 +54,10 @@ export function LeadForm({
   const [extrasOpen, setExtrasOpen] = useState(false);
   const [errors, setErrors] = useState<Errors>({});
   const [pending, setPending] = useState(false);
+  /* Spam signal for the sheet: near-instant submissions are almost always bots.
+     Measured from first render rather than first keystroke, so a form that sat
+     open in a background tab reads as slow, not fast. */
+  const renderedAt = useRef(Date.now());
   const [done, setDone] = useState(false);
   const [failed, setFailed] = useState(false);
 
@@ -105,31 +110,63 @@ export function LeadForm({
 
     const params = new URLSearchParams(typeof window === "undefined" ? "" : window.location.search);
 
-    const { error } = await supabase.from("enquiries").insert({
+    const enquiry = {
       name: name.trim(),
       mobile: normaliseMobile(mobile),
       email: email.trim() || null,
       topic: topic || "Fertility Consultation",
-      /* Same shape the home band writes ("20 Aug 2026 · 15:30"), so both forms land in
-         this column in one readable format instead of two. */
-      preferred_day: preferredDay || null,
       message: message.trim() || null,
-      source_page: sourcePage,
-      source_variant: variant,
-      utm_source: params.get("utm_source"),
-      utm_medium: params.get("utm_medium"),
-      utm_campaign: params.get("utm_campaign"),
-      consent: true,
-    });
+    };
+    /* Same shape the home band writes ("20 Aug 2026 · 15:30"), so both forms land in
+       this column in one readable format instead of two. */
+    const preferred = preferredDay || null;
+
+    /* Two destinations, neither blocking the other. Supabase stays the record of
+       truth; the sheet is what the front desk actually works from and is the leg
+       that emails the clinic. Run in parallel rather than in sequence so a slow
+       Supabase does not hold up the thank-you, and so either one landing is
+       enough for the enquiry to have been captured. */
+    const [db, sheet] = await Promise.all([
+      supabase
+        .from("enquiries")
+        .insert({
+          ...enquiry,
+          preferred_day: preferred,
+          source_page: sourcePage,
+          source_variant: variant,
+          utm_source: params.get("utm_source"),
+          utm_medium: params.get("utm_medium"),
+          utm_campaign: params.get("utm_campaign"),
+          consent: true,
+        })
+        .then(({ error }) => !error),
+      submitToSheet({
+        form: "lead",
+        sourcePage,
+        sourceVariant: variant,
+        honeypot,
+        fillMs: Date.now() - renderedAt.current,
+        data: { ...enquiry, preferredDay: preferred, consent: true },
+      }),
+    ]);
 
     setPending(false);
 
-    if (error) {
+    /* Only a total loss is worth telling the patient about. Showing the failure
+       path when one leg saved the enquiry talks the clinic out of a booking it
+       already has. */
+    if (!db && !sheet) {
       setFailed(true);
       return;
     }
 
-    track("enquiry_submitted", { source_page: sourcePage, source_variant: variant, topic });
+    track("enquiry_submitted", {
+      source_page: sourcePage,
+      source_variant: variant,
+      topic,
+      stored_db: db,
+      stored_sheet: sheet,
+    });
     setDone(true);
   }
 

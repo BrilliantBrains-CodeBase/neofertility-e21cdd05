@@ -14,27 +14,21 @@ import {
 } from "lucide-react";
 import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { supabase } from "@/integrations/supabase/client";
+import { submitToSheet } from "@/lib/leads";
 import { CLINIC, ENQUIRY_TIMES, ENQUIRY_TREATMENTS, track } from "@/lib/clinic";
 import { ROUTES } from "@/data/navigation";
 import { Reveal } from "@/components/motion/Reveal";
 import { cn } from "@/lib/utils";
 import backdrop from "@/assets/appointment-mother-baby.webp";
 
-/* ─────────────────────────── CONFIG ───────────────────────────
- * ENDPOINT — the deployed Google Apps Script Web App URL.
- *   Deploy with "Execute as: Me" and "Who has access: Anyone".
- *   While this is empty, submitting shows the error path; it never
- *   reports a false success.
- *
- *   IMPORTANT — Apps Script does NOT answer CORS preflight (OPTIONS).
- *   The post below uses Content-Type: text/plain so it stays a "simple
- *   request" and skips preflight. In doPost(e), read e.postData.contents
- *   and JSON.parse it. Do not switch this to application/json.
- *
- * ─────────────────────────────────────────────────────────────── */
-const ENDPOINT = "";
-
 type Errors = Partial<Record<"name" | "mobile" | "email" | "treatment" | "consent", string>>;
+
+/* Matches LeadForm. Without it the same patient is stored as "+91 98765 43210"
+   here and "9876543210" there, and the two rows never dedupe. */
+function normaliseMobile(raw: string) {
+  return raw.replace(/[\s-()]/g, "").replace(/^\+?91/, "");
+}
 
 const inputBase =
   "peer min-h-[60px] w-full rounded-full border-2 border-ink-muted/30 bg-white ps-5 pe-12 py-[15px] text-start text-[15px] text-ink duration-300 placeholder:text-transparent focus:border-pink-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-pink-700/40";
@@ -136,44 +130,62 @@ export function AppointmentMapForm({ sourcePage }: { sourcePage: string }) {
 
     const params = new URLSearchParams(typeof window === "undefined" ? "" : window.location.search);
 
-    const payload = {
+    const enquiry = {
       name: name.trim(),
-      mobile: mobile.trim(),
+      mobile: normaliseMobile(mobile),
       email: email.trim() || null,
-      treatment,
-      preferredDay,
+      /* `topic`, not `treatment`: this form used its own key, so the home page's
+         leads arrived under a different name than every other form's. */
+      topic: treatment,
       message: message.trim() || null,
-      sourcePage,
-      consent: true,
-      utmSource: params.get("utm_source"),
-      utmMedium: params.get("utm_medium"),
-      utmCampaign: params.get("utm_campaign"),
-      /* Spam signal: near-instant submissions are almost always bots.
-         Hook a captcha in here if you add one — nothing is auto-solved. */
-      fillMs: Date.now() - renderedAt.current,
     };
+    const preferred = preferredDay || null;
 
-    try {
-      if (!ENDPOINT) throw new Error("Lead endpoint is not configured");
-      /* text/plain keeps this a simple request — Apps Script cannot answer a
-         CORS preflight, so application/json would fail in the browser. */
-      const response = await fetch(ENDPOINT, {
-        method: "POST",
-        headers: { "Content-Type": "text/plain;charset=utf-8" },
-        body: JSON.stringify(payload),
-      });
-      if (!response.ok) throw new Error(`Request failed: ${response.status}`);
-      track("enquiry_submitted", {
-        source_page: sourcePage,
-        source_variant: "map_form",
-        treatment,
-      });
-      setDone(true);
-    } catch {
+    /* Was a bare fetch at a hardcoded ENDPOINT that had never been filled in, so
+       every enquiry from the home page — the only lead form on it — failed. Now
+       the same dual write as LeadForm: Supabase as the record of truth, the sheet
+       as the clinic's call list, either one landing counting as captured. */
+    const [db, sheet] = await Promise.all([
+      supabase
+        .from("enquiries")
+        .insert({
+          ...enquiry,
+          preferred_day: preferred,
+          source_page: sourcePage,
+          source_variant: "map_form",
+          utm_source: params.get("utm_source"),
+          utm_medium: params.get("utm_medium"),
+          utm_campaign: params.get("utm_campaign"),
+          consent: true,
+        })
+        .then(({ error }) => !error),
+      submitToSheet({
+        form: "lead",
+        sourcePage,
+        sourceVariant: "map_form",
+        honeypot,
+        /* Spam signal: near-instant submissions are almost always bots.
+           Hook a captcha in here if you add one — nothing is auto-solved. */
+        fillMs: Date.now() - renderedAt.current,
+        data: { ...enquiry, preferredDay: preferred, consent: true },
+      }),
+    ]);
+
+    setPending(false);
+
+    if (!db && !sheet) {
       setFailed(true);
-    } finally {
-      setPending(false);
+      return;
     }
+
+    track("enquiry_submitted", {
+      source_page: sourcePage,
+      source_variant: "map_form",
+      treatment,
+      stored_db: db,
+      stored_sheet: sheet,
+    });
+    setDone(true);
   }
 
   const err = (key: keyof Errors) => errors[key];

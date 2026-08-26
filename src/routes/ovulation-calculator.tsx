@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { ClosingCta } from "@/components/conversion/ClosingCta";
+import { ResultOptIn } from "@/components/conversion/ResultOptIn";
 import { PageHero, SectionHeading, RelatedLinks } from "@/components/sections/blocks";
 import { Prose, COMMON_RELATED } from "@/components/sections/ServicePage";
 import { DEFAULT_WHATSAPP_MESSAGE } from "@/lib/clinic";
@@ -134,6 +135,20 @@ function Page() {
                     <dd className="inline">{formatDate(result.nextPeriod)}</dd>
                   </div>
                 </dl>
+
+                {/* Estimate stays client-side unless the patient ticks the box. */}
+                <ResultOptIn
+                  form="ovulation"
+                  sourcePage={SOURCE_PAGE}
+                  heading="Want help acting on this?"
+                  copy="We'll send your estimate to the clinic so a consultation can start from your actual cycle rather than a fresh set of questions."
+                  data={{
+                    lastPeriod,
+                    cycleLength,
+                    ovulationDay: formatDate(result.ovulationDay),
+                    fertileWindow: `${formatDate(result.fertileStart)} to ${formatDate(result.fertileEnd)}`,
+                  }}
+                />
               </div>
             ) : (
               <p className="text-ink-muted">
