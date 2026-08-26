@@ -45,10 +45,17 @@ export const PAGE_SECTIONS: { id: PageSection; heading: string }[] = [
   { id: "legal", heading: "Policies" },
 ];
 
-/** Blog posts are excluded: they are enumerated from POSTS in src/content/blog. */
+/**
+ * Blog posts are excluded: they are enumerated from POSTS in src/content/blog.
+ *
+ * `thankYou` is excluded for a different reason — it is a noindex conversion
+ * destination. Listing it in the sitemap would invite Google to index it, and an
+ * indexed thank-you page collects organic traffic that fires the conversion
+ * without an enquiry behind it.
+ */
 type NonBlogRouteKey = Exclude<
   keyof typeof ROUTES,
-  "blogWhenToSeek" | "blogIvfBangalore" | "blogMaleInfertility"
+  "blogWhenToSeek" | "blogIvfBangalore" | "blogMaleInfertility" | "thankYou"
 >;
 
 export const SITE_PAGES: SitePage[] = [

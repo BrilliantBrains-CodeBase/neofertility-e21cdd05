@@ -110,3 +110,48 @@ export async function submitToSheet(envelope: LeadEnvelope): Promise<boolean> {
     return false;
   }
 }
+
+/* ── Submission receipt ──────────────────────────────────────────────
+ * Bridges a successful submit to the thank-you page it redirects to.
+ *
+ * The alternative — letting GTM fire the conversion on any pageview of
+ * /thank-you/ — counts a refresh, a back-button, and a bookmarked visit as new
+ * enquiries. Reporting inflated by however often patients reload a page they
+ * were just sent to is worse than no reporting, because it looks credible.
+ *
+ * sessionStorage rather than a search param: the alternative is putting the
+ * treatment the patient asked about into a URL, which then leaks in the Referer
+ * header of every outbound link on the page — WhatsApp, Google Maps, the
+ * booking calendar. Fertility treatment is not a query string.
+ * ─────────────────────────────────────────────────────────────────── */
+
+const RECEIPT_KEY = "neo:enquiry-receipt";
+
+export type EnquiryReceipt = {
+  form: LeadFormName;
+  sourcePage: string;
+  sourceVariant: string;
+  topic?: string;
+};
+
+export function markEnquiryComplete(receipt: EnquiryReceipt) {
+  try {
+    sessionStorage.setItem(RECEIPT_KEY, JSON.stringify(receipt));
+  } catch {
+    /* Private mode, or storage disabled. The redirect still happens and the
+       patient still sees the confirmation — only the conversion event is lost,
+       which is the right thing to drop. */
+  }
+}
+
+/** Reads and clears in one go, so the conversion cannot fire twice. */
+export function consumeEnquiryReceipt(): EnquiryReceipt | null {
+  try {
+    const raw = sessionStorage.getItem(RECEIPT_KEY);
+    if (!raw) return null;
+    sessionStorage.removeItem(RECEIPT_KEY);
+    return JSON.parse(raw) as EnquiryReceipt;
+  } catch {
+    return null;
+  }
+}

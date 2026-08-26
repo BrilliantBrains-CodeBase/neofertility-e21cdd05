@@ -1,8 +1,8 @@
 import { useRef, useState } from "react";
-import { Link } from "@tanstack/react-router";
+import { Link, useNavigate } from "@tanstack/react-router";
 import { format } from "date-fns";
 import { supabase } from "@/integrations/supabase/client";
-import { submitToSheet } from "@/lib/leads";
+import { markEnquiryComplete, submitToSheet } from "@/lib/leads";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -34,6 +34,7 @@ export function LeadForm({
   sourcePage,
   onLight = true,
   collapseExtras = false,
+  onSubmitted,
 }: {
   variant?: LeadFormVariant;
   sourcePage: string;
@@ -41,6 +42,15 @@ export function LeadForm({
   /** Fold email, preferred day and message behind a disclosure. The rail sets this: it
    *  is the one place the form has to fit a viewport alongside a sticky CTA. */
   collapseExtras?: boolean;
+  /**
+   * Fired once the enquiry is stored, just before the redirect.
+   *
+   * Hosts that outlive the route have to dismiss themselves here. Header,
+   * MobileActionBar and BookNowTab render outside the router outlet, so their
+   * dialog survives the navigation to /thank-you/ and would otherwise sit over
+   * it with this form still spinning inside.
+   */
+  onSubmitted?: () => void;
 }) {
   const [name, setName] = useState("");
   const [mobile, setMobile] = useState("");
@@ -52,13 +62,13 @@ export function LeadForm({
   const [consent, setConsent] = useState(false);
   const [honeypot, setHoneypot] = useState("");
   const [extrasOpen, setExtrasOpen] = useState(false);
+  const navigate = useNavigate();
   const [errors, setErrors] = useState<Errors>({});
   const [pending, setPending] = useState(false);
   /* Spam signal for the sheet: near-instant submissions are almost always bots.
      Measured from first render rather than first keystroke, so a form that sat
      open in a background tab reads as slow, not fast. */
   const renderedAt = useRef(Date.now());
-  const [done, setDone] = useState(false);
   const [failed, setFailed] = useState(false);
 
   /* Every variant now asks exactly what the home band asks. The rail used to drop the
@@ -150,12 +160,11 @@ export function LeadForm({
       }),
     ]);
 
-    setPending(false);
-
     /* Only a total loss is worth telling the patient about. Showing the failure
        path when one leg saved the enquiry talks the clinic out of a booking it
        already has. */
     if (!db && !sheet) {
+      setPending(false);
       setFailed(true);
       return;
     }
@@ -167,7 +176,17 @@ export function LeadForm({
       stored_db: db,
       stored_sheet: sheet,
     });
-    setDone(true);
+
+    markEnquiryComplete({ form: "lead", sourcePage, sourceVariant: variant, topic });
+    /* Before the navigation, so a dialog that outlives the route is already
+       closing rather than being left open over the thank-you page. */
+    onSubmitted?.();
+    /* `pending` is deliberately left true. Clearing it re-enables the form for
+       the frame or two before the router swaps the page, which reads as the
+       submit having done nothing and invites a second one. Every host either
+       unmounts with the route or dismisses itself in `onSubmitted`, so the
+       spinner never outlives the submit. */
+    void navigate({ to: ROUTES.thankYou });
   }
 
   /* Everything the clinic likes to have but does not need in order to call a patient
@@ -260,27 +279,6 @@ export function LeadForm({
       </div>
     </>
   );
-
-  if (done) {
-    return (
-      <div
-        className={cn(
-          "rounded-xl border p-5",
-          onLight ? "border-pink-300/60 bg-pink-50" : "border-paper/25 bg-paper/10",
-        )}
-        role="status"
-      >
-        <p className={cn("font-medium", onLight ? "text-plum-900" : "text-paper")}>Thank you.</p>
-        <p className={cn("mt-1 text-[0.9375rem]", onLight ? "text-ink-muted" : "text-paper/80")}>
-          We'll call you back. If it's urgent, call{" "}
-          <a className="underline" href={CLINIC.phoneHref}>
-            {CLINIC.phoneDisplay}
-          </a>
-          .
-        </p>
-      </div>
-    );
-  }
 
   return (
     <form

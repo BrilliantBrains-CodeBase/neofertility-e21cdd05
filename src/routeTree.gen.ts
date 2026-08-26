@@ -51,6 +51,7 @@ import { Route as PelvicUltrasoundScanInMarathahalliRouteImport } from './routes
 import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
 import { Route as SexuallyTransmittedInfectionsStisTreatmentInBangaloreRouteImport } from './routes/sexually-transmitted-infections-stis-treatment-in-bangalore'
 import { Route as TermsOfUseRouteImport } from './routes/terms-of-use'
+import { Route as ThankYouRouteImport } from './routes/thank-you'
 import { Route as VaginalDischargeInfectionTreatmentInMarathahalliBangaloreRouteImport } from './routes/vaginal-discharge-infection-treatment-in-marathahalli-bangalore'
 import { Route as VaginalTighteningTreatmentBangaloreRouteImport } from './routes/vaginal-tightening-treatment-bangalore'
 import { Route as WhoWeHelpRouteImport } from './routes/who-we-help'
@@ -297,6 +298,11 @@ const TermsOfUseRoute = TermsOfUseRouteImport.update({
   path: '/terms-of-use',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ThankYouRoute = ThankYouRouteImport.update({
+  id: '/thank-you',
+  path: '/thank-you',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const VaginalDischargeInfectionTreatmentInMarathahalliBangaloreRoute =
   VaginalDischargeInfectionTreatmentInMarathahalliBangaloreRouteImport.update({
     id: '/vaginal-discharge-infection-treatment-in-marathahalli-bangalore',
@@ -358,6 +364,7 @@ export interface FileRoutesByFullPath {
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/sexually-transmitted-infections-stis-treatment-in-bangalore': typeof SexuallyTransmittedInfectionsStisTreatmentInBangaloreRoute
   '/terms-of-use': typeof TermsOfUseRoute
+  '/thank-you': typeof ThankYouRoute
   '/vaginal-discharge-infection-treatment-in-marathahalli-bangalore': typeof VaginalDischargeInfectionTreatmentInMarathahalliBangaloreRoute
   '/vaginal-tightening-treatment-bangalore': typeof VaginalTighteningTreatmentBangaloreRoute
   '/who-we-help': typeof WhoWeHelpRoute
@@ -405,6 +412,7 @@ export interface FileRoutesByTo {
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/sexually-transmitted-infections-stis-treatment-in-bangalore': typeof SexuallyTransmittedInfectionsStisTreatmentInBangaloreRoute
   '/terms-of-use': typeof TermsOfUseRoute
+  '/thank-you': typeof ThankYouRoute
   '/vaginal-discharge-infection-treatment-in-marathahalli-bangalore': typeof VaginalDischargeInfectionTreatmentInMarathahalliBangaloreRoute
   '/vaginal-tightening-treatment-bangalore': typeof VaginalTighteningTreatmentBangaloreRoute
   '/who-we-help': typeof WhoWeHelpRoute
@@ -453,6 +461,7 @@ export interface FileRoutesById {
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/sexually-transmitted-infections-stis-treatment-in-bangalore': typeof SexuallyTransmittedInfectionsStisTreatmentInBangaloreRoute
   '/terms-of-use': typeof TermsOfUseRoute
+  '/thank-you': typeof ThankYouRoute
   '/vaginal-discharge-infection-treatment-in-marathahalli-bangalore': typeof VaginalDischargeInfectionTreatmentInMarathahalliBangaloreRoute
   '/vaginal-tightening-treatment-bangalore': typeof VaginalTighteningTreatmentBangaloreRoute
   '/who-we-help': typeof WhoWeHelpRoute
@@ -502,6 +511,7 @@ export interface FileRouteTypes {
     | '/privacy-policy'
     | '/sexually-transmitted-infections-stis-treatment-in-bangalore'
     | '/terms-of-use'
+    | '/thank-you'
     | '/vaginal-discharge-infection-treatment-in-marathahalli-bangalore'
     | '/vaginal-tightening-treatment-bangalore'
     | '/who-we-help'
@@ -549,6 +559,7 @@ export interface FileRouteTypes {
     | '/privacy-policy'
     | '/sexually-transmitted-infections-stis-treatment-in-bangalore'
     | '/terms-of-use'
+    | '/thank-you'
     | '/vaginal-discharge-infection-treatment-in-marathahalli-bangalore'
     | '/vaginal-tightening-treatment-bangalore'
     | '/who-we-help'
@@ -596,6 +607,7 @@ export interface FileRouteTypes {
     | '/privacy-policy'
     | '/sexually-transmitted-infections-stis-treatment-in-bangalore'
     | '/terms-of-use'
+    | '/thank-you'
     | '/vaginal-discharge-infection-treatment-in-marathahalli-bangalore'
     | '/vaginal-tightening-treatment-bangalore'
     | '/who-we-help'
@@ -644,6 +656,7 @@ export interface RootRouteChildren {
   PrivacyPolicyRoute: typeof PrivacyPolicyRoute
   SexuallyTransmittedInfectionsStisTreatmentInBangaloreRoute: typeof SexuallyTransmittedInfectionsStisTreatmentInBangaloreRoute
   TermsOfUseRoute: typeof TermsOfUseRoute
+  ThankYouRoute: typeof ThankYouRoute
   VaginalDischargeInfectionTreatmentInMarathahalliBangaloreRoute: typeof VaginalDischargeInfectionTreatmentInMarathahalliBangaloreRoute
   VaginalTighteningTreatmentBangaloreRoute: typeof VaginalTighteningTreatmentBangaloreRoute
   WhoWeHelpRoute: typeof WhoWeHelpRoute
@@ -945,6 +958,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TermsOfUseRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/thank-you': {
+      id: '/thank-you'
+      path: '/thank-you'
+      fullPath: '/thank-you'
+      preLoaderRoute: typeof ThankYouRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/vaginal-discharge-infection-treatment-in-marathahalli-bangalore': {
       id: '/vaginal-discharge-infection-treatment-in-marathahalli-bangalore'
       path: '/vaginal-discharge-infection-treatment-in-marathahalli-bangalore'
@@ -1039,6 +1059,7 @@ const rootRouteChildren: RootRouteChildren = {
   SexuallyTransmittedInfectionsStisTreatmentInBangaloreRoute:
     SexuallyTransmittedInfectionsStisTreatmentInBangaloreRoute,
   TermsOfUseRoute: TermsOfUseRoute,
+  ThankYouRoute: ThankYouRoute,
   VaginalDischargeInfectionTreatmentInMarathahalliBangaloreRoute:
     VaginalDischargeInfectionTreatmentInMarathahalliBangaloreRoute,
   VaginalTighteningTreatmentBangaloreRoute:

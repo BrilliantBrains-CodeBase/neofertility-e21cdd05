@@ -42,6 +42,9 @@ export const ROUTES = {
   gallery: "/gallery/",
   faq: "/faq/",
   contact: "/contact/",
+  /* Post-submission confirmation. noindex, and deliberately absent from
+     SITE_PAGES — a conversion destination must never enter the sitemap. */
+  thankYou: "/thank-you/",
   ivfCost: "/ivf-cost-in-bangalore/",
   fertilityAssessment: "/fertility-assessment/",
   ovulationCalculator: "/ovulation-calculator/",

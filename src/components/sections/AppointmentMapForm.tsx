@@ -1,5 +1,5 @@
 import { useEffect, useId, useRef, useState } from "react";
-import { Link } from "@tanstack/react-router";
+import { Link, useNavigate } from "@tanstack/react-router";
 import { format } from "date-fns";
 import {
   ArrowRight,
@@ -15,7 +15,7 @@ import {
 import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { supabase } from "@/integrations/supabase/client";
-import { submitToSheet } from "@/lib/leads";
+import { markEnquiryComplete, submitToSheet } from "@/lib/leads";
 import { CLINIC, ENQUIRY_TIMES, ENQUIRY_TREATMENTS, track } from "@/lib/clinic";
 import { ROUTES } from "@/data/navigation";
 import { Reveal } from "@/components/motion/Reveal";
@@ -65,9 +65,9 @@ export function AppointmentMapForm({ sourcePage }: { sourcePage: string }) {
   const [message, setMessage] = useState("");
   const [consent, setConsent] = useState(false);
   const [honeypot, setHoneypot] = useState("");
+  const navigate = useNavigate();
   const [errors, setErrors] = useState<Errors>({});
   const [pending, setPending] = useState(false);
-  const [done, setDone] = useState(false);
   const [failed, setFailed] = useState(false);
 
   useEffect(() => {
@@ -171,9 +171,8 @@ export function AppointmentMapForm({ sourcePage }: { sourcePage: string }) {
       }),
     ]);
 
-    setPending(false);
-
     if (!db && !sheet) {
+      setPending(false);
       setFailed(true);
       return;
     }
@@ -185,7 +184,15 @@ export function AppointmentMapForm({ sourcePage }: { sourcePage: string }) {
       stored_db: db,
       stored_sheet: sheet,
     });
-    setDone(true);
+
+    markEnquiryComplete({
+      form: "lead",
+      sourcePage,
+      sourceVariant: "map_form",
+      topic: treatment,
+    });
+    /* See LeadForm: `pending` stays true through the route transition. */
+    void navigate({ to: ROUTES.thankYou });
   }
 
   const err = (key: keyof Errors) => errors[key];
@@ -467,11 +474,6 @@ export function AppointmentMapForm({ sourcePage }: { sourcePage: string }) {
               </button>
 
               <p aria-live="polite" className="mt-4 text-[0.9375rem]">
-                {done && (
-                  <span className="font-medium text-pink-700">
-                    Thanks, we&rsquo;ll call you back shortly.
-                  </span>
-                )}
                 {failed && (
                   <span className="text-destructive">
                     That didn&rsquo;t send. Please try again, or call {CLINIC.phoneDisplay}.

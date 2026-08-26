@@ -47,7 +47,12 @@ export function AppointmentSheet({
             <TabsTrigger value="online">Book online</TabsTrigger>
           </TabsList>
           <TabsContent value="callback" className="pt-4">
-            <LeadForm variant="sheet" sourcePage={sourcePage} />
+            {/* Closing unmounts DialogContent's children, which resets the form —
+                so reopening gives a blank one rather than the spinner it was left
+                in. Required because three of this component's hosts (Header,
+                MobileActionBar, BookNowTab) live outside the router outlet and
+                survive the redirect. */}
+            <LeadForm variant="sheet" sourcePage={sourcePage} onSubmitted={() => setOpen(false)} />
           </TabsContent>
           <TabsContent value="online" className="pt-4">
             <p className="text-[0.9375rem] text-ink-muted">
