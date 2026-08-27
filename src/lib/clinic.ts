@@ -42,6 +42,20 @@ export const CLINIC = {
        to show client-side — click it once to confirm it opens the review dialog, and
        replace it with the "Ask for reviews" link from the GBP dashboard if it does not. */
     reviewUrl: "https://www.google.com/maps?cid=1851221529633718164&action=write_review",
+    /* Aggregate of the Google Business Profile reviews, carried over from the previous
+       site, which emitted these on its MedicalClinic node on every page.
+
+       These are a snapshot, not a live feed: nothing here re-reads the listing, so the
+       numbers go stale silently. Re-check them against the GBP dashboard whenever the
+       listing is reviewed, and update `ratingAsOf` when you do.
+
+       They must also keep describing the same set of reviews the listing shows — the
+       markup claims a rating for this business, so an invented or drifted figure is a
+       misrepresentation to both patients and Google. See the note on aggregateRating in
+       src/lib/seo.ts for the visibility requirement that goes with them. */
+    ratingValue: 4.6,
+    reviewCount: 233,
+    ratingAsOf: "2026-08",
   },
   social: {
     facebook: "https://facebook.com/NeoFertilityClinic",

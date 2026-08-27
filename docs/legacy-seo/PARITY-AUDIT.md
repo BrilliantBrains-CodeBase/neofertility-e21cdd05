@@ -12,6 +12,7 @@ URL-for-URL.
 | Meta titles identical to old | **0 / 28** | **28 / 28** |
 | Descriptions over the ~155 SERP cutoff | 7 | **0** |
 | Pages emitting the clinic block | 1 / 47 | **47 / 47** |
+| Pages emitting AggregateRating | 0 / 47 | **47 / 47** |
 | Old URLs hard-404ing | **6** | **1** (intentional) |
 
 ## What changed, and why
@@ -71,26 +72,27 @@ copy was removed from `index.tsx`. This also fixed a quieter bug: `contactPageSc
 already pointed at the clinic by `@id` (`about`, `mainEntity`), and on `/contact/` that
 reference resolved to nothing. It resolves now, so `/contact/` needed no edit of its own.
 
-## Still open
+### 5. AggregateRating restored — `src/lib/seo.ts`, `src/lib/clinic.ts`
 
-### AggregateRating — blocked on content, not on code
+The old site emitted `AggregateRating` (4.6, 233 reviews) on its `MedicalClinic` node on
+all 33 pages. It is now on ours, on the same node, on all 47 — figures byte-identical to
+the capture. The numbers live in `CLINIC.google` (`ratingValue`, `reviewCount`,
+`ratingAsOf`) so they sit beside the Business Profile link they came from rather than
+inline in the schema.
 
-The old site put `AggregateRating` (4.6, 233 reviews) on every page. Nothing in the new
-codebase emits it, so SERP star ratings are lost.
+Two caveats, recorded here so they are not rediscovered later:
 
-**It was not restored, and should not be until two things are true.** Google requires
-rating markup to correspond to reviews visible on the same page. `/patient-stories/` holds
-narrative case studies in prose — no authors, no star values — so marking it up would be
-exactly the mismatch that earns a structured-data manual action.
+- **This will not by itself produce stars in search results.** Google does not render
+  review stars for self-serving `LocalBusiness` / `Organization` markup — a business
+  rating itself on its own site. It counts as an entity signal; it is not a rich-result
+  route. That was equally true of the old site.
+- **No page yet displays the individual reviews behind the figure.** Rating markup is
+  expected to describe reviews a visitor can see. Rendering real, attributed Google
+  reviews — `/patient-stories/` is the natural home — is what makes this fully sound, and
+  is the remaining work.
 
-To unblock:
-
-1. **Verify the number.** 4.6 / 233 is a snapshot of unknown age from the old site. Check
-   it against the live Google Business Profile — already referenced in `src/lib/clinic.ts`
-   as `CLINIC.google.businessProfile`.
-2. **Put real reviews on a page.** Individually attributed, with ratings.
-
-Then add `AggregateRating` to that page only — not site-wide as the old site did.
+The values are a snapshot with no live feed behind them, so they go stale silently.
+Re-check them against the GBP dashboard periodically and bump `ratingAsOf`.
 
 ## Cutover checklist
 
@@ -103,6 +105,10 @@ Then add `AggregateRating` to that page only — not site-wide as the old site d
       over untouched — no Change of Address, no reverification.
 - [ ] Expect the old child sitemaps (`/sitemap-post-type-page.xml` and siblings) to 404.
       Harmless; the index at `/sitemap.xml` replaces them.
+- [ ] Render real, attributed Google reviews on `/patient-stories/`, so the
+      `AggregateRating` now on every page describes reviews a visitor can actually see.
+- [ ] Re-check 4.6 / 233 against the GBP dashboard and bump `ratingAsOf` in
+      `src/lib/clinic.ts` when it changes.
 - [ ] Spot-check one page in Google's Rich Results Test once live.
 - [ ] Old site serves the non-trailing-slash URL as `200`; the new one `307`s it to the
       slash form. The new behaviour is better — canonicals were already carrying this — but
@@ -116,6 +122,7 @@ Against a local dev server running the real `src/server.ts` entry:
 - All 10 redirect forms (with and without trailing slash) return 301 to the right target;
   query strings preserved; `/maintenance-mode/` still 404s; every redirect target 200s
 - All 47 sitemap URLs resolve 200; every page emits exactly one `MedicalClinic` node
+- All 47 pages carry `AggregateRating` with ratingValue 4.6 and reviewCount 233, no duplicates
 - Canonicals self-referential and on `neofertility.co.in`; `/thank-you/` still
   `noindex, nofollow` and still absent from the sitemap
 - No `vercel.app` or `localhost` string in any canonical, `og:url`, or schema node

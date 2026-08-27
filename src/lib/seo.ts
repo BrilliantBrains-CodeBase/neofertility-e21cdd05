@@ -200,6 +200,21 @@ export const clinicSchema = {
     { "@type": "Place", name: "Bellandur" },
   ],
   address: POSTAL_ADDRESS,
+  /* Google Business Profile rating, restored to match the previous site, which carried it
+     on this same MedicalClinic node on all 33 of its pages.
+
+     Two things to know before touching this. Google does not render review stars for
+     self-serving LocalBusiness/Organization markup — a business rating itself on its own
+     site — so this is an entity signal rather than a route to stars in results. And rating
+     markup is expected to describe reviews a visitor can actually see on the page: the
+     figures are real GBP numbers, but no page currently renders the individual reviews
+     behind them. Surfacing real, attributed reviews (patient-stories is the natural home)
+     is what makes this fully sound. The numbers themselves live in src/lib/clinic.ts. */
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: CLINIC.google.ratingValue,
+    reviewCount: CLINIC.google.reviewCount,
+  },
   geo: {
     "@type": "GeoCoordinates",
     latitude: CLINIC.geo.latitude,
