@@ -10,7 +10,7 @@ const PATH = ROUTES.privacy;
 export const Route = createFileRoute("/privacy-policy")({
   head: () => ({
     ...pageMeta({
-      title: "Privacy Policy | Neo Fertility Clinic",
+      title: "Privacy Policy – Neo Fertility Clinic",
       description:
         "How Neo Fertility Clinic, Marathahalli, Bangalore collects, uses and protects your personal and medical information.",
       path: PATH,

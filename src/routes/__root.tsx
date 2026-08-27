@@ -19,6 +19,7 @@ import { WhatsAppFloat } from "@/components/conversion/WhatsAppFloat";
 import { SocialRail } from "@/components/conversion/SocialRail";
 import { BookNowTab } from "@/components/conversion/BookNowTab";
 import { DEFAULT_WHATSAPP_MESSAGE } from "@/lib/clinic";
+import { clinicSchema, jsonLd } from "@/lib/seo";
 
 const GTM_ID = "GTM-MNGVGZMS";
 
@@ -103,6 +104,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "icon", type: "image/png", href: "/favicon.png" },
     ],
     scripts: [
+      /* The clinic block, on every page rather than just the home page.
+         The old WordPress site emitted it site-wide and the replacement emitted it on one
+         route, which quietly dropped the local-business signal from 44 pages. Its stable
+         @id means search engines fold this into the same entity wherever it appears, so
+         emitting it once here is equivalent to repeating it per route — and routes that
+         reference the clinic by @id now resolve against a node that is actually present. */
+      jsonLd(clinicSchema),
       {
         /* Google Tag Manager: seeds dataLayer and loads gtm.js async on every page.
            The <noscript> half lives at the top of <body> in RootShell. */

@@ -36,9 +36,9 @@ export const Route = createFileRoute(
 )({
   head: () => ({
     ...pageMeta({
-      title: "Vaginal Discharge & Infection Treatment | Marathahalli",
+      title: "Best Vaginal Discharge - Infection Treatment - Marathahalli",
       description:
-        "Diagnosis and treatment of vaginal discharge, itching and odour, including bacterial vaginosis, yeast infection and trichomoniasis, in Marathahalli, Bengaluru.",
+        "Diagnosis and treatment of vaginal discharge, itching and odour, including bacterial vaginosis and yeast infection, in Marathahalli, Bengaluru.",
       path: ROUTES.vaginalInfection,
     }),
     scripts: [

@@ -36,7 +36,7 @@ const FAQS = [
 export const Route = createFileRoute("/best-male-infertility-treatment-in-marathahalli-bangalore")({
   head: () => ({
     ...pageMeta({
-      title: "Male Infertility Treatment in Marathahalli | Neo Fertility",
+      title: "Best Male Infertility Treatment In Marathahalli - Bangalore",
       description:
         "Male infertility diagnosis and treatment in Marathahalli, Bengaluru: causes, tests, timelines and treatment options.",
       path: PATH,

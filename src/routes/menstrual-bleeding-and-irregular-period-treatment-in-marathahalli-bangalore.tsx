@@ -44,7 +44,7 @@ export const Route = createFileRoute(
 )({
   head: () => ({
     ...pageMeta({
-      title: "Period Problems & Menstrual Disorder Treatment | Marathahalli",
+      title: "Menstrual Bleeding - Irregular Period Treatment Marathahalli",
       description:
         "Treatment for heavy bleeding, painful periods, irregular cycles and menopausal symptoms in Marathahalli, Bengaluru, with Dr. Payal Mahapatra.",
       path: ROUTES.menstrual,

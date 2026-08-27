@@ -16,7 +16,7 @@ export const Route = createFileRoute("/blogs")({
   validateSearch: parseBlogSearch,
   head: () => ({
     ...pageMeta({
-      title: "Fertility & Gynecology Blog | Neo Fertility Clinic",
+      title: "Blogs – Neo Fertility Clinic",
       description:
         "Articles from Neo Fertility Clinic, Marathahalli, Bangalore on fertility treatment, IVF and male infertility, written for patients.",
       path: PATH,

@@ -50,7 +50,7 @@ const FAQS = [
 export const Route = createFileRoute("/icsi-treatment-in-marathahalli-whitefield-bangalore")({
   head: () => ({
     ...pageMeta({
-      title: "ICSI Treatment in Marathahalli, Whitefield | Neo Fertility",
+      title: "Best ICSI Treatment in Marathahalli - Neo Fertility Clinic",
       description:
         "ICSI for male infertility in Marathahalli and Whitefield, Bengaluru: how it works, costs, and success factors.",
       path: PATH,

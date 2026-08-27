@@ -10,7 +10,7 @@ const PATH = ROUTES.terms;
 export const Route = createFileRoute("/terms-of-use")({
   head: () => ({
     ...pageMeta({
-      title: "Terms of Use | Neo Fertility Clinic",
+      title: "Terms Of Use – Neo Fertility Clinic",
       description:
         "Terms of use governing the Neo Fertility Clinic website and online enquiry or appointment request forms.",
       path: PATH,

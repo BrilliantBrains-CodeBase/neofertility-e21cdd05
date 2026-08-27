@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import { SectionHeading, StatStrip, FaqBlock } from "@/components/sections/blocks";
 import { ROUTES } from "@/data/navigation";
-import { pageMeta, jsonLd, clinicSchema, websiteSchema, doctorSchema, faqSchema } from "@/lib/seo";
+import { pageMeta, jsonLd, websiteSchema, doctorSchema, faqSchema } from "@/lib/seo";
 import { HeroVideo } from "@/components/sections/HeroVideo";
 import { DoctorAbout } from "@/components/sections/DoctorAbout";
 import { ProcessTimeline } from "@/components/sections/ProcessTimeline";
@@ -515,13 +515,14 @@ export const Route = createFileRoute("/")({
      emits them on every route, so repeating them locally would render each tag twice. */
   head: () => ({
     ...pageMeta({
-      title: "IVF & Fertility Clinic in Marathahalli, Bangalore | Neo Fertility",
+      title: "Neo Fertility - Best IVF Clinic in Marathahalli - Bangalore",
       description:
-        "Fertility and IVF care in Marathahalli and Whitefield, Bangalore. IVF, IUI, ICSI, egg freezing and PCOS care with Dr. Payal Mahapatra, 18 years in reproductive medicine. Open all seven days.",
+        "Fertility and IVF care in Marathahalli and Whitefield, Bangalore. IVF, IUI, ICSI, egg freezing and PCOS care with Dr. Payal Mahapatra. Open all seven days.",
       path: ROUTES.home,
     }),
     scripts: [
-      jsonLd(clinicSchema),
+      /* clinicSchema is emitted site-wide from __root.tsx — repeating it here would put
+         two identical @id nodes in one document. */
       jsonLd(websiteSchema),
       jsonLd(doctorSchema),
       jsonLd(faqSchema(FAQS)),

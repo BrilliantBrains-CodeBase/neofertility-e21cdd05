@@ -60,7 +60,7 @@ const FAQS = [
 export const Route = createFileRoute("/best-ivf-treatment-in-marathahalli-whitefield-bangalore")({
   head: () => ({
     ...pageMeta({
-      title: "IVF Treatment in Marathahalli, Whitefield | Neo Fertility",
+      title: "Neo Fertility Clinic - Best IVF Treatment in Marathahalli",
       description:
         "Expert IVF in Marathahalli and Whitefield, Bengaluru: how the cycle works, success rates by age, costs and risks.",
       path: PATH,

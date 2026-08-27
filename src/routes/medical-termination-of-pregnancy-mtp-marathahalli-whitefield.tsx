@@ -43,7 +43,7 @@ export const Route = createFileRoute(
 )({
   head: () => ({
     ...pageMeta({
-      title: "Medical Termination of Pregnancy (MTP) | Marathahalli",
+      title: "Medical Termination of Pregnancy MTP Marathahalli",
       description:
         "Confidential medical termination of pregnancy under the MTP Act, in Marathahalli and Whitefield, Bengaluru, with Dr. Payal Mahapatra.",
       path: ROUTES.mtp,

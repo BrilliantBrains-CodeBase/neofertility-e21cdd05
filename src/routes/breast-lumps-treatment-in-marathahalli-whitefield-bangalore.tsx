@@ -36,7 +36,7 @@ export const Route = createFileRoute(
 )({
   head: () => ({
     ...pageMeta({
-      title: "Breast Lump Assessment & Treatment | Marathahalli, Whitefield",
+      title: "Breast Lumps treatment - Marathahalli - Dr Payal Mahapatra",
       description:
         "Examination, triple assessment and treatment of breast lumps in Marathahalli and Whitefield, Bengaluru, with referral pathways where needed.",
       path: ROUTES.breastLumps,

@@ -43,7 +43,7 @@ export const Route = createFileRoute(
 )({
   head: () => ({
     ...pageMeta({
-      title: "Laparoscopic Surgery for Infertility | Marathahalli",
+      title: "Laparoscopic Surgery for Infertility - Neo Fertility Clinic",
       description:
         "Minimally invasive laparoscopic surgery for endometriosis, adhesions, ovarian cysts and tubal disease in Marathahalli, Bengaluru.",
       path: ROUTES.laparoscopy,

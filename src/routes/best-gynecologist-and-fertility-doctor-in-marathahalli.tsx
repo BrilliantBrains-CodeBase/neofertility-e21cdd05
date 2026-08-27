@@ -182,9 +182,9 @@ const HERO_GLOW =
 export const Route = createFileRoute("/best-gynecologist-and-fertility-doctor-in-marathahalli")({
   head: () => {
     const base = pageMeta({
-      title: "Dr. Payal Mahapatra | Fertility Specialist, Marathahalli",
+      title: "Best Gynecologist - Fertility Doctor in Marathahalli",
       description:
-        "Dr. Payal Mahapatra, MBBS, DGO, DNB, Fellowship in Reproductive Medicine. 18 years in fertility and gynecology in Marathahalli and Whitefield, Bangalore. ISAR and FOGSI member.",
+        "Dr. Payal Mahapatra, MBBS, DGO, DNB, Fellowship in Reproductive Medicine. 18 years in fertility and gynecology in Marathahalli and Whitefield, Bangalore.",
       path: ROUTES.about,
       image: OG_DOCTOR,
     });

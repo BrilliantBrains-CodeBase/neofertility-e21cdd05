@@ -36,7 +36,7 @@ export const Route = createFileRoute(
 )({
   head: () => ({
     ...pageMeta({
-      title: "STI Testing & Treatment in Bangalore | Confidential Care",
+      title: "Best Sexually Transmitted Infections (STIs) – Treatment",
       description:
         "Confidential testing and treatment for sexually transmitted infections in Bengaluru with Dr. Payal Mahapatra at Neo Fertility Clinic.",
       path: ROUTES.sti,

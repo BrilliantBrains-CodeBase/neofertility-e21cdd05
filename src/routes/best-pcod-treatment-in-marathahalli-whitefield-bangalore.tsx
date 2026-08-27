@@ -32,9 +32,9 @@ const FAQS = [
 export const Route = createFileRoute("/best-pcod-treatment-in-marathahalli-whitefield-bangalore")({
   head: () => ({
     ...pageMeta({
-      title: "Best PCOD Treatment in Marathahalli & Whitefield, Bangalore",
+      title: "Best PCOD treatment in Marathahalli - Neo Fertility Clinic",
       description:
-        "Diagnosis and management of polycystic ovarian disease (PCOD) with Dr. Payal Mahapatra in Marathahalli and Whitefield, Bangalore. Irregular cycles, ovulation problems and fertility concerns.",
+        "Diagnosis and management of polycystic ovarian disease (PCOD) with Dr. Payal Mahapatra in Marathahalli and Whitefield, Bangalore. Cycles and fertility.",
       path: PATH,
     }),
     scripts: [

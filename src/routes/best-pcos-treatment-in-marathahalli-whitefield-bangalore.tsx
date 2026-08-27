@@ -32,9 +32,9 @@ const FAQS = [
 export const Route = createFileRoute("/best-pcos-treatment-in-marathahalli-whitefield-bangalore")({
   head: () => ({
     ...pageMeta({
-      title: "Best PCOS Treatment in Marathahalli & Whitefield, Bangalore",
+      title: "Best PCOS Treatment in Marathahalli - Neo Fertility Clinic",
       description:
-        "Diagnosis and treatment for polycystic ovary syndrome (PCOS) with Dr. Payal Mahapatra in Marathahalli and Whitefield, Bangalore. Irregular periods, acne, weight gain and fertility concerns.",
+        "Diagnosis and treatment for polycystic ovary syndrome (PCOS) with Dr. Payal Mahapatra in Marathahalli and Whitefield, Bangalore. Periods and fertility.",
       path: PATH,
     }),
     scripts: [

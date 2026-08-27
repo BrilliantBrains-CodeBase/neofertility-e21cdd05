@@ -45,7 +45,7 @@ const FAQS = [
 export const Route = createFileRoute("/best-pregnancy-care-in-marathahalli-whitefield-bangalore")({
   head: () => ({
     ...pageMeta({
-      title: "Pregnancy Care in Marathahalli & Whitefield | Neo Fertility",
+      title: "Best Pregnancy Care in Marathahalli - Neo Fertility Clinic",
       description:
         "Complete antenatal care and high-risk pregnancy management in Marathahalli and Whitefield, Bengaluru, including pregnancies conceived through IVF.",
       path: PATH,

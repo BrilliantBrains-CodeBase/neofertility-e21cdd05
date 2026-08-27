@@ -73,11 +73,65 @@ function seoFileResponse(pathname: string): Response | undefined {
   return undefined;
 }
 
+/**
+ * URLs the old WordPress site ranked for that have no route here.
+ *
+ * The new site takes over neofertility.co.in itself, so these are not stale addresses on
+ * a domain we are leaving — they are live, indexed URLs that would start 404ing the day
+ * the platform swaps. Every one is recorded in docs/legacy-seo/pages.json.
+ *
+ * Deliberately absent: /maintenance-mode/, a WordPress artifact that was indexable by
+ * accident. It is left to 404 rather than pointed somewhere it never belonged.
+ */
+export const LEGACY_REDIRECTS: Record<string, string> = {
+  /* Already a 301 on the WordPress site. Re-created here because that redirect dies with
+     WordPress, and with it whatever links point at the old slug. */
+  "/low-amh-can-you-still-get-pregnant-2": "/ivf-treatment-in-bangalore/",
+  /* Two posts that were not carried over. Each goes to the service page covering the same
+     subject — the closest equivalent, not the blog index, so the visitor lands on content
+     that answers the query they clicked. */
+  "/icsi-treatment-for-male-infertility": "/icsi-treatment-in-marathahalli-whitefield-bangalore/",
+  "/iui-treatment-a-complete-guide":
+    "/intrauterine-insemination-iui-treatment-marathahalli-whitefield-in-bangalore/",
+  /* WordPress taxonomy and author archives. No counterpart by design. */
+  "/category/uncategorized": "/blogs/",
+  "/author/priyanka": "/blogs/",
+};
+
+/**
+ * 301s for the legacy URLs above.
+ *
+ * Runs in the worker entry, ahead of the router, for the same reason seoFileResponse does:
+ * the $slug catch-all in src/routes/ would otherwise claim these paths and answer 404
+ * before any route-level redirect could fire.
+ *
+ * Keys are stored without a trailing slash and matched both ways — the old site linked
+ * these with the slash and external sites link them both ways.
+ */
+function legacyRedirectResponse(pathname: string, url: URL): Response | undefined {
+  const key = pathname.length > 1 ? pathname.replace(/\/+$/, "") : pathname;
+  const target = LEGACY_REDIRECTS[key];
+  if (!target) return undefined;
+
+  /* Query strings are preserved: these URLs are linked from campaigns and email with
+     utm_* attached, and dropping them would blind the analytics on arrival. */
+  const location = `${target}${url.search}`;
+  return new Response(null, {
+    status: 301,
+    headers: { location, "cache-control": "public, max-age=3600" },
+  });
+}
+
 export default {
   async fetch(request: Request, env: unknown, ctx: unknown) {
     try {
-      const seoFile = seoFileResponse(new URL(request.url).pathname);
+      const url = new URL(request.url);
+
+      const seoFile = seoFileResponse(url.pathname);
       if (seoFile) return seoFile;
+
+      const legacyRedirect = legacyRedirectResponse(url.pathname, url);
+      if (legacyRedirect) return legacyRedirect;
 
       const handler = await getServerEntry();
       const response = await handler.fetch(request, env, ctx);

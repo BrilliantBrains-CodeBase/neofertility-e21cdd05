@@ -40,7 +40,7 @@ const FAQS = [
 export const Route = createFileRoute("/best-doctor-for-pain-during-sex-treatment-in-bangalore")({
   head: () => ({
     ...pageMeta({
-      title: "Pain During Sex Treatment in Marathahalli | Neo Fertility",
+      title: "Painful Sexual Intercourse Treatment - Dr Payal Mahapatra",
       description:
         "Confidential evaluation and treatment for pain during intercourse in Marathahalli, Bengaluru, with Dr. Payal Mahapatra, female gynecologist.",
       path: PATH,

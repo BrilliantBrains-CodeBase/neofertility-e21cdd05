@@ -52,7 +52,7 @@ const FAQS = [
 export const Route = createFileRoute("/pelvic-ultrasound-scan-in-marathahalli")({
   head: () => ({
     ...pageMeta({
-      title: "Pelvic Ultrasound Scan in Marathahalli | Neo Fertility",
+      title: "Pelvic Ultrasound Scan - Marathahalli - Neo Fertility Clinic",
       description:
         "Pelvic ultrasound and follicular study scans in Marathahalli, Bengaluru, for gynecological assessment and fertility evaluation with Dr. Payal Mahapatra.",
       path: PATH,

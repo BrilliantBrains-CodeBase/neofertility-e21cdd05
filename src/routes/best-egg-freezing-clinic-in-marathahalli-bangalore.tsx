@@ -57,7 +57,7 @@ const FAQS = [
 export const Route = createFileRoute("/best-egg-freezing-clinic-in-marathahalli-bangalore")({
   head: () => ({
     ...pageMeta({
-      title: "Egg Freezing Clinic in Marathahalli | Neo Fertility",
+      title: "Neo Fertility - Egg Freezing Clinic Marathahalli Bangalore",
       description:
         "Egg freezing and preservation in Marathahalli, Bengaluru: who it suits, the process, storage, and what affects success.",
       path: PATH,

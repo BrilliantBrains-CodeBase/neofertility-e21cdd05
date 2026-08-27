@@ -59,7 +59,7 @@ export const Route = createFileRoute(
 )({
   head: () => ({
     ...pageMeta({
-      title: "IUI Treatment in Marathahalli, Whitefield | Neo Fertility",
+      title: "Intrauterine Insemination IUI - Marathahalli - Neo Fertility",
       description:
         "IUI in Marathahalli and Whitefield, Bengaluru: how it works, who it suits, success rates and how it compares with IVF.",
       path: PATH,

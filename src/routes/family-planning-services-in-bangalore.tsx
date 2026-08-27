@@ -40,7 +40,7 @@ const FAQS = [
 export const Route = createFileRoute("/family-planning-services-in-bangalore")({
   head: () => ({
     ...pageMeta({
-      title: "Family Planning Services in Bangalore | Neo Fertility",
+      title: "Family Planning Counselling Bangalore - Neo Fertility Clinic",
       description:
         "Contraceptive counselling, IUD and implant fitting, and family planning advice in Marathahalli, Bengaluru, with Dr. Payal Mahapatra.",
       path: PATH,

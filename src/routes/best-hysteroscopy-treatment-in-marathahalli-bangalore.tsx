@@ -41,7 +41,7 @@ const FAQS = [
 export const Route = createFileRoute("/best-hysteroscopy-treatment-in-marathahalli-bangalore")({
   head: () => ({
     ...pageMeta({
-      title: "Hysteroscopy Treatment in Marathahalli, Bangalore",
+      title: "Neo Fertility - Best Hysteroscopy Treatment in Marathahalli",
       description:
         "Diagnostic and operative hysteroscopy for polyps, fibroids, adhesions and uterine septum in Marathahalli, Bengaluru.",
       path: ROUTES.hysteroscopy,

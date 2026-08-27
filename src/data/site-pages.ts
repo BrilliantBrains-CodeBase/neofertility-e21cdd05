@@ -61,7 +61,7 @@ type NonBlogRouteKey = Exclude<
 export const SITE_PAGES: SitePage[] = [
   {
     route: ROUTES.eggFreezing,
-    title: "Egg Freezing Clinic in Marathahalli | Neo Fertility",
+    title: "Neo Fertility - Egg Freezing Clinic Marathahalli Bangalore",
     summary:
       "Egg freezing and preservation in Marathahalli, Bengaluru: who it suits, the process, storage, and what affects success.",
     section: "fertility",
@@ -70,7 +70,7 @@ export const SITE_PAGES: SitePage[] = [
   },
   {
     route: ROUTES.icsi,
-    title: "ICSI Treatment in Marathahalli, Whitefield | Neo Fertility",
+    title: "Best ICSI Treatment in Marathahalli - Neo Fertility Clinic",
     summary:
       "ICSI for male infertility in Marathahalli and Whitefield, Bengaluru: how it works, costs, and success factors.",
     section: "fertility",
@@ -79,7 +79,7 @@ export const SITE_PAGES: SitePage[] = [
   },
   {
     route: ROUTES.infertility,
-    title: "Infertility Treatment in Marathahalli, Whitefield | Neo Fertility",
+    title: "Infertility Treatment in Marathahalli - Neo Fertility Clinic",
     summary:
       "Comprehensive infertility evaluation and treatment in Marathahalli, Bengaluru: causes, tests, and personalised treatment for both partners.",
     section: "fertility",
@@ -88,7 +88,7 @@ export const SITE_PAGES: SitePage[] = [
   },
   {
     route: ROUTES.iui,
-    title: "IUI Treatment in Marathahalli, Whitefield | Neo Fertility",
+    title: "Intrauterine Insemination IUI - Marathahalli - Neo Fertility",
     summary:
       "IUI in Marathahalli and Whitefield, Bengaluru: how it works, who it suits, success rates and how it compares with IVF.",
     section: "fertility",
@@ -97,7 +97,7 @@ export const SITE_PAGES: SitePage[] = [
   },
   {
     route: ROUTES.ivf,
-    title: "IVF Treatment in Marathahalli, Whitefield | Neo Fertility",
+    title: "Neo Fertility Clinic - Best IVF Treatment in Marathahalli",
     summary:
       "Expert IVF in Marathahalli and Whitefield, Bengaluru: how the cycle works, success rates by age, costs and risks.",
     section: "fertility",
@@ -106,7 +106,7 @@ export const SITE_PAGES: SitePage[] = [
   },
   {
     route: ROUTES.maleInfertility,
-    title: "Male Infertility Treatment in Marathahalli | Neo Fertility",
+    title: "Best Male Infertility Treatment In Marathahalli - Bangalore",
     summary:
       "Male infertility diagnosis and treatment in Marathahalli, Bengaluru: causes, tests, timelines and treatment options.",
     section: "fertility",
@@ -115,7 +115,7 @@ export const SITE_PAGES: SitePage[] = [
   },
   {
     route: ROUTES.donor,
-    title: "Donor Egg and Sperm Programme | Neo Fertility",
+    title: "Best Donor Eggs - Sperm Program Marathahalli - Neo Fertility",
     summary:
       "Donor egg and sperm programme in Marathahalli, Bengaluru: who it helps, donor screening, the process, and eligibility.",
     section: "fertility",
@@ -142,25 +142,25 @@ export const SITE_PAGES: SitePage[] = [
   },
   {
     route: ROUTES.pcod,
-    title: "Best PCOD Treatment in Marathahalli & Whitefield, Bangalore",
+    title: "Best PCOD treatment in Marathahalli - Neo Fertility Clinic",
     summary:
-      "Diagnosis and management of polycystic ovarian disease (PCOD) with Dr. Payal Mahapatra in Marathahalli and Whitefield, Bangalore. Irregular cycles, ovulation problems and fertility concerns.",
+      "Diagnosis and management of polycystic ovarian disease (PCOD) with Dr. Payal Mahapatra in Marathahalli and Whitefield, Bangalore. Cycles and fertility.",
     section: "hormonal",
     priority: 0.9,
     changeFrequency: "monthly",
   },
   {
     route: ROUTES.pcos,
-    title: "Best PCOS Treatment in Marathahalli & Whitefield, Bangalore",
+    title: "Best PCOS Treatment in Marathahalli - Neo Fertility Clinic",
     summary:
-      "Diagnosis and treatment for polycystic ovary syndrome (PCOS) with Dr. Payal Mahapatra in Marathahalli and Whitefield, Bangalore. Irregular periods, acne, weight gain and fertility concerns.",
+      "Diagnosis and treatment for polycystic ovary syndrome (PCOS) with Dr. Payal Mahapatra in Marathahalli and Whitefield, Bangalore. Periods and fertility.",
     section: "hormonal",
     priority: 0.9,
     changeFrequency: "monthly",
   },
   {
     route: ROUTES.menstrual,
-    title: "Period Problems & Menstrual Disorder Treatment | Marathahalli",
+    title: "Menstrual Bleeding - Irregular Period Treatment Marathahalli",
     summary:
       "Treatment for heavy bleeding, painful periods, irregular cycles and menopausal symptoms in Marathahalli, Bengaluru, with Dr. Payal Mahapatra.",
     section: "hormonal",
@@ -178,16 +178,16 @@ export const SITE_PAGES: SitePage[] = [
   },
   {
     route: ROUTES.preconception,
-    title: "Pre-Conception Health Check in Marathahalli | Neo Fertility",
+    title: "Best Pre-conception Counselling Marathahalli - Neo Fertility",
     summary:
-      "Preconception health screening in Marathahalli, Bengaluru: hormone profile, pelvic ultrasound, infection screening and semen analysis before you start trying to conceive.",
+      "Preconception screening in Marathahalli, Bengaluru: hormone profile, pelvic ultrasound, infection screening and semen analysis before trying to conceive.",
     section: "pregnancy",
     priority: 0.8,
     changeFrequency: "monthly",
   },
   {
     route: ROUTES.pregnancyCare,
-    title: "Pregnancy Care in Marathahalli & Whitefield | Neo Fertility",
+    title: "Best Pregnancy Care in Marathahalli - Neo Fertility Clinic",
     summary:
       "Complete antenatal care and high-risk pregnancy management in Marathahalli and Whitefield, Bengaluru, including pregnancies conceived through IVF.",
     section: "pregnancy",
@@ -196,7 +196,7 @@ export const SITE_PAGES: SitePage[] = [
   },
   {
     route: ROUTES.familyPlanning,
-    title: "Family Planning Services in Bangalore | Neo Fertility",
+    title: "Family Planning Counselling Bangalore - Neo Fertility Clinic",
     summary:
       "Contraceptive counselling, IUD and implant fitting, and family planning advice in Marathahalli, Bengaluru, with Dr. Payal Mahapatra.",
     section: "pregnancy",
@@ -205,7 +205,7 @@ export const SITE_PAGES: SitePage[] = [
   },
   {
     route: ROUTES.mtp,
-    title: "Medical Termination of Pregnancy (MTP) | Marathahalli",
+    title: "Medical Termination of Pregnancy MTP Marathahalli",
     summary:
       "Confidential medical termination of pregnancy under the MTP Act, in Marathahalli and Whitefield, Bengaluru, with Dr. Payal Mahapatra.",
     section: "pregnancy",
@@ -223,7 +223,7 @@ export const SITE_PAGES: SitePage[] = [
   },
   {
     route: ROUTES.hysteroscopy,
-    title: "Hysteroscopy Treatment in Marathahalli, Bangalore",
+    title: "Neo Fertility - Best Hysteroscopy Treatment in Marathahalli",
     summary:
       "Diagnostic and operative hysteroscopy for polyps, fibroids, adhesions and uterine septum in Marathahalli, Bengaluru.",
     section: "gynecology",
@@ -232,7 +232,7 @@ export const SITE_PAGES: SitePage[] = [
   },
   {
     route: ROUTES.laparoscopy,
-    title: "Laparoscopic Surgery for Infertility | Marathahalli",
+    title: "Laparoscopic Surgery for Infertility - Neo Fertility Clinic",
     summary:
       "Minimally invasive laparoscopic surgery for endometriosis, adhesions, ovarian cysts and tubal disease in Marathahalli, Bengaluru.",
     section: "gynecology",
@@ -241,7 +241,7 @@ export const SITE_PAGES: SitePage[] = [
   },
   {
     route: ROUTES.breastLumps,
-    title: "Breast Lump Assessment & Treatment | Marathahalli, Whitefield",
+    title: "Breast Lumps treatment - Marathahalli - Dr Payal Mahapatra",
     summary:
       "Examination, triple assessment and treatment of breast lumps in Marathahalli and Whitefield, Bengaluru, with referral pathways where needed.",
     section: "gynecology",
@@ -250,7 +250,7 @@ export const SITE_PAGES: SitePage[] = [
   },
   {
     route: ROUTES.painDuringSex,
-    title: "Pain During Sex Treatment in Marathahalli | Neo Fertility",
+    title: "Painful Sexual Intercourse Treatment - Dr Payal Mahapatra",
     summary:
       "Confidential evaluation and treatment for pain during intercourse in Marathahalli, Bengaluru, with Dr. Payal Mahapatra, female gynecologist.",
     section: "gynecology",
@@ -259,7 +259,7 @@ export const SITE_PAGES: SitePage[] = [
   },
   {
     route: ROUTES.pelvicUltrasound,
-    title: "Pelvic Ultrasound Scan in Marathahalli | Neo Fertility",
+    title: "Pelvic Ultrasound Scan - Marathahalli - Neo Fertility Clinic",
     summary:
       "Pelvic ultrasound and follicular study scans in Marathahalli, Bengaluru, for gynecological assessment and fertility evaluation with Dr. Payal Mahapatra.",
     section: "gynecology",
@@ -268,7 +268,7 @@ export const SITE_PAGES: SitePage[] = [
   },
   {
     route: ROUTES.pid,
-    title: "Pelvic Inflammatory Disease (PID) Treatment | Bangalore",
+    title: "Pelvic Inflammatory Disease - PIDs - Treatment in Bangalore",
     summary:
       "Prompt diagnosis and treatment of pelvic inflammatory disease in Bengaluru to prevent tubal damage and protect fertility.",
     section: "gynecology",
@@ -286,7 +286,7 @@ export const SITE_PAGES: SitePage[] = [
   },
   {
     route: ROUTES.sti,
-    title: "STI Testing & Treatment in Bangalore | Confidential Care",
+    title: "Best Sexually Transmitted Infections (STIs) – Treatment",
     summary:
       "Confidential testing and treatment for sexually transmitted infections in Bengaluru with Dr. Payal Mahapatra at Neo Fertility Clinic.",
     section: "gynecology",
@@ -295,9 +295,9 @@ export const SITE_PAGES: SitePage[] = [
   },
   {
     route: ROUTES.vaginalInfection,
-    title: "Vaginal Discharge & Infection Treatment | Marathahalli",
+    title: "Best Vaginal Discharge - Infection Treatment - Marathahalli",
     summary:
-      "Diagnosis and treatment of vaginal discharge, itching and odour, including bacterial vaginosis, yeast infection and trichomoniasis, in Marathahalli, Bengaluru.",
+      "Diagnosis and treatment of vaginal discharge, itching and odour, including bacterial vaginosis and yeast infection, in Marathahalli, Bengaluru.",
     section: "gynecology",
     priority: 0.7,
     changeFrequency: "monthly",
@@ -349,7 +349,7 @@ export const SITE_PAGES: SitePage[] = [
   },
   {
     route: ROUTES.blogs,
-    title: "Fertility & Gynecology Blog | Neo Fertility Clinic",
+    title: "Blogs – Neo Fertility Clinic",
     summary:
       "Articles from Neo Fertility Clinic, Marathahalli, Bangalore on fertility treatment, IVF and male infertility, written for patients.",
     section: "guides",
@@ -376,18 +376,18 @@ export const SITE_PAGES: SitePage[] = [
   },
   {
     route: ROUTES.home,
-    title: "IVF & Fertility Clinic in Marathahalli, Bangalore | Neo Fertility",
+    title: "Neo Fertility - Best IVF Clinic in Marathahalli - Bangalore",
     summary:
-      "Fertility and IVF care in Marathahalli and Whitefield, Bangalore. IVF, IUI, ICSI, egg freezing and PCOS care with Dr. Payal Mahapatra, 18 years in reproductive medicine. Open all seven days.",
+      "Fertility and IVF care in Marathahalli and Whitefield, Bangalore. IVF, IUI, ICSI, egg freezing and PCOS care with Dr. Payal Mahapatra. Open all seven days.",
     section: "about",
     priority: 1.0,
     changeFrequency: "weekly",
   },
   {
     route: ROUTES.about,
-    title: "Dr. Payal Mahapatra | Fertility Specialist, Marathahalli",
+    title: "Best Gynecologist - Fertility Doctor in Marathahalli",
     summary:
-      "Dr. Payal Mahapatra, MBBS, DGO, DNB, Fellowship in Reproductive Medicine. 18 years in fertility and gynecology in Marathahalli and Whitefield, Bangalore. ISAR and FOGSI member.",
+      "Dr. Payal Mahapatra, MBBS, DGO, DNB, Fellowship in Reproductive Medicine. 18 years in fertility and gynecology in Marathahalli and Whitefield, Bangalore.",
     section: "about",
     priority: 0.9,
     changeFrequency: "monthly",
@@ -439,7 +439,7 @@ export const SITE_PAGES: SitePage[] = [
   },
   {
     route: ROUTES.privacy,
-    title: "Privacy Policy | Neo Fertility Clinic",
+    title: "Privacy Policy – Neo Fertility Clinic",
     summary:
       "How Neo Fertility Clinic, Marathahalli, Bangalore collects, uses and protects your personal and medical information.",
     section: "legal",
@@ -448,7 +448,7 @@ export const SITE_PAGES: SitePage[] = [
   },
   {
     route: ROUTES.terms,
-    title: "Terms of Use | Neo Fertility Clinic",
+    title: "Terms Of Use – Neo Fertility Clinic",
     summary:
       "Terms of use governing the Neo Fertility Clinic website and online enquiry or appointment request forms.",
     section: "legal",

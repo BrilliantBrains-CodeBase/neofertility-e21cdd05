@@ -54,9 +54,9 @@ export const Route = createFileRoute("/best-pre-conception-health-check-in-marat
   {
     head: () => ({
       ...pageMeta({
-        title: "Pre-Conception Health Check in Marathahalli | Neo Fertility",
+        title: "Best Pre-conception Counselling Marathahalli - Neo Fertility",
         description:
-          "Preconception health screening in Marathahalli, Bengaluru: hormone profile, pelvic ultrasound, infection screening and semen analysis before you start trying to conceive.",
+          "Preconception screening in Marathahalli, Bengaluru: hormone profile, pelvic ultrasound, infection screening and semen analysis before trying to conceive.",
         path: PATH,
       }),
       scripts: [

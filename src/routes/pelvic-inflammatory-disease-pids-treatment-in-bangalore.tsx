@@ -34,7 +34,7 @@ const FAQS = [
 export const Route = createFileRoute("/pelvic-inflammatory-disease-pids-treatment-in-bangalore")({
   head: () => ({
     ...pageMeta({
-      title: "Pelvic Inflammatory Disease (PID) Treatment | Bangalore",
+      title: "Pelvic Inflammatory Disease - PIDs - Treatment in Bangalore",
       description:
         "Prompt diagnosis and treatment of pelvic inflammatory disease in Bengaluru to prevent tubal damage and protect fertility.",
       path: ROUTES.pid,
