@@ -52,8 +52,13 @@ function isH3SwallowedErrorBody(body: string): boolean {
  * anything else touches the request, so there is no ordering question with the static
  * asset handler or the SSR router. public/sitemap.xml was deleted when this landed —
  * a static file at the same path would have shadowed this handler.
+ *
+ * Matched with an optional trailing slash: the static-build's prerender crawler
+ * (npm run build:static) always requests paths with a trailing slash appended, and both
+ * forms should hit the same handler rather than the trailing-slash variant 404ing.
  */
-function seoFileResponse(pathname: string): Response | undefined {
+function seoFileResponse(rawPathname: string): Response | undefined {
+  const pathname = rawPathname.length > 1 ? rawPathname.replace(/\/+$/, "") : rawPathname;
   if (pathname === "/sitemap.xml") {
     return new Response(buildSitemap(), {
       headers: {
