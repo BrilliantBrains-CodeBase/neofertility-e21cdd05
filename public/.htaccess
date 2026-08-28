@@ -31,16 +31,32 @@ RewriteRule ^author/priyanka/?$ /blogs/ [L,R=301]
 
 # ---------------------------------------------------------------------------
 # 3. Routing. Every real page on this site was rendered to an actual file at
-#    build time (e.g. /contact/ -> /contact/index.html), so Apache serves it
-#    directly — no "rewrite everything to index.html" SPA hack needed, and no
-#    soft-404s for search engines. Apache's own mod_dir already redirects
-#    /contact -> /contact/ for a real directory, so that needs no rule either.
+#    build time, but they're kept out of the way in pages/<route>/index.html
+#    (see scripts/organize-static-build.mjs) rather than cluttering the web
+#    root — the two rules below make that invisible to visitors and search
+#    engines: the URL bar and canonical tags still show /contact/, never
+#    /pages/contact/.
 #
-#    A URL that matches none of those real files is genuinely missing (a typo,
-#    a route added since the last build, or truly bad). Hand it to the client
-#    app's own "Page not found" screen, but keep the real 404 status so it's
-#    never indexed as a working page.
+#    a) A request with no trailing slash (e.g. /contact) gets a real 301 to
+#       the slashed form, same as Apache's own mod_dir would do for a plain
+#       directory — needed explicitly here because /contact is no longer a
+#       directory at the root.
+#    b) A request that already ends in "/" and has a matching file under
+#       pages/ is served from there internally, with no visible redirect.
+#
+#    A URL that matches neither — a typo, a route added since the last
+#    build, or truly bad — falls through to ErrorDocument 404 below. Hand it
+#    to the client app's own "Page not found" screen, but keep the real 404
+#    status so it's never indexed as a working page.
 # ---------------------------------------------------------------------------
+RewriteCond %{REQUEST_URI} !/$
+RewriteCond %{REQUEST_URI} !\.\w+$
+RewriteCond %{DOCUMENT_ROOT}/pages%{REQUEST_URI}/index.html -f
+RewriteRule ^(.*[^/])$ /$1/ [L,R=301]
+
+RewriteCond %{DOCUMENT_ROOT}/pages%{REQUEST_URI}index.html -f
+RewriteRule ^(.*)$ /pages/$1index.html [L]
+
 ErrorDocument 404 /index.html
 
 DirectoryIndex index.html
