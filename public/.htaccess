@@ -1,9 +1,35 @@
-# Neo Fertility Clinic — Apache config for static hosting (Hostinger, GoDaddy, or any
-# shared/cPanel host). Ships automatically as part of `npm run build:static`'s output
-# (dist/client/) because everything in public/ is copied verbatim into the build.
+# Neo Fertility Clinic — Apache config for static hosting.
+# Ships automatically as part of `npm run build:static`'s output (dist/client/) because
+# everything in public/ is copied verbatim into the build.
 #
 # Upload the *contents* of dist/client/ (not the folder itself) to your hosting account's
-# web root (public_html/ on Hostinger and GoDaddy). This file must land in that same root.
+# web root. This file must land in that same root.
+#
+# ===========================================================================
+# MULTI-DOMAIN HOSTING NOTE
+# ===========================================================================
+# This file is deployed at /public_html/ on a shared cPanel/GoDaddy account that also
+# hosts other, unrelated sites in subdirectories of that same /public_html/ (e.g.
+# neofollicletransplant.com, dermasolutions.co.in). On this kind of hosting, Apache can
+# read and apply an ancestor .htaccess (this one) even for requests that actually belong
+# to those other sites, because AllowOverride is commonly granted account-wide rather
+# than scoped to each domain's own document root.
+#
+# Every directive below is therefore explicitly scoped to neofertility.co.in /
+# www.neofertility.co.in:
+#   - RewriteRule blocks each carry their own RewriteCond on %{HTTP_HOST} immediately
+#     above them (RewriteCond only applies to the RewriteRule directly below it, so this
+#     has to be repeated per rule rather than stated once).
+#   - Everything else (Options, ErrorDocument, DirectoryIndex, Header, Expires, AddType —
+#     none of which can be conditioned via RewriteCond) is wrapped in a single <If> block
+#     keyed off the same host check. <If> is core Apache 2.4 (2.4.27+), which any current
+#     cPanel/EasyApache4 install satisfies.
+#
+# If this file is ever found to still affect another domain, that means AllowOverride for
+# this account grants more than expected — the fix belongs in the account's Apache config
+# (or that domain's own .htaccess adding an explicit reset for the directive in question),
+# not in loosening the guards below.
+# ===========================================================================
 
 RewriteEngine On
 
@@ -13,24 +39,41 @@ RewriteEngine On
 #    src/data/navigation.ts, every canonical tag, sitemap.xml, JSON-LD) — www
 #    and plain-http traffic must redirect here, never the reverse.
 # ---------------------------------------------------------------------------
+RewriteCond %{HTTP_HOST} ^(www\.)?neofertility\.co\.in$ [NC]
 RewriteCond %{HTTPS} off [OR]
 RewriteCond %{HTTP_HOST} ^www\.neofertility\.co\.in$ [NC]
 RewriteRule ^ https://neofertility.co.in%{REQUEST_URI} [L,R=301]
 
 # ---------------------------------------------------------------------------
-# 2. Legacy WordPress URLs that still hold search rankings. Mirrors
+# 2. Keep the retained old-WordPress backup out of reach. It's kept only for
+#    rollback and was never meant to be a public URL.
+# ---------------------------------------------------------------------------
+RewriteCond %{HTTP_HOST} ^(www\.)?neofertility\.co\.in$ [NC]
+RewriteRule ^neofertility\.co\.in-old(/.*)?$ - [F,L]
+
+# ---------------------------------------------------------------------------
+# 3. Legacy WordPress URLs that still hold search rankings. Mirrors
 #    LEGACY_REDIRECTS in src/server.ts, which only runs on the SSR/Cloudflare
 #    deploy — this is the static-hosting equivalent of the same table. Keep
 #    both lists in sync if that map ever changes.
 # ---------------------------------------------------------------------------
+RewriteCond %{HTTP_HOST} ^(www\.)?neofertility\.co\.in$ [NC]
 RewriteRule ^low-amh-can-you-still-get-pregnant-2/?$ /ivf-treatment-in-bangalore/ [L,R=301]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?neofertility\.co\.in$ [NC]
 RewriteRule ^icsi-treatment-for-male-infertility/?$ /icsi-treatment-in-marathahalli-whitefield-bangalore/ [L,R=301]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?neofertility\.co\.in$ [NC]
 RewriteRule ^iui-treatment-a-complete-guide/?$ /intrauterine-insemination-iui-treatment-marathahalli-whitefield-in-bangalore/ [L,R=301]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?neofertility\.co\.in$ [NC]
 RewriteRule ^category/uncategorized/?$ /blogs/ [L,R=301]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?neofertility\.co\.in$ [NC]
 RewriteRule ^author/priyanka/?$ /blogs/ [L,R=301]
 
 # ---------------------------------------------------------------------------
-# 3. Routing. Every real page on this site was rendered to an actual file at
+# 4. Routing. Every real page on this site was rendered to an actual file at
 #    build time, but they're kept out of the way in pages/<route>/index.html
 #    (see scripts/organize-static-build.mjs) rather than cluttering the web
 #    root — the two rules below make that invisible to visitors and search
@@ -45,72 +88,74 @@ RewriteRule ^author/priyanka/?$ /blogs/ [L,R=301]
 #       pages/ is served from there internally, with no visible redirect.
 #
 #    A URL that matches neither — a typo, a route added since the last
-#    build, or truly bad — falls through to ErrorDocument 404 below. Hand it
-#    to the client app's own "Page not found" screen, but keep the real 404
-#    status so it's never indexed as a working page.
+#    build, or truly bad — falls through to the ErrorDocument 404 below. That
+#    still returns a real HTTP 404 (ErrorDocument preserves the status code;
+#    it only substitutes the body), just with the app's own "Page not found"
+#    screen instead of a bare Apache error page — never a soft 404.
 # ---------------------------------------------------------------------------
+RewriteCond %{HTTP_HOST} ^(www\.)?neofertility\.co\.in$ [NC]
 RewriteCond %{REQUEST_URI} !/$
 RewriteCond %{REQUEST_URI} !\.\w+$
 RewriteCond %{DOCUMENT_ROOT}/pages%{REQUEST_URI}/index.html -f
 RewriteRule ^(.*[^/])$ /$1/ [L,R=301]
 
+RewriteCond %{HTTP_HOST} ^(www\.)?neofertility\.co\.in$ [NC]
 RewriteCond %{DOCUMENT_ROOT}/pages%{REQUEST_URI}index.html -f
 RewriteRule ^(.*)$ /pages/$1index.html [L]
 
-ErrorDocument 404 /index.html
-
-DirectoryIndex index.html
-Options -MultiViews -Indexes
-
 # ---------------------------------------------------------------------------
-# 4. Compression
+# 5. Everything below is a plain directive, not a RewriteRule — Apache has no
+#    per-host conditional for Options/ErrorDocument/DirectoryIndex/Header/
+#    Expires/AddType, so the whole block is wrapped in <If> instead. This is
+#    the piece that was missing before: DirectoryIndex index.html and
+#    Options -Indexes were previously unscoped, which is what actually broke
+#    the other sites — a WordPress directory has no index.html, and with
+#    directory listing also forbidden, Apache returned 403 instead of falling
+#    back to index.php.
 # ---------------------------------------------------------------------------
-<IfModule mod_deflate.c>
-  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml application/xml
-  AddOutputFilterByType DEFLATE application/javascript application/json image/svg+xml
-</IfModule>
+<If "%{HTTP_HOST} =~ /^(www\.)?neofertility\.co\.in$/i">
+  ErrorDocument 404 /index.html
 
-# ---------------------------------------------------------------------------
-# 5. Caching. Built asset filenames are content-hashed (styles-B_pPhz2C.css,
-#    index-DszeSF9R.js, ...), so they're safe to cache forever — a new deploy
-#    ships new filenames. HTML must always be revalidated, so a fresh deploy
-#    is seen on the next visit instead of from a stale cached page.
-# ---------------------------------------------------------------------------
-<IfModule mod_expires.c>
-  ExpiresActive On
-  ExpiresByType text/html "access plus 0 seconds"
-  ExpiresByType application/xml "access plus 1 hour"
-  ExpiresByType text/plain "access plus 1 hour"
-  ExpiresByType text/css "access plus 1 year"
-  ExpiresByType application/javascript "access plus 1 year"
-  ExpiresByType image/webp "access plus 1 year"
-  ExpiresByType image/jpeg "access plus 1 year"
-  ExpiresByType image/png "access plus 1 year"
-  ExpiresByType font/woff2 "access plus 1 year"
-  ExpiresByType video/mp4 "access plus 1 year"
-  ExpiresByType video/webm "access plus 1 year"
-</IfModule>
+  DirectoryIndex index.html
+  Options -MultiViews -Indexes
 
-<IfModule mod_headers.c>
-  <FilesMatch "\.html$">
-    Header set Cache-Control "no-cache, must-revalidate"
-  </FilesMatch>
-  <FilesMatch "\.(css|js|mjs|woff2?|jpe?g|png|webp|svg|mp4|webm)$">
-    Header set Cache-Control "public, max-age=31536000, immutable"
-  </FilesMatch>
+  <IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml application/xml
+    AddOutputFilterByType DEFLATE application/javascript application/json image/svg+xml
+  </IfModule>
 
-  Header always set X-Content-Type-Options "nosniff"
-  Header always set Referrer-Policy "strict-origin-when-cross-origin"
-</IfModule>
+  <IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType text/html "access plus 0 seconds"
+    ExpiresByType application/xml "access plus 1 hour"
+    ExpiresByType text/plain "access plus 1 hour"
+    ExpiresByType text/css "access plus 1 year"
+    ExpiresByType application/javascript "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType font/woff2 "access plus 1 year"
+    ExpiresByType video/mp4 "access plus 1 year"
+    ExpiresByType video/webm "access plus 1 year"
+  </IfModule>
 
-# ---------------------------------------------------------------------------
-# 6. MIME types some default Apache configs (older Hostinger/GoDaddy images)
-#    still get wrong.
-# ---------------------------------------------------------------------------
-<IfModule mod_mime.c>
-  AddType application/javascript .js .mjs
-  AddType image/webp .webp
-  AddType video/webm .webm
-  AddType font/woff2 .woff2
-  AddType application/xml .xml
-</IfModule>
+  <IfModule mod_headers.c>
+    <FilesMatch "\.html$">
+      Header set Cache-Control "no-cache, must-revalidate"
+    </FilesMatch>
+    <FilesMatch "\.(css|js|mjs|woff2?|jpe?g|png|webp|svg|mp4|webm)$">
+      Header set Cache-Control "public, max-age=31536000, immutable"
+    </FilesMatch>
+
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  </IfModule>
+
+  <IfModule mod_mime.c>
+    AddType application/javascript .js .mjs
+    AddType image/webp .webp
+    AddType video/webm .webm
+    AddType font/woff2 .woff2
+    AddType application/xml .xml
+  </IfModule>
+</If>
