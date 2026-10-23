@@ -8,6 +8,7 @@ import {
   meta as maleInfertilityMeta,
   Body as MaleInfertilityBody,
 } from "./male-infertility-causes-diagnosis-and-treatment";
+import { meta as iuiMeta, Body as IuiBody } from "./iui-treatment-process-who-it-suits";
 
 /**
  * Every post, in display order.
@@ -16,10 +17,11 @@ import {
  * goes on top by convention. This order matches what /blogs/ listed before the rebuild.
  *
  * Each post's `slug` must stay in sync with its entry in ROUTES (blogWhenToSeek,
- * blogIvfBangalore, blogMaleInfertility). Nothing links through those constants any more
+ * blogIvfBangalore, blogMaleInfertility, blogIuiTreatment). Nothing links through those constants any more
  * — they stay in the frozen URL map as the record of which paths hold search rankings.
  */
 export const POSTS: BlogPost[] = [
+  { ...iuiMeta, Body: IuiBody },
   { ...whenToSeekMeta, Body: WhenToSeekBody },
   { ...ivfMeta, Body: IvfBody },
   { ...maleInfertilityMeta, Body: MaleInfertilityBody },

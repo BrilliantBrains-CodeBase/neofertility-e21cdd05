@@ -33,6 +33,7 @@ export const ROUTES = {
   blogWhenToSeek: "/when-should-a-couple-seek-fertility-treatment/",
   blogIvfBangalore: "/ivf-treatment-in-bangalore/",
   blogMaleInfertility: "/male-infertility-causes-diagnosis-and-treatment/",
+  blogIuiTreatment: "/iui-treatment-process-who-it-suits/",
   privacy: "/privacy-policy/",
   terms: "/terms-of-use/",
   fertilitySolutions: "/fertility-solutions/",

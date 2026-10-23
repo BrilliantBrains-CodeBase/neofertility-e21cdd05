@@ -1,12 +1,19 @@
 import { createFileRoute, notFound } from "@tanstack/react-router";
-import { Breadcrumbs, RelatedLinks } from "@/components/sections/blocks";
+import { Breadcrumbs, RelatedLinks, FaqBlock } from "@/components/sections/blocks";
 import { ClosingCta } from "@/components/conversion/ClosingCta";
 import { BlogSidebar } from "@/components/blog/BlogSidebar";
 import { ShareArticle } from "@/components/blog/ShareArticle";
 import { NextPost } from "@/components/blog/NextPost";
 import { CATEGORIES, getPost, getNextPost, getOtherPosts, postPath } from "@/content/blog";
 import { ROUTES } from "@/data/navigation";
-import { pageMeta, jsonLd, breadcrumbSchema, articleSchema, absoluteAsset } from "@/lib/seo";
+import {
+  pageMeta,
+  jsonLd,
+  breadcrumbSchema,
+  articleSchema,
+  faqSchema,
+  absoluteAsset,
+} from "@/lib/seo";
 
 /**
  * Blog article template.
@@ -61,6 +68,7 @@ export const Route = createFileRoute("/$slug")({
             author: post.author.name,
           }),
         ),
+        ...(post.faqs?.length ? [jsonLd(faqSchema(post.faqs))] : []),
       ],
     };
   },
@@ -163,6 +171,10 @@ function Page() {
           </article>
         </div>
       </div>
+
+      {post.faqs?.length ? (
+        <FaqBlock items={post.faqs} heading="Frequently Asked Questions" />
+      ) : null}
 
       <RelatedLinks links={post.related} />
 

@@ -55,7 +55,7 @@ export const PAGE_SECTIONS: { id: PageSection; heading: string }[] = [
  */
 type NonBlogRouteKey = Exclude<
   keyof typeof ROUTES,
-  "blogWhenToSeek" | "blogIvfBangalore" | "blogMaleInfertility" | "thankYou"
+  "blogWhenToSeek" | "blogIvfBangalore" | "blogMaleInfertility" | "blogIuiTreatment" | "thankYou"
 >;
 
 export const SITE_PAGES: SitePage[] = [

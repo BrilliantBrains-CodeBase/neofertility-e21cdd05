@@ -45,6 +45,8 @@ export type BlogPostMeta = {
   /** Tiles for the RelatedLinks band at the foot of the article. */
   related: TileLink[];
   cta: { heading: string; copy: string; sourcePage: string; whatsappMessage: string };
+  /** Optional FAQ accordion under the article, also emitted as FAQPage schema. */
+  faqs?: { q: string; a: string }[];
 };
 
 /**
