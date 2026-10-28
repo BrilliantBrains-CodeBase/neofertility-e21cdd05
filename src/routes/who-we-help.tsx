@@ -122,7 +122,7 @@ export const Route = createFileRoute("/who-we-help")({
     const base = pageMeta({
       title: "Who We Help | Fertility Care in Marathahalli, Bangalore",
       description:
-        "Fertility and gynecology care for couples trying to conceive, women with PCOS or PMOS, single women and same-sex couples, men with fertility concerns, and patients seeking a second opinion.",
+        "Care for couples trying to conceive, women with PCOS or PMOS, single women, same-sex couples, men with fertility concerns and second opinions.",
       path: ROUTES.whoWeHelp,
     });
     return {

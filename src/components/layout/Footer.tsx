@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { Facebook, Instagram, Linkedin, Youtube, MapPin, Phone, Mail, Clock } from "lucide-react";
 import { CLINIC, isConfigured } from "@/lib/clinic";
 import { FERTILITY_MENU, GYNECOLOGY_MENU, ROUTES } from "@/data/navigation";
-import logoAsset from "@/assets/neo-logo-trimmed.png";
+import logoAsset from "@/assets/neo-logo-trimmed.webp";
 /* Its own asset, not the shared appointment-mother-baby.webp: that file is also the
    backdrop of the home page's appointment form, so overwriting it would have changed a
    section nobody asked about. */
@@ -86,7 +86,7 @@ export function Footer() {
                   13rem on the stacked breakpoints where there is no row to match. */}
               <img
                 src={cardImage}
-                alt=""
+                alt="Mother holding and kissing her baby, fertility and pregnancy care at Neo Fertility Clinic, Marathahalli"
                 width={1366}
                 height={768}
                 loading="lazy"

@@ -2,9 +2,9 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ServicePage, Prose, DataTable, COMMON_RELATED } from "@/components/sections/ServicePage";
 import { SafetyNote } from "@/components/sections/blocks";
 import { ZigzagSteps } from "@/components/sections/ZigzagSteps";
-import menoConsultation from "@/assets/meno-consultation.jpg";
-import menoAssessment from "@/assets/meno-assessment.jpg";
-import menoPlan from "@/assets/meno-plan.jpg";
+import menoConsultation from "@/assets/meno-consultation.webp";
+import menoAssessment from "@/assets/meno-assessment.webp";
+import menoPlan from "@/assets/meno-plan.webp";
 import { ROUTES } from "@/data/navigation";
 import { breadcrumbSchema, faqSchema, jsonLd, medicalWebPageSchema, pageMeta } from "@/lib/seo";
 

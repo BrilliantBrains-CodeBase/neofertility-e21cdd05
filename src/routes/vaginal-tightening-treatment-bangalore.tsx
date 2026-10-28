@@ -34,7 +34,7 @@ export const Route = createFileRoute("/vaginal-tightening-treatment-bangalore")(
     ...pageMeta({
       title: "Vaginal Tightening Treatment in Bangalore | Neo Fertility",
       description:
-        "Assessment and options for vaginal laxity after childbirth or with age, including pelvic floor therapy and procedural options, with Dr. Payal Mahapatra in Marathahalli, Bangalore.",
+        "Vaginal laxity after childbirth or with age: assessment, pelvic floor therapy and procedural options with Dr. Payal Mahapatra, Marathahalli, Bangalore.",
       path: PATH,
     }),
     scripts: [
@@ -42,7 +42,7 @@ export const Route = createFileRoute("/vaginal-tightening-treatment-bangalore")(
         medicalWebPageSchema({
           title: "Vaginal Tightening Treatment in Bangalore | Neo Fertility",
           description:
-            "Assessment and options for vaginal laxity after childbirth or with age, including pelvic floor therapy and procedural options, with Dr. Payal Mahapatra in Marathahalli, Bangalore.",
+            "Vaginal laxity after childbirth or with age: assessment, pelvic floor therapy and procedural options with Dr. Payal Mahapatra, Marathahalli, Bangalore.",
           path: PATH,
           about: "Vaginal rejuvenation",
         }),

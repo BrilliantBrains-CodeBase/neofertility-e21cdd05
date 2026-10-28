@@ -45,17 +45,17 @@ const FAQS = [
 export const Route = createFileRoute("/ivf-cost-in-bangalore")({
   head: () => ({
     ...pageMeta({
-      title: "IVF Cost in Bangalore 2026 | Transparent Pricing | Neo Fertility",
+      title: "IVF Cost in Bangalore 2026: Price Breakdown | Neo Fertility",
       description:
-        "IVF, ICSI, sperm retrieval and frozen embryo transfer costs at Neo Fertility Clinic, Marathahalli, Bangalore. What is included, what varies, and EMI options.",
+        "A standard IVF cycle at Neo Fertility, Marathahalli costs ₹1–2 lakh. See ICSI, frozen embryo transfer and test costs, what is included and EMI options.",
       path: PATH,
     }),
     scripts: [
       jsonLd(
         medicalWebPageSchema({
-          title: "IVF Cost in Bangalore 2026 | Transparent Pricing | Neo Fertility",
+          title: "IVF Cost in Bangalore 2026: Price Breakdown | Neo Fertility",
           description:
-            "IVF, ICSI, sperm retrieval and frozen embryo transfer costs at Neo Fertility Clinic, Marathahalli, Bangalore. What is included, what varies, and EMI options.",
+            "A standard IVF cycle at Neo Fertility, Marathahalli costs ₹1–2 lakh. See ICSI, frozen embryo transfer and test costs, what is included and EMI options.",
           path: PATH,
           about: "Cost of IVF treatment",
         }),

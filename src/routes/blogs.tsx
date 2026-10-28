@@ -16,9 +16,9 @@ export const Route = createFileRoute("/blogs")({
   validateSearch: parseBlogSearch,
   head: () => ({
     ...pageMeta({
-      title: "Blogs – Neo Fertility Clinic",
+      title: "Fertility & IVF Blog: Doctor-Written Guides | Neo Fertility",
       description:
-        "Articles from Neo Fertility Clinic, Marathahalli, Bangalore on fertility treatment, IVF and male infertility, written for patients.",
+        "Doctor-written guides on IVF, IUI, male infertility and when to seek fertility help, from Dr. Payal Mahapatra at Neo Fertility Clinic, Marathahalli.",
       path: PATH,
     }),
     scripts: [

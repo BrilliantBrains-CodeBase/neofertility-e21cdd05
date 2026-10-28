@@ -84,7 +84,7 @@ export const Route = createFileRoute("/natural-delivery-in-marathahalli-whitefie
     ...pageMeta({
       title: "Natural Delivery in Marathahalli, Whitefield | Neo Fertility",
       description:
-        "Prepare for a safe, natural delivery in Marathahalli & Whitefield, Bangalore. Nutrition, movement and expert labour support with Dr. Payal Mahapatra at Neo Fertility.",
+        "Prepare for a safe natural delivery in Marathahalli and Whitefield: nutrition, movement and labour support with Dr. Payal Mahapatra. Book a visit.",
       path: PATH,
     }),
     scripts: [
@@ -92,7 +92,7 @@ export const Route = createFileRoute("/natural-delivery-in-marathahalli-whitefie
         medicalWebPageSchema({
           title: "Natural Delivery in Marathahalli, Whitefield | Neo Fertility",
           description:
-            "Prepare for a safe, natural delivery in Marathahalli & Whitefield, Bangalore. Nutrition, movement and expert labour support with Dr. Payal Mahapatra at Neo Fertility.",
+            "Prepare for a safe natural delivery in Marathahalli and Whitefield: nutrition, movement and labour support with Dr. Payal Mahapatra. Book a visit.",
           path: PATH,
           about: "Vaginal delivery",
         }),
@@ -101,7 +101,7 @@ export const Route = createFileRoute("/natural-delivery-in-marathahalli-whitefie
         serviceSchema({
           name: "Natural Delivery",
           description:
-            "Prepare for a safe, natural delivery in Marathahalli & Whitefield, Bangalore. Nutrition, movement and expert labour support with Dr. Payal Mahapatra at Neo Fertility.",
+            "Prepare for a safe natural delivery in Marathahalli and Whitefield: nutrition, movement and labour support with Dr. Payal Mahapatra. Book a visit.",
           path: PATH,
         }),
       ),

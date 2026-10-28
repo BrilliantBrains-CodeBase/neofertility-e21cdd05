@@ -153,7 +153,7 @@ export function PatientReviews() {
                       i > 0 && "-ms-3",
                     )}
                     src={reviewerAvatar}
-                    alt=""
+                    alt={`Patient review by ${review.name}, Neo Fertility Clinic`}
                   />
                 ))}
                 <span
@@ -255,7 +255,7 @@ export function PatientReviews() {
                         <img
                           aria-hidden
                           src={reviewerAvatar}
-                          alt=""
+                          alt={`Patient review by ${review.name}, Neo Fertility Clinic`}
                           className="size-[52px] shrink-0 rounded-full lg:size-[60px]"
                         />
                         <span>
@@ -297,7 +297,7 @@ export function PatientReviews() {
                 <img
                   aria-hidden
                   src={reviewerAvatar}
-                  alt=""
+                  alt={`Patient review by ${openReview.name}, Neo Fertility Clinic`}
                   className="size-11 shrink-0 rounded-full"
                 />
                 <span>

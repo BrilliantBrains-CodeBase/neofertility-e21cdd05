@@ -20,6 +20,15 @@ export default defineConfig({
       autoStaticPathsDiscovery: true,
       crawlLinks: true,
       retryCount: 2,
+      // Never prerender query-string URLs. The crawler follows the blog's category chips
+      // (/blogs/?category=ivf, ...) but writes every one of them to the same file as
+      // /blogs/ (the query is dropped from the output path, and the trailing slash it
+      // appends lands inside the query, so the filter matches nothing). Whichever finished
+      // last won, and /blogs/index.html shipped as "No articles match your filters": no
+      // links to any post in the static HTML crawlers read, plus a React hydration
+      // mismatch that threw away the server render and re-rendered the page client-side.
+      // Filtered views are client-side state on top of /blogs/ and canonicalise to it.
+      filter: ({ path }) => !path.includes("?"),
     },
     // TanStack's built-in sitemap generator would fight with the hand-built one this app
     // already serves from src/lib/seo-files.ts — /sitemap.xml and /llms.txt below hit that

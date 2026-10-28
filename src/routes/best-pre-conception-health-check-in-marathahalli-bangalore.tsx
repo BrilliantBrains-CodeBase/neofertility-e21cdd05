@@ -3,10 +3,10 @@ import { ServicePage, Prose, COMMON_RELATED } from "@/components/sections/Servic
 import { SectionHeading, CheckList } from "@/components/sections/blocks";
 import { JourneyFlow } from "@/components/sections/JourneyFlow";
 import { TimelineBand } from "@/components/sections/TimelineBand";
-import consultationImg from "@/assets/visit-consultation.jpg";
-import testingImg from "@/assets/visit-testing.jpg";
-import reviewImg from "@/assets/visit-review.jpg";
-import supplementsImg from "@/assets/visit-supplements.jpg";
+import consultationImg from "@/assets/visit-consultation.webp";
+import testingImg from "@/assets/visit-testing.webp";
+import reviewImg from "@/assets/visit-review.webp";
+import supplementsImg from "@/assets/visit-supplements.webp";
 import { ROUTES } from "@/data/navigation";
 import {
   breadcrumbSchema,

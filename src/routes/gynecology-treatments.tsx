@@ -90,9 +90,9 @@ const FAQS = [
 export const Route = createFileRoute("/gynecology-treatments")({
   head: () => {
     const base = pageMeta({
-      title: "Gynecologist in Marathahalli, Bangalore | Neo Fertility Clinic",
+      title: "Gynecologist in Marathahalli, Bangalore | Neo Fertility",
       description:
-        "Gynecology care in Marathahalli and Whitefield, Bangalore. Irregular and heavy periods, PCOS and PMOS, infections, breast health, hysteroscopy, laparoscopy and menopause care.",
+        "Gynecologist in Marathahalli for irregular or heavy periods, PCOS, infections, breast lumps, hysteroscopy, laparoscopy and menopause care. Open 7 days.",
       path: ROUTES.gynecologyTreatments,
     });
     return {

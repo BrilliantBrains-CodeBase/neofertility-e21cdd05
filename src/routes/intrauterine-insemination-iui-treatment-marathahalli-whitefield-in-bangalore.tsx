@@ -2,11 +2,11 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ServicePage, Prose, DataTable, COMMON_RELATED } from "@/components/sections/ServicePage";
 import { SectionHeading, CheckList, SafetyNote } from "@/components/sections/blocks";
 import { ZigzagSteps } from "@/components/sections/ZigzagSteps";
-import stepOvulation from "@/assets/iui-Ovulation.jpg";
-import stepSperm from "@/assets/iui-Sperm_Prep.jpg";
-import stepProcedure from "@/assets/iui-iui_procedure.jpg";
-import stepCare from "@/assets/iui-post_procedure_care.jpg";
-import stepTest from "@/assets/iui-Pregnancy_test.jpg";
+import stepOvulation from "@/assets/iui-Ovulation.webp";
+import stepSperm from "@/assets/iui-Sperm_Prep.webp";
+import stepProcedure from "@/assets/iui-iui_procedure.webp";
+import stepCare from "@/assets/iui-post_procedure_care.webp";
+import stepTest from "@/assets/iui-Pregnancy_test.webp";
 import { ROUTES } from "@/data/navigation";
 import {
   breadcrumbSchema,

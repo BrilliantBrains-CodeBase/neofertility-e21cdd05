@@ -28,7 +28,7 @@ const FAQS = [
 export const Route = createFileRoute("/first-sexual-relationship-guidance-bangalore")({
   head: () => ({
     ...pageMeta({
-      title: "First Sexual Relationship Guidance in Bangalore | Neo Fertility",
+      title: "First Sexual Relationship Guidance Bangalore | Neo Fertility",
       description:
         "Confidential counselling and safe health practice guidance for a first sexual relationship, in Marathahalli, Bangalore, with Dr. Payal Mahapatra.",
       path: PATH,
@@ -36,7 +36,7 @@ export const Route = createFileRoute("/first-sexual-relationship-guidance-bangal
     scripts: [
       jsonLd(
         medicalWebPageSchema({
-          title: "First Sexual Relationship Guidance in Bangalore | Neo Fertility",
+          title: "First Sexual Relationship Guidance Bangalore | Neo Fertility",
           description:
             "Confidential counselling and safe health practice guidance for a first sexual relationship, in Marathahalli, Bangalore, with Dr. Payal Mahapatra.",
           path: PATH,

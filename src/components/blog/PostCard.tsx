@@ -18,11 +18,12 @@ export function PostCard({ post, eager = false }: { post: BlogPost; eager?: bool
       className="group flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-line bg-white shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-pink-600 hover:shadow-card-lift"
     >
       <div className="overflow-hidden">
-        {/* alt="" deliberately: the photo illustrates the headline directly below it and
-            carries nothing the heading does not already say. */}
+        {/* Descriptive alt (the cover's own caption, not the headline) for image search;
+            aria-hidden so screen readers go straight to the headline below. */}
         <img
           src={post.cover.src}
-          alt=""
+          alt={post.cover.alt}
+          aria-hidden="true"
           width={post.cover.width}
           height={post.cover.height}
           loading={eager ? "eager" : "lazy"}
@@ -52,7 +53,8 @@ export function PostCard({ post, eager = false }: { post: BlogPost; eager?: bool
           <span className="flex min-w-0 items-center gap-2.5">
             <img
               src={post.author.avatar}
-              alt=""
+              alt={post.author.name}
+              aria-hidden="true"
               width={28}
               height={28}
               loading="lazy"
@@ -78,7 +80,8 @@ export function PostCardCompact({ post }: { post: BlogPost }) {
     <Link to="/$slug/" params={{ slug: post.slug }} className="group flex items-start gap-3">
       <img
         src={post.cover.src}
-        alt=""
+        alt={post.cover.alt}
+        aria-hidden="true"
         width={post.cover.width}
         height={post.cover.height}
         loading="lazy"

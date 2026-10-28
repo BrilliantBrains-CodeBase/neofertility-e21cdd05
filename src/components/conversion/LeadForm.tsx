@@ -1,20 +1,25 @@
-import { useRef, useState } from "react";
+import { lazy, Suspense, useRef, useState } from "react";
 import { Link, useNavigate } from "@tanstack/react-router";
 import { format } from "date-fns";
-import { supabase } from "@/integrations/supabase/client";
+import { insertEnquiry, warmEnquiriesDb } from "@/lib/enquiries-db";
 import { markEnquiryComplete, submitToSheet } from "@/lib/leads";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { CalendarDays, ChevronDown, Loader2, PhoneCall } from "lucide-react";
 import { CLINIC, ENQUIRY_TIMES, ENQUIRY_TREATMENTS, track } from "@/lib/clinic";
 import { ROUTES } from "@/data/navigation";
 import { cn } from "@/lib/utils";
+
+/* The date picker (react-day-picker) only renders inside the popover, so it is split out
+   and fetched the first time a patient opens it rather than with every page view. */
+const Calendar = lazy(() =>
+  import("@/components/ui/calendar").then((m) => ({ default: m.Calendar })),
+);
 
 export type LeadFormVariant = "inline" | "rail" | "sheet" | "hero";
 
@@ -137,19 +142,16 @@ export function LeadForm({
        Supabase does not hold up the thank-you, and so either one landing is
        enough for the enquiry to have been captured. */
     const [db, sheet] = await Promise.all([
-      supabase
-        .from("enquiries")
-        .insert({
-          ...enquiry,
-          preferred_day: preferred,
-          source_page: sourcePage,
-          source_variant: variant,
-          utm_source: params.get("utm_source"),
-          utm_medium: params.get("utm_medium"),
-          utm_campaign: params.get("utm_campaign"),
-          consent: true,
-        })
-        .then(({ error }) => !error),
+      insertEnquiry({
+        ...enquiry,
+        preferred_day: preferred,
+        source_page: sourcePage,
+        source_variant: variant,
+        utm_source: params.get("utm_source"),
+        utm_medium: params.get("utm_medium"),
+        utm_campaign: params.get("utm_campaign"),
+        consent: true,
+      }),
       submitToSheet({
         form: "lead",
         sourcePage,
@@ -228,13 +230,15 @@ export function LeadForm({
             </button>
           </PopoverTrigger>
           <PopoverContent align="start" className="w-auto p-3">
-            <Calendar
-              mode="single"
-              selected={date}
-              onSelect={setDate}
-              disabled={{ before: new Date() }}
-              autoFocus
-            />
+            <Suspense fallback={<div aria-hidden className="h-[18.5rem] w-[15.5rem]" />}>
+              <Calendar
+                mode="single"
+                selected={date}
+                onSelect={setDate}
+                disabled={{ before: new Date() }}
+                autoFocus
+              />
+            </Suspense>
             <div className="mt-3 border-t border-line pt-3">
               <label
                 htmlFor={`lf-time-${variant}`}
@@ -283,6 +287,7 @@ export function LeadForm({
   return (
     <form
       onSubmit={handleSubmit}
+      onFocusCapture={warmEnquiriesDb}
       noValidate
       /* The rail is the one variant with a height budget; everywhere else keeps the
          roomier rhythm. */

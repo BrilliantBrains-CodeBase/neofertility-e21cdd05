@@ -321,11 +321,12 @@ import faqImage from "@/assets/faq-mother-newborn.webp";
 import pathwayTrying from "@/assets/pathway-trying.webp";
 import pathwayIrregular from "@/assets/pathway-irregular.webp";
 import pathwayEggFreezing from "@/assets/pathway-egg-freezing.webp";
-import pathwayFailedIvf from "@/assets/pathway-failed-ivf.jpg";
-import serviceFertility from "@/assets/ivf-consultation.jpg";
-import serviceHormonal from "@/assets/meno-consultation.jpg";
-import serviceGynecology from "@/assets/scan-transvaginal.jpg";
-import servicePregnancy from "@/assets/visit-2nd-and-3rd-trimester.jpg";
+import pathwayFailedIvf from "@/assets/pathway-failed-ivf.webp";
+import serviceFertility from "@/assets/ivf-consultation.webp";
+import serviceHormonal from "@/assets/meno-consultation.webp";
+import serviceGynecology from "@/assets/scan-transvaginal.webp";
+import servicePregnancy from "@/assets/visit-2nd-and-3rd-trimester.webp";
+import heroPoster from "@/assets/hero-mother-baby-poster.webp";
 
 const FAQS = [
   {
@@ -513,21 +514,37 @@ const STEPS = [
 export const Route = createFileRoute("/")({
   /* robots, og:locale and the geo.* pair used to be appended here by hand. pageMeta now
      emits them on every route, so repeating them locally would render each tag twice. */
-  head: () => ({
-    ...pageMeta({
+  head: () => {
+    const meta = pageMeta({
       title: "Neo Fertility - Best IVF Clinic in Marathahalli - Bangalore",
       description:
         "Fertility and IVF care in Marathahalli and Whitefield, Bangalore. IVF, IUI, ICSI, egg freezing and PCOS care with Dr. Payal Mahapatra. Open all seven days.",
       path: ROUTES.home,
-    }),
-    scripts: [
-      /* clinicSchema is emitted site-wide from __root.tsx — repeating it here would put
-         two identical @id nodes in one document. */
-      jsonLd(websiteSchema),
-      jsonLd(doctorSchema),
-      jsonLd(faqSchema(FAQS)),
-    ],
-  }),
+    });
+    return {
+      ...meta,
+      links: [
+        ...meta.links,
+        /* The hero video's poster is the home page's LCP element. A poster is only
+           discovered once the <video> is parsed, so it is preloaded at high priority
+           from <head> instead of waiting its turn behind the stylesheet and scripts. */
+        {
+          rel: "preload",
+          as: "image",
+          href: heroPoster,
+          type: "image/webp",
+          fetchPriority: "high",
+        },
+      ],
+      scripts: [
+        /* clinicSchema is emitted site-wide from __root.tsx — repeating it here would put
+           two identical @id nodes in one document. */
+        jsonLd(websiteSchema),
+        jsonLd(doctorSchema),
+        jsonLd(faqSchema(FAQS)),
+      ],
+    };
+  },
 
   component: Home,
 });

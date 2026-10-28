@@ -8,7 +8,7 @@ import { FERTILITY_MENU, GYNECOLOGY_MENU, ROUTES, type NavGroup } from "@/data/n
 /* Trimmed copy of neo-logo.png. The original sits on a 500×500 canvas whose artwork
    fills only 47% of the height, so any `h-*` rendered the mark at half the size it
    looked like it should be. Cropping to the content bbox makes h-* mean what it says. */
-import logoAsset from "@/assets/neo-logo-trimmed.png";
+import logoAsset from "@/assets/neo-logo-trimmed.webp";
 import { cn } from "@/lib/utils";
 
 type MenuKey = "fertility" | "gynecology" | null;

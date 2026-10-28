@@ -7,7 +7,7 @@ import ogClinicAsset from "@/assets/og/og-clinic.jpg";
 import logoAsset from "@/assets/neo-logo.png";
 import receptionAsset from "@/assets/clinic-reception.webp";
 import waitingAreaAsset from "@/assets/clinic-waiting-area.webp";
-import consultRoomAsset from "@/assets/clinic-consult-room.jpg";
+import consultRoomAsset from "@/assets/clinic-consult-room.webp";
 
 type Meta = Record<string, string>;
 

@@ -26,7 +26,7 @@ export const meta: BlogPostMeta = {
     height: 360,
     ogSrc: ogCover,
   },
-  metaTitle: "When Should a Couple Seek Fertility Treatment? | Neo Fertility",
+  metaTitle: "When Should a Couple Seek Fertility Help? | Neo Fertility",
   metaDescription:
     "How long to try for a baby naturally, warning signs that shouldn't wait, and when to book a fertility evaluation in Bangalore.",
   related: [

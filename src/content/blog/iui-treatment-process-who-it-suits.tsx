@@ -2,7 +2,8 @@ import { Link } from "@tanstack/react-router";
 import { Prose } from "@/components/sections/ServicePage";
 import { ROUTES } from "@/data/navigation";
 import { CLINIC } from "@/lib/clinic";
-import cover from "@/assets/blogs/iui-treatment-process-who-it-suits.png";
+import cover from "@/assets/blogs/iui-treatment-process-who-it-suits.webp";
+import ogCover from "@/assets/og/og-blog-iui-treatment-process.jpg";
 import avatar from "@/assets/dr-payal-avatar.webp";
 import type { BlogPostMeta } from "./types";
 
@@ -21,9 +22,10 @@ export const meta: BlogPostMeta = {
   author: { name: CLINIC.doctor, avatar },
   cover: {
     src: cover,
-    alt: "Illustration of the steps in an IUI treatment cycle",
+    alt: "IUI treatment guide: an expecting couple beside an illustration of the uterus and IUI catheter, Neo Fertility Clinic",
     width: 720,
     height: 360,
+    ogSrc: ogCover,
   },
   metaTitle: "IUI Treatment: Process, Suitability and Success",
   metaDescription:

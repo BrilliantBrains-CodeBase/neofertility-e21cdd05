@@ -51,7 +51,7 @@ export const Route = createFileRoute("/fertility-clinic-in-bellandur-bangalore")
     ...pageMeta({
       title: "Fertility Clinic Near Bellandur, Bangalore | Neo Fertility",
       description:
-        "Fertility and IVF treatment for patients from Bellandur, Bangalore. IVF, IUI, ICSI, egg freezing and PCOS care with Dr. Payal Mahapatra, on Marathahalli Bridge Road.",
+        "IVF, IUI, ICSI, egg freezing and PCOS care for couples from Bellandur, with Dr. Payal Mahapatra on Marathahalli Bridge Road. Open all 7 days.",
       path: PATH,
       image: OG_CLINIC,
     }),
@@ -61,7 +61,7 @@ export const Route = createFileRoute("/fertility-clinic-in-bellandur-bangalore")
           area: "Bellandur",
           title: "Fertility Clinic Near Bellandur, Bangalore | Neo Fertility",
           description:
-            "Fertility and IVF treatment for patients from Bellandur, Bangalore. IVF, IUI, ICSI, egg freezing and PCOS care with Dr. Payal Mahapatra, on Marathahalli Bridge Road.",
+            "IVF, IUI, ICSI, egg freezing and PCOS care for couples from Bellandur, with Dr. Payal Mahapatra on Marathahalli Bridge Road. Open all 7 days.",
           path: PATH,
         }),
       ),

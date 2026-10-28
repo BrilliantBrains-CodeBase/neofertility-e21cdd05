@@ -3,9 +3,9 @@ import { ServicePage, Prose, COMMON_RELATED } from "@/components/sections/Servic
 import { SectionHeading, CheckList } from "@/components/sections/blocks";
 import { NumberedSteps } from "@/components/sections/NumberedSteps";
 import { CircleInfographic } from "@/components/sections/CircleInfographic";
-import transvaginalImg from "@/assets/scan-transvaginal.jpg";
-import abdominalImg from "@/assets/scan-abdominal.jpg";
-import follicularImg from "@/assets/scan-follicular.jpg";
+import transvaginalImg from "@/assets/scan-transvaginal.webp";
+import abdominalImg from "@/assets/scan-abdominal.webp";
+import follicularImg from "@/assets/scan-follicular.webp";
 import { ROUTES } from "@/data/navigation";
 import {
   breadcrumbSchema,
