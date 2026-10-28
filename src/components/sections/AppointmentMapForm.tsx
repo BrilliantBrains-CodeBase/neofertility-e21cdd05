@@ -14,7 +14,7 @@ import {
 } from "lucide-react";
 import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { supabase } from "@/integrations/supabase/client";
+import { insertEnquiry, warmEnquiriesDb } from "@/lib/enquiries-db";
 import { markEnquiryComplete, submitToSheet } from "@/lib/leads";
 import { CLINIC, ENQUIRY_TIMES, ENQUIRY_TREATMENTS, track } from "@/lib/clinic";
 import { ROUTES } from "@/data/navigation";
@@ -146,19 +146,16 @@ export function AppointmentMapForm({ sourcePage }: { sourcePage: string }) {
        the same dual write as LeadForm: Supabase as the record of truth, the sheet
        as the clinic's call list, either one landing counting as captured. */
     const [db, sheet] = await Promise.all([
-      supabase
-        .from("enquiries")
-        .insert({
-          ...enquiry,
-          preferred_day: preferred,
-          source_page: sourcePage,
-          source_variant: "map_form",
-          utm_source: params.get("utm_source"),
-          utm_medium: params.get("utm_medium"),
-          utm_campaign: params.get("utm_campaign"),
-          consent: true,
-        })
-        .then(({ error }) => !error),
+      insertEnquiry({
+        ...enquiry,
+        preferred_day: preferred,
+        source_page: sourcePage,
+        source_variant: "map_form",
+        utm_source: params.get("utm_source"),
+        utm_medium: params.get("utm_medium"),
+        utm_campaign: params.get("utm_campaign"),
+        consent: true,
+      }),
       submitToSheet({
         form: "lead",
         sourcePage,
@@ -242,7 +239,7 @@ export function AppointmentMapForm({ sourcePage }: { sourcePage: string }) {
       >
         <img
           src={backdrop}
-          alt=""
+          alt="Smiling mother lying beside her baby, book a fertility consultation at Neo Fertility Clinic"
           width={1366}
           height={768}
           loading="lazy"
@@ -268,7 +265,12 @@ export function AppointmentMapForm({ sourcePage }: { sourcePage: string }) {
             </h2>
           </Reveal>
 
-          <form onSubmit={handleSubmit} noValidate className="flex flex-wrap gap-x-4">
+          <form
+            onSubmit={handleSubmit}
+            onFocusCapture={warmEnquiriesDb}
+            noValidate
+            className="flex flex-wrap gap-x-4"
+          >
             {/* Honeypot — hidden from people, catnip for bots */}
             <input
               type="text"

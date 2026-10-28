@@ -27,7 +27,7 @@ export const meta: BlogPostMeta = {
     height: 360,
     ogSrc: ogCover,
   },
-  metaTitle: "IVF Treatment in Bangalore: Everything You Need to Know – Neo Fertility Clinic",
+  metaTitle: "IVF Treatment in Bangalore: A Complete Guide | Neo Fertility",
   metaDescription:
     "Everything to know about IVF treatment in Bangalore: the process, success rates, costs, and how to choose a clinic. By Dr. Payal Mahapatra, Marathahalli.",
   related: [

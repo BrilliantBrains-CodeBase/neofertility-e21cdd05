@@ -4,10 +4,10 @@ import { SectionHeading, CheckList, SafetyNote } from "@/components/sections/blo
 import { ArrowTimeline } from "@/components/sections/ArrowTimeline";
 import { JourneyFlow } from "@/components/sections/JourneyFlow";
 import stimulation from "@/assets/icsi-stimulation.webp";
-import retrieval from "@/assets/icsi-egg-retrieval.jpg";
-import injection from "@/assets/icsi-sperm-injection.jpg";
-import embryo from "@/assets/icsi-embryo-development.jpg";
-import pregnancyTest from "@/assets/icsi-transfer-test.jpg";
+import retrieval from "@/assets/icsi-egg-retrieval.webp";
+import injection from "@/assets/icsi-sperm-injection.webp";
+import embryo from "@/assets/icsi-embryo-development.webp";
+import pregnancyTest from "@/assets/icsi-transfer-test.webp";
 import { ROUTES } from "@/data/navigation";
 import {
   breadcrumbSchema,

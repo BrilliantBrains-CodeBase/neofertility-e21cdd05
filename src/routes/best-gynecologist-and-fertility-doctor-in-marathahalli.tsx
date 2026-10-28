@@ -36,12 +36,12 @@ import portraitAsset from "@/assets/dr-payal-hero.webp";
 import faqImage from "@/assets/faq-mother-newborn.webp";
 import reception from "@/assets/clinic-reception.webp";
 import waitingArea from "@/assets/clinic-waiting-area.webp";
-import consultRoom from "@/assets/clinic-consult-room.jpg";
+import consultRoom from "@/assets/clinic-consult-room.webp";
 import bothPartners from "@/assets/treatment-fertility-diagnosis.webp";
-import ovulationTracking from "@/assets/iui-Ovulation.jpg";
-import reviewDiscussion from "@/assets/visit-review.jpg";
-import ultrasoundRoom from "@/assets/clinic-ultrasound.jpg";
-import procedureRoom from "@/assets/clinic-procedure-room.jpg";
+import ovulationTracking from "@/assets/iui-Ovulation.webp";
+import reviewDiscussion from "@/assets/visit-review.webp";
+import ultrasoundRoom from "@/assets/clinic-ultrasound.webp";
+import procedureRoom from "@/assets/clinic-procedure-room.webp";
 
 const FAQS = [
   {
@@ -122,8 +122,8 @@ const CONSULT_STEPS = [
     title: "The simplest effective treatment comes first",
     copy: "Where the diagnosis supports it, ovulation induction with timed intercourse is attempted before IUI, and IUI before IVF. Where IVF is the right first step, that is said plainly.",
     image: ovulationTracking,
-    width: 1080,
-    height: 1350,
+    width: 800,
+    height: 1000,
     alt: "Ovulation test strips being read against a tracking chart",
   },
   {

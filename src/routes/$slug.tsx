@@ -139,7 +139,8 @@ function Page() {
               <span className="flex items-center gap-2">
                 <img
                   src={post.author.avatar}
-                  alt=""
+                  alt={post.author.name}
+                  aria-hidden="true"
                   width={24}
                   height={24}
                   className="size-6 rounded-full object-cover"

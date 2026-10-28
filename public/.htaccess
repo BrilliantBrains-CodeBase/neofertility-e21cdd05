@@ -135,6 +135,8 @@ RewriteRule ^(.*)$ /pages/$1index.html [L]
     ExpiresByType image/jpeg "access plus 1 year"
     ExpiresByType image/png "access plus 1 year"
     ExpiresByType font/woff2 "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+    ExpiresByType image/avif "access plus 1 year"
     ExpiresByType video/mp4 "access plus 1 year"
     ExpiresByType video/webm "access plus 1 year"
   </IfModule>
@@ -156,6 +158,7 @@ RewriteRule ^(.*)$ /pages/$1index.html [L]
     AddType image/webp .webp
     AddType video/webm .webm
     AddType font/woff2 .woff2
+    AddType image/avif .avif
     AddType application/xml .xml
   </IfModule>
 </If>

@@ -32,17 +32,17 @@ const FAQS = [
 export const Route = createFileRoute("/female-sexual-dysfunction-treatment-bangalore")({
   head: () => ({
     ...pageMeta({
-      title: "Female Sexual Dysfunction Treatment in Bangalore | Neo Fertility",
+      title: "Female Sexual Dysfunction Care in Bangalore | Neo Fertility",
       description:
-        "Assessment and treatment for low desire, arousal difficulty, pain during intercourse and orgasm difficulty, with Dr. Payal Mahapatra in Marathahalli, Bangalore.",
+        "Private, judgement-free care for low desire, arousal or orgasm difficulty and painful sex, with Dr. Payal Mahapatra in Marathahalli, Bangalore.",
       path: PATH,
     }),
     scripts: [
       jsonLd(
         medicalWebPageSchema({
-          title: "Female Sexual Dysfunction Treatment in Bangalore | Neo Fertility",
+          title: "Female Sexual Dysfunction Care in Bangalore | Neo Fertility",
           description:
-            "Assessment and treatment for low desire, arousal difficulty, pain during intercourse and orgasm difficulty, with Dr. Payal Mahapatra in Marathahalli, Bangalore.",
+            "Private, judgement-free care for low desire, arousal or orgasm difficulty and painful sex, with Dr. Payal Mahapatra in Marathahalli, Bangalore.",
           path: PATH,
           about: "Female sexual dysfunction",
         }),

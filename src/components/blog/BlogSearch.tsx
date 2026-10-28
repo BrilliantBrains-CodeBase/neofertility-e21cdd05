@@ -145,7 +145,8 @@ export function BlogSearch({
                 >
                   <img
                     src={post.cover.src}
-                    alt=""
+                    alt={post.cover.alt}
+                    aria-hidden="true"
                     width={post.cover.width}
                     height={post.cover.height}
                     loading="lazy"

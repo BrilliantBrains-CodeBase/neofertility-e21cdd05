@@ -27,7 +27,7 @@ export const meta: BlogPostMeta = {
     height: 360,
     ogSrc: ogCover,
   },
-  metaTitle: "Male Infertility: Causes, Diagnosis and Treatment | Neo Fertility",
+  metaTitle: "Male Infertility: Causes, Tests & Treatment | Neo Fertility",
   metaDescription:
     "Male factors contribute to nearly half of infertility cases. Learn the common causes, how it is diagnosed, and treatment options in Bangalore.",
   related: [

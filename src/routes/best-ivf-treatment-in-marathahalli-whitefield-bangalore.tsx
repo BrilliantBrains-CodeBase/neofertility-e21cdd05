@@ -3,13 +3,13 @@ import { ServicePage, Prose, DataTable, COMMON_RELATED } from "@/components/sect
 import { SectionHeading, CheckList, SafetyNote } from "@/components/sections/blocks";
 import { ZigzagSteps } from "@/components/sections/ZigzagSteps";
 import { AlternatingTimeline } from "@/components/sections/AlternatingTimeline";
-import consultation from "@/assets/ivf-consultation.jpg";
+import consultation from "@/assets/ivf-consultation.webp";
 import stimulation from "@/assets/ivf-stimulation.webp";
-import retrieval from "@/assets/ivf-egg-retrieval.jpg";
-import fertilization from "@/assets/ivf-fertilization.jpg";
-import embryo from "@/assets/ivf-embryo.jpg";
-import embryoTransfer from "@/assets/ivf-embryo-transfer.jpg";
-import pregnancyTest from "@/assets/ivf-pregnancy-test.jpg";
+import retrieval from "@/assets/ivf-egg-retrieval.webp";
+import fertilization from "@/assets/ivf-fertilization.webp";
+import embryo from "@/assets/ivf-embryo.webp";
+import embryoTransfer from "@/assets/ivf-embryo-transfer.webp";
+import pregnancyTest from "@/assets/ivf-pregnancy-test.webp";
 import { ROUTES } from "@/data/navigation";
 import {
   breadcrumbSchema,

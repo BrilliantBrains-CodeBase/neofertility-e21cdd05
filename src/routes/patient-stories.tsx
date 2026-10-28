@@ -42,7 +42,7 @@ export const Route = createFileRoute("/patient-stories")({
     ...pageMeta({
       title: "Patient Stories | Neo Fertility Clinic, Bangalore",
       description:
-        "Anonymised accounts of patients treated at Neo Fertility Clinic, Marathahalli and Whitefield, Bangalore. Individual results vary and are not a guarantee of outcome.",
+        "Anonymised stories from patients treated at Neo Fertility Clinic, Marathahalli, Bangalore. Individual results vary and outcomes are not guaranteed.",
       path: ROUTES.patientStories,
     }),
     scripts: [

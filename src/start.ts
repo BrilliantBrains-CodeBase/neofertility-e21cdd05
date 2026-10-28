@@ -1,7 +1,6 @@
 import { createStart, createCsrfMiddleware, createMiddleware } from "@tanstack/react-start";
 
 import { renderErrorPage } from "./lib/error-page";
-import { attachSupabaseAuth } from "@/integrations/supabase/auth-attacher";
 
 const errorMiddleware = createMiddleware().server(async ({ next }) => {
   try {
@@ -25,7 +24,21 @@ const csrfMiddleware = createCsrfMiddleware({
   filter: (ctx) => ctx.handlerType === "serverFn",
 });
 
+/* Same contract as attachSupabaseAuth in integrations/supabase/auth-attacher.ts (attach the
+   session's bearer token to serverFn RPCs), but the Supabase client is imported only when
+   a server function is actually called. Importing auth-attacher statically pulled the whole
+   Supabase SDK (~200 KB) into the entry bundle of every page, and this static site calls no
+   server functions today, so every visitor paid for it during hydration for nothing. */
+const attachSupabaseAuthLazy = createMiddleware({ type: "function" }).client(async ({ next }) => {
+  const { supabase } = await import("@/integrations/supabase/client");
+  const { data } = await supabase.auth.getSession();
+  const token = data.session?.access_token;
+  return next({
+    headers: token ? { Authorization: `Bearer ${token}` } : {},
+  });
+});
+
 export const startInstance = createStart(() => ({
-  functionMiddleware: [attachSupabaseAuth],
+  functionMiddleware: [attachSupabaseAuthLazy],
   requestMiddleware: [errorMiddleware, csrfMiddleware],
 }));

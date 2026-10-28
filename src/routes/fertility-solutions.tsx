@@ -82,9 +82,9 @@ const FAQS = [
 export const Route = createFileRoute("/fertility-solutions")({
   head: () => {
     const base = pageMeta({
-      title: "Fertility Treatment in Marathahalli, Bangalore | Neo Fertility",
+      title: "Fertility Treatment, Marathahalli Bangalore | Neo Fertility",
       description:
-        "Compare fertility treatments in Marathahalli and Whitefield, Bangalore. IVF, IUI, ICSI, egg freezing, male fertility and donor programmes, with costs, success factors and who each suits.",
+        "Compare IVF, IUI, ICSI, egg freezing, male fertility and donor programmes in Marathahalli, Bangalore: costs, success factors and who each suits.",
       path: ROUTES.fertilitySolutions,
     });
     return {

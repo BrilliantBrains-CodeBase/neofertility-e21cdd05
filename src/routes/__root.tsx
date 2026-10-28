@@ -112,12 +112,31 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
          reference the clinic by @id now resolve against a node that is actually present. */
       jsonLd(clinicSchema),
       {
-        /* Google Tag Manager: seeds dataLayer and loads gtm.js async on every page.
-           The <noscript> half lives at the top of <body> in RootShell. */
+        /* Google Tag Manager, deferred off the critical path.
+
+           dataLayer is seeded immediately (with the real gtm.start timestamp), so every
+           track() call and pageview pushed before the container arrives is queued and
+           replayed by GTM — nothing is lost. What moves is only the download and
+           execution of gtm.js and the tags it fires (GA4, Meta Pixel), ~470 KB of
+           third-party JS that previously competed with hydration and was the single
+           largest cause of main-thread blocking (Core Web Vitals INP/TBT).
+
+           It loads on the first deliberate interaction (scroll, tap, click, key) or,
+           failing that, ~5 s after the page has finished loading — whichever is first.
+           Almost every real visitor scrolls or taps well before that, so tracking is
+           effectively unchanged; a visitor who leaves within 5 s without touching the
+           page is the only one no longer recorded. mousemove is deliberately not a trigger: Chrome dispatches one on its
+           own when layout shifts under a resting cursor, which would load GTM mid-
+           hydration and defeat the point. The <noscript> half lives at the top of <body>
+           in RootShell. */
         children: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+new Date().getTime(),event:'gtm.js'});var done=0,ev=['scroll','pointerdown','keydown','touchstart'];
+function load(){if(done)return;done=1;ev.forEach(function(e){w.removeEventListener(e,load,{passive:true})});
+var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;
+j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);}
+ev.forEach(function(e){w.addEventListener(e,load,{passive:true})});
+function later(){setTimeout(function(){(w.requestIdleCallback||function(c){c()})(load,{timeout:2000})},4500)}
+if(d.readyState==='complete'){later()}else{w.addEventListener('load',later)}
 })(window,document,'script','dataLayer','${GTM_ID}');`,
       },
     ],

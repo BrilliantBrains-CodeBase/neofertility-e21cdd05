@@ -4,10 +4,10 @@ import { SectionHeading, CheckList, SafetyNote } from "@/components/sections/blo
 import { StepCards } from "@/components/sections/StepCards";
 import { ROUTES } from "@/data/navigation";
 import { breadcrumbSchema, faqSchema, jsonLd, medicalWebPageSchema, pageMeta } from "@/lib/seo";
-import visitFirst from "@/assets/visit-first-antenatal-visit.jpg";
+import visitFirst from "@/assets/visit-first-antenatal-visit.webp";
 import visitFirstTrimester from "@/assets/visit-1st-trimester.webp";
-import visitLaterTrimesters from "@/assets/visit-2nd-and-3rd-trimester.jpg";
-import visitDelivery from "@/assets/visit-delivery.jpg";
+import visitLaterTrimesters from "@/assets/visit-2nd-and-3rd-trimester.webp";
+import visitDelivery from "@/assets/visit-delivery.webp";
 
 const PATH = ROUTES.pregnancyCare;
 

@@ -3,8 +3,8 @@ import { ServicePage, Prose, DataTable, COMMON_RELATED } from "@/components/sect
 import { SectionHeading, CheckList, SafetyNote } from "@/components/sections/blocks";
 import { ZigzagSteps } from "@/components/sections/ZigzagSteps";
 import selectionImg from "@/assets/donor-selection.webp";
-import retrievalImg from "@/assets/donor-retrieval.jpg";
-import fertilisationImg from "@/assets/donor-fertilisation.jpg";
+import retrievalImg from "@/assets/donor-retrieval.webp";
+import fertilisationImg from "@/assets/donor-fertilisation.webp";
 import transferImg from "@/assets/donor-transfer.webp";
 import { ROUTES } from "@/data/navigation";
 import {
