@@ -34,6 +34,7 @@ export const ROUTES = {
   blogIvfBangalore: "/ivf-treatment-in-bangalore/",
   blogMaleInfertility: "/male-infertility-causes-diagnosis-and-treatment/",
   blogIuiTreatment: "/iui-treatment-process-who-it-suits/",
+  blogSemenAnalysis: "/semen-analysis-test-what-it-checks/",
   privacy: "/privacy-policy/",
   terms: "/terms-of-use/",
   fertilitySolutions: "/fertility-solutions/",
