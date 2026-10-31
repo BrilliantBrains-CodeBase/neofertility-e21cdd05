@@ -11,16 +11,24 @@
 #   SSH_PRIVATE_KEY  the private deploy key (the file without .pub)
 #
 # IMPORTANT: neofertility.co.in is the account's main domain, so its document
-# root is public_html/ itself, and that same folder also holds the other sites
-# (neofollicletransplant.com/, dermasolutions.co.in/), the old WordPress backup
-# (neofertility.co.in-old/) and cPanel's own files. To keep those safe:
-#   - every item at the top level of public_html/ is protected from deletion
-#     (--filter='P /*'), so rsync only overwrites the files this build ships;
-#   - stale files are still cleaned up inside this site's own folders
-#     (assets/ and pages/), where old hashed bundles and removed pages live;
-#   - the build is refused if its top level holds anything unexpected.
-# A file this site stops shipping at the top level is therefore left on the
-# server; remove it by hand if that ever matters.
+# root is public_html/ itself. That folder also holds the other two live sites
+# (dermasolutions.co.in/, neofollicletransplant.com/,
+# darmatest.dermasolutions.co.in/), the old-site backups (neofertility.co.in-old/,
+# *-old-hapimed/) and unrelated files (Google Search Console verification html,
+# BlogVault connector, .well-known SSL files, cgi-bin, .user.ini, error_log,
+# client.zip, .htaccess.bk, ...). None of those may be changed or deleted.
+#
+# So this deploy writes ONLY these 8 items in public_html/ (the ALLOWED list):
+#   .htaccess index.html llms.txt robots.txt sitemap.xml favicon.png assets/ pages/
+#   - they are passed to rsync by name, so public_html/ itself (and its
+#     permissions) is never synced, and nothing else at the top level is
+#     ever looked at;
+#   - stale files are only deleted inside assets/ and pages/;
+#   - as a second safety net, every top-level item is protected from deletion
+#     (--filter='P /*');
+#   - the build is refused if its top level holds anything not on the list.
+# A top-level file this site stops shipping is therefore left on the server;
+# remove it by hand if that ever matters.
 
 name: Deploy to GoDaddy
 
@@ -44,6 +52,8 @@ concurrency:
 env:
   DEPLOY_PATH: /home/pvxu8uik8hqc/public_html/
   SITE_URL: https://neofertility.co.in
+  # The only top-level items this deploy may write (see the note above).
+  ALLOWED: .htaccess index.html llms.txt robots.txt sitemap.xml favicon.png assets pages
   # Upload for real only from main, and only when "dry run" was not ticked.
   DRY_RUN: ${{ (inputs.dry_run || github.ref != 'refs/heads/main') && '--dry-run' || '' }}
 
@@ -70,21 +80,18 @@ jobs:
       - name: Check build output
         working-directory: dist/client
         run: |
-          test -f index.html
-          test -f .htaccess
-          test -f robots.txt
-          test -f sitemap.xml
-          test -d assets
-          test -d pages
+          # Every ALLOWED item must exist, or rsync would upload a partial set.
+          for item in $ALLOWED; do
+            [ -e "$item" ] || { echo "missing from build: $item"; exit 1; }
+          done
           pages=$(find . -name index.html | wc -l)
           echo "prerendered pages: $pages"
           [ "$pages" -ge 40 ]
           # Only these may sit at the top level, since that is public_html/
           # itself. Anything else could collide with another site's folder.
-          allowed=" assets pages index.html sitemap.xml llms.txt robots.txt favicon.png .htaccess "
           bad=0
           for entry in $(ls -A); do
-            case "$allowed" in
+            case " $ALLOWED " in
               *" $entry "*) ;;
               *) echo "unexpected top-level entry: $entry"; bad=1 ;;
             esac
@@ -104,10 +111,15 @@ jobs:
 
       # -c compares by checksum, so only files whose content changed are sent
       # (every build rewrites timestamps). --chmod gives the web server the
-      # usual 755/644. --filter='P /*' protects everything at the top level of
-      # public_html/ (see the note at the top), so --delete only ever removes
-      # stale files inside assets/ and pages/.
+      # usual 755/644, applied only to the items sent (assets/ and pages/ were
+      # left world-writable by the old manual upload).
+      #
+      # The ALLOWED items are passed by name instead of syncing "dist/client/",
+      # so rsync never syncs public_html/ itself: --delete only applies inside
+      # assets/ and pages/, and the top level is never scanned for deletion.
+      # --filter='P /*' is a second guard on top of that.
       - name: Deploy
+        working-directory: dist/client
         env:
           SSH_HOST: ${{ secrets.SSH_HOST }}
           SSH_USER: ${{ secrets.SSH_USER }}
@@ -117,14 +129,16 @@ jobs:
           # --delay-updates swaps every new file in together at the end, and
           # --delete-after removes old ones only after that, so a visitor never
           # gets a page pointing at a file that is already gone.
+          # $ALLOWED is unquoted on purpose: it is a list of names.
           rsync -rlptzc --delete --delete-after --delay-updates --itemize-changes $DRY_RUN \
             --chmod=D755,F644 \
             --filter='P /*' \
             -e "ssh -i ~/.ssh/deploy_key -p $SSH_PORT -o BatchMode=yes" \
-            dist/client/ "$SSH_USER@$SSH_HOST:$DEPLOY_PATH"
+            $ALLOWED "$SSH_USER@$SSH_HOST:$DEPLOY_PATH"
 
       # The root .htaccess is read by Apache for the other sites too, so check
-      # they still load after every deploy, not just this one.
+      # they still load after every deploy, not just this one. The Google
+      # verification file is a server-only file this deploy must not affect.
       - name: Smoke test
         if: ${{ env.DRY_RUN == '' }}
         run: |
@@ -136,6 +150,7 @@ jobs:
             "$SITE_URL/ivf-treatment-in-bangalore/" \
             "$SITE_URL/sitemap.xml" \
             "$SITE_URL/robots.txt" \
+            "$SITE_URL/google1ec01d4567990eed.html" \
             "https://neofollicletransplant.com/" \
             "https://dermasolutions.co.in/"; do
             code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 30 "$url")
