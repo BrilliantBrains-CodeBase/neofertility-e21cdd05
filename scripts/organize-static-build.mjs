@@ -1,4 +1,4 @@
-// Postbuild step for `npm run build:static`.
+// Postbuild step for `npm run build`.
 //
 // The prerender step writes one folder per route directly at the root of dist/client/
 // (contact/, best-ivf-treatment-.../, ...48 of them), which makes the top level of the

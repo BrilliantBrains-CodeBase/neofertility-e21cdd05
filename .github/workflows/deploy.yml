@@ -74,7 +74,7 @@ jobs:
       # Prerenders every route to HTML, then moves the route folders under
       # dist/client/pages/ (public/.htaccess maps /<route>/ back to them).
       - name: Build
-        run: npm run build:static
+        run: npm run build
 
       # Guard against a broken build wiping or polluting the live site.
       - name: Check build output

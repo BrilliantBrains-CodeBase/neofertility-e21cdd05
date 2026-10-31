@@ -54,7 +54,7 @@ function isH3SwallowedErrorBody(body: string): boolean {
  * a static file at the same path would have shadowed this handler.
  *
  * Matched with an optional trailing slash: the static-build's prerender crawler
- * (npm run build:static) always requests paths with a trailing slash appended, and both
+ * (npm run build) always requests paths with a trailing slash appended, and both
  * forms should hit the same handler rather than the trailing-slash variant 404ing.
  */
 function seoFileResponse(rawPathname: string): Response | undefined {
