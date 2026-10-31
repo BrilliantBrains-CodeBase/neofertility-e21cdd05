@@ -68,10 +68,9 @@ function context() {
 /**
  * Posts one submission to the Web App.
  *
- * Resolves `false` instead of throwing — the caller decides whether a failure
- * here is worth showing the patient. For forms that also write to Supabase it
- * is not: the lead is already saved, and telling someone their enquiry failed
- * when it did not costs the clinic a booking.
+ * Resolves `false` instead of throwing, so the caller decides what to show the
+ * patient. The sheet is the only place enquiries are stored, so the lead forms
+ * show their failure message when this returns `false`.
  *
  * The `text/plain` content type is load-bearing. Apps Script serves no response
  * to a CORS preflight, so anything that triggers one — including

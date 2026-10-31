@@ -1,7 +1,6 @@
 import { lazy, Suspense, useRef, useState } from "react";
 import { Link, useNavigate } from "@tanstack/react-router";
 import { format } from "date-fns";
-import { insertEnquiry, warmEnquiriesDb } from "@/lib/enquiries-db";
 import { markEnquiryComplete, submitToSheet } from "@/lib/leads";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -123,8 +122,6 @@ export function LeadForm({
     setPending(true);
     setFailed(false);
 
-    const params = new URLSearchParams(typeof window === "undefined" ? "" : window.location.search);
-
     const enquiry = {
       name: name.trim(),
       mobile: normaliseMobile(mobile),
@@ -136,36 +133,19 @@ export function LeadForm({
        this column in one readable format instead of two. */
     const preferred = preferredDay || null;
 
-    /* Two destinations, neither blocking the other. Supabase stays the record of
-       truth; the sheet is what the front desk actually works from and is the leg
-       that emails the clinic. Run in parallel rather than in sequence so a slow
-       Supabase does not hold up the thank-you, and so either one landing is
-       enough for the enquiry to have been captured. */
-    const [db, sheet] = await Promise.all([
-      insertEnquiry({
-        ...enquiry,
-        preferred_day: preferred,
-        source_page: sourcePage,
-        source_variant: variant,
-        utm_source: params.get("utm_source"),
-        utm_medium: params.get("utm_medium"),
-        utm_campaign: params.get("utm_campaign"),
-        consent: true,
-      }),
-      submitToSheet({
-        form: "lead",
-        sourcePage,
-        sourceVariant: variant,
-        honeypot,
-        fillMs: Date.now() - renderedAt.current,
-        data: { ...enquiry, preferredDay: preferred, consent: true },
-      }),
-    ]);
+    /* The clinic's Google Sheet is the only place enquiries are stored. It is what
+       the front desk works from and it emails the clinic. UTM parameters are added
+       by submitToSheet itself. */
+    const sheet = await submitToSheet({
+      form: "lead",
+      sourcePage,
+      sourceVariant: variant,
+      honeypot,
+      fillMs: Date.now() - renderedAt.current,
+      data: { ...enquiry, preferredDay: preferred, consent: true },
+    });
 
-    /* Only a total loss is worth telling the patient about. Showing the failure
-       path when one leg saved the enquiry talks the clinic out of a booking it
-       already has. */
-    if (!db && !sheet) {
+    if (!sheet) {
       setPending(false);
       setFailed(true);
       return;
@@ -175,7 +155,6 @@ export function LeadForm({
       source_page: sourcePage,
       source_variant: variant,
       topic,
-      stored_db: db,
       stored_sheet: sheet,
     });
 
@@ -287,7 +266,6 @@ export function LeadForm({
   return (
     <form
       onSubmit={handleSubmit}
-      onFocusCapture={warmEnquiriesDb}
       noValidate
       /* The rail is the one variant with a height budget; everywhere else keeps the
          roomier rhythm. */

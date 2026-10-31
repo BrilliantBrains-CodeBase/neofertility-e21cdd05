@@ -14,7 +14,6 @@ import {
 } from "lucide-react";
 import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { insertEnquiry, warmEnquiriesDb } from "@/lib/enquiries-db";
 import { markEnquiryComplete, submitToSheet } from "@/lib/leads";
 import { CLINIC, ENQUIRY_TIMES, ENQUIRY_TREATMENTS, track } from "@/lib/clinic";
 import { ROUTES } from "@/data/navigation";
@@ -128,8 +127,6 @@ export function AppointmentMapForm({ sourcePage }: { sourcePage: string }) {
     setPending(true);
     setFailed(false);
 
-    const params = new URLSearchParams(typeof window === "undefined" ? "" : window.location.search);
-
     const enquiry = {
       name: name.trim(),
       mobile: normaliseMobile(mobile),
@@ -141,34 +138,20 @@ export function AppointmentMapForm({ sourcePage }: { sourcePage: string }) {
     };
     const preferred = preferredDay || null;
 
-    /* Was a bare fetch at a hardcoded ENDPOINT that had never been filled in, so
-       every enquiry from the home page — the only lead form on it — failed. Now
-       the same dual write as LeadForm: Supabase as the record of truth, the sheet
-       as the clinic's call list, either one landing counting as captured. */
-    const [db, sheet] = await Promise.all([
-      insertEnquiry({
-        ...enquiry,
-        preferred_day: preferred,
-        source_page: sourcePage,
-        source_variant: "map_form",
-        utm_source: params.get("utm_source"),
-        utm_medium: params.get("utm_medium"),
-        utm_campaign: params.get("utm_campaign"),
-        consent: true,
-      }),
-      submitToSheet({
-        form: "lead",
-        sourcePage,
-        sourceVariant: "map_form",
-        honeypot,
-        /* Spam signal: near-instant submissions are almost always bots.
-           Hook a captcha in here if you add one — nothing is auto-solved. */
-        fillMs: Date.now() - renderedAt.current,
-        data: { ...enquiry, preferredDay: preferred, consent: true },
-      }),
-    ]);
+    /* Same as LeadForm: the clinic's Google Sheet is the only place enquiries are
+       stored, and UTM parameters are added by submitToSheet itself. */
+    const sheet = await submitToSheet({
+      form: "lead",
+      sourcePage,
+      sourceVariant: "map_form",
+      honeypot,
+      /* Spam signal: near-instant submissions are almost always bots.
+         Hook a captcha in here if you add one — nothing is auto-solved. */
+      fillMs: Date.now() - renderedAt.current,
+      data: { ...enquiry, preferredDay: preferred, consent: true },
+    });
 
-    if (!db && !sheet) {
+    if (!sheet) {
       setPending(false);
       setFailed(true);
       return;
@@ -178,7 +161,6 @@ export function AppointmentMapForm({ sourcePage }: { sourcePage: string }) {
       source_page: sourcePage,
       source_variant: "map_form",
       treatment,
-      stored_db: db,
       stored_sheet: sheet,
     });
 
@@ -265,12 +247,7 @@ export function AppointmentMapForm({ sourcePage }: { sourcePage: string }) {
             </h2>
           </Reveal>
 
-          <form
-            onSubmit={handleSubmit}
-            onFocusCapture={warmEnquiriesDb}
-            noValidate
-            className="flex flex-wrap gap-x-4"
-          >
+          <form onSubmit={handleSubmit} noValidate className="flex flex-wrap gap-x-4">
             {/* Honeypot — hidden from people, catnip for bots */}
             <input
               type="text"
