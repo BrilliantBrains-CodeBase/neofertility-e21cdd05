@@ -35,6 +35,7 @@ export const ROUTES = {
   blogMaleInfertility: "/male-infertility-causes-diagnosis-and-treatment/",
   blogIuiTreatment: "/iui-treatment-process-who-it-suits/",
   blogSemenAnalysis: "/semen-analysis-test-what-it-checks/",
+  blogPcosTreatment: "/pcos-treatment-options-lifestyle-fertility/",
   privacy: "/privacy-policy/",
   terms: "/terms-of-use/",
   fertilitySolutions: "/fertility-solutions/",
