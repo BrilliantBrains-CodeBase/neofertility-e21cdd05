@@ -17,6 +17,10 @@ import {
   meta as pcosTreatmentMeta,
   Body as PcosTreatmentBody,
 } from "./pcos-treatment-options-lifestyle-fertility";
+import {
+  meta as eggFreezingMeta,
+  Body as EggFreezingBody,
+} from "./egg-freezing-process-cost-bangalore";
 
 /**
  * Every post, in display order.
@@ -26,10 +30,11 @@ import {
  *
  * Each post's `slug` must stay in sync with its entry in ROUTES (blogWhenToSeek,
  * blogIvfBangalore, blogMaleInfertility, blogIuiTreatment,
- * blogSemenAnalysis, blogPcosTreatment). Nothing links through those constants any more
+ * blogSemenAnalysis, blogPcosTreatment, blogEggFreezing). Nothing links through those constants any more
  * — they stay in the frozen URL map as the record of which paths hold search rankings.
  */
 export const POSTS: BlogPost[] = [
+  { ...eggFreezingMeta, Body: EggFreezingBody },
   { ...pcosTreatmentMeta, Body: PcosTreatmentBody },
   { ...semenAnalysisMeta, Body: SemenAnalysisBody },
   { ...iuiMeta, Body: IuiBody },
