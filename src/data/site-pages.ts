@@ -62,6 +62,7 @@ type NonBlogRouteKey = Exclude<
   | "blogSemenAnalysis"
   | "blogPcosTreatment"
   | "blogEggFreezing"
+  | "blogIcsiTreatment"
   | "thankYou"
 >;
 

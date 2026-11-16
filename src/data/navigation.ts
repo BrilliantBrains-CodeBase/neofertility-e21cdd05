@@ -37,6 +37,7 @@ export const ROUTES = {
   blogSemenAnalysis: "/semen-analysis-test-what-it-checks/",
   blogPcosTreatment: "/pcos-treatment-options-lifestyle-fertility/",
   blogEggFreezing: "/egg-freezing-process-cost-bangalore/",
+  blogIcsiTreatment: "/icsi-treatment-how-it-differs-from-ivf/",
   privacy: "/privacy-policy/",
   terms: "/terms-of-use/",
   fertilitySolutions: "/fertility-solutions/",
