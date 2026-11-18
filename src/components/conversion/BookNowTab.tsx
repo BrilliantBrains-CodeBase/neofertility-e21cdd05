@@ -1,7 +1,7 @@
 import { AppointmentSheet } from "./AppointmentSheet";
 
 export function BookNowTab({ sourcePage }: { sourcePage: string }) {
-  /* Vertically centred so it clears the WhatsAppFloat at right-6 bottom-8. Hidden below
+  /* Vertically centred so it clears the chatbot launcher in the bottom-right corner. Hidden below
      lg, where the MobileActionBar already carries a Book button. AppointmentSheet fires
      booking_sheet_open itself, so there is no track() call here.
 

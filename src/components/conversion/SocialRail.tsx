@@ -24,12 +24,13 @@ export function SocialRail({ sourcePage }: { sourcePage: string }) {
   const [open, setOpen] = useState(false);
 
   /* Hidden below lg: the MobileActionBar owns the persistent actions there, and this
-     sits exactly where its Call segment is. Mirrors WhatsAppFloat's right-6 bottom-8. */
+     sits exactly where its Call segment is. Stacked directly above WhatsAppFloat
+     (left-6 bottom-8, 3.5rem tall): 2rem + 3.5rem + a 1rem gap = bottom-26. */
   return (
     <div
       data-open={open}
       onMouseLeave={() => setOpen(false)}
-      className="group fixed bottom-8 left-6 z-40 hidden lg:block"
+      className="group fixed bottom-26 left-6 z-40 hidden lg:block"
     >
       {/* pb-3 rather than mb-3: padding keeps this stack's hover box touching the
           trigger, so the pointer never crosses a dead gap on the way up and the fan

@@ -9,7 +9,9 @@ export function WhatsAppFloat({
   whatsappMessage: string;
 }) {
   /* Hidden below lg: MobileActionBar already carries a WhatsApp segment there, and
-     two WhatsApp entry points stacked on top of each other is just noise. */
+     two WhatsApp entry points stacked on top of each other is just noise.
+     Bottom-left, under SocialRail: the bottom-right corner belongs to the chatbot
+     widget's launcher, which would otherwise sit on top of this button. */
   return (
     <a
       href={buildWhatsAppUrl(whatsappMessage)}
@@ -17,7 +19,7 @@ export function WhatsAppFloat({
       rel="noreferrer"
       aria-label="Chat with Neo Fertility Clinic on WhatsApp"
       onClick={() => track("whatsapp_click", { source_page: sourcePage })}
-      className="fixed right-6 bottom-8 z-40 hidden size-14 rounded-full shadow-rail transition-transform hover:scale-105 lg:block"
+      className="fixed bottom-8 left-6 z-40 hidden size-14 rounded-full shadow-rail transition-transform hover:scale-105 lg:block"
     >
       <WhatsAppBadge className="size-14" />
     </a>
