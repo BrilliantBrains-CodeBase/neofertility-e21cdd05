@@ -135,6 +135,15 @@ function later(){setTimeout(function(){(w.requestIdleCallback||function(c){c()})
 if(d.readyState==='complete'){later()}else{w.addEventListener('load',later)}
 })(window,document,'script','dataLayer','${GTM_ID}');`,
       },
+      {
+        /* Clinic chatbot widget (Neo Fertility bot, clinic code "NF"). Rendered as a plain
+           <script> in the prerendered HTML because the widget reads its clinic code from
+           document.currentScript. Whether it shows, and where its launcher sits, is set in
+           the chatbot's own admin, not here. */
+        src: "https://chatbot.neofollicletransplant.com/v1/widget/clinic.js",
+        defer: true,
+        "data-clinic": "NF",
+      },
     ],
   }),
   shellComponent: RootShell,
