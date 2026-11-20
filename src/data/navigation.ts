@@ -38,6 +38,7 @@ export const ROUTES = {
   blogPcosTreatment: "/pcos-treatment-options-lifestyle-fertility/",
   blogEggFreezing: "/egg-freezing-process-cost-bangalore/",
   blogIcsiTreatment: "/icsi-treatment-how-it-differs-from-ivf/",
+  blogGynecologistOrFertility: "/gynecologist-or-fertility-specialist-who-to-see/",
   privacy: "/privacy-policy/",
   terms: "/terms-of-use/",
   fertilitySolutions: "/fertility-solutions/",

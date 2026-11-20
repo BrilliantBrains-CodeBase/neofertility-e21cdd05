@@ -25,6 +25,10 @@ import {
   meta as icsiTreatmentMeta,
   Body as IcsiTreatmentBody,
 } from "./icsi-treatment-how-it-differs-from-ivf";
+import {
+  meta as gynecologistOrFertilityMeta,
+  Body as GynecologistOrFertilityBody,
+} from "./gynecologist-or-fertility-specialist-who-to-see";
 
 /**
  * Every post, in display order.
@@ -34,10 +38,12 @@ import {
  *
  * Each post's `slug` must stay in sync with its entry in ROUTES (blogWhenToSeek,
  * blogIvfBangalore, blogMaleInfertility, blogIuiTreatment,
- * blogSemenAnalysis, blogPcosTreatment, blogEggFreezing, blogIcsiTreatment). Nothing links through those constants any more
+ * blogSemenAnalysis, blogPcosTreatment, blogEggFreezing, blogIcsiTreatment,
+ * blogGynecologistOrFertility). Nothing links through those constants any more
  * — they stay in the frozen URL map as the record of which paths hold search rankings.
  */
 export const POSTS: BlogPost[] = [
+  { ...gynecologistOrFertilityMeta, Body: GynecologistOrFertilityBody },
   { ...icsiTreatmentMeta, Body: IcsiTreatmentBody },
   { ...eggFreezingMeta, Body: EggFreezingBody },
   { ...pcosTreatmentMeta, Body: PcosTreatmentBody },

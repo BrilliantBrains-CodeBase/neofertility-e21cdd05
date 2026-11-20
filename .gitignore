@@ -33,3 +33,6 @@ dist-ssr
 
 # Firecrawl CLI scrape cache (legacy-site SEO capture)
 .firecrawl/
+
+# Original blog image uploads; the site uses the converted WebP/JPEG copies
+src/assets/blogs/*.png
