@@ -70,6 +70,78 @@ export const CLINIC = {
 } as const;
 
 /**
+ * The clinic's physical locations, each with its own Google Business Profile.
+ *
+ * Marathahalli is the main clinic and reads its details from CLINIC above, so nothing
+ * that already uses CLINIC.addressLine / CLINIC.directionsUrl drifts from this list.
+ * Whitefield was added in November 2026 from its Business Profile listing
+ * (CID 9053424608422804741). Its address is copied from that listing word for word —
+ * keep it that way, Google matches the site's address against the listing's.
+ *
+ * Anything rendering "our clinic" should map over LOCATIONS rather than reading CLINIC's
+ * address fields, so a third location only has to be added here.
+ */
+export type ClinicLocation = {
+  id: "marathahalli" | "whitefield";
+  /** Short label, e.g. "Marathahalli". */
+  area: string;
+  addressLine: string;
+  addressStreet: string;
+  locality: string;
+  postalCode: string;
+  hours: string;
+  opens: string;
+  closes: string;
+  mapEmbed: string;
+  directionsUrl: string;
+  businessProfile: string;
+  reviewUrl: string;
+  geo?: { latitude: number; longitude: number };
+};
+
+const WHITEFIELD_QUERY = "Neo+Fertility+Clinic+Sadaramangala+Main+Road+Whitefield+Bengaluru+560066";
+
+export const MARATHAHALLI: ClinicLocation = {
+  id: "marathahalli",
+  area: "Marathahalli",
+  addressLine: CLINIC.addressLine,
+  addressStreet: CLINIC.addressStreet,
+  locality: "Marathahalli",
+  postalCode: CLINIC.postalCode,
+  hours: CLINIC.hours,
+  opens: "09:30",
+  closes: "18:30",
+  mapEmbed: CLINIC.mapEmbed,
+  directionsUrl: CLINIC.directionsUrl,
+  businessProfile: CLINIC.google.businessProfile,
+  reviewUrl: CLINIC.google.reviewUrl,
+  geo: CLINIC.geo,
+};
+
+export const WHITEFIELD: ClinicLocation = {
+  id: "whitefield",
+  area: "Whitefield",
+  addressLine:
+    "2nd floor, above Honda Big Wings, Sadaramangala Main Road, Whitefield, Bengaluru, Karnataka 560066",
+  addressStreet: "2nd floor, above Honda Big Wings, Sadaramangala Main Road",
+  locality: "Whitefield",
+  postalCode: "560066",
+  /* From the listing's opening hours. Confirm weekends with the clinic. */
+  hours: "Monday to Sunday, 10:00 to 19:30",
+  opens: "10:00",
+  closes: "19:30",
+  mapEmbed: `https://www.google.com/maps?q=${WHITEFIELD_QUERY}&output=embed`,
+  directionsUrl: `https://www.google.com/maps/dir/?api=1&destination=${WHITEFIELD_QUERY}`,
+  businessProfile: "https://www.google.com/maps?cid=9053424608422804741",
+  reviewUrl: "https://www.google.com/maps?cid=9053424608422804741&action=write_review",
+  /* No coordinates yet: none are published on the listing, and a guessed pair in the
+       structured data is worse than none. Add them from the GBP dashboard. */
+};
+
+/** Main clinic first: schema treats LOCATIONS[0] as the parent organisation. */
+export const LOCATIONS: readonly ClinicLocation[] = [MARATHAHALLI, WHITEFIELD];
+
+/**
  * Whether a CLINIC field has had its `[ADD ...]` placeholder replaced.
  *
  * Guards both the JSON-LD (a placeholder string in `sameAs` reads to Google as a broken

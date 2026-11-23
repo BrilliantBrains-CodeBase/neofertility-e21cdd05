@@ -1,6 +1,6 @@
 import { SITE_PAGES, PAGE_SECTIONS, type SitePage } from "@/data/site-pages";
 import { POSTS, postPath } from "@/content/blog";
-import { CLINIC } from "@/lib/clinic";
+import { CLINIC, LOCATIONS } from "@/lib/clinic";
 import { SITE_URL } from "@/data/navigation";
 import { absoluteUrl } from "@/lib/seo";
 
@@ -87,20 +87,25 @@ export function buildLlmsTxt(): string {
 
   return `# ${CLINIC.name}
 
-> ${CLINIC.alternateName} is a fertility, IVF and gynecology clinic in Marathahalli, Bengaluru, led by ${CLINIC.doctor} (${CLINIC.credentials}), with ${CLINIC.experience}. It treats infertility with IVF, IUI, ICSI, egg freezing and donor programmes, and provides gynecology, pregnancy and delivery care. Patients travel to it from Marathahalli, Whitefield, Bellandur and the surrounding east Bengaluru neighbourhoods.
+> ${CLINIC.alternateName} is a fertility, IVF and gynecology practice with clinics in Marathahalli and Whitefield, Bengaluru, led by ${CLINIC.doctor} (${CLINIC.credentials}), with ${CLINIC.experience}. It treats infertility with IVF, IUI, ICSI, egg freezing and donor programmes, and provides gynecology, pregnancy and delivery care. Patients travel to it from Marathahalli, Whitefield, Bellandur and the surrounding east Bengaluru neighbourhoods.
 
 ## Clinic details
 
 - Name: ${CLINIC.name}
 - Doctor: ${CLINIC.doctor}, ${CLINIC.credentials}
-- Address: ${CLINIC.addressLine}
 - Phone: ${CLINIC.phoneDisplay}
 - Email: ${CLINIC.email}
-- Hours: ${CLINIC.hours}
 - Book an appointment: ${CLINIC.bookingUrl}
-- Directions: ${CLINIC.directionsUrl}
-- Google Business Profile: ${CLINIC.google.businessProfile}
 - Website: ${SITE_URL}/
+
+${LOCATIONS.map(
+  (location) => `### ${location.area} clinic
+
+- Address: ${location.addressLine}
+- Hours: ${location.hours}
+- Directions: ${location.directionsUrl}
+- Google Business Profile: ${location.businessProfile}`,
+).join("\n\n")}
 
 ${sections.join("\n\n")}
 

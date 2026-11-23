@@ -13,7 +13,7 @@ import {
   ClinicalVolumeBand,
 } from "@/components/sections/blocks";
 import { Prose, DataTable } from "@/components/sections/ServicePage";
-import { CLINIC, DEFAULT_WHATSAPP_MESSAGE, track } from "@/lib/clinic";
+import { CLINIC, MARATHAHALLI, WHITEFIELD, DEFAULT_WHATSAPP_MESSAGE, track } from "@/lib/clinic";
 import { ROUTES } from "@/data/navigation";
 import {
   OG_CLINIC,
@@ -27,31 +27,37 @@ import {
 const PATH = ROUTES.whitefield;
 const SOURCE_PAGE = "whitefield";
 
+/* This page is the website on the Whitefield Google Business Profile listing, so it is
+   about the Whitefield clinic itself. Until November 2026 it described the trip to
+   Marathahalli instead, written before the Whitefield clinic opened. */
+const TITLE = "IVF & Fertility Clinic in Whitefield, Bangalore | Neo Fertility";
+const DESCRIPTION =
+  "Neo Fertility Clinic in Whitefield: IVF, IUI, ICSI, egg freezing and PCOS care with Dr. Payal Mahapatra on Sadaramangala Main Road. Open all 7 days.";
+
 const FAQS = [
   {
-    q: "Is there a good IVF clinic near Whitefield?",
-    a: "Neo Fertility Clinic is approximately 9 km from Whitefield on Marathahalli Bridge Service Road, a 15 to 25 minute journey. It provides IVF, IUI, ICSI, egg freezing and PCOS care with Dr. Payal Mahapatra, and is open all seven days.",
+    q: "Does Neo Fertility have a clinic in Whitefield?",
+    a: `Yes. Neo Fertility Clinic's Whitefield clinic is at ${WHITEFIELD.addressLine}. It is the second clinic alongside the Marathahalli clinic, with fertility and gynecology care led by Dr. Payal Mahapatra.`,
   },
   {
-    q: "How far is Neo Fertility Clinic from Whitefield?",
-    a: "About 9 km, or 15 to 25 minutes depending on traffic, via Varthur Road or ITPL Main Road to the Marathahalli Bridge service road. The clinic is before the bridge, opposite Purva Apartments.",
+    q: "What are the Whitefield clinic's timings?",
+    a: `${WHITEFIELD.hours}. Being open every day matters during a stimulated cycle, when scans are needed every two to three days regardless of the day of the week.`,
   },
   {
-    q: "Is the clinic open on weekends for patients travelling from Whitefield?",
-    a: "Yes, all seven days from 09:30 to 18:30. This matters during a stimulated cycle, when scans are needed every two to three days regardless of the day of the week.",
+    q: "How do I book an appointment at the Whitefield clinic?",
+    a: `Call or WhatsApp ${CLINIC.phoneDisplay}, or request a callback on this page, and mention that you would like to be seen in Whitefield.`,
   },
   {
-    q: "Can I have follicular tracking scans done near Whitefield?",
-    a: "Follicular tracking is performed at the clinic by Dr. Payal Mahapatra rather than delegated, because in fertility treatment the scan is the clinical decision. Patients from Whitefield, Brookefield, ITPL and Kundalahalli attend for tracking through the cycle.",
+    q: "Can I be seen at both the Whitefield and Marathahalli clinics?",
+    a: "Yes. Both clinics are part of Neo Fertility Clinic, so you can choose whichever is more convenient. Ask the team when you book which of your appointments can be done at Whitefield.",
   },
 ];
 
 export const Route = createFileRoute("/ivf-clinic-in-whitefield-bangalore")({
   head: () => ({
     ...pageMeta({
-      title: "IVF & Fertility Specialist Near Whitefield | Neo Fertility",
-      description:
-        "IVF, IUI, ICSI, egg freezing and PCOS care with Dr. Payal Mahapatra, 15 to 25 minutes from Whitefield on Marathahalli Bridge Road. Open all 7 days.",
+      title: TITLE,
+      description: DESCRIPTION,
       path: PATH,
       image: OG_CLINIC,
     }),
@@ -59,17 +65,17 @@ export const Route = createFileRoute("/ivf-clinic-in-whitefield-bangalore")({
       jsonLd(
         locationSchema({
           area: "Whitefield",
-          title: "IVF & Fertility Specialist Near Whitefield | Neo Fertility",
-          description:
-            "IVF, IUI, ICSI, egg freezing and PCOS care with Dr. Payal Mahapatra, 15 to 25 minutes from Whitefield on Marathahalli Bridge Road. Open all 7 days.",
+          title: TITLE,
+          description: DESCRIPTION,
           path: PATH,
+          location: WHITEFIELD,
         }),
       ),
       jsonLd(faqSchema(FAQS)),
       jsonLd(
         breadcrumbSchema([
           { name: "Home", path: ROUTES.home },
-          { name: "IVF Clinic for Whitefield", path: PATH },
+          { name: "IVF Clinic in Whitefield", path: PATH },
         ]),
       ),
     ],
@@ -82,9 +88,9 @@ function Page() {
     <>
       <PageHero
         eyebrow="Whitefield, Bangalore"
-        title="IVF and Fertility Treatment for Whitefield, Bangalore"
-        intro="Neo Fertility Clinic serves patients from Whitefield at its clinic on Marathahalli Bridge Service Road, approximately 9 km and 15 to 25 minutes from Whitefield depending on traffic. The clinic provides IVF, IUI, ICSI, egg freezing, PCOS and PMOS care and full gynecology services, led by Dr. Payal Mahapatra, and is open all seven days from 09:30 to 18:30."
-        trail={[{ name: "Home", to: ROUTES.home }, { name: "IVF Clinic for Whitefield" }]}
+        title="IVF and Fertility Clinic in Whitefield, Bangalore"
+        intro={`Neo Fertility Clinic in Whitefield, on Sadaramangala Main Road, brings fertility and gynecology care led by Dr. Payal Mahapatra closer to patients in Whitefield, Brookefield, ITPL, Kundalahalli, Varthur and Hope Farm. Open ${WHITEFIELD.hours.replace("Monday to Sunday", "all seven days")}.`}
+        trail={[{ name: "Home", to: ROUTES.home }, { name: "IVF Clinic in Whitefield" }]}
       >
         <div className="flex flex-wrap gap-3">
           <AppointmentSheet sourcePage={SOURCE_PAGE}>
@@ -105,19 +111,19 @@ function Page() {
 
       <div className="container-page flex gap-14 py-14 lg:py-16">
         <div className="min-w-0 flex-1 space-y-12">
-          <Prose title="Why Whitefield patients travel to Marathahalli">
+          <Prose title="A clinic close to home, for treatment that runs on your cycle">
             <p>
               Fertility treatment is not a single appointment. A stimulated cycle involves scans
               every two to three days for around two weeks, and the timing of those scans is set by
               your follicles rather than your calendar. That makes two things matter more than they
-              would for any other specialty: how long the journey takes at the times you will
-              actually be travelling, and whether the clinic is open on the day your scan falls due.
+              would for any other specialty: how long the journey takes, and whether the clinic is
+              open on the day your scan falls due.
             </p>
             <p>
-              Neo Fertility Clinic is on the Marathahalli Bridge service road, before the bridge
-              coming from Whitefield, and is open all seven days including Sundays. For patients in
-              Whitefield, Brookefield, ITPL, Kundalahalli, Varthur, Hope Farm and Hagadur, that is a
-              15 to 25 minute journey against the flow of the worst morning traffic.
+              The Whitefield clinic is {WHITEFIELD.addressLine}, and is open all seven days
+              including Sundays. Neo Fertility&rsquo;s main clinic is in Marathahalli, on the
+              Marathahalli Bridge service road, so patients across east Bengaluru can attend
+              whichever of the two is easier on a given day.
             </p>
           </Prose>
 
@@ -141,23 +147,37 @@ function Page() {
           </section>
 
           <section>
-            <SectionHeading eyebrow="Practical detail" title="For Whitefield patients" />
+            <SectionHeading eyebrow="Practical detail" title="Visiting the Whitefield clinic" />
             <div className="mt-6">
               <DataTable
                 head={["Detail", "Information"]}
                 rows={[
-                  ["Distance", "Approximately 9 km from Whitefield Main Road"],
-                  ["Travel time", "15 to 25 minutes, depending on time of day"],
-                  [
-                    "Route",
-                    "Whitefield Main Road to Varthur Road or ITPL Main Road, then Marathahalli Bridge Service Road. The clinic is before the bridge, opposite Purva Apartments",
-                  ],
-                  ["Nearest landmark", "Marathahalli Bridge, opposite Purva Apartments"],
-                  ["Hours", "All seven days, 09:30 to 18:30"],
+                  ["Address", WHITEFIELD.addressLine],
+                  ["Landmark", "Above Honda Big Wings, Sadaramangala Main Road"],
+                  ["Hours", WHITEFIELD.hours],
                   ["Booking", `${CLINIC.phoneDisplay}, WhatsApp or online`],
+                  ["Our other clinic", MARATHAHALLI.addressLine],
                 ]}
               />
             </div>
+            <p className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-[0.9375rem]">
+              <a
+                className="font-medium text-pink-700 hover:underline"
+                href={WHITEFIELD.directionsUrl}
+                target="_blank"
+                rel="noreferrer"
+              >
+                Get directions to the Whitefield clinic
+              </a>
+              <a
+                className="font-medium text-pink-700 hover:underline"
+                href={WHITEFIELD.businessProfile}
+                target="_blank"
+                rel="noreferrer"
+              >
+                View the Whitefield clinic on Google
+              </a>
+            </p>
           </section>
         </div>
         <BookingRail sourcePage={SOURCE_PAGE} whatsappMessage={DEFAULT_WHATSAPP_MESSAGE} />
@@ -167,7 +187,7 @@ function Page() {
           body ran straight into the white FAQ with no rhythm break. */}
       <ClinicalVolumeBand />
 
-      <FaqBlock items={FAQS} heading="Questions from Whitefield patients" />
+      <FaqBlock items={FAQS} heading="Questions about the Whitefield clinic" />
       <RelatedLinks
         links={[
           { label: "Fertility clinic for Bellandur", to: ROUTES.bellandur },
@@ -179,8 +199,8 @@ function Page() {
         ]}
       />
       <ClosingCta
-        heading="15 to 25 minutes from Whitefield, open all seven days"
-        copy="Book a consultation and start your evaluation without the journey getting in the way of your cycle."
+        heading="Now in Whitefield, open all seven days"
+        copy="Book a consultation at our Whitefield clinic and start your evaluation close to home."
         sourcePage={SOURCE_PAGE}
         whatsappMessage={DEFAULT_WHATSAPP_MESSAGE}
       />

@@ -18,7 +18,7 @@ import { WhatsAppFloat } from "@/components/conversion/WhatsAppFloat";
 import { SocialRail } from "@/components/conversion/SocialRail";
 import { BookNowTab } from "@/components/conversion/BookNowTab";
 import { DEFAULT_WHATSAPP_MESSAGE } from "@/lib/clinic";
-import { clinicSchema, jsonLd } from "@/lib/seo";
+import { branchClinicSchemas, clinicSchema, jsonLd } from "@/lib/seo";
 
 const GTM_ID = "GTM-MNGVGZMS";
 
@@ -107,6 +107,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
          emitting it once here is equivalent to repeating it per route — and routes that
          reference the clinic by @id now resolve against a node that is actually present. */
       jsonLd(clinicSchema),
+      ...branchClinicSchemas.map((schema) => jsonLd(schema)),
       {
         /* Google Tag Manager, deferred off the critical path.
 

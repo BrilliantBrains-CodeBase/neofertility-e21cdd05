@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageHero } from "@/components/sections/blocks";
 import { Prose } from "@/components/sections/ServicePage";
-import { CLINIC } from "@/lib/clinic";
+import { CLINIC, LOCATIONS } from "@/lib/clinic";
 import { ROUTES } from "@/data/navigation";
 import { pageMeta, jsonLd, breadcrumbSchema } from "@/lib/seo";
 
@@ -41,8 +41,9 @@ function Page() {
         <div className="mx-auto max-w-[72ch] space-y-10">
           <Prose title="About this website">
             <p>
-              This website is operated by {CLINIC.name}, located at {CLINIC.addressLine}. By using
-              this website, you agree to these terms of use.
+              This website is operated by {CLINIC.name}, with clinics at{" "}
+              {LOCATIONS.map((location) => location.addressLine).join(" and at ")}. By using this
+              website, you agree to these terms of use.
             </p>
           </Prose>
 

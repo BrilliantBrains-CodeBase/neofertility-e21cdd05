@@ -1,4 +1,11 @@
-import { CLINIC, QUALIFICATIONS, MEMBERSHIPS, isConfigured } from "@/lib/clinic";
+import {
+  CLINIC,
+  LOCATIONS,
+  QUALIFICATIONS,
+  MEMBERSHIPS,
+  isConfigured,
+  type ClinicLocation,
+} from "@/lib/clinic";
 import { SITE_URL } from "@/data/navigation";
 
 import ogDefaultAsset from "@/assets/og/og-default.jpg";
@@ -15,6 +22,9 @@ type Meta = Record<string, string>;
 const CLINIC_ID = `${SITE_URL}/#clinic`;
 const DOCTOR_ID = `${SITE_URL}/#doctor`;
 const WEBSITE_ID = `${SITE_URL}/#website`;
+/** Every location after the first (Marathahalli, which is CLINIC_ID itself). */
+const locationId = (location: ClinicLocation) => `${SITE_URL}/#clinic-${location.id}`;
+const BRANCHES = LOCATIONS.slice(1);
 
 /**
  * Absolute URL for a ROUTES path.
@@ -228,6 +238,8 @@ export const clinicSchema = {
   },
   founder: { "@id": DOCTOR_ID },
   employee: { "@id": DOCTOR_ID },
+  /* The other clinics, each a full MedicalClinic node of its own (branchClinicSchemas). */
+  subOrganization: BRANCHES.map((location) => ({ "@id": locationId(location) })),
   availableService: [
     "IVF",
     "IUI",
@@ -239,6 +251,54 @@ export const clinicSchema = {
   ].map((name) => ({ "@type": "MedicalProcedure", name })),
   medicalSpecialty: ["Obstetrics", "Gynecologic", "Reproductive"],
 };
+
+/**
+ * One MedicalClinic per additional location, each tied to its own Google Business
+ * Profile through hasMap and sameAs, and to the main clinic through parentOrganization.
+ *
+ * Kept separate from clinicSchema rather than folded into it: a LocalBusiness node has one
+ * address, and Google matches each Business Profile listing to the node whose address
+ * and map link agree with it. No aggregateRating here — the figures in clinic.ts belong
+ * to the Marathahalli listing only.
+ */
+export const branchClinicSchemas = BRANCHES.map((location) => ({
+  "@context": "https://schema.org",
+  "@type": "MedicalClinic",
+  "@id": locationId(location),
+  name: `${CLINIC.name}, ${location.area}`,
+  url: `${SITE_URL}/`,
+  telephone: CLINIC.phoneDisplay,
+  email: CLINIC.email,
+  priceRange: "₹₹",
+  image: [receptionAsset, waitingAreaAsset, consultRoomAsset].map(absoluteAsset),
+  logo: absoluteAsset(logoAsset),
+  hasMap: location.businessProfile,
+  sameAs: [location.businessProfile],
+  parentOrganization: { "@id": CLINIC_ID },
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: location.addressStreet,
+    addressLocality: CLINIC.city,
+    addressRegion: CLINIC.region,
+    postalCode: location.postalCode,
+    addressCountry: "IN",
+  },
+  ...(location.geo && {
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: location.geo.latitude,
+      longitude: location.geo.longitude,
+    },
+  }),
+  openingHoursSpecification: {
+    "@type": "OpeningHoursSpecification",
+    dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+    opens: location.opens,
+    closes: location.closes,
+  },
+  employee: { "@id": DOCTOR_ID },
+  medicalSpecialty: ["Obstetrics", "Gynecologic", "Reproductive"],
+}));
 
 export const websiteSchema = {
   "@context": "https://schema.org",
@@ -392,13 +452,17 @@ export function locationSchema({
   title,
   description,
   path,
+  location,
 }: {
   area: string;
   title: string;
   description: string;
   path: string;
+  /** For a page about one of the clinic's own locations: points the page at that clinic. */
+  location?: ClinicLocation;
 }) {
   const url = absoluteUrl(path);
+  const clinicId = location && location !== LOCATIONS[0] ? locationId(location) : CLINIC_ID;
   return {
     "@context": "https://schema.org",
     "@type": "WebPage",
@@ -408,9 +472,9 @@ export function locationSchema({
     description,
     inLanguage: "en-IN",
     isPartOf: { "@id": WEBSITE_ID },
-    about: { "@id": CLINIC_ID },
-    mainEntity: { "@id": CLINIC_ID },
-    significantLink: CLINIC.directionsUrl,
+    about: { "@id": clinicId },
+    mainEntity: { "@id": clinicId },
+    significantLink: location?.directionsUrl ?? CLINIC.directionsUrl,
     spatialCoverage: {
       "@type": "Place",
       name: `${area}, ${CLINIC.city}`,

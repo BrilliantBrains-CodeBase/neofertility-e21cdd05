@@ -340,9 +340,9 @@ export const SITE_PAGES: SitePage[] = [
   },
   {
     route: ROUTES.whitefield,
-    title: "IVF & Fertility Specialist Near Whitefield | Neo Fertility",
+    title: "IVF & Fertility Clinic in Whitefield, Bangalore | Neo Fertility",
     summary:
-      "IVF, IUI, ICSI, egg freezing and PCOS care with Dr. Payal Mahapatra, 15 to 25 minutes from Whitefield on Marathahalli Bridge Road. Open all 7 days.",
+      "Neo Fertility Clinic in Whitefield: IVF, IUI, ICSI, egg freezing and PCOS care with Dr. Payal Mahapatra on Sadaramangala Main Road. Open all 7 days.",
     section: "locations",
     priority: 0.8,
     changeFrequency: "monthly",
@@ -403,9 +403,9 @@ export const SITE_PAGES: SitePage[] = [
   },
   {
     route: ROUTES.contact,
-    title: "Contact Neo Fertility Clinic | Marathahalli, Bangalore",
+    title: "Contact Neo Fertility Clinic | Marathahalli & Whitefield",
     summary:
-      "Get in touch with Neo Fertility Clinic in Marathahalli, Bangalore. Address, phone, WhatsApp, clinic hours, map and an online appointment request form.",
+      "Get in touch with Neo Fertility Clinic in Marathahalli and Whitefield, Bangalore. Addresses, phone, WhatsApp, clinic hours, maps and an online appointment request form.",
     section: "about",
     priority: 0.9,
     changeFrequency: "monthly",

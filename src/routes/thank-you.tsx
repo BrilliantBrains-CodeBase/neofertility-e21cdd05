@@ -5,7 +5,7 @@ import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
 import { Button } from "@/components/ui/button";
 import { RelatedLinks } from "@/components/sections/blocks";
 import { consumeEnquiryReceipt, type EnquiryReceipt } from "@/lib/leads";
-import { CLINIC, DEFAULT_WHATSAPP_MESSAGE, buildWhatsAppUrl, track } from "@/lib/clinic";
+import { CLINIC, LOCATIONS, DEFAULT_WHATSAPP_MESSAGE, buildWhatsAppUrl, track } from "@/lib/clinic";
 import { ROUTES } from "@/data/navigation";
 import { pageMeta } from "@/lib/seo";
 
@@ -160,22 +160,27 @@ function Page() {
         <aside>
           <div className="rounded-xl border border-line bg-white p-5 shadow-rail lg:sticky lg:top-24">
             <p className="font-medium text-plum-900">{CLINIC.name}</p>
-            <p className="mt-3 flex items-start gap-3 text-[0.9375rem] text-ink-muted">
-              <MapPin aria-hidden className="mt-0.5 size-5 shrink-0 text-pink-600" />
-              {CLINIC.addressLine}
-            </p>
-            <p className="mt-4 flex items-center gap-3 text-[0.9375rem] text-ink-muted">
-              <Clock aria-hidden className="size-5 shrink-0 text-pink-600" />
-              {CLINIC.hours}
-            </p>
-            <a
-              href={CLINIC.directionsUrl}
-              target="_blank"
-              rel="noopener"
-              className="mt-4 inline-flex text-[0.9375rem] font-medium text-pink-700 hover:underline"
-            >
-              Get directions
-            </a>
+            {LOCATIONS.map((location) => (
+              <div key={location.id} className="mt-4">
+                <p className="text-[0.9375rem] font-medium text-plum-900">{location.area}</p>
+                <p className="mt-2 flex items-start gap-3 text-[0.9375rem] text-ink-muted">
+                  <MapPin aria-hidden className="mt-0.5 size-5 shrink-0 text-pink-600" />
+                  {location.addressLine}
+                </p>
+                <p className="mt-2 flex items-center gap-3 text-[0.9375rem] text-ink-muted">
+                  <Clock aria-hidden className="size-5 shrink-0 text-pink-600" />
+                  {location.hours}
+                </p>
+                <a
+                  href={location.directionsUrl}
+                  target="_blank"
+                  rel="noopener"
+                  className="mt-2 inline-flex text-[0.9375rem] font-medium text-pink-700 hover:underline"
+                >
+                  Get directions
+                </a>
+              </div>
+            ))}
           </div>
         </aside>
       </div>

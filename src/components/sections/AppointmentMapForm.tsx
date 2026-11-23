@@ -15,7 +15,7 @@ import {
 import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { markEnquiryComplete, submitToSheet } from "@/lib/leads";
-import { CLINIC, ENQUIRY_TIMES, ENQUIRY_TREATMENTS, track } from "@/lib/clinic";
+import { CLINIC, LOCATIONS, ENQUIRY_TIMES, ENQUIRY_TREATMENTS, track } from "@/lib/clinic";
 import { ROUTES } from "@/data/navigation";
 import { Reveal } from "@/components/motion/Reveal";
 import { cn } from "@/lib/utils";
@@ -463,19 +463,24 @@ export function AppointmentMapForm({ sourcePage }: { sourcePage: string }) {
           </form>
 
           {/* The section no longer embeds a map, so this card is now the only place it
-              gives the clinic's location — and the only route to directions. */}
+              gives the clinics' locations — and the only route to directions. */}
           <div className="mt-8 inline-flex max-w-[34ch] flex-col gap-1 rounded-2xl border border-line bg-white/90 p-4 backdrop-blur lg:hidden">
             <p className="font-medium text-plum-900">Neo Fertility Clinic</p>
-            <p className="text-[0.875rem] text-ink-muted">{CLINIC.addressLine}</p>
-            <a
-              href={CLINIC.directionsUrl}
-              target="_blank"
-              rel="noopener"
-              className="mt-1 inline-flex items-center gap-1.5 text-[0.875rem] font-medium text-pink-700 hover:underline"
-            >
-              Open in Google Maps
-              <ExternalLink aria-hidden className="size-3.5" />
-            </a>
+            {LOCATIONS.map((location) => (
+              <div key={location.id} className="mt-1">
+                <p className="text-[0.875rem] font-medium text-plum-900">{location.area}</p>
+                <p className="text-[0.875rem] text-ink-muted">{location.addressLine}</p>
+                <a
+                  href={location.directionsUrl}
+                  target="_blank"
+                  rel="noopener"
+                  className="mt-1 inline-flex items-center gap-1.5 text-[0.875rem] font-medium text-pink-700 hover:underline"
+                >
+                  Open in Google Maps
+                  <ExternalLink aria-hidden className="size-3.5" />
+                </a>
+              </div>
+            ))}
           </div>
         </div>
       </div>
@@ -484,16 +489,21 @@ export function AppointmentMapForm({ sourcePage }: { sourcePage: string }) {
       <div className="pointer-events-none absolute inset-y-0 z-10 hidden items-end lg:flex ltr:right-8 rtl:left-8">
         <div className="pointer-events-auto mb-10 flex max-w-[30ch] flex-col gap-1 rounded-2xl border border-line bg-white/90 p-4 shadow-rail backdrop-blur">
           <p className="font-medium text-plum-900">Neo Fertility Clinic</p>
-          <p className="text-[0.875rem] text-ink-muted">{CLINIC.addressLine}</p>
-          <a
-            href={CLINIC.directionsUrl}
-            target="_blank"
-            rel="noopener"
-            className="mt-1 inline-flex items-center gap-1.5 text-[0.875rem] font-medium text-pink-700 hover:underline"
-          >
-            Open in Google Maps
-            <ExternalLink aria-hidden className="size-3.5" />
-          </a>
+          {LOCATIONS.map((location) => (
+            <div key={location.id} className="mt-1">
+              <p className="text-[0.875rem] font-medium text-plum-900">{location.area}</p>
+              <p className="text-[0.875rem] text-ink-muted">{location.addressLine}</p>
+              <a
+                href={location.directionsUrl}
+                target="_blank"
+                rel="noopener"
+                className="mt-1 inline-flex items-center gap-1.5 text-[0.875rem] font-medium text-pink-700 hover:underline"
+              >
+                Open in Google Maps
+                <ExternalLink aria-hidden className="size-3.5" />
+              </a>
+            </div>
+          ))}
         </div>
       </div>
     </section>

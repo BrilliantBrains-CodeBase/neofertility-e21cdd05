@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Facebook, Instagram, Linkedin, Youtube, MapPin, Phone, Mail, Clock } from "lucide-react";
-import { CLINIC, isConfigured } from "@/lib/clinic";
+import { CLINIC, LOCATIONS, isConfigured } from "@/lib/clinic";
 import { FERTILITY_MENU, GYNECOLOGY_MENU, ROUTES } from "@/data/navigation";
 import logoAsset from "@/assets/neo-logo-trimmed.webp";
 /* Its own asset, not the shared appointment-mother-baby.webp: that file is also the
@@ -155,20 +155,27 @@ export function Footer() {
               keeps the address on one line instead of wrapping to three in a quarter
               column. */}
           <div className="mt-12 grid gap-x-8 gap-y-6 border-t border-line pt-8 sm:grid-cols-2 lg:grid-cols-[1.2fr_1fr_1fr_1fr] lg:gap-x-8">
-            <p className="flex gap-3 text-[0.9375rem] text-ink-muted">
-              <MapPin className="mt-0.5 size-4 shrink-0 text-pink-700" aria-hidden />
-              {/* The address text is unchanged — it has to match the Google Business
-                  Profile listing character for character — but it now carries the
-                  directions link rather than sitting inert. */}
-              <a
-                className="hover:text-pink-700"
-                href={CLINIC.directionsUrl}
-                target="_blank"
-                rel="noreferrer"
-              >
-                {CLINIC.addressLine}
-              </a>
-            </p>
+            {/* One entry per clinic, each linking to its own directions. The address text
+                has to match that clinic's Google Business Profile listing character for
+                character, so it comes straight from LOCATIONS. */}
+            <ul className="space-y-3 text-[0.9375rem] text-ink-muted">
+              {LOCATIONS.map((location) => (
+                <li key={location.id} className="flex gap-3">
+                  <MapPin className="mt-0.5 size-4 shrink-0 text-pink-700" aria-hidden />
+                  <span>
+                    <span className="block font-medium text-plum-900">{location.area}</span>
+                    <a
+                      className="hover:text-pink-700"
+                      href={location.directionsUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      {location.addressLine}
+                    </a>
+                  </span>
+                </li>
+              ))}
+            </ul>
             <p className="flex gap-3 text-[0.9375rem] text-ink-muted">
               <Phone className="mt-0.5 size-4 shrink-0 text-pink-700" aria-hidden />
               <a className="hover:text-pink-700" href={CLINIC.phoneHref}>
@@ -183,7 +190,13 @@ export function Footer() {
             </p>
             <p className="flex gap-3 text-[0.9375rem] text-ink-muted">
               <Clock className="mt-0.5 size-4 shrink-0 text-pink-700" aria-hidden />
-              <span>{CLINIC.hours}</span>
+              <span>
+                {LOCATIONS.map((location) => (
+                  <span key={location.id} className="block">
+                    {location.area}: {location.hours}
+                  </span>
+                ))}
+              </span>
             </p>
           </div>
 
@@ -205,17 +218,22 @@ export function Footer() {
               ))}
             </div>
             <div className="flex flex-col gap-2 sm:items-end">
-              {/* Hidden until CLINIC.google.reviewUrl is filled in — see isConfigured. */}
-              {isConfigured(CLINIC.google.reviewUrl) && (
-                <a
-                  className="text-[0.8125rem] text-ink-muted underline underline-offset-4 hover:text-pink-700"
-                  href={CLINIC.google.reviewUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Review us on Google
-                </a>
-              )}
+              {/* One review link per clinic listing; each hides until its URL is set. */}
+              <p className="flex flex-wrap gap-x-4 gap-y-1 text-[0.8125rem] text-ink-muted">
+                {LOCATIONS.filter((location) => isConfigured(location.reviewUrl)).map(
+                  (location) => (
+                    <a
+                      key={location.id}
+                      className="underline underline-offset-4 hover:text-pink-700"
+                      href={location.reviewUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      Review us on Google ({location.area})
+                    </a>
+                  ),
+                )}
+              </p>
               <p className="text-[0.8125rem] text-ink-muted">
                 © {new Date().getFullYear()} Neo Fertility Clinic. All rights reserved.
               </p>
