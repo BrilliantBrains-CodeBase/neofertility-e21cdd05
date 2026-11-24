@@ -14,6 +14,13 @@ Google Sheet the clinic works from. `Code.gs` is the whole backend;
 | `Spam` | Rejected submissions | Kept, not dropped, so a false positive is visible. |
 | `Errors` | Anything that threw | Check this first when leads stop arriving. |
 
+## CRM mirror
+
+`submitToSheet` in `src/lib/leads.ts` also POSTs every submission (same
+envelope, without the Apps Script token) to the Neo CRM form endpoint
+(`CRM_ENDPOINT`). It is fire-and-forget: a CRM failure never affects the
+patient or the Sheet, and honeypot-filled submissions are not sent.
+
 ## Deploy
 
 The token is hardcoded in two places and they must match:

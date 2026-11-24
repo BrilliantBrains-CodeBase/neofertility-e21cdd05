@@ -22,6 +22,13 @@ const ENDPOINT =
   "https://script.google.com/macros/s/AKfycbzQve077dA9xzCIk6iPJjCrjYsD35orgDCKJDfcq4n1TxmquM0S41_2vJ3foDMj8_Ghsw/exec";
 const TOKEN = "3487ff3d20b2760aaba9a19fb6d5000a";
 
+/* CRM mirror: every submission is also posted here. Fire-and-forget — the Sheet
+   stays the source of truth for the patient-facing success/failure message, so
+   a CRM outage never blocks an enquiry. The key is visible in the JS bundle,
+   like TOKEN above; rotate it if junk starts arriving. */
+const CRM_ENDPOINT =
+  "https://chatbot.neofollicletransplant.com/v1/integrations/forms/5c3bb713-b632-4ffb-85a6-e0c9cf4c0ff6?key=mbLWfdTSqx5Zd36HnFT0BowT5tFuRPPbx7NT7zdZlvM";
+
 /** Tabs in the clinic's spreadsheet. Must match the `FORMS` registry in Code.gs. */
 export type LeadFormName = "lead" | "assessment" | "ovulation";
 
@@ -81,6 +88,32 @@ export async function submitToSheet(envelope: LeadEnvelope): Promise<boolean> {
 
   const { utmSource, utmMedium, utmCampaign, pageUrl, referrer } = context();
 
+  const payload = {
+    form: envelope.form,
+    sourcePage: envelope.sourcePage,
+    sourceVariant: envelope.sourceVariant ?? "",
+    pageUrl,
+    referrer,
+    honeypot: envelope.honeypot ?? "",
+    fillMs: envelope.fillMs,
+    data: { ...envelope.data, utmSource, utmMedium, utmCampaign },
+  };
+
+  /* Mirror to the CRM. Skipped for honeypot hits so bots stay out of it. Its
+     failure is swallowed on purpose. */
+  if (CRM_ENDPOINT && !envelope.honeypot) {
+    try {
+      void fetch(CRM_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        keepalive: true,
+        body: JSON.stringify(payload),
+      }).catch(() => {});
+    } catch {
+      /* fetch threw synchronously — ignore, the Sheet post still goes ahead. */
+    }
+  }
+
   try {
     const response = await fetch(ENDPOINT, {
       method: "POST",
@@ -88,17 +121,7 @@ export async function submitToSheet(envelope: LeadEnvelope): Promise<boolean> {
       /* Lets the request finish if the patient navigates away or closes the tab
          the moment they hit submit. */
       keepalive: true,
-      body: JSON.stringify({
-        token: TOKEN,
-        form: envelope.form,
-        sourcePage: envelope.sourcePage,
-        sourceVariant: envelope.sourceVariant ?? "",
-        pageUrl,
-        referrer,
-        honeypot: envelope.honeypot ?? "",
-        fillMs: envelope.fillMs,
-        data: { ...envelope.data, utmSource, utmMedium, utmCampaign },
-      }),
+      body: JSON.stringify({ token: TOKEN, ...payload }),
     });
     if (!response.ok) return false;
     /* The script answers `{ ok: false }` with a 200 for a rejected token or an
